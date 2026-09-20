@@ -10,7 +10,6 @@
 
 <style>
 *{box-sizing:border-box}
-
 body{
 margin:0;
 font-family:Tahoma,Arial,sans-serif;
@@ -22,12 +21,7 @@ justify-content:center;
 align-items:center;
 padding:25px;
 }
-
-.container{
-width:100%;
-max-width:700px;
-}
-
+.container{width:100%;max-width:700px}
 .card{
 background:rgba(20,12,35,.82);
 border:1px solid rgba(123,44,255,.45);
@@ -36,262 +30,100 @@ padding:30px;
 box-shadow:0 0 35px rgba(123,44,255,.18),inset 0 0 25px rgba(0,229,255,.03);
 backdrop-filter:blur(12px);
 }
-
 .logo{
-width:75px;
-height:75px;
-margin:0 auto 15px;
-border-radius:20px;
-background:#7b2cff;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:28px;
-font-weight:bold;
-box-shadow:0 0 25px rgba(123,44,255,.55);
+width:75px;height:75px;margin:0 auto 15px;border-radius:20px;
+background:#7b2cff;display:flex;justify-content:center;align-items:center;
+font-size:28px;font-weight:bold;box-shadow:0 0 25px rgba(123,44,255,.55);
 }
-
-h1{
-text-align:center;
-margin:5px 0 10px;
-font-size:30px;
-}
-
-.subtitle{
-text-align:center;
-color:#cfc5df;
-line-height:2;
-margin-bottom:25px;
-}
-
-.section-title{
-text-align:center;
-font-size:20px;
-margin:5px 0 10px;
-}
-
-.section-description{
-text-align:center;
-color:#aaa0b8;
-font-size:13px;
-line-height:1.9;
-margin-bottom:18px;
-}
-
-label{
-display:block;
-margin-bottom:8px;
-color:#e7ddf5;
-font-weight:bold;
-}
-
+h1{text-align:center;margin:5px 0 10px;font-size:30px}
+.subtitle{text-align:center;color:#cfc5df;line-height:2;margin-bottom:25px}
+.section-title{text-align:center;font-size:20px;margin:5px 0 10px}
+.section-description{text-align:center;color:#aaa0b8;font-size:13px;line-height:1.9;margin-bottom:18px}
+label{display:block;margin-bottom:8px;color:#e7ddf5;font-weight:bold}
 input,textarea{
-width:100%;
-padding:14px;
-margin-bottom:18px;
-border-radius:13px;
-border:1px solid rgba(123,44,255,.4);
-background:#0d0915;
-color:white;
-outline:none;
-font-family:inherit;
-font-size:14px;
+width:100%;padding:14px;margin-bottom:18px;border-radius:13px;
+border:1px solid rgba(123,44,255,.4);background:#0d0915;color:white;
+outline:none;font-family:inherit;font-size:14px;
 }
-
-input::placeholder,textarea::placeholder{
-color:#71677e;
-}
-
-input:focus,textarea:focus{
-border-color:#00e5ff;
-box-shadow:0 0 12px rgba(0,229,255,.15);
-}
-
-textarea{
-min-height:150px;
-resize:vertical;
-}
-
+input::placeholder,textarea::placeholder{color:#71677e}
+input:focus,textarea:focus{border-color:#00e5ff;box-shadow:0 0 12px rgba(0,229,255,.15)}
+textarea{min-height:150px;resize:vertical}
 button{
-width:100%;
-padding:14px;
-border:none;
-border-radius:13px;
-background:linear-gradient(90deg,#7b2cff,#00cfff);
-color:white;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-transition:.2s;
+width:100%;padding:14px;border:none;border-radius:13px;
+background:linear-gradient(90deg,#7b2cff,#00cfff);color:white;
+font-size:16px;font-weight:bold;cursor:pointer;transition:.2s;
 }
-
-button:hover{
-transform:translateY(-2px);
-box-shadow:0 0 20px rgba(0,229,255,.25);
-}
-
-button:disabled{
-opacity:.6;
-cursor:not-allowed;
-transform:none;
-}
-
-.view-button{
-margin-top:15px;
-background:linear-gradient(90deg,#00a8cc,#7b2cff);
-}
-
-.divider{
-height:1px;
-background:rgba(255,255,255,.08);
-margin:30px 0;
-}
-
+button:hover{transform:translateY(-2px);box-shadow:0 0 20px rgba(0,229,255,.25)}
+button:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.view-button{margin-top:15px;background:linear-gradient(90deg,#00a8cc,#7b2cff)}
+.divider{height:1px;background:rgba(255,255,255,.08);margin:30px 0}
 .success{
-display:none;
-text-align:center;
-background:rgba(0,255,170,.07);
-border:1px solid rgba(0,255,170,.35);
-border-radius:16px;
-padding:20px;
-margin-top:20px;
+display:none;text-align:center;background:rgba(0,255,170,.07);
+border:1px solid rgba(0,255,170,.35);border-radius:16px;
+padding:20px;margin-top:20px;
 }
-
-.ticket-code{
-display:flex;
-align-items:center;
-gap:8px;
-margin-top:15px;
-}
-
+.ticket-code{display:flex;align-items:center;gap:8px;margin-top:15px}
 .ticket-code input{
-margin:0;
-text-align:center;
-font-weight:bold;
-font-size:18px;
-letter-spacing:1px;
-color:#00e5ff;
+margin:0;text-align:center;font-weight:bold;font-size:18px;
+letter-spacing:1px;color:#00e5ff;
 }
-
 .copy-btn{
-width:auto;
-min-width:110px;
-padding:13px 15px;
-background:linear-gradient(90deg,#242033,#49316e);
-font-size:14px;
+width:auto;min-width:110px;padding:13px 15px;
+background:linear-gradient(90deg,#242033,#49316e);font-size:14px;
 }
-
 .copy-message{
-display:block;
-min-height:20px;
-margin-top:8px;
-color:#7dffcf;
-font-size:13px;
+display:block;min-height:20px;margin-top:8px;
+color:#7dffcf;font-size:13px;
 }
-
 .login-box{
-padding:20px;
-border-radius:16px;
-background:rgba(8,6,14,.8);
-border:1px solid rgba(0,229,255,.25);
-margin-top:20px;
+padding:20px;border-radius:16px;background:rgba(8,6,14,.8);
+border:1px solid rgba(0,229,255,.25);margin-top:20px;
 }
-
 .ticket-code-input{
-text-align:center;
-font-weight:bold;
-font-size:18px;
-letter-spacing:1px;
+text-align:center;font-weight:bold;font-size:18px;letter-spacing:1px;
 }
-
 .ticket-result{
-display:none;
-margin-top:20px;
-padding:20px;
-border-radius:16px;
-background:rgba(8,6,14,.8);
-border:1px solid rgba(0,229,255,.25);
+display:none;margin-top:20px;padding:20px;border-radius:16px;
+background:rgba(8,6,14,.8);border:1px solid rgba(0,229,255,.25);
 }
-
 .ticket-status{
-display:inline-block;
-padding:7px 12px;
-border-radius:20px;
-margin-bottom:15px;
-font-size:13px;
-font-weight:bold;
+display:inline-block;padding:7px 12px;border-radius:20px;
+margin-bottom:15px;font-size:13px;font-weight:bold;
 }
-
 .status-open{
-background:rgba(0,255,120,.1);
-color:#5cffae;
+background:rgba(0,255,120,.1);color:#5cffae;
 border:1px solid rgba(0,255,120,.25);
 }
-
 .status-answered{
-background:rgba(0,200,255,.1);
-color:#5cddff;
+background:rgba(0,200,255,.1);color:#5cddff;
 border:1px solid rgba(0,200,255,.25);
 }
-
 .status-closed{
-background:rgba(255,80,80,.1);
-color:#ff8585;
+background:rgba(255,80,80,.1);color:#ff8585;
 border:1px solid rgba(255,80,80,.25);
 }
-
-.ticket-info{
-margin-top:15px;
-line-height:2;
-color:#ddd;
-}
-
+.ticket-info{margin-top:15px;line-height:2;color:#ddd}
 .ticket-message,.admin-reply{
-margin-top:15px;
-padding:15px;
-border-radius:13px;
+margin-top:15px;padding:15px;border-radius:13px;
 background:rgba(255,255,255,.04);
 border:1px solid rgba(255,255,255,.07);
-line-height:2;
-white-space:pre-wrap;
-word-break:break-word;
+line-height:2;white-space:pre-wrap;word-break:break-word;
 }
-
-.admin-reply{
-border-color:rgba(0,229,255,.2);
-}
-
+.admin-reply{border-color:rgba(0,229,255,.2)}
 .error{
-display:none;
-margin-top:15px;
-padding:12px;
-border-radius:12px;
+display:none;margin-top:15px;padding:12px;border-radius:12px;
 background:rgba(255,60,60,.08);
 border:1px solid rgba(255,60,60,.3);
-color:#ff9999;
-text-align:center;
+color:#ff9999;text-align:center;
 }
-
 .back-btn{
-display:block;
-text-align:center;
-margin-top:20px;
-color:#bdb0d0;
-text-decoration:none;
+display:block;text-align:center;margin-top:20px;
+color:#bdb0d0;text-decoration:none;
 }
-
-.back-btn:hover{
-color:#00e5ff;
-}
-
+.back-btn:hover{color:#00e5ff}
 @media(max-width:550px){
-.ticket-code{
-flex-direction:column;
-}
-
-.copy-btn{
-width:100%;
-}
+.ticket-code{flex-direction:column}
+.copy-btn{width:100%}
 }
 </style>
 </head>
@@ -351,7 +183,6 @@ required
 
 </form>
 
-<!-- مشاهده تیکت -->
 <button
 id="openTicketBtn"
 class="view-button"
@@ -360,7 +191,6 @@ type="button"
 🔎 مشاهده تیکت
 </button>
 
-<!-- ورود به تیکت -->
 <div class="login-box" id="loginBox">
 
 <h2 class="section-title">🔓 ورود به تیکت</h2>
@@ -381,10 +211,7 @@ placeholder="مثلاً AG-XXXXXXXX"
 autocomplete="off"
 >
 
-<button
-id="viewBtn"
-type="button"
->
+<button id="viewBtn" type="button">
 🔓 ورود به تیکت
 </button>
 
@@ -412,10 +239,8 @@ type="button"
 </div>
 
 </div>
-
 </div>
 
-<!-- نتیجه ارسال تیکت -->
 <div class="success" id="successBox">
 
 <div>✅ تیکت شما با موفقیت ثبت شد!</div>
@@ -451,10 +276,7 @@ id="copyMessage"
 
 <div class="divider"></div>
 
-<a
-class="back-btn"
-href="index.html"
->
+<a class="back-btn" href="index.html">
 ⬅️ بازگشت به صفحه اصلی
 </a>
 
@@ -464,25 +286,18 @@ href="index.html"
 <script>
 
 const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co";
-
 const SUPABASE_KEY = "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
 
 function createTicketCode(){
 
 const bytes = new Uint8Array(5);
-
 crypto.getRandomValues(bytes);
 
 let code = "";
 
 for(const byte of bytes){
-
-code += byte
-.toString(36)
-.toUpperCase()
-.padStart(2,"0");
-
+code += byte.toString(36).toUpperCase().padStart(2,"0");
 }
 
 return "AG-" + code.substring(0,8);
@@ -491,39 +306,24 @@ return "AG-" + code.substring(0,8);
 
 
 const form = document.getElementById("ticketForm");
-
 const submitBtn = document.getElementById("submitBtn");
-
 const openTicketBtn = document.getElementById("openTicketBtn");
-
 const loginBox = document.getElementById("loginBox");
-
 const successBox = document.getElementById("successBox");
-
 const newTicketCode = document.getElementById("newTicketCode");
-
 const copyBtn = document.getElementById("copyBtn");
-
 const copyMessage = document.getElementById("copyMessage");
-
 const ticketCodeInput = document.getElementById("ticketCodeInput");
-
 const viewBtn = document.getElementById("viewBtn");
-
 const ticketResult = document.getElementById("ticketResult");
-
 const ticketStatus = document.getElementById("ticketStatus");
-
 const ticketName = document.getElementById("ticketName");
-
 const ticketMessage = document.getElementById("ticketMessage");
-
 const adminReply = document.getElementById("adminReply");
-
 const errorBox = document.getElementById("errorBox");
 
 
-/* دکمه مشاهده تیکت */
+/* مشاهده تیکت */
 
 openTicketBtn.addEventListener("click",function(){
 
@@ -544,73 +344,40 @@ form.addEventListener("submit",async function(e){
 e.preventDefault();
 
 submitBtn.disabled=true;
-
 submitBtn.textContent="⏳ در حال ارسال...";
 
 const ticketCode=createTicketCode();
 
 const data={
-
 ticket_code:ticketCode,
-
 name:document.getElementById("name").value.trim(),
-
 email:document.getElementById("email").value.trim(),
-
 message:document.getElementById("message").value.trim(),
-
 status:"open"
-
 };
-
 
 try{
 
 const response=await fetch(
-
 SUPABASE_URL+"/rest/v1/tickets",
-
 {
-
 method:"POST",
-
 headers:{
-
 "Content-Type":"application/json",
-
 "apikey":SUPABASE_KEY,
-
-"Authorization":"Bearer "+SUPABASE_KEY,
-
 "Prefer":"return=minimal"
-
 },
-
 body:JSON.stringify(data)
-
 }
-
 );
 
-
 if(!response.ok){
-
 throw new Error(await response.text());
-
 }
 
-
 form.style.display="none";
-
 newTicketCode.value=ticketCode;
-
 successBox.style.display="block";
-
-successBox.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
 
 }catch(error){
 
@@ -621,7 +388,6 @@ alert("❌ ارسال تیکت انجام نشد. لطفاً دوباره تلا
 }finally{
 
 submitBtn.disabled=false;
-
 submitBtn.textContent="📨 ارسال تیکت";
 
 }
@@ -637,28 +403,23 @@ const code=newTicketCode.value;
 
 if(!code)return;
 
-
 try{
 
 await navigator.clipboard.writeText(code);
 
 copyBtn.textContent="✅ کپی شد";
-
 copyMessage.textContent="کد تیکت کپی شد؛ آن را برای بعد نگه دار.";
 
 setTimeout(function(){
 
 copyBtn.textContent="📋 کپی کد";
-
 copyMessage.textContent="";
 
 },2500);
 
-
 }catch(error){
 
 newTicketCode.select();
-
 document.execCommand("copy");
 
 copyBtn.textContent="✅ کپی شد";
@@ -677,7 +438,6 @@ copyBtn.textContent="📋 کپی کد";
 function showError(message){
 
 errorBox.textContent=message;
-
 errorBox.style.display="block";
 
 }
@@ -686,7 +446,6 @@ errorBox.style.display="block";
 function hideError(){
 
 errorBox.textContent="";
-
 errorBox.style.display="none";
 
 }
@@ -697,64 +456,47 @@ function getStatusText(status){
 if(status==="closed"){
 
 return{
-
 text:"🔒 تیکت بسته شده",
-
 className:"status-closed"
-
 };
 
 }
-
 
 if(status==="answered"){
 
 return{
-
 text:"🔵 تیکت پاسخ داده شده",
-
 className:"status-answered"
-
 };
 
 }
-
 
 return{
-
 text:"🟢 در انتظار پاسخ",
-
 className:"status-open"
-
 };
 
 }
 
 
-/* مشاهده تیکت */
+/* مشاهده اطلاعات تیکت */
 
 viewBtn.addEventListener("click",async function(){
 
 hideError();
-
 ticketResult.style.display="none";
 
 const code=ticketCodeInput.value.trim().toUpperCase();
 
-
 if(!code){
 
 showError("⚠️ لطفاً کد تیکت را وارد کنید.");
-
 return;
 
 }
 
-
 viewBtn.disabled=true;
-
-viewBtn.textContent="⏳ در حال ورود...";
-
+viewBtn.textContent="⏳ در حال دریافت...";
 
 try{
 
@@ -763,29 +505,17 @@ const response=await fetch(
 SUPABASE_URL+"/rest/v1/rpc/get_ticket_by_code",
 
 {
-
 method:"POST",
-
 headers:{
-
 "Content-Type":"application/json",
-
-"apikey":SUPABASE_KEY,
-
-"Authorization":"Bearer "+SUPABASE_KEY
-
+"apikey":SUPABASE_KEY
 },
-
 body:JSON.stringify({
-
 code:code
-
 })
-
 }
 
 );
-
 
 if(!response.ok){
 
@@ -797,9 +527,7 @@ throw new Error(errorText);
 
 }
 
-
 const tickets=await response.json();
-
 
 if(!tickets || tickets.length===0){
 
@@ -809,20 +537,15 @@ return;
 
 }
 
-
 const ticket=tickets[0];
 
 const status=getStatusText(ticket.status);
 
-
 ticketStatus.textContent=status.text;
-
 ticketStatus.className="ticket-status "+status.className;
 
 ticketName.textContent=ticket.name||"";
-
 ticketMessage.textContent=ticket.message||"";
-
 
 if(ticket.admin_reply){
 
@@ -834,17 +557,12 @@ adminReply.textContent="⏳ هنوز پاسخی از پشتیبانی ثبت ن�
 
 }
 
-
 ticketResult.style.display="block";
 
 ticketResult.scrollIntoView({
-
 behavior:"smooth",
-
 block:"center"
-
 });
-
 
 }catch(error){
 
@@ -855,7 +573,6 @@ showError("❌ دریافت تیکت انجام نشد. دوباره تلاش ک
 }finally{
 
 viewBtn.disabled=false;
-
 viewBtn.textContent="🔓 ورود به تیکت";
 
 }
