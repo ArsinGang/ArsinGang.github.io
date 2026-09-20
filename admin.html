@@ -10,7 +10,7 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237b2cff'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='38' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
 
-<style> * { box-sizing: border-box; } html { scroll-behavior: smooth; } body { margin: 0; min-height: 100vh; font-family: Arial, Tahoma, sans-serif; color: white; background: radial-gradient( circle at 15% 20%, rgba(130,40,255,.30), transparent 35% ), radial-gradient( circle at 85% 80%, rgba(0,220,255,.20), transparent 35% ), linear-gradient( 135deg, #080014, #18002d, #001522 ); overflow-x: hidden; } body::before { content: ""; position: fixed; width: 350px; height: 350px; top: -120px; left: -120px; background: rgba(123,44,255,.18); filter: blur(100px); border-radius: 50%; pointer-events: none; } body::after { content: ""; position: fixed; width: 350px; height: 350px; bottom: -120px; right: -120px; background: rgba(0,220,255,.14); filter: blur(100px); border-radius: 50%; pointer-events: none; } .container { width: 92%; max-width: 1000px; margin: auto; padding: 55px 0; } .header { text-align: center; margin-bottom: 35px; } .logo { width: 85px; height: 85px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border-radius: 24px; font-size: 31px; font-weight: 900; letter-spacing: 2px; background: linear-gradient( 135deg, #7b2cff, #00d9ff ); box-shadow: 0 0 25px rgba(123,44,255,.55), 0 0 60px rgba(0,217,255,.20); animation: logoGlow 3s infinite alternate; } @keyframes logoGlow { from { transform: translateY(0); box-shadow: 0 0 25px rgba(123,44,255,.55), 0 0 60px rgba(0,217,255,.20); } to { transform: translateY(-5px); box-shadow: 0 0 40px rgba(123,44,255,.75), 0 0 80px rgba(0,217,255,.30); } } h1 { margin: 0 0 10px; font-size: 45px; font-weight: 900; background: linear-gradient( 90deg, #ffffff, #b987ff, #45eaff ); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } .subtitle { color: #d8d2e8; font-size: 18px; } .login-box { max-width: 470px; margin: 35px auto; padding: 30px; border-radius: 22px; background: rgba(20,15,40,.82); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 0 35px rgba(123,44,255,.20); backdrop-filter: blur(10px); } .login-box h2 { margin-top: 0; } .input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 13px; border: 1px solid rgba(255,255,255,.12); outline: none; background: rgba(5,5,20,.75); color: white; font-size: 16px; direction: ltr; } .input:focus { border-color: rgba(123,44,255,.75); box-shadow: 0 0 18px rgba(123,44,255,.25); } .button { width: 100%; padding: 15px; border: none; border-radius: 14px; color: white; font-size: 17px; font-weight: bold; cursor: pointer; background: linear-gradient( 135deg, #7b2cff, #00bde8 ); box-shadow: 0 0 25px rgba(123,44,255,.30); transition: .25s; } .button:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(123,44,255,.55); } .error { display: none; margin-top: 15px; padding: 12px; border-radius: 12px; color: #ffb5b5; background: rgba(255,50,50,.10); border: 1px solid rgba(255,80,80,.25); direction: rtl; word-break: break-word; } .dashboard { display: none; } .admin-bar { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 25px; padding: 18px 20px; border-radius: 18px; background: rgba(20,15,40,.82); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 0 25px rgba(123,44,255,.15); backdrop-filter: blur(10px); } .admin-email { color: #cdb5ff; direction: ltr; word-break: break-all; } .bar-buttons { display: flex; gap: 10px; } .small-button { padding: 10px 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.06); color: white; cursor: pointer; font-weight: bold; } .small-button:hover { background: rgba(123,44,255,.25); } .ticket-count { margin-bottom: 20px; color: #cfc8df; text-align: right; } .ticket { margin-bottom: 20px; padding: 25px; border-radius: 20px; background: rgba(20,15,40,.82); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 0 25px rgba(123,44,255,.13); backdrop-filter: blur(10px); } .ticket:hover { border-color: rgba(123,44,255,.40); box-shadow: 0 0 30px rgba(123,44,255,.22); } .ticket-header { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding-bottom: 15px; margin-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.08); } .ticket-code { color: #cda8ff; font-size: 20px; font-weight: bold; direction: ltr; } .status { padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; background: rgba(0,220,120,.12); border: 1px solid rgba(0,220,120,.30); color: #7fffc1; } .info { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; } .info-item { padding: 13px; border-radius: 12px; background: rgba(255,255,255,.04); } .info-title { color: #8d879c; font-size: 13px; margin-bottom: 5px; } .info-value { color: white; word-break: break-word; } .email-value { direction: ltr; text-align: right; } .message-title { color: #b987ff; font-weight: bold; margin-bottom: 8px; } .message { padding: 18px; border-radius: 14px; line-height: 1.9; white-space: pre-wrap; word-break: break-word; background: rgba(5,5,20,.55); color: #eeeeee; } .empty { text-align: center; padding: 50px 20px; color: #9d97ab; border-radius: 20px; background: rgba(20,15,40,.70); border: 1px solid rgba(255,255,255,.08); } .loading { text-align: center; padding: 40px; color: #cdb5ff; } @media (max-width: 650px) { .container { width: 94%; padding-top: 35px; } h1 { font-size: 35px; } .admin-bar { flex-direction: column; align-items: stretch; } .bar-buttons { justify-content: center; } .info { grid-template-columns: 1fr; } .ticket-header { align-items: flex-start; flex-direction: column; } } </style>
+<style> * { box-sizing: border-box; } html { scroll-behavior: smooth; } body { margin: 0; min-height: 100vh; font-family: Arial, Tahoma, sans-serif; color: white; background: radial-gradient( circle at 15% 20%, rgba(130,40,255,.30), transparent 35% ), radial-gradient( circle at 85% 80%, rgba(0,220,255,.20), transparent 35% ), linear-gradient( 135deg, #080014, #18002d, #001522 ); overflow-x: hidden; } body::before { content: ""; position: fixed; width: 350px; height: 350px; top: -120px; left: -120px; background: rgba(123,44,255,.18); filter: blur(100px); border-radius: 50%; pointer-events: none; } body::after { content: ""; position: fixed; width: 350px; height: 350px; bottom: -120px; right: -120px; background: rgba(0,220,255,.14); filter: blur(100px); border-radius: 50%; pointer-events: none; } .container { width: 92%; max-width: 1000px; margin: auto; padding: 55px 0; } .header { text-align: center; margin-bottom: 35px; } .logo { width: 85px; height: 85px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border-radius: 24px; font-size: 31px; font-weight: 900; letter-spacing: 2px; background: linear-gradient( 135deg, #7b2cff, #00d9ff ); box-shadow: 0 0 25px rgba(123,44,255,.55), 0 0 60px rgba(0,217,255,.20); animation: logoGlow 3s infinite alternate; } @keyframes logoGlow { from { transform: translateY(0); box-shadow: 0 0 25px rgba(123,44,255,.55), 0 0 60px rgba(0,217,255,.20); } to { transform: translateY(-5px); box-shadow: 0 0 40px rgba(123,44,255,.75), 0 0 80px rgba(0,217,255,.30); } } h1 { margin: 0 0 10px; font-size: 45px; font-weight: 900; background: linear-gradient( 90deg, #ffffff, #b987ff, #45eaff ); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } .subtitle { color: #d8d2e8; font-size: 18px; } .login-box { max-width: 470px; margin: 35px auto; padding: 30px; border-radius: 22px; background: rgba(20,15,40,.82); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 0 35px rgba(123,44,255,.20); backdrop-filter: blur(10px); } .login-box h2 { margin-top: 0; } .input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 13px; border: 1px solid rgba(255,255,255,.12); outline: none; background: rgba(5,5,20,.75); color: white; font-size: 16px; direction: ltr; } .input:focus { border-color: rgba(123,44,255,.75); box-shadow: 0 0 18px rgba(123,44,255,.25); } .button { width: 100%; padding: 15px; border: none; border-radius: 14px; color: white; font-size: 17px; font-weight: bold; cursor: pointer; background: linear-gradient( 135deg, #7b2cff, #00bde8 ); box-shadow: 0 0 25px rgba(123,44,255,.30); transition: .25s; } .button:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(123,44,255,.55); } .error { display: none; margin-top: 15px; padding: 12px; border-radius: 12px; color: #ffb5b5; background: rgba(255,50,50,.10); border: 1px solid rgba(255,80,80,.25); direction: rtl; word-break: break-word; } .dashboard { display: none; } .admin-bar { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 25px; padding: 18px 20px; border-radius: 18px; background: rgba(20,15,40,.82); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 0 25px rgba(123,44,255,.15); backdrop-filter: blur(10px); } .admin-email { color: #cdb5ff; direction: ltr; word-break: break-all; } .bar-buttons { display: flex; gap: 10px; } .small-button { padding: 10px 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.06); color: white; cursor: pointer; font-weight: bold; } .small-button:hover { background: rgba(123,44,255,.25); } .ticket-count { margin-bottom: 20px; color: #cfc8df; text-align: right; } .ticket { margin-bottom: 20px; padding: 25px; border-radius: 20px; background: rgba(20,15,40,.82); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 0 25px rgba(123,44,255,.13); backdrop-filter: blur(10px); } .ticket:hover { border-color: rgba(123,44,255,.40); box-shadow: 0 0 30px rgba(123,44,255,.22); } .ticket-header { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding-bottom: 15px; margin-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.08); } .ticket-code { color: #cda8ff; font-size: 20px; font-weight: bold; direction: ltr; } .status { padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; } .status-open { background: rgba(0,220,120,.12); border: 1px solid rgba(0,220,120,.30); color: #7fffc1; } .status-answered { background: rgba(0,180,255,.12); border: 1px solid rgba(0,200,255,.30); color: #72e8ff; } .status-closed { background: rgba(255,80,80,.12); border: 1px solid rgba(255,80,80,.30); color: #ff9c9c; } .info { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; } .info-item { padding: 13px; border-radius: 12px; background: rgba(255,255,255,.04); } .info-title { color: #8d879c; font-size: 13px; margin-bottom: 5px; } .info-value { color: white; word-break: break-word; } .email-value { direction: ltr; text-align: right; } .message-title { color: #b987ff; font-weight: bold; margin-bottom: 8px; } .message { padding: 18px; border-radius: 14px; line-height: 1.9; white-space: pre-wrap; word-break: break-word; background: rgba(5,5,20,.55); color: #eeeeee; } .reply-title { margin-top: 22px; margin-bottom: 8px; color: #45eaff; font-weight: bold; } .reply-box { width: 100%; min-height: 130px; resize: vertical; padding: 15px; border-radius: 14px; border: 1px solid rgba(69,234,255,.18); outline: none; background: rgba(5,5,20,.65); color: white; font-family: Arial, Tahoma, sans-serif; font-size: 16px; line-height: 1.8; } .reply-box:focus { border-color: rgba(69,234,255,.60); box-shadow: 0 0 18px rgba(0,217,255,.15); } .existing-reply { margin-top: 20px; } .existing-reply-title { color: #72e8ff; font-weight: bold; margin-bottom: 8px; } .reply-message { padding: 18px; border-radius: 14px; line-height: 1.9; white-space: pre-wrap; word-break: break-word; background: rgba(0,180,255,.06); border: 1px solid rgba(0,200,255,.15); color: #e9fbff; } .action-buttons { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; } .ticket-button { flex: 1; min-width: 180px; padding: 13px 18px; border-radius: 13px; border: 1px solid rgba(255,255,255,.12); color: white; font-size: 15px; font-weight: bold; cursor: pointer; transition: .25s; } .ticket-button:hover { transform: translateY(-2px); } .reply-button { background: linear-gradient( 135deg, #7b2cff, #00bde8 ); border-color: rgba(69,234,255,.30); } .close-button { background: rgba(255,70,70,.12); border-color: rgba(255,80,80,.30); color: #ffaaaa; } .reopen-button { background: rgba(0,220,120,.10); border-color: rgba(0,220,120,.30); color: #7fffc1; } .ticket-success { display: none; margin-top: 12px; padding: 10px; border-radius: 10px; background: rgba(0,220,120,.08); border: 1px solid rgba(0,220,120,.20); color: #7fffc1; } .ticket-error { display: none; margin-top: 12px; padding: 10px; border-radius: 10px; background: rgba(255,50,50,.08); border: 1px solid rgba(255,80,80,.20); color: #ffaaaa; } .empty { text-align: center; padding: 50px 20px; color: #9d97ab; border-radius: 20px; background: rgba(20,15,40,.70); border: 1px solid rgba(255,255,255,.08); } .loading { text-align: center; padding: 40px; color: #cdb5ff; } @media (max-width: 650px) { .container { width: 94%; padding-top: 35px; } h1 { font-size: 35px; } .admin-bar { flex-direction: column; align-items: stretch; } .bar-buttons { justify-content: center; } .info { grid-template-columns: 1fr; } .ticket-header { align-items: flex-start; flex-direction: column; } } </style>
 
 </head>
 
@@ -20,123 +20,733 @@
 
 <div class="header">
 
-    <div class="logo">
-        AG
+<div class="logo">
+    AG
+</div>
+
+<h1>
+    مدیریت تیکت‌ها
+</h1>
+
+<div class="subtitle">
+    🎫 پنل پشتیبانی ArsinGang
+</div>
+
+</div>
+
+<div class="login-box" id="loginBox">
+
+<h2>
+    🔐 ورود مدیر
+</h2>
+
+<p style="color:#aaa;">
+    برای مشاهده تیکت‌های کاربران وارد شوید.
+</p>
+
+<input
+    class="input"
+    type="email"
+    id="loginEmail"
+    placeholder="ایمیل"
+    autocomplete="email">
+
+<input
+    class="input"
+    type="password"
+    id="loginPassword"
+    placeholder="رمز عبور"
+    autocomplete="current-password">
+
+<button
+    class="button"
+    id="loginButton">
+
+    🔐 ورود به پنل
+
+</button>
+
+<div
+    class="error"
+    id="loginError">
+</div>
+
+</div>
+
+<div class="dashboard" id="dashboard">
+
+<div class="admin-bar">
+
+    <div>
+
+        👤 مدیر وارد شده:
+
+        <div
+            class="admin-email"
+            id="adminEmail">
+        </div>
+
     </div>
 
-    <h1>
-        مدیریت تیکت‌ها
-    </h1>
+    <div class="bar-buttons">
 
-    <div class="subtitle">
-        🎫 پنل پشتیبانی ArsinGang
+        <button
+            class="small-button"
+            id="refreshButton">
+
+            🔄 بروزرسانی
+
+        </button>
+
+        <button
+            class="small-button"
+            id="logoutButton">
+
+            🚪 خروج
+
+        </button>
+
     </div>
 
 </div>
 
 
 <div
-    class="login-box"
-    id="loginBox">
-
-    <h2>
-        🔐 ورود مدیر
-    </h2>
-
-    <p style="color:#aaa;">
-        برای مشاهده تیکت‌های کاربران وارد شوید.
-    </p>
-
-    <input
-        class="input"
-        type="email"
-        id="loginEmail"
-        placeholder="ایمیل"
-        autocomplete="email">
-
-    <input
-        class="input"
-        type="password"
-        id="loginPassword"
-        placeholder="رمز عبور"
-        autocomplete="current-password">
-
-    <button
-        class="button"
-        id="loginButton">
-
-        🔐 ورود به پنل
-
-    </button>
-
-    <div
-        class="error"
-        id="loginError">
-    </div>
-
+    class="ticket-count"
+    id="ticketCount">
 </div>
 
 
 <div
-    class="dashboard"
-    id="dashboard">
+    id="ticketsContainer">
 
-    <div class="admin-bar">
+    <div class="loading">
+        ⏳ در حال دریافت تیکت‌ها...
+    </div>
 
-        <div>
+</div>
 
-            👤 مدیر وارد شده:
+</div>
 
-            <div
-                class="admin-email"
-                id="adminEmail">
+</div>
+
+<script> const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co"; const SUPABASE_KEY = "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5"; const loginBox = document.getElementById("loginBox"); const dashboard = document.getElementById("dashboard"); const loginButton = document.getElementById("loginButton"); const logoutButton = document.getElementById("logoutButton"); const refreshButton = document.getElementById("refreshButton"); const loginError = document.getElementById("loginError"); const ticketsContainer = document.getElementById("ticketsContainer"); const ticketCount = document.getElementById("ticketCount"); const adminEmail = document.getElementById("adminEmail"); let accessToken = localStorage.getItem("arsin_admin_token"); function showLoginError(message) { loginError.textContent = message; loginError.style.display = "block"; } /* ورود مدیر */ loginButton.addEventListener( "click", async function() { loginError.style.display = "none"; const email = document .getElementById("loginEmail") .value .trim(); const password = document .getElementById("loginPassword") .value; if (!email || !password) { showLoginError( "❌ ایمیل و رمز عبور را وارد کنید." ); return; } loginButton.disabled = true; loginButton.textContent = "⏳ در حال ورود..."; try { const response = await fetch( SUPABASE_URL + "/auth/v1/token?grant_type=password", { method: "POST", headers: { "Content-Type": "application/json", "apikey": SUPABASE_KEY }, body: JSON.stringify({ email: email, password: password }) } ); const data = await response.json(); if (!response.ok) { throw new Error( data.error_description || data.msg || data.message || "خطای ناشناخته در ورود" ); } accessToken = data.access_token; localStorage.setItem( "arsin_admin_token", accessToken ); localStorage.setItem( "arsin_admin_email", email ); showDashboard(email); await loadTickets(); } catch (error) { console.error( "Login Error:", error ); showLoginError( "❌ خطای ورود: " + error.message ); } finally { loginButton.disabled = false; loginButton.textContent = "🔐 ورود به پنل"; } } ); /* نمایش داشبورد */ function showDashboard(email) { loginBox.style.display = "none"; dashboard.style.display = "block"; adminEmail.textContent = email; } /* دریافت تیکت‌ها */ async function loadTickets() { ticketsContainer.innerHTML = '<div class="loading">⏳ در حال دریافت تیکت‌ها...</div>'; try { const response = await fetch( SUPABASE_URL + "/rest/v1/tickets?select=*&order=created_at.desc", { method: "GET", headers: { "apikey": SUPABASE_KEY, "Authorization": "Bearer " + accessToken } } ); const data = await response.json(); if (!response.ok) { throw new Error( data.message || data.error_description || "خطا در دریافت تیکت‌ها" ); } renderTickets(data); } catch (error) { console.error( "Tickets Error:", error ); ticketsContainer.innerHTML = ` <div class="empty"> ❌ دریافت تیکت‌ها انجام نشد. <br><br> ${escapeHTML(error.message)} </div> `; } } /* نمایش تیکت‌ها */ function renderTickets(tickets) { ticketCount.textContent = `🎫 تعداد تیکت‌ها: ${tickets.length}`; if (!tickets.length) { ticketsContainer.innerHTML = ` <div class="empty"> 📭 هنوز هیچ تیکتی ثبت نشده است. </div> `; return; } ticketsContainer.innerHTML = ""; tickets.forEach( function(ticket) { const ticketElement = document.createElement("div"); ticketElement.className = "ticket"; const createdDate = ticket.created_at ? new Date( ticket.created_at ).toLocaleString("fa-IR") : "نامشخص"; let statusText = "باز"; let statusClass = "status-open"; let statusIcon = "🟢"; if (ticket.status === "answered") { statusText = "تیکت پاسخ داده شده"; statusClass = "status-answered"; statusIcon = "🔵"; } if (ticket.status === "closed") { statusText = "بسته شده"; statusClass = "status-closed"; statusIcon = "🔒"; } const existingReply = ticket.admin_reply ? ` <div class="existing-reply"> <div class="existing-reply-title"> 💬 پاسخ پشتیبانی </div> <div class="reply-message"> ${escapeHTML(ticket.admin_reply)} </div> </div> ` : ""; const canReply = ticket.status !== "closed"; const replyArea = canReply ? ` <div class="reply-title"> ✍️ پاسخ به تیکت </div> <textarea class="reply-box" id="reply-${ticket.id}" placeholder="پاسخ خود را برای کاربر بنویسید..."></textarea>
+
+                    <div class="action-buttons">
+
+                        <button
+                            class="ticket-button reply-button"
+                            onclick="answerTicket(${ticket.id})">
+
+                            💬 ثبت پاسخ
+
+                        </button>
+
+
+                        <button
+                            class="ticket-button close-button"
+                            onclick="closeTicket(${ticket.id})">
+
+                            🔒 بستن تیکت
+
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="ticket-success"
+                        id="success-${ticket.id}">
+                    </div>
+
+                    <div
+                        class="ticket-error"
+                        id="error-${ticket.id}">
+                    </div>
+                `
+                : `
+                    <div class="action-buttons">
+
+                        <button
+                            class="ticket-button reopen-button"
+                            onclick="reopenTicket(${ticket.id})">
+
+                            🔓 باز کردن دوباره تیکت
+
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="ticket-success"
+                        id="success-${ticket.id}">
+                    </div>
+
+                    <div
+                        class="ticket-error"
+                        id="error-${ticket.id}">
+                    </div>
+                `;
+
+
+        ticketElement.innerHTML = `
+
+            <div class="ticket-header">
+
+                <div class="ticket-code">
+                    🎫 ${escapeHTML(ticket.ticket_code)}
+                </div>
+
+                <div
+                    class="status ${statusClass}">
+
+                    ${statusIcon}
+                    ${escapeHTML(statusText)}
+
+                </div>
+
             </div>
 
-        </div>
 
-        <div class="bar-buttons">
+            <div class="info">
 
-            <button
-                class="small-button"
-                id="refreshButton">
+                <div class="info-item">
 
-                🔄 بروزرسانی
+                    <div class="info-title">
+                        👤 نام / یوزرنیم
+                    </div>
 
-            </button>
+                    <div class="info-value">
+                        ${escapeHTML(ticket.name)}
+                    </div>
 
-            <button
-                class="small-button"
-                id="logoutButton">
-
-                🚪 خروج
-
-            </button>
-
-        </div>
-
-    </div>
+                </div>
 
 
-    <div
-        class="ticket-count"
-        id="ticketCount">
-    </div>
+                <div class="info-item">
+
+                    <div class="info-title">
+                        📧 ایمیل
+                    </div>
+
+                    <div class="info-value email-value">
+                        ${escapeHTML(ticket.email)}
+                    </div>
+
+                </div>
 
 
-    <div
-        id="ticketsContainer">
+                <div class="info-item">
 
-        <div class="loading">
-            ⏳ در حال دریافت تیکت‌ها...
-        </div>
+                    <div class="info-title">
+                        🕐 تاریخ ارسال
+                    </div>
 
-    </div>
+                    <div class="info-value">
+                        ${escapeHTML(createdDate)}
+                    </div>
 
-</div>
+                </div>
 
-</div>
 
-<script> const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co"; const SUPABASE_KEY = "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5"; const loginBox = document.getElementById("loginBox"); const dashboard = document.getElementById("dashboard"); const loginButton = document.getElementById("loginButton"); const logoutButton = document.getElementById("logoutButton"); const refreshButton = document.getElementById("refreshButton"); const loginError = document.getElementById("loginError"); const ticketsContainer = document.getElementById("ticketsContainer"); const ticketCount = document.getElementById("ticketCount"); const adminEmail = document.getElementById("adminEmail"); let accessToken = localStorage.getItem( "arsin_admin_token" ); function showLoginError(message) { loginError.textContent = message; loginError.style.display = "block"; } /* ورود */ loginButton.addEventListener( "click", async function() { loginError.style.display = "none"; const email = document.getElementById( "loginEmail" ).value.trim(); const password = document.getElementById( "loginPassword" ).value; if (!email || !password) { showLoginError( "❌ ایمیل و رمز عبور را وارد کنید." ); return; } loginButton.disabled = true; loginButton.textContent = "⏳ در حال ورود..."; try { const response = await fetch( SUPABASE_URL + "/auth/v1/token?grant_type=password", { method: "POST", headers: { "Content-Type": "application/json", "apikey": SUPABASE_KEY }, body: JSON.stringify({ email: email, password: password }) } ); const data = await response.json(); if (!response.ok) { throw new Error( data.error_description || data.msg || data.message || "خطای ناشناخته در ورود" ); } accessToken = data.access_token; localStorage.setItem( "arsin_admin_token", accessToken ); localStorage.setItem( "arsin_admin_email", email ); showDashboard( email ); await loadTickets(); } catch (error) { console.error( "Login Error:", error ); showLoginError( "❌ خطای ورود: " + error.message ); } finally { loginButton.disabled = false; loginButton.textContent = "🔐 ورود به پنل"; } } ); /* داشبورد */ function showDashboard(email) { loginBox.style.display = "none"; dashboard.style.display = "block"; adminEmail.textContent = email; } /* دریافت تیکت‌ها */ async function loadTickets() { ticketsContainer.innerHTML = '<div class="loading">⏳ در حال دریافت تیکت‌ها...</div>'; try { const response = await fetch( SUPABASE_URL + "/rest/v1/tickets?select=*&order=created_at.desc", { method: "GET", headers: { "apikey": SUPABASE_KEY, "Authorization": "Bearer " + accessToken } } ); const data = await response.json(); if (!response.ok) { throw new Error( data.message || data.error_description || "خطا در دریافت تیکت‌ها" ); } renderTickets( data ); } catch (error) { console.error( "Tickets Error:", error ); ticketsContainer.innerHTML = ` <div class="empty"> ❌ دریافت تیکت‌ها انجام نشد. <br><br> ${escapeHTML( error.message )} </div> `; } } /* نمایش تیکت‌ها */ function renderTickets(tickets) { ticketCount.textContent = `🎫 تعداد تیکت‌ها: ${tickets.length}`; if (!tickets.length) { ticketsContainer.innerHTML = ` <div class="empty"> 📭 هنوز هیچ تیکتی ثبت نشده است. </div> `; return; } ticketsContainer.innerHTML = ""; tickets.forEach( function(ticket) { const ticketElement = document.createElement( "div" ); ticketElement.className = "ticket"; const createdDate = ticket.created_at ? new Date( ticket.created_at ).toLocaleString( "fa-IR" ) : "نامشخص"; const statusText = ticket.status === "open" ? "باز" : ticket.status; ticketElement.innerHTML = ` <div class="ticket-header"> <div class="ticket-code"> 🎫 ${escapeHTML( ticket.ticket_code )} </div> <div class="status"> 🟢 ${escapeHTML( statusText )} </div> </div> <div class="info"> <div class="info-item"> <div class="info-title"> 👤 نام / یوزرنیم </div> <div class="info-value"> ${escapeHTML( ticket.name )} </div> </div> <div class="info-item"> <div class="info-title"> 📧 ایمیل </div> <div class="info-value email-value"> ${escapeHTML( ticket.email )} </div> </div> <div class="info-item"> <div class="info-title"> 🕐 تاریخ ارسال </div> <div class="info-value"> ${escapeHTML( createdDate )} </div> </div> <div class="info-item"> <div class="info-title"> 📌 وضعیت </div> <div class="info-value"> ${escapeHTML( statusText )} </div> </div> </div> <div class="message-title"> 💬 پیام کاربر </div> <div class="message"> ${escapeHTML( ticket.message )} </div> `; ticketsContainer.appendChild( ticketElement ); } ); } /* امنیت HTML */ function escapeHTML(value) { if ( value === null || value === undefined ) { return ""; } return String(value) .replace( /&/g, "&amp;" ) .replace( /</g, "&lt;" ) .replace( />/g, "&gt;" ) .replace( /"/g, "&quot;" ) .replace( /'/g, "&#039;" ); } /* بروزرسانی */ refreshButton.addEventListener( "click", async function() { refreshButton.disabled = true; refreshButton.textContent = "⏳ دریافت..."; await loadTickets(); refreshButton.disabled = false; refreshButton.textContent = "🔄 بروزرسانی"; } ); /* خروج */ logoutButton.addEventListener( "click", async function() { if (accessToken) { try { await fetch( SUPABASE_URL + "/auth/v1/logout", { method: "POST", headers: { "apikey": SUPABASE_KEY, "Authorization": "Bearer " + accessToken } } ); } catch (error) { console.error( error ); } } localStorage.removeItem( "arsin_admin_token" ); localStorage.removeItem( "arsin_admin_email" ); accessToken = null; dashboard.style.display = "none"; loginBox.style.display = "block"; document.getElementById( "loginPassword" ).value = ""; } ); /* ورود قبلی */ if (accessToken) { const savedEmail = localStorage.getItem( "arsin_admin_email" ); showDashboard( savedEmail || "مدیر" ); loadTickets(); } </script>
+                <div class="info-item">
+
+                    <div class="info-title">
+                        📌 وضعیت
+                    </div>
+
+                    <div class="info-value">
+                        ${escapeHTML(statusText)}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="message-title">
+                💬 پیام کاربر
+            </div>
+
+
+            <div class="message">
+                ${escapeHTML(ticket.message)}
+            </div>
+
+
+            ${existingReply}
+
+
+            ${replyArea}
+
+        `;
+
+
+        ticketsContainer.appendChild(
+            ticketElement
+        );
+
+    }
+);
+
+}
+
+/* پاسخ دادن */
+
+async function answerTicket(ticketId) {
+
+const replyBox =
+    document.getElementById(
+        "reply-" + ticketId
+    );
+
+
+const successBox =
+    document.getElementById(
+        "success-" + ticketId
+    );
+
+
+const errorBox =
+    document.getElementById(
+        "error-" + ticketId
+    );
+
+
+const reply =
+    replyBox
+        ? replyBox.value.trim()
+        : "";
+
+
+successBox.style.display =
+    "none";
+
+errorBox.style.display =
+    "none";
+
+
+if (!reply) {
+
+    errorBox.textContent =
+        "❌ لطفاً متن پاسخ را وارد کنید.";
+
+    errorBox.style.display =
+        "block";
+
+    return;
+}
+
+
+try {
+
+    const response =
+        await fetch(
+            SUPABASE_URL +
+            "/rest/v1/tickets?id=eq." +
+            ticketId,
+            {
+                method: "PATCH",
+
+                headers: {
+                    "Content-Type":
+                        "application/json",
+
+                    "apikey":
+                        SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " +
+                        accessToken,
+
+                    "Prefer":
+                        "return=minimal"
+                },
+
+                body:
+                    JSON.stringify({
+                        admin_reply:
+                            reply,
+
+                        status:
+                            "answered",
+
+                        replied_at:
+                            new Date().toISOString()
+                    })
+            }
+        );
+
+
+    const data =
+        await response.text();
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data ||
+            "خطا در ثبت پاسخ"
+        );
+    }
+
+
+    successBox.textContent =
+        "✅ پاسخ ثبت شد و وضعیت تیکت به «تیکت پاسخ داده شده» تغییر کرد.";
+
+    successBox.style.display =
+        "block";
+
+
+    await loadTickets();
+
+
+} catch (error) {
+
+    console.error(
+        "Answer Error:",
+        error
+    );
+
+
+    errorBox.textContent =
+        "❌ ثبت پاسخ انجام نشد: " +
+        error.message;
+
+    errorBox.style.display =
+        "block";
+
+}
+
+}
+
+/* بستن دستی تیکت */
+
+async function closeTicket(ticketId) {
+
+const confirmed =
+    confirm(
+        "آیا مطمئن هستید که می‌خواهید این تیکت را ببندید؟"
+    );
+
+
+if (!confirmed) {
+    return;
+}
+
+
+const successBox =
+    document.getElementById(
+        "success-" + ticketId
+    );
+
+
+const errorBox =
+    document.getElementById(
+        "error-" + ticketId
+    );
+
+
+try {
+
+    const response =
+        await fetch(
+            SUPABASE_URL +
+            "/rest/v1/tickets?id=eq." +
+            ticketId,
+            {
+                method: "PATCH",
+
+                headers: {
+                    "Content-Type":
+                        "application/json",
+
+                    "apikey":
+                        SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " +
+                        accessToken,
+
+                    "Prefer":
+                        "return=minimal"
+                },
+
+                body:
+                    JSON.stringify({
+                        status:
+                            "closed"
+                    })
+            }
+        );
+
+
+    const data =
+        await response.text();
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data ||
+            "خطا در بستن تیکت"
+        );
+    }
+
+
+    successBox.textContent =
+        "🔒 تیکت با موفقیت بسته شد.";
+
+    successBox.style.display =
+        "block";
+
+
+    await loadTickets();
+
+
+} catch (error) {
+
+    console.error(
+        "Close Error:",
+        error
+    );
+
+
+    errorBox.textContent =
+        "❌ بستن تیکت انجام نشد: " +
+        error.message;
+
+    errorBox.style.display =
+        "block";
+
+}
+
+}
+
+/* باز کردن دوباره تیکت */
+
+async function reopenTicket(ticketId) {
+
+try {
+
+    const response =
+        await fetch(
+            SUPABASE_URL +
+            "/rest/v1/tickets?id=eq." +
+            ticketId,
+            {
+                method: "PATCH",
+
+                headers: {
+                    "Content-Type":
+                        "application/json",
+
+                    "apikey":
+                        SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " +
+                        accessToken,
+
+                    "Prefer":
+                        "return=minimal"
+                },
+
+                body:
+                    JSON.stringify({
+                        status:
+                            "open"
+                    })
+            }
+        );
+
+
+    const data =
+        await response.text();
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data ||
+            "خطا در باز کردن تیکت"
+        );
+    }
+
+
+    await loadTickets();
+
+
+} catch (error) {
+
+    console.error(
+        "Reopen Error:",
+        error
+    );
+
+    alert(
+        "❌ باز کردن تیکت انجام نشد:\n" +
+        error.message
+    );
+
+}
+
+}
+
+/* امنیت HTML */
+
+function escapeHTML(value) {
+
+if (
+    value === null ||
+    value === undefined
+) {
+
+    return "";
+
+}
+
+
+return String(value)
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+/* بروزرسانی */
+
+refreshButton.addEventListener(
+"click",
+async function() {
+
+    refreshButton.disabled =
+        true;
+
+    refreshButton.textContent =
+        "⏳ دریافت...";
+
+
+    await loadTickets();
+
+
+    refreshButton.disabled =
+        false;
+
+    refreshButton.textContent =
+        "🔄 بروزرسانی";
+
+}
+
+);
+
+/* خروج */
+
+logoutButton.addEventListener(
+"click",
+async function() {
+
+    if (accessToken) {
+
+        try {
+
+            await fetch(
+                SUPABASE_URL +
+                "/auth/v1/logout",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            accessToken
+                    }
+                }
+            );
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+    }
+
+
+    localStorage.removeItem(
+        "arsin_admin_token"
+    );
+
+
+    localStorage.removeItem(
+        "arsin_admin_email"
+    );
+
+
+    accessToken =
+        null;
+
+
+    dashboard.style.display =
+        "none";
+
+
+    loginBox.style.display =
+        "block";
+
+
+    document.getElementById(
+        "loginPassword"
+    ).value = "";
+
+}
+
+);
+
+/* ورود قبلی */
+
+if (accessToken) {
+
+const savedEmail =
+    localStorage.getItem(
+        "arsin_admin_email"
+    );
+
+
+showDashboard(
+    savedEmail || "مدیر"
+);
+
+
+loadTickets();
+
+}
+
+</script>
 
 </body>
 
