@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="fa" dir="rtl">
-
-<head>
-
-<meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>پشتیبانی ArsinGang</title>
+<html lang="fa" dir="rtl"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>ArsinGang | پشتیبانی</title>
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237b2cff'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='38' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
 
-<style> * { box-sizing: border-box; } html { scroll-behavior: smooth; } body { margin: 0; min-height: 100vh; font-family: Arial, Tahoma, sans-serif; color: white; text-align: center; background: radial-gradient( circle at 15% 20%, rgba(130,40,255,.30), transparent 35% ), radial-gradient( circle at 85% 80%, rgba(0,220,255,.20), transparent 35% ), linear-gradient( 135deg, #080014, #18002d, #001522 ); overflow-x: hidden; } /* نور پس‌زمینه */ body::before { content: ""; position: fixed; width: 350px; height: 350px; top: -120px; left: -120px; background: rgba(123,44,255,.18); filter: blur(100px); border-radius: 50%; pointer-events: none; } body::after { content: ""; position: fixed; width: 350px; height: 350px; bottom: -120px; right: -120px; background: rgba(0,220,255,.14); filter: blur(100px); border-radius: 50%; pointer-events: none; } /* صفحه */ .container { width: 90%; max-width: 720px; margin: auto; padding: 65px 20px 45px; } /* لوگو */ .logo { width: 105px; height: 105px; margin: auto; display: flex; align-items: center; justify-content: center; border-radius: 28px; font-size: 38px; font-weight: 900; letter-spacing: 2px; background: linear-gradient( 135deg, #7b2cff, #00d9ff ); box-shadow: 0 0 25px rgba(123,44,255,.55), 0 0 60px rgba(0,217,255,.20); animation: logoGlow 3s infinite alternate; } @keyframes logoGlow { from { transform: translateY(0); box-shadow: 0 0 25px rgba(123,44,255,.55), 0 0 60px rgba(0,217,255,.20); } to { transform: translateY(-5px); box-shadow: 0 0 40px rgba(123,44,255,.75), 0 0 80px rgba(0,217,255,.30); } } /* عنوان */ h1 { font-size: 48px; margin: 22px 0 10px; font-weight: 900; background: linear-gradient( 90deg, #ffffff, #b987ff, #45eaff ); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } /* توضیحات */ .subtitle { color: #d8d2e8; font-size: 19px; line-height: 1.8; margin-bottom: 35px; } /* فرم */ .form-box { padding: 28px; border-radius: 22px; background: rgba(20,15,40,.82); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 0 30px rgba(123,44,255,.18); backdrop-filter: blur(10px); } /* ورودی‌ها */ .input-group { text-align: right; margin-bottom: 20px; } .input-group label { display: block; margin-bottom: 8px; color: #eee; font-size: 16px; font-weight: bold; } .input-group input, .input-group textarea { width: 100%; padding: 15px; border-radius: 13px; border: 1px solid rgba(255,255,255,.12); outline: none; background: rgba(5,5,20,.70); color: white; font-family: Arial, Tahoma, sans-serif; font-size: 16px; transition: border .25s, box-shadow .25s; } .input-group textarea { min-height: 150px; resize: vertical; } .input-group input:focus, .input-group textarea:focus { border-color: rgba(123,44,255,.75); box-shadow: 0 0 18px rgba(123,44,255,.25); } /* دکمه */ .submit-button { width: 100%; padding: 17px; border: none; border-radius: 15px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; background: linear-gradient( 135deg, #7b2cff, #00bde8 ); box-shadow: 0 0 25px rgba(123,44,255,.35); transition: transform .25s, box-shadow .25s, opacity .25s; } .submit-button:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(123,44,255,.60); } .submit-button:disabled { opacity: .6; cursor: wait; } /* پیام وضعیت */ .status { margin-top: 20px; font-size: 16px; line-height: 1.9; display: none; } /* موفقیت */ .success-box { display: none; padding: 30px; border-radius: 22px; background: rgba(20,15,40,.88); border: 1px solid rgba(0,220,255,.30); box-shadow: 0 0 35px rgba(0,220,255,.18); line-height: 2; } .ticket-code { display: inline-block; margin: 12px 0; padding: 10px 18px; border-radius: 12px; background: rgba(123,44,255,.20); border: 1px solid rgba(123,44,255,.45); color: #cda8ff; font-size: 22px; font-weight: bold; direction: ltr; } /* بازگشت */ .back-button { display: inline-block; margin-top: 25px; padding: 14px 22px; border-radius: 14px; color: white; text-decoration: none; font-weight: bold; background: rgba(20,15,40,.82); border: 1px solid rgba(255,255,255,.12); transition: transform .25s, box-shadow .25s; } .back-button:hover { transform: translateY(-3px); box-shadow: 0 0 25px rgba(123,44,255,.40); } /* فوتر */ .footer { margin-top: 40px; color: #77718a; font-size: 14px; } /* موبایل */ @media (max-width: 600px) { .container { padding-top: 45px; } .logo { width: 90px; height: 90px; font-size: 32px; } h1 { font-size: 38px; } .subtitle { font-size: 17px; } .form-box { padding: 20px; } } </style>
+<style> *{ box-sizing:border-box; } body{ margin:0; font-family:Tahoma,Arial,sans-serif; background: radial-gradient(circle at top,#21113d 0%,#090611 45%,#050308 100%); color:white; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:25px; } .container{ width:100%; max-width:700px; } .card{ background:rgba(20,12,35,.82); border:1px solid rgba(123,44,255,.45); border-radius:24px; padding:30px; box-shadow: 0 0 35px rgba(123,44,255,.18), inset 0 0 25px rgba(0,229,255,.03); backdrop-filter:blur(12px); } .logo{ width:75px; height:75px; margin:0 auto 15px; border-radius:20px; background:#7b2cff; display:flex; justify-content:center; align-items:center; font-size:28px; font-weight:bold; box-shadow:0 0 25px rgba(123,44,255,.55); } h1{ text-align:center; margin:5px 0 10px; font-size:30px; } .subtitle{ text-align:center; color:#cfc5df; line-height:2; margin-bottom:25px; } label{ display:block; margin-bottom:8px; color:#e7ddf5; font-weight:bold; } input, textarea{ width:100%; padding:14px; margin-bottom:18px; border-radius:13px; border:1px solid rgba(123,44,255,.4); background:#0d0915; color:white; outline:none; font-family:inherit; font-size:14px; } input:focus, textarea:focus{ border-color:#00e5ff; box-shadow:0 0 12px rgba(0,229,255,.15); } textarea{ min-height:150px; resize:vertical; } button{ width:100%; padding:14px; border:none; border-radius:13px; background:linear-gradient(90deg,#7b2cff,#00cfff); color:white; font-size:16px; font-weight:bold; cursor:pointer; transition:.2s; } button:hover{ transform:translateY(-2px); box-shadow:0 0 20px rgba(0,229,255,.25); } button:disabled{ opacity:.6; cursor:not-allowed; transform:none; } .success{ display:none; text-align:center; background:rgba(0,255,170,.07); border:1px solid rgba(0,255,170,.35); border-radius:16px; padding:20px; margin-top:20px; } .ticket-code{ display:flex; align-items:center; gap:8px; margin-top:15px; } .ticket-code input{ margin:0; text-align:center; font-weight:bold; font-size:18px; letter-spacing:1px; color:#00e5ff; } .copy-btn{ width:auto; min-width:110px; padding:13px 15px; background:linear-gradient(90deg,#242033,#49316e); font-size:14px; } .copy-btn:hover{ box-shadow:0 0 15px rgba(123,44,255,.35); } .copy-message{ display:block; min-height:20px; margin-top:8px; color:#7dffcf; font-size:13px; } .divider{ height:1px; background:rgba(255,255,255,.08); margin:30px 0; } .view-ticket h2{ text-align:center; margin-bottom:10px; } .view-ticket p{ text-align:center; color:#aaa0b8; font-size:13px; line-height:1.8; } .ticket-result{ display:none; margin-top:20px; padding:20px; border-radius:16px; background:rgba(8,6,14,.8); border:1px solid rgba(0,229,255,.25); } .ticket-status{ display:inline-block; padding:7px 12px; border-radius:20px; margin-bottom:15px; font-size:13px; font-weight:bold; } .status-open{ background:rgba(0,255,120,.1); color:#5cffae; border:1px solid rgba(0,255,120,.25); } .status-answered{ background:rgba(0,200,255,.1); color:#5cddff; border:1px solid rgba(0,200,255,.25); } .status-closed{ background:rgba(255,80,80,.1); color:#ff8585; border:1px solid rgba(255,80,80,.25); } .ticket-info{ margin-top:15px; line-height:2; color:#ddd; } .ticket-message, .admin-reply{ margin-top:15px; padding:15px; border-radius:13px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); line-height:2; white-space:pre-wrap; word-break:break-word; } .admin-reply{ border-color:rgba(0,229,255,.2); } .back-btn{ display:block; text-align:center; margin-top:20px; color:#bdb0d0; text-decoration:none; } .back-btn:hover{ color:#00e5ff; } .error{ display:none; margin-top:15px; padding:12px; border-radius:12px; background:rgba(255,60,60,.08); border:1px solid rgba(255,60,60,.3); color:#ff9999; text-align:center; } </style>
 
 </head>
 
@@ -18,159 +12,89 @@
 
 <div class="container">
 
-<!-- لوگو -->
+<div class="card">
 
-<div class="logo">
-    AG
-</div>
+<div class="logo">AG</div>
 
+<h1>پشتیبانی ArsinGang</h1>
 
-<!-- عنوان -->
+<div class="subtitle"> مشکلی داری؟ 💜 <br> پیامت رو بنویس تا بررسیش کنیم 🎮 </div>
 
-<h1>
-    پشتیبانی ArsinGang
-</h1>
+<form id="ticketForm">
 
+<label>نام / یوزرنیم</label>
+<input id="name" type="text" required>
 
-<!-- توضیحات -->
+<label>ایمیل</label>
+<input id="email" type="email" required>
 
-<div class="subtitle">
+<label>پیام</label>
 
-    مشکلی داری؟ 💜
+<textarea id="message" required></textarea>
 
-    <br>
+<button id="submitBtn" type="submit">📨 ارسال پیام</button>
 
-    پیامت رو بنویس تا بررسیش کنیم 🎮
+</form>
 
-</div>
+<div class="success" id="successBox">
 
+<div>✅ تیکت شما با موفقیت ثبت شد!</div>
 
-<!-- فرم -->
+<div style="margin-top:8px;color:#bbb;"> ⚠️ این کد را نگه دارید تا بتوانید وضعیت و پاسخ تیکت را مشاهده کنید. </div>
 
-<div class="form-box" id="formBox">
+<div class="ticket-code">
 
-    <form id="ticketForm">
+<input id="newTicketCode" type="text" readonly>
 
-        <div class="input-group">
-
-            <label>
-                👤 نام یا یوزرنیم
-            </label>
-
-            <input
-                type="text"
-                id="name"
-                required
-                maxlength="100"
-                placeholder="نام یا یوزرنیم شما">
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label>
-                📧 ایمیل
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                required
-                maxlength="200"
-                placeholder="example@email.com">
-
-        </div>
-
-
-        <div class="input-group">
-
-            <label>
-                💬 پیام شما
-            </label>
-
-            <textarea
-                id="message"
-                required
-                maxlength="5000"
-                placeholder="پیامت رو اینجا بنویس..."></textarea>
-
-        </div>
-
-
-        <button
-            type="submit"
-            class="submit-button"
-            id="submitButton">
-
-            📨 ارسال پیام
-
-        </button>
-
-    </form>
-
-
-    <div
-        class="status"
-        id="status">
-    </div>
+<button class="copy-btn" id="copyBtn" type="button"> 📋 کپی کد </button>
 
 </div>
 
-
-<!-- پیام موفقیت -->
-
-<div
-    class="success-box"
-    id="successBox">
-
-    <div style="font-size:25px; font-weight:bold;">
-        ✅ پیام شما با موفقیت ارسال شد!
-    </div>
-
-    <div>
-        🎫 کد پیگیری تیکت:
-    </div>
-
-    <div
-        class="ticket-code"
-        id="ticketCode">
-    </div>
-
-    <div>
-        📧 پاسخ تیکت شما تا ۷۲ ساعت دیگر در ایمیل می‌رسد.
-    </div>
+<span class="copy-message" id="copyMessage"></span>
 
 </div>
 
+<div class="divider"></div>
 
-<!-- بازگشت -->
+<div class="view-ticket">
 
-<a
-    class="back-button"
-    href="index.html">
+<h2>🔎 مشاهده تیکت</h2>
 
-    ← بازگشت به سایت
+<p> کد تیکتی که قبلاً دریافت کردی را وارد کن تا وضعیت و پاسخ پشتیبانی را ببینی. </p>
 
-</a>
+<input
+id="ticketCodeInput"
+type="text"
+placeholder="مثلاً AG-XXXXXXXX"
+autocomplete="off"
 
 
-<!-- فوتر -->
 
-<div class="footer">
 
-    ArsinGang 🎮💜
+<button id="viewBtn" type="button"> 🔎 مشاهده تیکت </button>
 
-    <br>
+<div class="error" id="errorBox"></div>
 
-    © 2026 ArsinGang
+<div class="ticket-result" id="ticketResult">
+
+<div id="ticketStatus" class="ticket-status"></div>
+
+<div class="ticket-info"> <strong>👤 نام / یوزرنیم:</strong> <span id="ticketName"></span> </div>
+
+<div class="ticket-message"> <strong>💬 پیام شما:</strong> <br> <span id="ticketMessage"></span> </div>
+
+<div class="admin-reply"> <strong>💜 پاسخ پشتیبانی:</strong> <br> <span id="adminReply"></span> </div>
 
 </div>
 
 </div>
 
-<script> /* اطلاعات Supabase */ const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co"; const SUPABASE_KEY = "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5"; /* عناصر صفحه */ const form = document.getElementById("ticketForm"); const formBox = document.getElementById("formBox"); const successBox = document.getElementById("successBox"); const status = document.getElementById("status"); const submitButton = document.getElementById("submitButton"); const ticketCode = document.getElementById("ticketCode"); /* ساخت کد پیگیری */ function createTicketCode() { const random = Math.floor( 1000 + Math.random() * 9000 ); return "AG-" + random; } /* ارسال تیکت */ form.addEventListener( "submit", async function(event) { event.preventDefault(); status.style.display = "none"; submitButton.disabled = true; submitButton.textContent = "⏳ در حال ارسال..."; const name = document.getElementById("name").value.trim(); const email = document.getElementById("email").value.trim(); const message = document.getElementById("message").value.trim(); const code = createTicketCode(); try { const response = await fetch( SUPABASE_URL + "/rest/v1/tickets", { method: "POST", headers: { "Content-Type": "application/json", "apikey": SUPABASE_KEY, "Authorization": "Bearer " + SUPABASE_KEY, "Prefer": "return=minimal" }, body: JSON.stringify({ ticket_code: code, name: name, email: email, message: message, status: "open" }) } ); if (!response.ok) { const errorText = await response.text(); throw new Error( errorText || "خطا در ارسال تیکت" ); } /* نمایش موفقیت */ formBox.style.display = "none"; ticketCode.textContent = code; successBox.style.display = "block"; form.reset(); } catch (error) { console.error( "Ticket Error:", error ); status.innerHTML = "❌ ارسال تیکت انجام نشد.<br>" + "لطفاً دوباره تلاش کنید."; status.style.display = "block"; } finally { submitButton.disabled = false; submitButton.textContent = "📨 ارسال پیام"; } } ); </script>
+<a class="back-btn" href="index.html"> ⬅️ بازگشت به صفحه اصلی </a>
 
-</body>
+</div>
 
-</html>
+</div>
+
+<script> const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co"; const SUPABASE_KEY = "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5"; function createTicketCode(){ const bytes = new Uint8Array(5); crypto.getRandomValues(bytes); let code = ""; for(const byte of bytes){ code += byte.toString(36).toUpperCase().padStart(2,"0"); } return "AG-" + code.substring(0,8); } const form = document.getElementById("ticketForm"); const submitBtn = document.getElementById("submitBtn"); const successBox = document.getElementById("successBox"); const newTicketCode = document.getElementById("newTicketCode"); const copyBtn = document.getElementById("copyBtn"); const copyMessage = document.getElementById("copyMessage"); const viewBtn = document.getElementById("viewBtn"); const ticketCodeInput = document.getElementById("ticketCodeInput"); const ticketResult = document.getElementById("ticketResult"); const ticketStatus = document.getElementById("ticketStatus"); const ticketName = document.getElementById("ticketName"); const ticketMessage = document.getElementById("ticketMessage"); const adminReply = document.getElementById("adminReply"); const errorBox = document.getElementById("errorBox"); form.addEventListener("submit", async function(e){ e.preventDefault(); submitBtn.disabled = true; submitBtn.textContent = "⏳ در حال ارسال..."; const ticketCode = createTicketCode(); const data = { ticket_code: ticketCode, name: document.getElementById("name").value.trim(), email: document.getElementById("email").value.trim(), message: document.getElementById("message").value.trim(), status: "open" }; try{ const response = await fetch( SUPABASE_URL + "/rest/v1/tickets", { method:"POST", headers:{ "Content-Type":"application/json", "apikey":SUPABASE_KEY, "Authorization":"Bearer " + SUPABASE_KEY, "Prefer":"return=minimal" }, body:JSON.stringify(data) } ); if(!response.ok){ const errorText = await response.text(); throw new Error(errorText); } form.style.display = "none"; newTicketCode.value = ticketCode; successBox.style.display = "block"; }catch(error){ alert("❌ ارسال تیکت انجام نشد. لطفاً دوباره تلاش کنید."); console.error(error); }finally{ submitBtn.disabled = false; submitBtn.textContent = "📨 ارسال پیام"; } }); copyBtn.addEventListener("click", async function(){ const code = newTicketCode.value; if(!code) return; try{ await navigator.clipboard.writeText(code); copyBtn.textContent = "✅ کپی شد"; copyMessage.textContent = "کد تیکت در کلیپ‌بورد ذخیره شد؛ حتماً آن را نگه دار."; setTimeout(function(){ copyBtn.textContent = "📋 کپی کد"; copyMessage.textContent = ""; },2500); }catch(error){ newTicketCode.select(); document.execCommand("copy"); copyBtn.textContent = "✅ کپی شد"; setTimeout(function(){ copyBtn.textContent = "📋 کپی کد"; },2500); } }); function showError(message){ errorBox.textContent = message; errorBox.style.display = "block"; } function hideError(){ errorBox.textContent = ""; errorBox.style.display = "none"; } function getStatusText(status){ if(status === "closed"){ return { text:"🔒 تیکت بسته شده", className:"status-closed" }; } if(status === "answered"){ return { text:"🔵 تیکت پاسخ داده شده", className:"status-answered" }; } return { text:"🟢 در انتظار پاسخ", className:"status-open" }; } viewBtn.addEventListener("click", async function(){ hideError(); ticketResult.style.display = "none"; let code = ticketCodeInput.value.trim().toUpperCase(); if(!code){ showError("⚠️ لطفاً کد تیکت را وارد کنید."); return; } viewBtn.disabled = true; viewBtn.textContent = "⏳ در حال بررسی..."; try{ const response = await fetch( SUPABASE_URL + "/rest/v1/rpc/get_ticket_by_code", { method:"POST", headers:{ "Content-Type":"application/json", "apikey":SUPABASE_KEY, "Authorization":"Bearer " + SUPABASE_KEY }, body:JSON.stringify({ code:code }) } ); if(!response.ok){ const errorText = await response.text(); throw new Error(errorText); } const tickets = await response.json(); if(!tickets || tickets.length === 0){ showError("❌ تیکتی با این کد پیدا نشد. کد را بررسی کن."); return; } const ticket = tickets[0]; const status = getStatusText(ticket.status); ticketStatus.textContent = status.text; ticketStatus.className = "ticket-status " + status.className; ticketName.textContent = ticket.name || ""; ticketMessage.textContent = ticket.message || ""; if(ticket.admin_reply){ adminReply.textContent = ticket.admin_reply; }else{ adminReply.textContent = "⏳ هنوز پاسخی از پشتیبانی ثبت نشده است."; } ticketResult.style.display = "block"; }catch(error){ console.error(error); showError( "❌ دریافت اطلاعات تیکت انجام نشد. دوباره تلاش کنید." ); }finally{ viewBtn.disabled = false; viewBtn.textContent = "🔎 مشاهده تیکت"; } }); </script>
+
+</body> </html>
