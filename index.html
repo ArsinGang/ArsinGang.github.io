@@ -1,101 +1,359 @@
 <!DOCTYPE html>
-
 <html lang="fa" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ArsinGang</title>
+
+<title>ArsinGang | Official Website</title>
+
+<meta name="description" content="وب‌سایت رسمی ArsinGang؛ حمایت مالی و سرور Minecraft">
+
+<!-- Favicon -->
+<link
+rel="icon"
+href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237b2cff'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='38' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
 
 <style>
+
 * {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: Arial, Tahoma, sans-serif;
+
+    font-family:
+        Arial,
+        Tahoma,
+        sans-serif;
+
     color: white;
     text-align: center;
+
     background:
-        radial-gradient(circle at 20% 20%, rgba(130,40,255,.30), transparent 35%),
-        radial-gradient(circle at 80% 80%, rgba(0,220,255,.20), transparent 35%),
-        linear-gradient(135deg,#080014,#18002d,#001522);
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(130,40,255,.30),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(0,220,255,.20),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #080014,
+            #18002d,
+            #001522
+        );
+
+    overflow-x: hidden;
 }
+
+/* نور پس‌زمینه */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    width: 350px;
+    height: 350px;
+
+    top: -120px;
+    left: -120px;
+
+    background: rgba(123,44,255,.18);
+
+    filter: blur(100px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 350px;
+    height: 350px;
+
+    bottom: -120px;
+    right: -120px;
+
+    background: rgba(0,220,255,.14);
+
+    filter: blur(100px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+/* صفحه اصلی */
 
 .container {
+
     width: 90%;
-    max-width: 700px;
+    max-width: 720px;
+
     margin: 0 auto;
-    padding: 80px 20px;
+
+    padding:
+        75px 20px
+        45px;
+
 }
+
+/* لوگو */
 
 .logo {
-    width: 95px;
-    height: 95px;
+
+    width: 105px;
+    height: 105px;
+
     margin: auto;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    border-radius: 25px;
-    font-size: 34px;
-    font-weight: bold;
-    background: linear-gradient(135deg,#7b2cff,#00d9ff);
-    box-shadow: 0 0 35px rgba(123,44,255,.65);
+
+    border-radius: 28px;
+
+    font-size: 38px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7b2cff,
+            #00d9ff
+        );
+
+    box-shadow:
+        0 0 25px rgba(123,44,255,.55),
+        0 0 60px rgba(0,217,255,.20);
+
+    animation: logoGlow 3s infinite alternate;
 }
 
+@keyframes logoGlow {
+
+    from {
+        transform: translateY(0);
+        box-shadow:
+            0 0 25px rgba(123,44,255,.55),
+            0 0 60px rgba(0,217,255,.20);
+    }
+
+    to {
+        transform: translateY(-5px);
+        box-shadow:
+            0 0 40px rgba(123,44,255,.75),
+            0 0 80px rgba(0,217,255,.30);
+    }
+
+}
+
+/* عنوان */
+
 h1 {
-    font-size: 55px;
-    margin: 20px 0 10px;
-    background: linear-gradient(90deg,#fff,#b987ff,#45eaff);
+
+    font-size: 56px;
+
+    margin:
+        22px 0
+        10px;
+
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #b987ff,
+            #45eaff
+        );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+/* توضیحات */
+
 .subtitle {
+
     color: #d8d2e8;
+
     font-size: 19px;
-    margin-bottom: 35px;
+
+    line-height: 1.8;
+
+    margin-bottom: 38px;
+
 }
 
+/* دکمه‌ها */
+
 .menu {
+
     display: flex;
+
     flex-direction: column;
+
     gap: 18px;
+
 }
 
 .button {
+
+    position: relative;
+
     display: block;
-    padding: 22px;
-    border-radius: 18px;
+
+    padding: 21px 20px;
+
+    border-radius: 19px;
+
     color: white;
+
     text-decoration: none;
-    font-size: 21px;
+
+    font-size: 20px;
+
     font-weight: bold;
-    background: rgba(20,15,40,.85);
-    border: 1px solid rgba(255,255,255,.12);
-    box-shadow: 0 0 25px rgba(123,44,255,.18);
-    transition: .25s;
+
+    background:
+        rgba(20,15,40,.82);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    box-shadow:
+        0 0 25px
+        rgba(123,44,255,.15);
+
+    backdrop-filter: blur(10px);
+
+    transition:
+        transform .25s,
+        box-shadow .25s,
+        background .25s;
+
 }
+
+/* افکت دکمه */
 
 .button:hover {
-    transform: scale(1.04);
-    box-shadow: 0 0 30px rgba(123,44,255,.55);
+
+    transform:
+        translateY(-4px)
+        scale(1.02);
+
+    background:
+        rgba(35,25,65,.95);
+
+    box-shadow:
+        0 0 30px
+        rgba(123,44,255,.50);
+
 }
+
+.button:active {
+
+    transform:
+        scale(.98);
+
+}
+
+/* دکمه حمایت */
 
 .donate {
-    border-color: rgba(180,100,255,.35);
+
+    border-color:
+        rgba(180,100,255,.40);
+
 }
+
+/* دکمه سرور */
 
 .server {
-    border-color: rgba(0,220,255,.30);
+
+    border-color:
+        rgba(0,220,255,.35);
+
 }
 
+/* فوتر */
+
 .footer {
-    margin-top: 35px;
+
+    margin-top: 40px;
+
     color: #77718a;
+
     font-size: 14px;
+
 }
+
+/* موبایل */
+
+@media (max-width: 600px) {
+
+    .container {
+
+        padding-top: 55px;
+
+    }
+
+    .logo {
+
+        width: 90px;
+        height: 90px;
+
+        font-size: 32px;
+
+    }
+
+    h1 {
+
+        font-size: 42px;
+
+    }
+
+    .subtitle {
+
+        font-size: 17px;
+
+    }
+
+    .button {
+
+        font-size: 18px;
+
+        padding: 19px 15px;
+
+    }
+
+}
+
 </style>
 
 </head>
@@ -104,33 +362,77 @@ h1 {
 
 <div class="container">
 
-```
-<div class="logo">AG</div>
+    <!-- لوگو -->
 
-<h1>ArsinGang</h1>
+    <div class="logo">
+        AG
+    </div>
 
-<div class="subtitle">
-    به دنیای ArsinGang خوش اومدی 🎮
-</div>
 
-<div class="menu">
+    <!-- نام سایت -->
 
-    <a class="button donate" href="support.html">
-        💜 حمایت مالی از ArsinGang
-    </a>
+    <h1>
+        ArsinGang
+    </h1>
 
-    <a class="button server" href="server.html">
-        ⛏️ سرور Minecraft ArsinGang
-    </a>
 
-</div>
+    <!-- توضیحات -->
 
-<div class="footer">
-    ArsinGang 🎮
-</div>
-```
+    <div class="subtitle">
+
+        به دنیای ArsinGang خوش اومدی 🎮💜
+
+        <br>
+
+        دنیای گیم، Minecraft و کلی محتوای جذاب!
+
+    </div>
+
+
+    <!-- منوی اصلی -->
+
+    <div class="menu">
+
+
+        <!-- حمایت -->
+
+        <a
+            class="button donate"
+            href="support.html">
+
+            💜 حمایت مالی از ArsinGang
+
+        </a>
+
+
+        <!-- سرور -->
+
+        <a
+            class="button server"
+            href="server.html">
+
+            ⛏️ سرور Minecraft ArsinGang
+
+        </a>
+
+
+    </div>
+
+
+    <!-- فوتر -->
+
+    <div class="footer">
+
+        ArsinGang 🎮
+
+        <br>
+
+        © 2026 ArsinGang
+
+    </div>
 
 </div>
 
 </body>
+
 </html>
