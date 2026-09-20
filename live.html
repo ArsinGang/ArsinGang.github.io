@@ -2,11 +2,11 @@
 
 <html lang="fa" dir="rtl"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ArsinGang | LIVE</title> <meta name="description" content="استریم و چت زنده ArsinGang در آپارات">
+<title>ArsinGang | LIVE</title>
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23100b22'/%3E%3Ctext x='50' y='66' text-anchor='middle' font-family='Arial' font-size='43' font-weight='bold' fill='%23b66cff'%3EAG%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23100b22'/%3E%3Ctext x='50' y='64' text-anchor='middle' font-size='48' font-family='Arial' font-weight='bold' fill='%23b66cff'%3EAG%3C/text%3E%3C/svg%3E">
 
-<style> * { box-sizing: border-box; margin: 0; padding: 0; } body { min-height: 100vh; font-family: Tahoma, Arial, sans-serif; color: white; background: radial-gradient(circle at 15% 20%, rgba(155,70,255,.22), transparent 30%), radial-gradient(circle at 85% 80%, rgba(0,220,255,.18), transparent 30%), linear-gradient(135deg, #08000f, #100021 50%, #050812); display: flex; justify-content: center; align-items: center; padding: 30px 15px; overflow-x: hidden; } body::before, body::after { content: ""; position: fixed; width: 280px; height: 280px; border-radius: 50%; filter: blur(90px); opacity: .25; pointer-events: none; } body::before { background: #8b2cff; top: -100px; right: -80px; } body::after { background: #00d9ff; bottom: -100px; left: -80px; } .container { width: 100%; max-width: 1000px; text-align: center; position: relative; z-index: 1; } .logo { width: 78px; height: 78px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; border-radius: 23px; font-size: 30px; font-weight: 900; color: white; background: linear-gradient(135deg, #7d2cff, #00d9ff); box-shadow: 0 0 28px rgba(140,50,255,.55), 0 0 45px rgba(0,210,255,.22); } h1 { font-size: 43px; margin-bottom: 8px; background: linear-gradient( 90deg, #c77dff, #ffffff, #54eaff ); -webkit-background-clip: text; background-clip: text; color: transparent; } .subtitle { color: #cfc4df; font-size: 16px; margin-bottom: 25px; } .live-card { padding: 18px; border: 1px solid rgba(183,100,255,.35); border-radius: 25px; background: rgba(20,8,38,.72); box-shadow: 0 0 35px rgba(130,45,255,.22), inset 0 0 25px rgba(0,220,255,.04); backdrop-filter: blur(12px); } .live-title { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 16px; padding: 9px 18px; border-radius: 999px; background: rgba(255,45,80,.10); border: 1px solid rgba(255,70,95,.35); color: #ff6680; font-weight: bold; box-shadow: 0 0 18px rgba(255,50,80,.12); } .dot { width: 10px; height: 10px; border-radius: 50%; background: #ff3155; box-shadow: 0 0 12px #ff3155; animation: pulse 1.2s infinite; } @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .45; transform: scale(.75); } } .video { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 18px; border: 1px solid rgba(110,230,255,.35); background: #000; box-shadow: 0 0 30px rgba(0,190,255,.13); } .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; } .chat-section { margin-top: 18px; padding: 20px; border-radius: 20px; background: linear-gradient( 135deg, rgba(126,44,255,.13), rgba(0,217,255,.07) ); border: 1px solid rgba(150,90,255,.25); box-shadow: inset 0 0 20px rgba(120,50,255,.04); } .chat-icon { font-size: 34px; margin-bottom: 7px; } .chat-section h2 { font-size: 21px; margin-bottom: 8px; } .chat-section p { color: #bfb2ca; font-size: 13px; margin-bottom: 16px; } .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; } .stat { padding: 16px 10px; border-radius: 17px; background: rgba(255,255,255,.045); border: 1px solid rgba(180,100,255,.22); box-shadow: inset 0 0 18px rgba(120,50,255,.035); } .stat-icon { font-size: 25px; margin-bottom: 7px; } .stat-title { color: #a99ab8; font-size: 12px; margin-bottom: 5px; } .stat-value { color: white; font-size: 17px; font-weight: bold; } .support { margin-top: 18px; padding: 18px; border-radius: 20px; background: linear-gradient( 135deg, rgba(126,44,255,.13), rgba(0,217,255,.07) ); border: 1px solid rgba(150,90,255,.25); } .support h2 { font-size: 20px; margin-bottom: 8px; } .support p { color: #bfb2ca; font-size: 13px; margin-bottom: 15px; } .buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; } .button { display: inline-block; text-decoration: none; color: white; padding: 13px 23px; border-radius: 14px; font-weight: bold; transition: .2s ease; border: 1px solid rgba(255,255,255,.12); } .button:hover { transform: translateY(-3px); filter: brightness(1.12); } .aparat { background: linear-gradient( 135deg, #7c2cff, #a83cff ); box-shadow: 0 0 20px rgba(145,45,255,.3); } .chat-button { background: linear-gradient( 135deg, #007dff, #00cde8 ); box-shadow: 0 0 20px rgba(0,200,235,.25); } .subscribe { background: linear-gradient( 135deg, #008fd3, #00c8e8 ); box-shadow: 0 0 20px rgba(0,200,235,.22); } .donate { background: linear-gradient( 135deg, #b52cff, #ff3f9f ); box-shadow: 0 0 20px rgba(220,45,170,.25); } .back { background: rgba(255,255,255,.07); } .footer { margin-top: 22px; color: #81758f; font-size: 13px; } @media (max-width: 650px) { h1 { font-size: 32px; } .subtitle { font-size: 14px; } .live-card { padding: 12px; border-radius: 20px; } .stats { grid-template-columns: 1fr; } .button { width: 100%; } } </style>
+<style> * { box-sizing: border-box; } body { margin: 0; font-family: Tahoma, Arial, sans-serif; color: white; background: radial-gradient(circle at top left, rgba(168, 85, 247, 0.18), transparent 35%), radial-gradient(circle at bottom right, rgba(34, 211, 238, 0.14), transparent 35%), #080611; min-height: 100vh; } .container { width: 92%; max-width: 1050px; margin: auto; padding: 45px 0; } .logo { width: 78px; height: 78px; margin: 0 auto 18px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 31px; font-weight: bold; background: linear-gradient(135deg, #a855f7, #22d3ee); color: white; box-shadow: 0 0 20px rgba(168, 85, 247, 0.55), 0 0 40px rgba(34, 211, 238, 0.25); } h1 { text-align: center; margin: 0; font-size: 38px; text-shadow: 0 0 18px rgba(168, 85, 247, 0.7); } .subtitle { text-align: center; color: #cfc9df; margin: 12px 0 30px; font-size: 16px; } .live-card { background: rgba(18, 14, 32, 0.82); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 24px; padding: 22px; box-shadow: 0 0 25px rgba(168, 85, 247, 0.13), inset 0 0 30px rgba(255, 255, 255, 0.015); backdrop-filter: blur(10px); } .live-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 0, 60, 0.12); border: 1px solid rgba(255, 60, 90, 0.45); color: #ff5c76; padding: 8px 14px; border-radius: 999px; font-weight: bold; margin-bottom: 16px; animation: pulse 1.5s infinite; } .live-dot { width: 9px; height: 9px; border-radius: 50%; background: #ff3158; box-shadow: 0 0 12px #ff3158; } @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 rgba(255, 49, 88, 0); } 50% { box-shadow: 0 0 18px rgba(255, 49, 88, 0.35); } } .video-wrapper { position: relative; width: 100%; padding-top: 57%; overflow: hidden; border-radius: 18px; background: #05040a; border: 1px solid rgba(34, 211, 238, 0.22); } .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; } .chat-section { margin-top: 22px; text-align: center; padding: 20px; border-radius: 18px; background: rgba(168, 85, 247, 0.06); border: 1px solid rgba(168, 85, 247, 0.2); } .chat-section h2 { margin: 0 0 8px; font-size: 21px; } .chat-section p { color: #bbb3cc; margin: 0 0 15px; } .button { display: inline-block; text-decoration: none; color: white; padding: 12px 20px; border-radius: 13px; margin: 5px; font-weight: bold; transition: 0.25s; border: 1px solid rgba(168, 85, 247, 0.35); background: linear-gradient( 135deg, rgba(168, 85, 247, 0.2), rgba(34, 211, 238, 0.12) ); box-shadow: 0 0 15px rgba(168, 85, 247, 0.1); } .button:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), 0 0 20px rgba(34, 211, 238, 0.12); } .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 22px; } .stat { text-align: center; padding: 20px 12px; border-radius: 18px; background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.07); } .stat-title { color: #aaa2b9; font-size: 14px; margin-bottom: 8px; } .stat-value { font-size: 20px; font-weight: bold; color: #e9ddff; } .stat-date { margin-top: 7px; font-size: 11px; color: #82798f; } .support { margin-top: 22px; padding: 24px; border-radius: 20px; text-align: center; background: linear-gradient( 135deg, rgba(168, 85, 247, 0.1), rgba(34, 211, 238, 0.05) ); border: 1px solid rgba(168, 85, 247, 0.25); } .support h2 { margin-top: 0; font-size: 23px; } .support p { color: #c3bdce; line-height: 1.9; } .bottom-buttons { text-align: center; margin-top: 25px; } footer { text-align: center; color: #777080; font-size: 13px; margin-top: 35px; } @media (max-width: 700px) { .container { padding: 28px 0; } h1 { font-size: 30px; } .stats { grid-template-columns: 1fr; } .live-card { padding: 14px; } .support { padding: 20px 15px; } .button { width: 100%; margin: 5px 0; } } </style>
 
 </head>
 
@@ -14,13 +14,9 @@
 
 <div class="container">
 
-<div class="logo">
-    AG
-</div>
+<div class="logo">AG</div>
 
-<h1>
-    ArsinGang LIVE
-</h1>
+<h1>ArsinGang LIVE</h1>
 
 <div class="subtitle">
     🔴 استریم زنده ArsinGang در آپارات 🎮
@@ -28,13 +24,12 @@
 
 <div class="live-card">
 
-    <div class="live-title">
-        <span class="dot"></span>
-        پخش زنده
+    <div class="live-badge">
+        <span class="live-dot"></span>
+        LIVE
     </div>
 
-    <div class="video">
-
+    <div class="video-wrapper">
         <iframe
             scrolling="no"
             allowfullscreen="true"
@@ -42,140 +37,91 @@
             mozallowfullscreen="true"
             src="https://www.aparat.com/embed/live/arsingang">
         </iframe>
-
     </div>
 
     <div class="chat-section">
-
-        <div class="chat-icon">
-            💬
-        </div>
-
-        <h2>
-            چت زنده ArsinGang
-        </h2>
+        <h2>💬 چت زنده ArsinGang</h2>
 
         <p>
-            برای شرکت در چت و صحبت با ArsinGang و بقیه بیننده‌ها وارد چت آپارات شو!
+            برای ورود به چت زنده و صحبت با بقیه بیننده‌ها روی دکمه زیر بزنید.
         </p>
 
-        <div class="buttons">
-
-            <a
-                class="button chat-button"
-                href="https://www.aparat.com/arsingang/live/chat"
-                target="_blank">
-                💬 ورود به چت زنده
-            </a>
-
-        </div>
-
+        <a
+            class="button"
+            href="https://www.aparat.com/arsingang/live/chat"
+            target="_blank">
+            💬 ورود به چت زنده
+        </a>
     </div>
 
     <div class="stats">
 
         <div class="stat">
-
-            <div class="stat-icon">
-                👀
-            </div>
-
-            <div class="stat-title">
-                بازدید
-            </div>
-
-            <div class="stat-value">
-                مشاهده در آپارات
-            </div>
-
+            <div class="stat-title">👀 بازدید</div>
+            <div class="stat-value">مشاهده در آپارات</div>
         </div>
 
         <div class="stat">
-
-            <div class="stat-icon">
-                👥
+            <div class="stat-title">👥 دنبال‌کننده‌ها</div>
+            <div class="stat-value">۶۶۴ نفر</div>
+            <div class="stat-date">
+                آخرین بروزرسانی: ۲۷ شهریور ۱۴۰۵
             </div>
-
-            <div class="stat-title">
-                دنبال‌کننده
-            </div>
-
-            <div class="stat-value">
-                ArsinGang
-            </div>
-
         </div>
 
         <div class="stat">
-
-            <div class="stat-icon">
-                ⭐
-            </div>
-
-            <div class="stat-title">
-                اشتراک
-            </div>
-
-            <div class="stat-value">
-                عضویت در کانال
-            </div>
-
+            <div class="stat-title">⭐ اشتراک</div>
+            <div class="stat-value">عضویت در کانال</div>
         </div>
 
     </div>
 
     <div class="support">
 
-        <h2>
-            💜 حمایت از ArsinGang
-        </h2>
+        <h2>💜 حمایت از ArsinGang</h2>
 
         <p>
-            با حمایتت به رشد کانال و ساخت محتوای بیشتر کمک می‌کنی! 🎮✨
+            لطفاً روی گزینه «باز کردن استریم در آپارات» بزنید
+            و اشتراک را زیر استریم بخرید.
         </p>
 
-        <div class="buttons">
-
-            <a
-                class="button subscribe"
-                href="https://www.aparat.com/ArsinGang"
-                target="_blank">
-                ⭐ اشتراک در آپارات
-            </a>
-
-            <a
-                class="button donate"
-                href="support.html">
-                💜 حمایت مالی
-            </a>
-
-        </div>
-
-    </div>
-
-    <div class="buttons">
-
         <a
-            class="button aparat"
+            class="button"
             href="https://www.aparat.com/ArsinGang/live"
             target="_blank">
             🎥 باز کردن استریم در آپارات
         </a>
 
         <a
-            class="button back"
-            href="index.html">
-            ← بازگشت به سایت
+            class="button"
+            href="support.html">
+            💜 حمایت مالی
         </a>
 
     </div>
 
 </div>
 
-<div class="footer">
-    ArsinGang 🎮💜<br>
-    © 2026 ArsinGang
+<div class="bottom-buttons">
+
+    <a
+        class="button"
+        href="https://www.aparat.com/ArsinGang/live"
+        target="_blank">
+        🎥 باز کردن استریم در آپارات
+    </a>
+
+    <a
+        class="button"
+        href="index.html">
+        ← بازگشت به سایت
+    </a>
+
 </div>
+
+<footer>
+    ArsinGang 🎮💜 © 2026 ArsinGang
+</footer>
 
 </div>
 
