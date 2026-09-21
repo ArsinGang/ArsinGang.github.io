@@ -68,17 +68,13 @@ box-shadow:
 
 h1{
 text-align:center;
-
 margin:0;
-
 font-size:28px;
 }
 
 .subtitle{
 text-align:center;
-
 color:#bbb;
-
 margin:10px 0 25px;
 }
 
@@ -100,9 +96,7 @@ backdrop-filter:blur(10px);
 
 .tabs{
 display:flex;
-
 gap:10px;
-
 margin-bottom:20px;
 }
 
@@ -209,7 +203,6 @@ box-shadow:
 
 .main-btn:disabled{
 opacity:.6;
-
 cursor:not-allowed;
 }
 
@@ -280,6 +273,7 @@ ArsinGang
 <button
 class="tab active"
 id="loginTab"
+type="button"
 onclick="showLogin()">
 
 ورود
@@ -289,6 +283,7 @@ onclick="showLogin()">
 <button
 class="tab"
 id="signupTab"
+type="button"
 onclick="showSignup()">
 
 ثبت‌نام
@@ -297,9 +292,7 @@ onclick="showSignup()">
 
 </div>
 
-
 <form id="authForm">
-
 
 <div id="signupFields">
 
@@ -316,7 +309,6 @@ autocomplete="username"
 
 </div>
 
-
 <label>
 ایمیل
 </label>
@@ -328,7 +320,6 @@ placeholder="example@email.com"
 autocomplete="email"
 required
 >
-
 
 <label>
 رمز عبور
@@ -342,7 +333,6 @@ autocomplete="current-password"
 required
 >
 
-
 <button
 class="main-btn"
 id="submitBtn"
@@ -354,7 +344,6 @@ type="submit">
 
 </form>
 
-
 <div
 id="message"
 class="message">
@@ -364,7 +353,6 @@ class="message">
 
 </div>
 
-
 <script>
 
 const SUPABASE_URL =
@@ -372,7 +360,6 @@ const SUPABASE_URL =
 
 const SUPABASE_KEY =
 "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
-
 
 let mode = "login";
 
@@ -397,6 +384,13 @@ document
 .getElementById("submitBtn")
 .textContent =
 "🔐 ورود به حساب";
+
+document
+.getElementById("password")
+.setAttribute(
+"autocomplete",
+"current-password"
+);
 
 clearMessage();
 
@@ -424,6 +418,13 @@ document
 .textContent =
 "✨ ساخت حساب";
 
+document
+.getElementById("password")
+.setAttribute(
+"autocomplete",
+"new-password"
+);
+
 clearMessage();
 
 }
@@ -438,6 +439,11 @@ box.textContent = text;
 
 box.className =
 "message " + type;
+
+box.scrollIntoView({
+behavior:"smooth",
+block:"nearest"
+});
 
 }
 
@@ -454,10 +460,97 @@ box.className = "message";
 }
 
 
+function getErrorMessage(data, mode){
+
+const error =
+(
+data?.msg ||
+data?.message ||
+data?.error_description ||
+data?.error ||
+""
+).toString().toLowerCase();
+
+
+if(
+error.includes("email rate exceeded") ||
+error.includes("rate limit") ||
+error.includes("rate exceeded")
+){
+
+return "⏳ تعداد درخواست‌های ایمیل زیاد شده است. لطفاً کمی صبر کن و بعد دوباره امتحان کن.";
+
+}
+
+
+if(
+error.includes("email not confirmed")
+){
+
+return "📧 ایمیل شما هنوز تأیید نشده است. ابتدا ایمیل تأیید Supabase را باز کن و حساب را تأیید کن.";
+
+}
+
+
+if(
+error.includes("user already registered") ||
+error.includes("already registered")
+){
+
+return "⚠️ این ایمیل قبلاً ثبت‌نام کرده است. از بخش ورود وارد حساب شو.";
+
+}
+
+
+if(
+error.includes("password") &&
+(
+error.includes("at least") ||
+error.includes("short") ||
+error.includes("weak")
+)
+){
+
+return "🔑 رمز عبور انتخاب‌شده خیلی ضعیف یا کوتاه است.";
+
+}
+
+
+if(
+error.includes("invalid login credentials")
+){
+
+return "❌ ایمیل یا رمز عبور اشتباه است.";
+
+}
+
+
+if(
+error.includes("invalid email")
+){
+
+return "📧 ایمیل واردشده معتبر نیست.";
+
+}
+
+
+if(mode === "signup"){
+
+return "❌ ساخت حساب انجام نشد. لطفاً اطلاعات را بررسی کن و دوباره امتحان کن.";
+
+}
+
+return "❌ ورود انجام نشد. ایمیل و رمز عبور را بررسی کن.";
+
+}
+
+
 async function supabaseRequest(
 path,
 options={}
 ){
+
+try{
 
 const response =
 await fetch(
@@ -485,6 +578,18 @@ ok:response.ok,
 status:response.status,
 data:data
 };
+
+}catch(error){
+
+return {
+ok:false,
+status:0,
+data:{
+message:"اتصال به سرور برقرار نشد."
+}
+};
+
+}
 
 }
 
@@ -529,7 +634,6 @@ button.disabled = true;
 
 if(mode === "signup"){
 
-
 if(username.length < 3){
 
 showMessage(
@@ -540,7 +644,12 @@ showMessage(
 button.disabled = false;
 
 return;
+
 }
+
+
+button.textContent =
+"⏳ در حال ساخت حساب...";
 
 
 const result =
@@ -567,18 +676,20 @@ username:username
 if(!result.ok){
 
 showMessage(
-"❌ " +
-(
-result.data?.msg ||
-result.data?.message ||
-"ساخت حساب انجام نشد."
+getErrorMessage(
+result.data,
+"signup"
 ),
 "error"
 );
 
+button.textContent =
+"✨ ساخت حساب";
+
 button.disabled = false;
 
 return;
+
 }
 
 
@@ -600,25 +711,43 @@ result.data.refresh_token
 }
 
 
+showMessage(
+"✅ حساب با موفقیت ساخته شد! در حال ورود...",
+"success"
+);
+
+
+setTimeout(function(){
+
 window.location.replace(
 "index.html"
 );
 
+},700);
+
 return;
+
 }
 
 
 showMessage(
-"✅ حساب ساخته شد! اگر تأیید ایمیل فعال باشد، ایمیلت را بررسی کن و بعد وارد حساب شو.",
+"✅ حساب ساخته شد! اگر تأیید ایمیل فعال است، ایمیل تأیید را باز کن و حسابت را تأیید کن. سپس از بخش «ورود» وارد شو.",
 "success"
 );
 
+
+button.textContent =
+"✨ ساخت حساب";
 
 button.disabled = false;
 
 return;
 
 }
+
+
+button.textContent =
+"⏳ در حال ورود...";
 
 
 const result =
@@ -641,13 +770,37 @@ password:password
 if(!result.ok){
 
 showMessage(
-"❌ ایمیل یا رمز عبور اشتباه است.",
+getErrorMessage(
+result.data,
+"login"
+),
 "error"
 );
+
+button.textContent =
+"🔐 ورود به حساب";
 
 button.disabled = false;
 
 return;
+
+}
+
+
+if(!result.data?.access_token){
+
+showMessage(
+"❌ ورود انجام نشد. توکن ورود از سرور دریافت نشد.",
+"error"
+);
+
+button.textContent =
+"🔐 ورود به حساب";
+
+button.disabled = false;
+
+return;
+
 }
 
 
@@ -667,9 +820,19 @@ result.data.refresh_token
 }
 
 
+showMessage(
+"✅ ورود موفق بود! در حال ورود به سایت...",
+"success"
+);
+
+
+setTimeout(function(){
+
 window.location.replace(
 "index.html"
 );
+
+},500);
 
 });
 
