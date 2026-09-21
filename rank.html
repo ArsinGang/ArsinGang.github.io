@@ -9,6 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237b2cff'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='38' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
 
 <style>
+
 *{
     box-sizing:border-box;
 }
@@ -104,6 +105,8 @@ h1{
     line-height:2;
 }
 
+/* توضیح Gang Coin */
+
 .coin-help{
     width:min(700px,100%);
     margin:22px auto 30px;
@@ -121,6 +124,8 @@ h1{
     color:#ffd84d;
 }
 
+/* Wallet */
+
 .wallet{
     width:min(500px,100%);
     margin:0 auto 30px;
@@ -137,7 +142,7 @@ h1{
 .wallet-title{
     color:#c8bfd2;
     font-size:14px;
-    margin-bottom:9px;
+    margin-bottom:12px;
 }
 
 .wallet-coins{
@@ -152,6 +157,46 @@ h1{
     color:#aaa1b8;
     font-size:13px;
 }
+
+/* سکه CSS */
+
+.coin-small{
+    width:24px;
+    height:24px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    vertical-align:middle;
+    margin-left:5px;
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #fff6b0 0%,
+            #ffe16a 25%,
+            #ffd13b 50%,
+            #d99b00 78%,
+            #8e5d00 100%
+        );
+
+    border:2px solid #ffe98a;
+
+    box-shadow:
+        0 0 8px rgba(255,216,77,.65),
+        inset 0 0 5px rgba(255,255,255,.55);
+
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    font-weight:900;
+    color:#704500;
+}
+
+.coin-small::after{
+    content:"G";
+}
+
+/* کارت رنک */
 
 .ranks{
     display:grid;
@@ -178,8 +223,100 @@ h1{
         0 15px 35px rgba(0,0,0,.3);
 }
 
+/* آیکون VIP */
+
 .rank-icon{
-    font-size:55px;
+    width:65px;
+    height:65px;
+    margin:0 auto 12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    border-radius:50%;
+}
+
+.vip-icon{
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #f2c8ff,
+            #c46cff 45%,
+            #7420d8 100%
+        );
+
+    border:3px solid #e2a7ff;
+
+    box-shadow:
+        0 0 15px rgba(190,90,255,.7),
+        0 0 35px rgba(123,44,255,.35);
+}
+
+.vip-icon::before{
+    content:"";
+    width:27px;
+    height:27px;
+    transform:rotate(45deg);
+    background:#fff;
+    border-radius:5px;
+    box-shadow:
+        0 0 8px rgba(255,255,255,.8),
+        inset 0 0 8px #dca6ff;
+}
+
+.vip-icon::after{
+    content:"V";
+    position:absolute;
+    font-family:Arial,sans-serif;
+    font-size:17px;
+    font-weight:900;
+    color:#7b20d2;
+}
+
+/* آیکون MVP */
+
+.mvp-icon{
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fff9bd,
+            #ffd84d 45%,
+            #b77900 100%
+        );
+
+    border:3px solid #ffe994;
+
+    box-shadow:
+        0 0 15px rgba(255,216,77,.7),
+        0 0 35px rgba(255,190,40,.3);
+}
+
+.mvp-icon::before{
+    content:"";
+    width:35px;
+    height:29px;
+    background:#ffe47a;
+    clip-path:polygon(
+        0 0,
+        25% 38%,
+        50% 0,
+        75% 38%,
+        100% 0,
+        87% 100%,
+        13% 100%
+    );
+
+    filter:
+        drop-shadow(0 0 5px rgba(255,255,255,.7));
+}
+
+.mvp-icon::after{
+    content:"M";
+    position:absolute;
+    font-family:Arial,sans-serif;
+    font-size:16px;
+    font-weight:900;
+    color:#8a5700;
 }
 
 .rank-name{
@@ -260,10 +397,7 @@ footer{
     margin-top:35px;
 }
 
-
-/* =========================
-   MODAL
-========================= */
+/* Modal */
 
 .modal{
     display:none;
@@ -288,14 +422,18 @@ footer{
             rgba(30,15,55,.98),
             rgba(8,8,18,.98)
         );
+
     border:1px solid rgba(139,61,255,.6);
+
     box-shadow:
         0 0 35px rgba(123,44,255,.35),
         0 0 70px rgba(0,229,255,.08);
+
     animation:modalShow .25s ease;
 }
 
 @keyframes modalShow{
+
     from{
         opacity:0;
         transform:scale(.92) translateY(10px);
@@ -307,10 +445,7 @@ footer{
     }
 }
 
-
-/* =========================
-   CSS GANG COIN
-========================= */
+/* سکه بزرگ داخل پنجره */
 
 .coin-icon{
     width:72px;
@@ -340,7 +475,6 @@ footer{
     box-shadow:
         0 0 10px rgba(255,216,77,.75),
         0 0 25px rgba(255,190,40,.5),
-        0 0 45px rgba(255,180,20,.18),
         inset 0 0 12px rgba(255,255,255,.6);
 
     animation:coinGlow 1.8s ease-in-out infinite;
@@ -350,40 +484,27 @@ footer{
     content:"";
     position:absolute;
     inset:7px;
-
     border-radius:50%;
-
     border:2px solid rgba(126,78,0,.55);
 }
 
 .coin-icon span{
     position:relative;
     z-index:2;
-
     font-family:Arial,sans-serif;
     font-size:31px;
     font-weight:900;
-
     color:#754700;
-
-    text-shadow:
-        1px 1px 0 #fff0a0,
-        0 0 5px rgba(255,255,255,.4);
 }
 
 .coin-shine{
     position:absolute;
-
     width:18px;
     height:10px;
-
     top:13px;
     left:15px;
-
     border-radius:50%;
-
     background:rgba(255,255,255,.72);
-
     transform:rotate(-25deg);
 }
 
@@ -391,20 +512,10 @@ footer{
 
     0%,100%{
         transform:scale(1);
-
-        box-shadow:
-            0 0 10px rgba(255,216,77,.7),
-            0 0 25px rgba(255,190,40,.45),
-            inset 0 0 10px rgba(255,255,255,.55);
     }
 
     50%{
         transform:scale(1.06);
-
-        box-shadow:
-            0 0 18px rgba(255,216,77,.9),
-            0 0 38px rgba(255,190,40,.6),
-            inset 0 0 12px rgba(255,255,255,.7);
     }
 }
 
@@ -446,7 +557,9 @@ footer{
     h1{
         font-size:29px;
     }
+
 }
+
 </style>
 </head>
 
@@ -456,175 +569,186 @@ footer{
     <div class="loader"></div>
 </div>
 
-
 <div id="mainContent">
 
-    <div class="container">
+<div class="container">
 
-        <div class="header">
+<div class="header">
 
-            <div class="logo">
-                AG
-            </div>
+<div class="logo">
+AG
+</div>
 
-            <h1>
-                👑 خرید رنک | با Gang Coin قدرتمندتر شو!
-            </h1>
+<h1>
+👑 خرید رنک | با Gang Coin قدرتمندتر شو!
+</h1>
 
-            <div class="subtitle">
-                با Gang Coin می‌تونی رنک‌های VIP و MVP رو فعال کنی! 🪙💜
-            </div>
+<div class="subtitle">
+با Gang Coin می‌تونی رنک‌های VIP و MVP رو فعال کنی!
+</div>
 
-            <div class="coin-help">
+<div class="coin-help">
 
-                🪙 <strong>Gang Coin چیه؟</strong>
-                <br>
+<span class="coin-small"></span>
 
-                Gang Coin پول مخصوص ArsinGang هست که می‌تونی با
-                <strong>
-                    فعالیت در سایت، شرکت در برنامه‌ها و گرفتن جایزه از باکس‌های روزانه 🎁
-                </strong>
-                به دستش بیاری و باهاش رنک بخری! 🎮💜
+<strong>Gang Coin چیه؟</strong>
 
-            </div>
+<br>
 
-        </div>
+Gang Coin پول مخصوص ArsinGang هست که می‌تونی با
+<strong>
+فعالیت در سایت، شرکت در برنامه‌ها و گرفتن جایزه از باکس‌های روزانه
+</strong>
+به دستش بیاری و باهاش رنک بخری!
 
-
-        <div class="wallet">
-
-            <div class="wallet-title">
-                Gang Coin Wallet
-            </div>
-
-            <div class="wallet-coins" id="coinBalance">
-                🪙 0
-            </div>
-
-            <div class="active-rank" id="activeRank">
-                در حال دریافت اطلاعات...
-            </div>
-
-        </div>
-
-
-        <div class="ranks">
-
-            <div class="rank-card">
-
-                <div class="rank-icon">
-                    💜
-                </div>
-
-                <div class="rank-name vip">
-                    VIP
-                </div>
-
-                <div class="price">
-                    🪙 5,000 Gang Coin
-                </div>
-
-                <div class="duration">
-                    ⏳ فعال به مدت ۳۰ روز
-                </div>
-
-                <button
-                    class="buy-btn"
-                    id="vipButton"
-                    onclick="purchaseRank('VIP')"
-                >
-                    خرید VIP
-                </button>
-
-            </div>
-
-
-            <div class="rank-card">
-
-                <div class="rank-icon">
-                    👑
-                </div>
-
-                <div class="rank-name mvp">
-                    MVP
-                </div>
-
-                <div class="price">
-                    🪙 10,000 Gang Coin
-                </div>
-
-                <div class="duration">
-                    ⏳ فعال به مدت ۳۰ روز
-                </div>
-
-                <button
-                    class="buy-btn"
-                    id="mvpButton"
-                    onclick="purchaseRank('MVP')"
-                >
-                    خرید MVP
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <a class="back" href="index.html">
-            ← برگشت به صفحه اصلی
-        </a>
-
-
-        <footer>
-            ArsinGang 🎮 © 2026 ArsinGang
-        </footer>
-
-    </div>
+</div>
 
 </div>
 
 
-<!-- =========================
-     MESSAGE MODAL
-========================= -->
+<!-- WALLET -->
+
+<div class="wallet">
+
+<div class="wallet-title">
+Gang Coin Wallet
+</div>
+
+<div class="wallet-coins">
+
+<span class="coin-small"></span>
+
+<span id="coinBalance">
+0
+</span>
+
+</div>
+
+<div class="active-rank" id="activeRank">
+در حال دریافت اطلاعات...
+</div>
+
+</div>
+
+
+<!-- RANKS -->
+
+<div class="ranks">
+
+
+<!-- VIP -->
+
+<div class="rank-card">
+
+<div class="rank-icon vip-icon"></div>
+
+<div class="rank-name vip">
+VIP
+</div>
+
+<div class="price">
+
+<span class="coin-small"></span>
+
+5,000 Gang Coin
+
+</div>
+
+<div class="duration">
+فعال به مدت ۳۰ روز
+</div>
+
+<button
+class="buy-btn"
+id="vipButton"
+onclick="purchaseRank('VIP')"
+>
+خرید VIP
+</button>
+
+</div>
+
+
+<!-- MVP -->
+
+<div class="rank-card">
+
+<div class="rank-icon mvp-icon"></div>
+
+<div class="rank-name mvp">
+MVP
+</div>
+
+<div class="price">
+
+<span class="coin-small"></span>
+
+10,000 Gang Coin
+
+</div>
+
+<div class="duration">
+فعال به مدت ۳۰ روز
+</div>
+
+<button
+class="buy-btn"
+id="mvpButton"
+onclick="purchaseRank('MVP')"
+>
+خرید MVP
+</button>
+
+</div>
+
+</div>
+
+
+<a class="back" href="index.html">
+← برگشت به صفحه اصلی
+</a>
+
+<footer>
+ArsinGang 🎮 © 2026 ArsinGang
+</footer>
+
+</div>
+
+</div>
+
+
+<!-- MODAL -->
 
 <div class="modal" id="messageModal">
 
-    <div class="modal-box">
+<div class="modal-box">
 
-        <div class="coin-icon" id="coinIcon">
+<div class="coin-icon" id="coinIcon">
 
-            <div class="coin-shine"></div>
+<div class="coin-shine"></div>
 
-            <span>
-                G
-            </span>
+<span>G</span>
 
-        </div>
+</div>
 
+<div class="modal-icon" id="modalIcon">
+</div>
 
-        <div class="modal-icon" id="modalIcon">
-            ⚠️
-        </div>
+<div class="modal-title" id="modalTitle">
+پیام
+</div>
 
+<div class="modal-message" id="modalMessage">
+</div>
 
-        <div class="modal-title" id="modalTitle">
-            پیام
-        </div>
+<button
+class="modal-close"
+onclick="closeModal()"
+>
+باشه
+</button>
 
-
-        <div class="modal-message" id="modalMessage">
-        </div>
-
-
-        <button
-            class="modal-close"
-            onclick="closeModal()"
-        >
-            باشه 👍
-        </button>
-
-    </div>
+</div>
 
 </div>
 
@@ -637,7 +761,6 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
-
 let accessToken =
 localStorage.getItem("arsin_user_token");
 
@@ -647,9 +770,7 @@ localStorage.getItem("arsin_user_refresh");
 let currentAccount = null;
 
 
-/* =========================
-   REFRESH TOKEN
-========================= */
+/* REFRESH */
 
 async function refreshAccessToken(){
 
@@ -664,22 +785,18 @@ async function refreshAccessToken(){
             "/auth/v1/token?grant_type=refresh_token",
             {
                 method:"POST",
-
                 headers:{
                     "Content-Type":"application/json",
                     "apikey":SUPABASE_KEY
                 },
-
                 body:JSON.stringify({
                     refresh_token:refreshToken
                 })
             }
         );
 
-
         const data =
             await response.json();
-
 
         if(
             !response.ok ||
@@ -694,12 +811,11 @@ async function refreshAccessToken(){
                 "arsin_user_refresh"
             );
 
-            accessToken = null;
-            refreshToken = null;
+            accessToken=null;
+            refreshToken=null;
 
             return false;
         }
-
 
         accessToken =
             data.access_token;
@@ -707,7 +823,6 @@ async function refreshAccessToken(){
         refreshToken =
             data.refresh_token ||
             refreshToken;
-
 
         localStorage.setItem(
             "arsin_user_token",
@@ -718,7 +833,6 @@ async function refreshAccessToken(){
             "arsin_user_refresh",
             refreshToken
         );
-
 
         return true;
 
@@ -731,9 +845,7 @@ async function refreshAccessToken(){
 }
 
 
-/* =========================
-   CHECK LOGIN
-========================= */
+/* LOGIN */
 
 async function checkLogin(){
 
@@ -746,28 +858,28 @@ async function checkLogin(){
         return false;
     }
 
-
     try{
 
-        let response = await fetch(
-            SUPABASE_URL +
-            "/auth/v1/user",
-            {
-                headers:{
-                    "apikey":SUPABASE_KEY,
-                    "Authorization":
-                        "Bearer " +
-                        accessToken
+        let response =
+            await fetch(
+                SUPABASE_URL +
+                "/auth/v1/user",
+                {
+                    headers:{
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            accessToken
+                    }
                 }
-            }
-        );
+            );
 
-
-        if(response.status === 401){
+        if(response.status===401){
 
             const refreshed =
                 await refreshAccessToken();
-
 
             if(!refreshed){
 
@@ -778,22 +890,22 @@ async function checkLogin(){
                 return false;
             }
 
+            response =
+                await fetch(
+                    SUPABASE_URL +
+                    "/auth/v1/user",
+                    {
+                        headers:{
+                            "apikey":
+                                SUPABASE_KEY,
 
-            response = await fetch(
-                SUPABASE_URL +
-                "/auth/v1/user",
-                {
-                    headers:{
-                        "apikey":SUPABASE_KEY,
-                        "Authorization":
-                            "Bearer " +
-                            accessToken
+                            "Authorization":
+                                "Bearer " +
+                                accessToken
+                        }
                     }
-                }
-            );
-
+                );
         }
-
 
         if(!response.ok){
 
@@ -804,10 +916,8 @@ async function checkLogin(){
             return false;
         }
 
-
         const user =
             await response.json();
-
 
         if(!user || !user.id){
 
@@ -817,7 +927,6 @@ async function checkLogin(){
 
             return false;
         }
-
 
         return true;
 
@@ -834,59 +943,18 @@ async function checkLogin(){
 }
 
 
-/* =========================
-   LOAD ACCOUNT
-========================= */
+/* LOAD ACCOUNT */
 
 async function loadGangAccount(){
 
     try{
 
-        let response = await fetch(
-            SUPABASE_URL +
-            "/rest/v1/rpc/get_my_gang_account",
-            {
-                method:"POST",
-
-                headers:{
-                    "Content-Type":
-                        "application/json",
-
-                    "apikey":
-                        SUPABASE_KEY,
-
-                    "Authorization":
-                        "Bearer " +
-                        accessToken
-                },
-
-                body:"{}"
-            }
-        );
-
-
-        if(response.status === 401){
-
-            const refreshed =
-                await refreshAccessToken();
-
-
-            if(!refreshed){
-
-                window.location.replace(
-                    "login.html"
-                );
-
-                return false;
-            }
-
-
-            response = await fetch(
+        let response =
+            await fetch(
                 SUPABASE_URL +
                 "/rest/v1/rpc/get_my_gang_account",
                 {
                     method:"POST",
-
                     headers:{
                         "Content-Type":
                             "application/json",
@@ -898,24 +966,50 @@ async function loadGangAccount(){
                             "Bearer " +
                             accessToken
                     },
-
                     body:"{}"
                 }
             );
 
-        }
+        if(response.status===401){
 
+            const refreshed =
+                await refreshAccessToken();
+
+            if(!refreshed){
+
+                window.location.replace(
+                    "login.html"
+                );
+
+                return false;
+            }
+
+            response =
+                await fetch(
+                    SUPABASE_URL +
+                    "/rest/v1/rpc/get_my_gang_account",
+                    {
+                        method:"POST",
+                        headers:{
+                            "Content-Type":
+                                "application/json",
+
+                            "apikey":
+                                SUPABASE_KEY,
+
+                            "Authorization":
+                                "Bearer " +
+                                accessToken
+                        },
+                        body:"{}"
+                    }
+                );
+        }
 
         const data =
             await response.json();
 
-
         if(!response.ok){
-
-            console.error(
-                "Gang account error:",
-                data
-            );
 
             showModal(
                 "⚠️",
@@ -926,13 +1020,12 @@ async function loadGangAccount(){
             return false;
         }
 
-
         if(
             !data ||
-            data.length === 0
+            data.length===0
         ){
 
-            currentAccount = {
+            currentAccount={
                 gang_coins:0,
                 rank:"none",
                 rank_expires_at:null
@@ -945,17 +1038,11 @@ async function loadGangAccount(){
 
         }
 
-
         updateWallet();
 
         return true;
 
     }catch(error){
-
-        console.error(
-            "Account error:",
-            error
-        );
 
         showModal(
             "⚠️",
@@ -970,9 +1057,7 @@ async function loadGangAccount(){
 }
 
 
-/* =========================
-   UPDATE WALLET
-========================= */
+/* WALLET */
 
 function updateWallet(){
 
@@ -981,40 +1066,31 @@ function updateWallet(){
             currentAccount.gang_coins || 0
         );
 
-
     document.getElementById(
         "coinBalance"
     ).textContent =
-        "🪙 " +
         coins.toLocaleString("en-US");
 
-
     const rank =
-        currentAccount.rank ||
-        "none";
-
+        currentAccount.rank || "none";
 
     const expiry =
         currentAccount.rank_expires_at;
 
-
     const active =
-        rank !== "none" &&
+        rank!=="none" &&
         expiry &&
-        new Date(expiry) >
-        new Date();
-
+        new Date(expiry)>new Date();
 
     if(active){
 
         const date =
             new Date(expiry);
 
-
         document.getElementById(
             "activeRank"
         ).textContent =
-            "✨ رنک فعال: " +
+            "رنک فعال: " +
             rank +
             " • تا " +
             date.toLocaleDateString(
@@ -1030,15 +1106,12 @@ function updateWallet(){
 
     }
 
-
     updateButtons();
 
 }
 
 
-/* =========================
-   UPDATE BUTTONS
-========================= */
+/* BUTTONS */
 
 function updateButtons(){
 
@@ -1052,73 +1125,63 @@ function updateButtons(){
             "mvpButton"
         );
 
-
     const rank =
         currentAccount.rank ||
         "none";
 
-
     const expiry =
         currentAccount.rank_expires_at;
 
-
     const active =
-        rank !== "none" &&
+        rank!=="none" &&
         expiry &&
-        new Date(expiry) >
-        new Date();
-
+        new Date(expiry)>new Date();
 
     if(
         active &&
-        rank === "MVP"
+        rank==="MVP"
     ){
 
-        vipButton.disabled = true;
-        mvpButton.disabled = true;
+        vipButton.disabled=true;
+        mvpButton.disabled=true;
 
-        vipButton.textContent =
+        vipButton.textContent=
             "MVP فعال است";
 
-        mvpButton.textContent =
+        mvpButton.textContent=
             "MVP فعال است";
 
         return;
-
     }
-
 
     if(
         active &&
-        rank === "VIP"
+        rank==="VIP"
     ){
 
-        vipButton.disabled = true;
+        vipButton.disabled=true;
 
-        vipButton.textContent =
+        vipButton.textContent=
             "VIP فعال است";
 
     }else{
 
-        vipButton.disabled = false;
+        vipButton.disabled=false;
 
-        vipButton.textContent =
+        vipButton.textContent=
             "خرید VIP";
 
     }
 
+    mvpButton.disabled=false;
 
-    mvpButton.disabled = false;
-
-    mvpButton.textContent =
+    mvpButton.textContent=
         "خرید MVP";
 
 }
 
 
-/* =========================
-   PURCHASE RANK
-========================= */
+/* PURCHASE */
 
 async function purchaseRank(rank){
 
@@ -1126,22 +1189,17 @@ async function purchaseRank(rank){
         return;
     }
 
-
     const price =
-        rank === "VIP"
-            ? 5000
-            : 10000;
-
+        rank==="VIP"
+            ?5000
+            :10000;
 
     const coins =
         Number(
             currentAccount.gang_coins || 0
         );
 
-
-    /* کمبود Gang Coin */
-
-    if(coins < price){
+    if(coins<price){
 
         showModal(
             "",
@@ -1156,12 +1214,11 @@ async function purchaseRank(rank){
         return;
     }
 
-
     const confirmed =
         await showConfirmModal(
-            rank === "VIP"
-                ? "💜"
-                : "👑",
+            rank==="VIP"
+                ?"💜"
+                :"👑",
 
             "خرید رنک " +
             rank,
@@ -1173,61 +1230,18 @@ async function purchaseRank(rank){
             " Gang Coin بخری؟"
         );
 
-
     if(!confirmed){
         return;
     }
 
-
     try{
 
-        let response = await fetch(
-            SUPABASE_URL +
-            "/rest/v1/rpc/purchase_rank",
-            {
-                method:"POST",
-
-                headers:{
-                    "Content-Type":
-                        "application/json",
-
-                    "apikey":
-                        SUPABASE_KEY,
-
-                    "Authorization":
-                        "Bearer " +
-                        accessToken
-                },
-
-                body:JSON.stringify({
-                    p_rank:rank
-                })
-            }
-        );
-
-
-        if(response.status === 401){
-
-            const refreshed =
-                await refreshAccessToken();
-
-
-            if(!refreshed){
-
-                window.location.replace(
-                    "login.html"
-                );
-
-                return;
-            }
-
-
-            response = await fetch(
+        let response =
+            await fetch(
                 SUPABASE_URL +
                 "/rest/v1/rpc/purchase_rank",
                 {
                     method:"POST",
-
                     headers:{
                         "Content-Type":
                             "application/json",
@@ -1239,19 +1253,52 @@ async function purchaseRank(rank){
                             "Bearer " +
                             accessToken
                     },
-
                     body:JSON.stringify({
                         p_rank:rank
                     })
                 }
             );
 
-        }
+        if(response.status===401){
 
+            const refreshed =
+                await refreshAccessToken();
+
+            if(!refreshed){
+
+                window.location.replace(
+                    "login.html"
+                );
+
+                return;
+            }
+
+            response =
+                await fetch(
+                    SUPABASE_URL +
+                    "/rest/v1/rpc/purchase_rank",
+                    {
+                        method:"POST",
+                        headers:{
+                            "Content-Type":
+                                "application/json",
+
+                            "apikey":
+                                SUPABASE_KEY,
+
+                            "Authorization":
+                                "Bearer " +
+                                accessToken
+                        },
+                        body:JSON.stringify({
+                            p_rank:rank
+                        })
+                    }
+                );
+        }
 
         const result =
             await response.json();
-
 
         if(!response.ok){
 
@@ -1264,12 +1311,10 @@ async function purchaseRank(rank){
             return;
         }
 
-
         const data =
             Array.isArray(result)
-                ? result[0]
-                : result;
-
+                ?result[0]
+                :result;
 
         if(
             !data ||
@@ -1286,34 +1331,28 @@ async function purchaseRank(rank){
             return;
         }
 
-
         currentAccount.gang_coins =
             data.new_balance;
-
 
         currentAccount.rank =
             data.rank_name;
 
-
         currentAccount.rank_expires_at =
             data.expires_at;
 
-
         updateWallet();
 
-
         showModal(
-            rank === "MVP"
-                ? "👑"
-                : "💜",
+            rank==="MVP"
+                ?"👑"
+                :"💜",
 
-            "خرید موفق! 🎉",
+            "خرید موفق!",
 
             "رنک " +
             rank +
             " با موفقیت فعال شد!"
         );
-
 
     }catch(error){
 
@@ -1328,9 +1367,7 @@ async function purchaseRank(rank){
 }
 
 
-/* =========================
-   NORMAL MODAL
-========================= */
+/* MODAL */
 
 function showModal(
     icon,
@@ -1340,76 +1377,65 @@ function showModal(
 
     document.getElementById(
         "modalIcon"
-    ).textContent = icon;
-
+    ).textContent =
+        icon;
 
     document.getElementById(
         "modalTitle"
-    ).textContent = title;
-
+    ).textContent =
+        title;
 
     document.getElementById(
         "modalMessage"
-    ).textContent = message;
-
+    ).textContent =
+        message;
 
     const coinIcon =
         document.getElementById(
             "coinIcon"
         );
 
-
     if(
-        title ===
+        title===
         "Gang Coin کافی نیست!"
     ){
 
-        coinIcon.style.display =
+        coinIcon.style.display=
             "flex";
 
     }else{
 
-        coinIcon.style.display =
+        coinIcon.style.display=
             "none";
 
     }
 
-
     document.getElementById(
         "messageModal"
-    ).style.display =
+    ).style.display=
         "flex";
 
 }
 
 
-/* =========================
-   CLOSE MODAL
-========================= */
+/* CLOSE */
 
 function closeModal(){
 
     document.getElementById(
         "messageModal"
-    ).style.display =
+    ).style.display=
         "none";
 
-
-    const coinIcon =
-        document.getElementById(
-            "coinIcon"
-        );
-
-
-    coinIcon.style.display =
+    document.getElementById(
+        "coinIcon"
+    ).style.display=
         "none";
 
 }
 
 
-/* =========================
-   CONFIRM MODAL
-========================= */
+/* CONFIRM */
 
 function showConfirmModal(
     icon,
@@ -1425,73 +1451,59 @@ function showConfirmModal(
                     "messageModal"
                 );
 
-
             document.getElementById(
                 "modalIcon"
-            ).textContent =
+            ).textContent=
                 icon;
-
 
             document.getElementById(
                 "modalTitle"
-            ).textContent =
+            ).textContent=
                 title;
-
 
             document.getElementById(
                 "modalMessage"
-            ).textContent =
+            ).textContent=
                 message;
-
 
             document.getElementById(
                 "coinIcon"
-            ).style.display =
+            ).style.display=
                 "none";
-
 
             const closeButton =
                 modal.querySelector(
                     ".modal-close"
                 );
 
-
-            closeButton.textContent =
+            closeButton.textContent=
                 "لغو";
-
 
             const oldConfirm =
                 document.getElementById(
                     "confirmButton"
                 );
 
-
             if(oldConfirm){
                 oldConfirm.remove();
             }
-
 
             const confirmButton =
                 document.createElement(
                     "button"
                 );
 
-
-            confirmButton.id =
+            confirmButton.id=
                 "confirmButton";
 
+            confirmButton.textContent=
+                "تأیید خرید";
 
-            confirmButton.textContent =
-                "تأیید خرید ✅";
-
-
-            confirmButton.className =
+            confirmButton.className=
                 "modal-close";
 
-
-            confirmButton.style.marginRight =
+            confirmButton.style.marginRight=
                 "8px";
-
 
             closeButton.parentNode
                 .insertBefore(
@@ -1499,42 +1511,34 @@ function showConfirmModal(
                     closeButton
                 );
 
-
             function finish(value){
 
                 confirmButton.remove();
 
-                closeButton.textContent =
-                    "باشه 👍";
+                closeButton.textContent=
+                    "باشه";
 
-                closeButton.onclick =
+                closeButton.onclick=
                     closeModal;
 
-                modal.style.display =
+                modal.style.display=
                     "none";
 
                 resolve(value);
 
             }
 
-
-            confirmButton.onclick =
+            confirmButton.onclick=
                 function(){
-
                     finish(true);
-
                 };
 
-
-            closeButton.onclick =
+            closeButton.onclick=
                 function(){
-
                     finish(false);
-
                 };
 
-
-            modal.style.display =
+            modal.style.display=
                 "flex";
 
         }
@@ -1543,43 +1547,34 @@ function showConfirmModal(
 }
 
 
-/* =========================
-   START
-========================= */
+/* START */
 
 async function start(){
 
     const loggedIn =
         await checkLogin();
 
-
     if(!loggedIn){
         return;
     }
 
-
     const loaded =
         await loadGangAccount();
-
 
     if(!loaded){
         return;
     }
 
-
     document.getElementById(
         "loading"
-    ).style.display =
+    ).style.display=
         "none";
-
 
     document.getElementById(
         "mainContent"
-    ).style.display =
+    ).style.display=
         "block";
-
 }
-
 
 start();
 
