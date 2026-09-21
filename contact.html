@@ -80,13 +80,13 @@ color:#7dffcf;font-size:13px;
 }
 .login-box{
 padding:20px;border-radius:16px;background:rgba(8,6,14,.8);
-border:1px solid rgba(0,229,255,.25);margin-top:20px;
+border:1px solid rgba(0,229,255,.25);margin-top:0;
 }
 .ticket-code-input{
 text-align:center;font-weight:bold;font-size:18px;letter-spacing:1px;
 }
 .ticket-result{
-display:none;margin-top:20px;padding:20px;border-radius:16px;
+display:none;margin-top:80px;padding:20px;border-radius:16px;
 background:rgba(8,6,14,.8);border:1px solid rgba(0,229,255,.25);
 }
 .ticket-status{
@@ -186,6 +186,49 @@ required
 
 </form>
 
+<div class="success" id="successBox">
+
+<div>✅ تیکت شما با موفقیت ثبت شد!</div>
+
+<div style="margin-top:8px;color:#bbb;">
+⚠️ این کد را نگه دارید تا بعداً بتوانید تیکت خود را مشاهده کنید.
+<br>
+⏳ حداقل تا ۱ هفته‌ی دیگر پاسخ تیکت به دست شما می‌رسد.
+</div>
+
+<div class="ticket-code">
+
+<input
+id="newTicketCode"
+type="text"
+readonly
+>
+
+<button
+class="copy-btn"
+id="copyBtn"
+type="button"
+>
+📋 کپی کد
+</button>
+
+<button
+class="direct-ticket-btn"
+id="directTicketBtn"
+type="button"
+>
+🔓 ورود مستقیم
+</button>
+
+</div>
+
+<span
+class="copy-message"
+id="copyMessage"
+></span>
+
+</div>
+
 <button
 id="openTicketBtn"
 class="view-button"
@@ -242,49 +285,6 @@ autocomplete="off"
 </div>
 
 </div>
-</div>
-
-<div class="success" id="successBox">
-
-<div>✅ تیکت شما با موفقیت ثبت شد!</div>
-
-<div style="margin-top:8px;color:#bbb;">
-⚠️ این کد را نگه دارید تا بعداً بتوانید تیکت خود را مشاهده کنید.
-<br>
-⏳ حداقل تا ۱ هفته‌ی دیگر پاسخ تیکت به دست شما می‌رسد.
-</div>
-
-<div class="ticket-code">
-
-<input
-id="newTicketCode"
-type="text"
-readonly
->
-
-<button
-class="copy-btn"
-id="copyBtn"
-type="button"
->
-📋 کپی کد
-</button>
-
-<button
-class="direct-ticket-btn"
-id="directTicketBtn"
-type="button"
->
-🔓 ورود مستقیم
-</button>
-
-</div>
-
-<span
-class="copy-message"
-id="copyMessage"
-></span>
-
 </div>
 
 <div class="divider"></div>
