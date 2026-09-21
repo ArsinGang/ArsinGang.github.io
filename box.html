@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>باکس مرموز | ArsinGang</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237b2cff'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='38' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Tahoma,Arial,sans-serif;
+    background:
+        radial-gradient(circle at top,#251052 0%,#10051f 45%,#07030d 100%);
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+.container{
+    width:min(92%,650px);
+    margin:0 auto;
+    padding:35px 0 60px;
+}
+
+/* AG */
+.logo{
+    width:75px;
+    height:75px;
+    margin:0 auto 15px;
+    border-radius:22px;
+    background:#7b2cff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    font-weight:bold;
+    box-shadow:
+        0 0 20px rgba(123,44,255,.8),
+        0 0 50px rgba(0,220,255,.2);
+}
+
+/* عنوان */
+h1{
+    margin:5px 0 8px;
+    font-size:32px;
+    text-shadow:
+        0 0 12px #8d4cff,
+        0 0 25px rgba(0,220,255,.35);
+}
+
+.subtitle{
+    color:#cfc3e8;
+    font-size:15px;
+    margin-bottom:25px;
+}
+
+/* کیف پول */
+.wallet{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(0,220,255,.25);
+    border-radius:18px;
+    padding:15px 20px;
+    margin-bottom:28px;
+    box-shadow:
+        0 0 20px rgba(0,220,255,.08),
+        inset 0 0 20px rgba(123,44,255,.04);
+}
+
+.wallet-title{
+    color:#bdb1d6;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.wallet-value{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:9px;
+    font-size:24px;
+    font-weight:bold;
+    color:#fff;
+}
+
+/* آیکون سکه بدون ایموجی */
+.coin{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(145deg,#ffd85c,#ff9f1c);
+    border:2px solid #ffe99a;
+    box-shadow:0 0 10px rgba(255,190,40,.6);
+    color:#7a4300;
+    font-size:11px;
+    font-weight:900;
+    flex-shrink:0;
+}
+
+.coin.large{
+    width:62px;
+    height:62px;
+    font-size:25px;
+    border-width:3px;
+}
+
+/* باکس */
+.box-area{
+    margin:25px auto 30px;
+    height:250px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    perspective:800px;
+}
+
+.mystery-box{
+    position:relative;
+    width:175px;
+    height:145px;
+    cursor:pointer;
+    transform-style:preserve-3d;
+    transition:transform .25s ease;
+    filter:drop-shadow(0 0 25px rgba(123,44,255,.7));
+}
+
+.mystery-box:hover{
+    transform:translateY(-7px) scale(1.04);
+}
+
+/* بدنه باکس */
+.box-body{
+    position:absolute;
+    bottom:0;
+    left:5px;
+    width:165px;
+    height:110px;
+    border-radius:8px 8px 15px 15px;
+    background:
+        linear-gradient(135deg,#7b2cff,#42128c);
+    border:3px solid #a76cff;
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,.12),
+        0 12px 30px rgba(0,0,0,.45);
+}
+
+/* در باکس */
+.box-lid{
+    position:absolute;
+    top:20px;
+    left:0;
+    width:175px;
+    height:45px;
+    border-radius:9px;
+    background:
+        linear-gradient(135deg,#944cff,#5519aa);
+    border:3px solid #b987ff;
+    box-shadow:
+        inset 0 0 18px rgba(255,255,255,.15),
+        0 5px 15px rgba(0,0,0,.35);
+    z-index:3;
+}
+
+/* نوار */
+.ribbon-v{
+    position:absolute;
+    left:70px;
+    top:20px;
+    width:35px;
+    height:125px;
+    background:linear-gradient(90deg,#00eaff,#72f5ff,#00bcd4);
+    box-shadow:0 0 12px rgba(0,234,255,.7);
+    z-index:4;
+}
+
+.ribbon-h{
+    position:absolute;
+    left:0;
+    top:70px;
+    width:175px;
+    height:25px;
+    background:linear-gradient(180deg,#00eaff,#00aeca);
+    box-shadow:0 0 12px rgba(0,234,255,.6);
+    z-index:5;
+}
+
+/* قفل */
+.lock{
+    position:absolute;
+    left:66px;
+    top:82px;
+    width:43px;
+    height:43px;
+    border-radius:8px;
+    background:#ffd45c;
+    border:3px solid #fff0a3;
+    box-shadow:0 0 18px rgba(255,211,80,.8);
+    z-index:8;
+}
+
+.lock:before{
+    content:"";
+    position:absolute;
+    left:9px;
+    top:-20px;
+    width:19px;
+    height:23px;
+    border:5px solid #ffd45c;
+    border-bottom:0;
+    border-radius:12px 12px 0 0;
+}
+
+.lock:after{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:15px;
+    width:7px;
+    height:13px;
+    border-radius:4px;
+    background:#7b4b00;
+}
+
+/* توضیحات */
+.info{
+    color:#c9bedb;
+    line-height:2;
+    font-size:14px;
+    margin:0 auto 25px;
+}
+
+.highlight{
+    color:#00eaff;
+    font-weight:bold;
+}
+
+/* دکمه */
+.open-btn{
+    width:100%;
+    border:0;
+    border-radius:15px;
+    padding:16px;
+    font-size:17px;
+    font-family:inherit;
+    font-weight:bold;
+    color:white;
+    cursor:pointer;
+    background:linear-gradient(90deg,#7b2cff,#00bde8);
+    box-shadow:
+        0 0 18px rgba(123,44,255,.45),
+        0 0 28px rgba(0,220,255,.18);
+    transition:.2s;
+}
+
+.open-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:
+        0 0 25px rgba(123,44,255,.65),
+        0 0 35px rgba(0,220,255,.3);
+}
+
+.open-btn:disabled{
+    cursor:not-allowed;
+    opacity:.45;
+    transform:none;
+}
+
+/* شمارش */
+.cooldown{
+    margin-top:15px;
+    color:#a99cba;
+    font-size:13px;
+}
+
+/* پیام */
+.message{
+    min-height:25px;
+    margin-top:15px;
+    color:#00eaff;
+    font-size:14px;
+}
+
+/* مودال */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(3,1,8,.82);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(92%,430px);
+    padding:35px 25px;
+    border-radius:25px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(40,15,75,.96),
+            rgba(9,5,22,.97)
+        );
+    border:1px solid rgba(0,234,255,.3);
+    box-shadow:
+        0 0 35px rgba(123,44,255,.4),
+        0 0 60px rgba(0,220,255,.1);
+    animation:pop .35s ease;
+}
+
+@keyframes pop{
+    from{
+        transform:scale(.75);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.reward-title{
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+.reward-amount{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    font-size:36px;
+    font-weight:bold;
+    color:#fff;
+    margin:15px 0;
+}
+
+.reward-text{
+    color:#d6cbe3;
+    line-height:1.9;
+    margin-bottom:25px;
+}
+
+.close-btn{
+    width:100%;
+    padding:13px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,.07);
+    color:white;
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.close-btn:hover{
+    background:rgba(255,255,255,.12);
+}
+
+/* انیمیشن باز شدن */
+.opening .mystery-box{
+    animation:shake .8s ease-in-out infinite;
+}
+
+@keyframes shake{
+    0%,100%{transform:rotate(0deg) scale(1);}
+    25%{transform:rotate(-5deg) scale(1.04);}
+    50%{transform:rotate(5deg) scale(1.08);}
+    75%{transform:rotate(-4deg) scale(1.04);}
+}
+
+.back{
+    display:inline-block;
+    margin-top:25px;
+    color:#aaa0b9;
+    text-decoration:none;
+    font-size:13px;
+}
+
+.back:hover{
+    color:#00eaff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">AG</div>
+
+    <h1>باکس مرموز</h1>
+
+    <div class="subtitle">
+        هر روز یه شانس تازه برای گرفتن جایزه!
+    </div>
+
+    <div class="wallet">
+        <div class="wallet-title">Gang Coin Wallet</div>
+
+        <div class="wallet-value">
+            <span class="coin">G</span>
+            <span id="coinBalance">0</span>
+        </div>
+    </div>
+
+    <div class="box-area" id="boxArea">
+
+        <div class="mystery-box" id="mysteryBox">
+
+            <div class="box-lid"></div>
+
+            <div class="box-body"></div>
+
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
+
+            <div class="lock"></div>
+
+        </div>
+
+    </div>
+
+    <div class="info">
+        باکس مرموز رو باز کن و ببین امروز چه چیزی نصیبت میشه!
+        <br>
+        جایزه معمولی:
+        <span class="highlight">۱ تا ۵۰ Gang Coin</span>
+        <br>
+        و شاید هم...
+        <span class="highlight">یه چیز کاملاً غیرمنتظره!</span>
+    </div>
+
+    <button class="open-btn" id="openBtn">
+        باز کردن باکس
+    </button>
+
+    <div class="cooldown" id="cooldown">
+        در حال بررسی وضعیت باکس...
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <a class="back" href="index.html">
+        بازگشت به صفحه اصلی
+    </a>
+
+</div>
+
+
+<!-- نتیجه -->
+<div class="modal" id="rewardModal">
+
+    <div class="modal-box">
+
+        <div class="reward-title" id="rewardTitle">
+            جایزه تو!
+        </div>
+
+        <div class="reward-amount" id="rewardAmount"></div>
+
+        <div class="reward-text" id="rewardText"></div>
+
+        <button class="close-btn" id="closeBtn">
+            عالیه!
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const SUPABASE_URL =
+"https://lhddjuomukejpvssyhuv.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
+
+let accessToken =
+localStorage.getItem("arsin_user_token");
+
+let refreshToken =
+localStorage.getItem("arsin_user_refresh");
+
+let nextOpenAt = null;
+let countdownInterval = null;
+
+
+/* اگر وارد نشده باشد */
+if (!accessToken) {
+    window.location.replace("login.html");
+}
+
+
+/* رفرش توکن */
+async function refreshAccessToken(){
+
+    if(!refreshToken){
+        return false;
+    }
+
+    try{
+
+        const response = await fetch(
+            SUPABASE_URL +
+            "/auth/v1/token?grant_type=refresh_token",
+            {
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json",
+                    "apikey":SUPABASE_KEY
+                },
+
+                body:JSON.stringify({
+                    refresh_token:refreshToken
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if(!response.ok || !data.access_token){
+
+            localStorage.removeItem("arsin_user_token");
+            localStorage.removeItem("arsin_user_refresh");
+
+            accessToken = null;
+            refreshToken = null;
+
+            window.location.replace("login.html");
+
+            return false;
+        }
+
+        accessToken = data.access_token;
+
+        refreshToken =
+            data.refresh_token || refreshToken;
+
+        localStorage.setItem(
+            "arsin_user_token",
+            accessToken
+        );
+
+        localStorage.setItem(
+            "arsin_user_refresh",
+            refreshToken
+        );
+
+        return true;
+
+    }catch(error){
+
+        console.error(error);
+
+        return false;
+    }
+}
+
+
+/* درخواست به Supabase */
+async function supabaseFetch(
+    path,
+    options = {},
+    retry = true
+){
+
+    options.headers = {
+
+        ...(options.headers || {}),
+
+        "apikey":SUPABASE_KEY,
+
+        "Authorization":
+            "Bearer " + accessToken
+    };
+
+    let response =
+        await fetch(
+            SUPABASE_URL + path,
+            options
+        );
+
+    if(response.status === 401 && retry){
+
+        const refreshed =
+            await refreshAccessToken();
+
+        if(!refreshed){
+
+            throw new Error(
+                "جلسه ورود منقضی شده است."
+            );
+        }
+
+        options.headers["Authorization"] =
+            "Bearer " + accessToken;
+
+        response =
+            await fetch(
+                SUPABASE_URL + path,
+                options
+            );
+    }
+
+    return response;
+}
+
+
+/* گرفتن موجودی */
+async function loadAccount(){
+
+    try{
+
+        const response =
+            await supabaseFetch(
+                "/rest/v1/rpc/get_my_gang_account",
+                {
+                    method:"POST"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if(!response.ok){
+
+            throw new Error(
+                "خطا در دریافت حساب"
+            );
+        }
+
+        if(data && data.length){
+
+            const account = data[0];
+
+            document.getElementById(
+                "coinBalance"
+            ).textContent =
+                account.gang_coins ?? 0;
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        document.getElementById(
+            "coinBalance"
+        ).textContent = "؟";
+    }
+}
+
+
+/* زمان باکس */
+function startCountdown(dateString){
+
+    clearInterval(countdownInterval);
+
+    if(!dateString){
+
+        document.getElementById(
+            "cooldown"
+        ).textContent =
+            "باکس آماده است! 🎁";
+
+        document.getElementById(
+            "openBtn"
+        ).disabled = false;
+
+        return;
+    }
+
+    nextOpenAt =
+        new Date(dateString);
+
+    function update(){
+
+        const now =
+            new Date();
+
+        const difference =
+            nextOpenAt - now;
+
+        if(difference <= 0){
+
+            clearInterval(countdownInterval);
+
+            document.getElementById(
+                "cooldown"
+            ).textContent =
+                "باکس آماده است! 🎁";
+
+            document.getElementById(
+                "openBtn"
+            ).disabled = false;
+
+            return;
+        }
+
+        const hours =
+            Math.floor(
+                difference / 3600000
+            );
+
+        const minutes =
+            Math.floor(
+                (difference % 3600000) /
+                60000
+            );
+
+        const seconds =
+            Math.floor(
+                (difference % 60000) /
+                1000
+            );
+
+        document.getElementById(
+            "cooldown"
+        ).textContent =
+            "باکس بعدی: " +
+            String(hours).padStart(2,"0") +
+            ":" +
+            String(minutes).padStart(2,"0") +
+            ":" +
+            String(seconds).padStart(2,"0");
+
+        document.getElementById(
+            "openBtn"
+        ).disabled = true;
+    }
+
+    update();
+
+    countdownInterval =
+        setInterval(update,1000);
+}
+
+
+/* باز کردن باکس */
+async function openBox(){
+
+    const button =
+        document.getElementById("openBtn");
+
+    const area =
+        document.getElementById("boxArea");
+
+    const message =
+        document.getElementById("message");
+
+    button.disabled = true;
+
+    message.textContent =
+        "باکس داره باز میشه...";
+
+    area.classList.add("opening");
+
+    try{
+
+        /*
+          کمی زمان برای انیمیشن
+        */
+        await new Promise(
+            resolve =>
+                setTimeout(resolve,1200)
+        );
+
+        const response =
+            await supabaseFetch(
+                "/rest/v1/rpc/open_daily_box",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:"{}"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        area.classList.remove("opening");
+
+        if(!response.ok){
+
+            throw new Error(
+                "خطا در باز کردن باکس"
+            );
+        }
+
+        const result =
+            data && data.length
+                ? data[0]
+                : data;
+
+        if(!result.success){
+
+            message.textContent =
+                result.reward_message || "";
+
+            startCountdown(
+                result.next_open_at
+            );
+
+            return;
+        }
+
+
+        /* نمایش جایزه */
+        const rewardModal =
+            document.getElementById(
+                "rewardModal"
+            );
+
+        const rewardAmount =
+            document.getElementById(
+                "rewardAmount"
+            );
+
+        const rewardText =
+            document.getElementById(
+                "rewardText"
+            );
+
+        const rewardTitle =
+            document.getElementById(
+                "rewardTitle"
+            );
+
+
+        if(result.reward_type === "banana"){
+
+            rewardTitle.textContent =
+                "جایزه ویژه!";
+
+            rewardAmount.innerHTML =
+                '<span style="font-size:64px;">🍌</span>';
+
+        }else{
+
+            rewardTitle.textContent =
+                "جایزه باکس!";
+
+            rewardAmount.innerHTML =
+                '<span class="coin large">G</span>' +
+                '<span>+' +
+                (result.reward_coins || 0) +
+                '</span>';
+        }
+
+        rewardText.textContent =
+            result.reward_message || "";
+
+        rewardModal.classList.add("show");
+
+
+        /* موجودی جدید */
+        await loadAccount();
+
+
+        /* شروع شمارش 24 ساعت */
+        startCountdown(
+            result.next_open_at
+        );
+
+        message.textContent = "";
+
+    }catch(error){
+
+        console.error(error);
+
+        area.classList.remove("opening");
+
+        button.disabled = false;
+
+        message.textContent =
+            "یه مشکلی پیش اومد. دوباره امتحان کن.";
+    }
+}
+
+
+/* دکمه */
+document.getElementById(
+    "openBtn"
+).addEventListener(
+    "click",
+    openBox
+);
+
+
+/* بستن نتیجه */
+document.getElementById(
+    "closeBtn"
+).addEventListener(
+    "click",
+    () => {
+
+        document.getElementById(
+            "rewardModal"
+        ).classList.remove("show");
+
+    }
+);
+
+
+/* کلیک روی خود باکس */
+document.getElementById(
+    "mysteryBox"
+).addEventListener(
+    "click",
+    () => {
+
+        const button =
+            document.getElementById(
+                "openBtn"
+            );
+
+        if(!button.disabled){
+            openBox();
+        }
+
+    }
+);
+
+
+/* شروع صفحه */
+(async function(){
+
+    await loadAccount();
+
+    /*
+       وضعیت اولیه را از RPC می‌گیریم
+       با یک درخواست باز کردن که فقط در صورت
+       cooldown بودن، وضعیت را برمی‌گرداند.
+    */
+
+})();
+
+</script>
+
+</body>
+</html>
