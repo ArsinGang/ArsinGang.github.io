@@ -45,83 +45,107 @@ border:1px solid rgba(123,44,255,.4);background:#0d0915;color:white;
 outline:none;font-family:inherit;font-size:14px;
 }
 input::placeholder,textarea::placeholder{color:#71677e}
-input:focus,textarea:focus{border-color:#00e5ff;box-shadow:0 0 12px rgba(0,229,255,.15)}
+input:focus,textarea:focus{
+border-color:#00e5ff;
+box-shadow:0 0 12px rgba(0,229,255,.15)
+}
 textarea{min-height:150px;resize:vertical}
 button{
 width:100%;padding:14px;border:none;border-radius:13px;
 background:linear-gradient(90deg,#7b2cff,#00cfff);color:white;
 font-size:16px;font-weight:bold;cursor:pointer;transition:.2s;
 }
-button:hover{transform:translateY(-2px);box-shadow:0 0 20px rgba(0,229,255,.25)}
-button:disabled{opacity:.6;cursor:not-allowed;transform:none}
-.view-button{margin-top:15px;background:linear-gradient(90deg,#00a8cc,#7b2cff)}
-.divider{height:1px;background:rgba(255,255,255,.08);margin:30px 0}
-.success{
-display:none;text-align:center;background:rgba(0,255,170,.07);
-border:1px solid rgba(0,255,170,.35);border-radius:16px;
-padding:20px;margin-top:20px;
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 0 20px rgba(0,229,255,.25)
 }
-.ticket-code{display:flex;align-items:center;gap:8px;margin-top:15px}
+button:disabled{
+opacity:.6;
+cursor:not-allowed;
+transform:none
+}
+.view-button{
+margin-top:15px;
+background:linear-gradient(90deg,#00a8cc,#7b2cff)
+}
+.divider{
+height:1px;
+background:rgba(255,255,255,.08);
+margin:30px 0
+}
+.success{
+display:none;
+text-align:center;
+background:rgba(0,255,170,.07);
+border:1px solid rgba(0,255,170,.35);
+border-radius:16px;
+padding:20px;
+margin-top:20px;
+}
+.ticket-code{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:15px
+}
 .ticket-code input{
-margin:0;text-align:center;font-weight:bold;font-size:18px;
-letter-spacing:1px;color:#00e5ff;
+margin:0;
+text-align:center;
+font-weight:bold;
+font-size:18px;
+letter-spacing:1px;
+color:#00e5ff;
 }
 .copy-btn{
-width:auto;min-width:110px;padding:13px 15px;
-background:linear-gradient(90deg,#242033,#49316e);font-size:14px;
+width:auto;
+min-width:110px;
+padding:13px 15px;
+background:linear-gradient(90deg,#242033,#49316e);
+font-size:14px;
 }
 .direct-ticket-btn{
-width:auto;min-width:145px;padding:13px 15px;
-background:linear-gradient(90deg,#00a8cc,#007bff);font-size:14px;
+width:auto;
+min-width:145px;
+padding:13px 15px;
+background:linear-gradient(90deg,#00a8cc,#007bff);
+font-size:14px;
 }
 .copy-message{
-display:block;min-height:20px;margin-top:8px;
-color:#7dffcf;font-size:13px;
+display:block;
+min-height:20px;
+margin-top:8px;
+color:#7dffcf;
+font-size:13px;
 }
 .login-box{
-padding:20px;border-radius:16px;background:rgba(8,6,14,.8);
-border:1px solid rgba(0,229,255,.25);margin-top:0;
+padding:20px;
+border-radius:16px;
+background:rgba(8,6,14,.8);
+border:1px solid rgba(0,229,255,.25);
+margin-top:0;
 }
 .ticket-code-input{
-text-align:center;font-weight:bold;font-size:18px;letter-spacing:1px;
+text-align:center;
+font-weight:bold;
+font-size:18px;
+letter-spacing:1px;
 }
-.ticket-result{
-display:none;margin-top:80px;padding:20px;border-radius:16px;
-background:rgba(8,6,14,.8);border:1px solid rgba(0,229,255,.25);
-}
-.ticket-status{
-display:inline-block;padding:7px 12px;border-radius:20px;
-margin-bottom:15px;font-size:13px;font-weight:bold;
-}
-.status-open{
-background:rgba(0,255,120,.1);color:#5cffae;
-border:1px solid rgba(0,255,120,.25);
-}
-.status-answered{
-background:rgba(0,200,255,.1);color:#5cddff;
-border:1px solid rgba(0,200,255,.25);
-}
-.status-closed{
-background:rgba(255,80,80,.1);color:#ff8585;
-border:1px solid rgba(255,80,80,.25);
-}
-.ticket-info{margin-top:15px;line-height:2;color:#ddd}
-.ticket-message,.admin-reply{
-margin-top:15px;padding:15px;border-radius:13px;
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.07);
-line-height:2;white-space:pre-wrap;word-break:break-word;
-}
-.admin-reply{border-color:rgba(0,229,255,.2)}
 .error{
-display:none;margin-top:15px;padding:12px;border-radius:12px;
+display:none;
+margin-top:15px;
+padding:12px;
+border-radius:12px;
 background:rgba(255,60,60,.08);
 border:1px solid rgba(255,60,60,.3);
-color:#ff9999;text-align:center;
+color:#ff9999;
+text-align:center;
 }
 .back-btn{
-display:block;text-align:center;margin-top:20px;
-color:#bdb0d0;text-decoration:none;
+display:block;
+text-align:center;
+margin-top:20px;
+color:#bdb0d0;
+text-decoration:none;
 }
 .back-btn:hover{color:#00e5ff}
 @media(max-width:550px){
@@ -263,28 +287,6 @@ autocomplete="off"
 
 <div class="error" id="errorBox"></div>
 
-<div class="ticket-result" id="ticketResult">
-
-<div id="ticketStatus" class="ticket-status"></div>
-
-<div class="ticket-info">
-<strong>👤 نام / یوزرنیم:</strong>
-<span id="ticketName"></span>
-</div>
-
-<div class="ticket-message">
-<strong>💬 پیام شما:</strong>
-<br>
-<span id="ticketMessage"></span>
-</div>
-
-<div class="admin-reply">
-<strong>💜 پاسخ پشتیبانی:</strong>
-<br>
-<span id="adminReply"></span>
-</div>
-
-</div>
 </div>
 
 <div class="divider"></div>
@@ -329,11 +331,6 @@ const directTicketBtn = document.getElementById("directTicketBtn");
 const copyMessage = document.getElementById("copyMessage");
 const ticketCodeInput = document.getElementById("ticketCodeInput");
 const viewBtn = document.getElementById("viewBtn");
-const ticketResult = document.getElementById("ticketResult");
-const ticketStatus = document.getElementById("ticketStatus");
-const ticketName = document.getElementById("ticketName");
-const ticketMessage = document.getElementById("ticketMessage");
-const adminReply = document.getElementById("adminReply");
 const errorBox = document.getElementById("errorBox");
 
 
@@ -409,22 +406,15 @@ submitBtn.textContent="📨 ارسال تیکت";
 });
 
 
-/* ورود مستقیم به تیکت */
+/* ورود مستقیم به صفحه تیکت */
 
-directTicketBtn.addEventListener("click",async function(){
+directTicketBtn.addEventListener("click",function(){
 
 const code=newTicketCode.value.trim().toUpperCase();
 
 if(!code)return;
 
-ticketCodeInput.value=code;
-
-loginBox.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-viewBtn.click();
+window.location.href="ticket.html?code="+encodeURIComponent(code);
 
 });
 
@@ -485,40 +475,11 @@ errorBox.style.display="none";
 }
 
 
-function getStatusText(status){
+/* ورود با کد */
 
-if(status==="closed"){
-
-return{
-text:"🔒 تیکت بسته شده",
-className:"status-closed"
-};
-
-}
-
-if(status==="answered"){
-
-return{
-text:"🔵 تیکت پاسخ داده شده",
-className:"status-answered"
-};
-
-}
-
-return{
-text:"🟢 در انتظار پاسخ",
-className:"status-open"
-};
-
-}
-
-
-/* مشاهده اطلاعات تیکت */
-
-viewBtn.addEventListener("click",async function(){
+viewBtn.addEventListener("click",function(){
 
 hideError();
-ticketResult.style.display="none";
 
 const code=ticketCodeInput.value.trim().toUpperCase();
 
@@ -529,87 +490,7 @@ return;
 
 }
 
-viewBtn.disabled=true;
-viewBtn.textContent="⏳ در حال دریافت...";
-
-try{
-
-const response=await fetch(
-
-SUPABASE_URL+"/rest/v1/rpc/get_ticket_by_code",
-
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json",
-"apikey":SUPABASE_KEY
-},
-body:JSON.stringify({
-code:code
-})
-}
-
-);
-
-if(!response.ok){
-
-const errorText=await response.text();
-
-console.error(errorText);
-
-throw new Error(errorText);
-
-}
-
-const tickets=await response.json();
-
-if(!tickets || tickets.length===0){
-
-showError("❌ کد تیکت اشتباه است یا چنین تیکتی وجود ندارد.");
-
-return;
-
-}
-
-const ticket=tickets[0];
-
-const status=getStatusText(ticket.status);
-
-ticketStatus.textContent=status.text;
-ticketStatus.className="ticket-status "+status.className;
-
-ticketName.textContent=ticket.name||"";
-ticketMessage.textContent=ticket.message||"";
-
-if(ticket.admin_reply){
-
-adminReply.textContent=ticket.admin_reply;
-
-}else{
-
-adminReply.textContent="⏳ هنوز پاسخی از پشتیبانی ثبت نشده است.";
-
-}
-
-ticketResult.style.display="block";
-
-ticketResult.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
-
-}catch(error){
-
-console.error(error);
-
-showError("❌ دریافت تیکت انجام نشد. دوباره تلاش کنید.");
-
-}finally{
-
-viewBtn.disabled=false;
-viewBtn.textContent="🔓 ورود به تیکت";
-
-}
+window.location.href="ticket.html?code="+encodeURIComponent(code);
 
 });
 
