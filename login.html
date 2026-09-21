@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArsinGang | ورود</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237b2cff'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='38' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
+
+<style>
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+min-height:100vh;
+font-family:Tahoma,Arial,sans-serif;
+background:
+radial-gradient(circle at top,#24104d 0%,#0b0714 45%,#05030a 100%);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:430px;
+}
+
+.logo{
+width:82px;
+height:82px;
+margin:0 auto 18px;
+border-radius:24px;
+background:#7b2cff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+font-weight:bold;
+box-shadow:
+0 0 20px #7b2cff,
+0 0 45px rgba(0,220,255,.35);
+}
+
+h1{
+text-align:center;
+margin:0;
+font-size:28px;
+}
+
+.subtitle{
+text-align:center;
+color:#bbb;
+margin:10px 0 25px;
+}
+
+.card{
+background:rgba(15,10,28,.88);
+border:1px solid rgba(139,75,255,.5);
+border-radius:22px;
+padding:25px;
+box-shadow:
+0 0 25px rgba(123,44,255,.18),
+inset 0 0 20px rgba(0,220,255,.03);
+backdrop-filter:blur(10px);
+}
+
+.tabs{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.tab{
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#171020;
+color:#aaa;
+font-size:15px;
+cursor:pointer;
+transition:.2s;
+}
+
+.tab.active{
+background:linear-gradient(135deg,#7b2cff,#00cfff);
+color:white;
+box-shadow:0 0 15px rgba(123,44,255,.35);
+}
+
+label{
+display:block;
+margin:12px 3px 7px;
+color:#ddd;
+font-size:14px;
+}
+
+input{
+width:100%;
+padding:13px 14px;
+border-radius:12px;
+border:1px solid #34244d;
+background:#090711;
+color:white;
+outline:none;
+font-size:14px;
+direction:ltr;
+}
+
+input:focus{
+border-color:#8b4dff;
+box-shadow:0 0 10px rgba(123,44,255,.25);
+}
+
+.main-btn{
+width:100%;
+margin-top:20px;
+padding:14px;
+border:0;
+border-radius:13px;
+background:linear-gradient(135deg,#7b2cff,#00cfff);
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 0 18px rgba(123,44,255,.3);
+}
+
+.main-btn:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
+
+.message{
+display:none;
+margin-top:15px;
+padding:13px;
+border-radius:12px;
+text-align:center;
+font-size:14px;
+line-height:1.8;
+}
+
+.message.error{
+display:block;
+background:rgba(255,50,80,.1);
+border:1px solid rgba(255,70,100,.4);
+color:#ff9aaa;
+}
+
+.message.success{
+display:block;
+background:rgba(0,220,255,.08);
+border:1px solid rgba(0,220,255,.35);
+color:#75eaff;
+}
+
+.back{
+display:block;
+text-align:center;
+margin-top:20px;
+color:#aaa;
+text-decoration:none;
+}
+
+.back:hover{
+color:white;
+}
+
+#signupFields{
+display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">AG</div>
+
+<h1>ArsinGang</h1>
+
+<div class="subtitle">
+🔐 حساب کاربری ArsinGang
+</div>
+
+<div class="card">
+
+<div class="tabs">
+<button class="tab active" id="loginTab" onclick="showLogin()">ورود</button>
+<button class="tab" id="signupTab" onclick="showSignup()">ثبت‌نام</button>
+</div>
+
+<form id="authForm">
+
+<div id="signupFields">
+
+<label>نام کاربری</label>
+<input
+id="username"
+type="text"
+placeholder="مثلاً ArsinGang"
+autocomplete="username"
+>
+
+</div>
+
+<label>ایمیل</label>
+<input
+id="email"
+type="email"
+placeholder="example@email.com"
+autocomplete="email"
+required
+>
+
+<label>رمز عبور</label>
+<input
+id="password"
+type="password"
+placeholder="رمز عبور"
+autocomplete="current-password"
+required
+>
+
+<button class="main-btn" id="submitBtn" type="submit">
+🔐 ورود به حساب
+</button>
+
+</form>
+
+<div id="message" class="message"></div>
+
+</div>
+
+<a class="back" href="index.html">
+← برگشت به صفحه اصلی
+</a>
+
+</div>
+
+<script>
+
+const SUPABASE_URL =
+"https://lhddjuomukejpvssyhuv.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
+
+let mode = "login";
+
+function showLogin(){
+
+mode = "login";
+
+document.getElementById("loginTab").classList.add("active");
+document.getElementById("signupTab").classList.remove("active");
+
+document.getElementById("signupFields").style.display = "none";
+
+document.getElementById("submitBtn").textContent =
+"🔐 ورود به حساب";
+
+clearMessage();
+}
+
+function showSignup(){
+
+mode = "signup";
+
+document.getElementById("signupTab").classList.add("active");
+document.getElementById("loginTab").classList.remove("active");
+
+document.getElementById("signupFields").style.display = "block";
+
+document.getElementById("submitBtn").textContent =
+"✨ ساخت حساب";
+
+clearMessage();
+}
+
+function showMessage(text,type){
+
+const box = document.getElementById("message");
+
+box.textContent = text;
+
+box.className = "message " + type;
+
+}
+
+function clearMessage(){
+
+const box = document.getElementById("message");
+
+box.textContent = "";
+
+box.className = "message";
+
+}
+
+async function supabaseRequest(path,options={}){
+
+const response = await fetch(
+SUPABASE_URL + path,
+{
+...options,
+headers:{
+"Content-Type":"application/json",
+"apikey":SUPABASE_KEY,
+...(options.headers || {})
+}
+}
+);
+
+const data = await response.json().catch(()=>null);
+
+return {
+ok:response.ok,
+status:response.status,
+data:data
+};
+
+}
+
+document.getElementById("authForm").addEventListener(
+"submit",
+async function(event){
+
+event.preventDefault();
+
+clearMessage();
+
+const email =
+document.getElementById("email").value.trim();
+
+const password =
+document.getElementById("password").value;
+
+const username =
+document.getElementById("username").value.trim();
+
+const button =
+document.getElementById("submitBtn");
+
+button.disabled = true;
+
+if(mode === "signup"){
+
+if(username.length < 3){
+
+showMessage(
+"❌ نام کاربری باید حداقل ۳ کاراکتر باشد.",
+"error"
+);
+
+button.disabled = false;
+return;
+}
+
+const result = await supabaseRequest(
+"/auth/v1/signup",
+{
+method:"POST",
+body:JSON.stringify({
+email:email,
+password:password,
+data:{
+username:username
+}
+})
+}
+);
+
+if(!result.ok){
+
+showMessage(
+"❌ " +
+(result.data?.msg ||
+result.data?.message ||
+"ساخت حساب انجام نشد."),
+"error"
+);
+
+button.disabled = false;
+return;
+}
+
+if(result.data?.access_token){
+
+localStorage.setItem(
+"arsin_user_token",
+result.data.access_token
+);
+
+if(result.data.refresh_token){
+
+localStorage.setItem(
+"arsin_user_refresh",
+result.data.refresh_token
+);
+
+}
+
+window.location.href = "rank.html";
+
+return;
+
+}
+
+showMessage(
+"✅ حساب ساخته شد! اگر تأیید ایمیل فعال باشد، ایمیلت را بررسی کن و بعد وارد حساب شو.",
+"success"
+);
+
+}else{
+
+const result = await supabaseRequest(
+"/auth/v1/token?grant_type=password",
+{
+method:"POST",
+body:JSON.stringify({
+email:email,
+password:password
+})
+}
+);
+
+if(!result.ok){
+
+showMessage(
+"❌ ایمیل یا رمز عبور اشتباه است.",
+"error"
+);
+
+button.disabled = false;
+return;
+}
+
+localStorage.setItem(
+"arsin_user_token",
+result.data.access_token
+);
+
+if(result.data.refresh_token){
+
+localStorage.setItem(
+"arsin_user_refresh",
+result.data.refresh_token
+);
+
+}
+
+window.location.href = "rank.html";
+
+}
+
+}
+);
+
+</script>
+
+</body>
+</html>
