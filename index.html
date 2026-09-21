@@ -1,117 +1,471 @@
 <!DOCTYPE html>
-
 <html lang="fa" dir="rtl">
-
 <head>
 
-<meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ArsinGang | Official Website</title>
-
-<meta name="description" content="وب‌سایت رسمی ArsinGang؛ حمایت مالی و سرور Minecraft">
-
-<!-- Favicon -->
+<title>ArsinGang</title>
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237b2cff'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='38' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
 
-<style> * { box-sizing: border-box; } html { scroll-behavior: smooth; } body { margin: 0; min-height: 100vh; font-family: Arial, Tahoma, sans-serif; color: white; text-align: center; background: radial-gradient( circle at 15% 20%, rgba(130,40,255,.30), transparent 35% ), radial-gradient( circle at 85% 80%, rgba(0,220,255,.20), transparent 35% ), linear-gradient( 135deg, #080014, #18002d, #001522 ); overflow-x: hidden; } /* نور پس‌زمینه */ body::before { content: ""; position: fixed; width: 350px; height: 350px; top: -120px; left: -120px; background: rgba(123,44,255,.18); filter: blur(100px); border-radius: 50%; pointer-events: none; } body::after { content: ""; position: fixed; width: 350px; height: 350px; bottom: -120px; right: -120px; background: rgba(0,220,255,.14); filter: blur(100px); border-radius: 50%; pointer-events: none; } /* دکمه پشتیبانی گوشه بالا */ .support-corner { position: fixed; top: 25px; left: 25px; z-index: 1000; padding: 17px 25px; border-radius: 17px; color: white; text-decoration: none; font-size: 19px; font-weight: bold; background: rgba(20,15,40,.88); border: 1px solid rgba(123,44,255,.55); box-shadow: 0 0 25px rgba(123,44,255,.30); backdrop-filter: blur(10px); transition: transform .25s, box-shadow .25s, background .25s; } .support-corner:hover { transform: translateY(-3px) scale(1.04); background: rgba(35,25,65,.95); box-shadow: 0 0 35px rgba(123,44,255,.60); } /* صفحه اصلی */ .container { width: 90%; max-width: 720px; margin: 0 auto; padding: 75px 20px 45px; } /* لوگو */ .logo { width: 105px; height: 105px; margin: auto; display: flex; align-items: center; justify-content: center; border-radius: 28px; font-size: 38px; font-weight: 900; letter-spacing: 2px; background: linear-gradient( 135deg, #7b2cff, #00d9ff ); box-shadow: 0 0 25px rgba(123,44,255,.55), 0 0 60px rgba(0,217,255,.20); animation: logoGlow 3s infinite alternate; } @keyframes logoGlow { from { transform: translateY(0); box-shadow: 0 0 25px rgba(123,44,255,.55), 0 0 60px rgba(0,217,255,.20); } to { transform: translateY(-5px); box-shadow: 0 0 40px rgba(123,44,255,.75), 0 0 80px rgba(0,217,255,.30); } } /* عنوان */ h1 { font-size: 56px; margin: 22px 0 10px; font-weight: 900; background: linear-gradient( 90deg, #ffffff, #b987ff, #45eaff ); -webkit-background-clip: text; -webkit-text-fill-color: transparent; } /* توضیحات */ .subtitle { color: #d8d2e8; font-size: 19px; line-height: 1.8; margin-bottom: 38px; } /* دکمه‌ها */ .menu { display: flex; flex-direction: column; gap: 18px; } .button { position: relative; display: block; padding: 21px 20px; border-radius: 19px; color: white; text-decoration: none; font-size: 20px; font-weight: bold; background: rgba(20,15,40,.82); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 0 25px rgba(123,44,255,.15); backdrop-filter: blur(10px); transition: transform .25s, box-shadow .25s, background .25s; } /* افکت دکمه */ .button:hover { transform: translateY(-4px) scale(1.02); background: rgba(35,25,65,.95); box-shadow: 0 0 30px rgba(123,44,255,.50); } .button:active { transform: scale(.98); } /* دکمه حمایت */ .donate { border-color: rgba(180,100,255,.40); } /* دکمه سرور */ .server { border-color: rgba(0,220,255,.35); } /* فوتر */ .footer { margin-top: 40px; color: #77718a; font-size: 14px; } /* موبایل */ @media (max-width: 600px) { .container { padding-top: 55px; } .logo { width: 90px; height: 90px; font-size: 32px; } h1 { font-size: 42px; } .subtitle { font-size: 17px; } .button { font-size: 18px; padding: 19px 15px; } .support-corner { top: 15px; left: 15px; padding: 13px 18px; font-size: 16px; } } </style>
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+min-height:100vh;
+font-family:Tahoma,Arial,sans-serif;
+background:
+radial-gradient(circle at top,#24104d 0%,#0b0714 45%,#05030a 100%);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:25px;
+overflow-x:hidden;
+}
+
+.container{
+width:100%;
+max-width:650px;
+text-align:center;
+}
+
+.logo{
+width:100px;
+height:100px;
+margin:0 auto 20px;
+border-radius:28px;
+background:#7b2cff;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-family:Arial,sans-serif;
+font-size:38px;
+font-weight:bold;
+
+box-shadow:
+0 0 25px #7b2cff,
+0 0 60px rgba(0,220,255,.3);
+}
+
+h1{
+margin:0;
+font-size:36px;
+}
+
+.subtitle{
+margin-top:12px;
+font-size:18px;
+color:#ddd;
+line-height:2;
+}
+
+.buttons{
+margin-top:35px;
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+
+.main-btn{
+display:block;
+width:100%;
+padding:17px 20px;
+
+border-radius:16px;
+border:1px solid rgba(139,75,255,.5);
+
+background:
+linear-gradient(
+135deg,
+rgba(123,44,255,.18),
+rgba(0,207,255,.08)
+);
+
+color:white;
+text-decoration:none;
+
+font-size:17px;
+font-weight:bold;
+
+box-shadow:
+0 0 15px rgba(123,44,255,.12);
+
+transition:.25s;
+}
+
+.main-btn:hover{
+transform:translateY(-3px);
+
+border-color:#9b65ff;
+
+box-shadow:
+0 0 25px rgba(123,44,255,.35),
+0 0 15px rgba(0,207,255,.15);
+}
+
+.support-btn{
+position:fixed;
+top:18px;
+left:18px;
+
+padding:11px 16px;
+
+border-radius:13px;
+border:1px solid rgba(0,207,255,.45);
+
+background:rgba(8,6,18,.9);
+
+color:white;
+text-decoration:none;
+
+font-size:14px;
+font-weight:bold;
+
+box-shadow:
+0 0 15px rgba(0,207,255,.18);
+
+z-index:10;
+
+transition:.2s;
+}
+
+.support-btn:hover{
+transform:translateY(-2px);
+
+box-shadow:
+0 0 22px rgba(0,207,255,.35);
+}
+
+.rank-btn{
+position:fixed;
+top:18px;
+right:18px;
+
+padding:11px 16px;
+
+border-radius:13px;
+border:1px solid rgba(123,44,255,.55);
+
+background:rgba(8,6,18,.9);
+
+color:white;
+text-decoration:none;
+
+font-size:14px;
+font-weight:bold;
+
+box-shadow:
+0 0 15px rgba(123,44,255,.2);
+
+z-index:10;
+
+transition:.2s;
+}
+
+.rank-btn:hover{
+transform:translateY(-2px);
+
+box-shadow:
+0 0 22px rgba(123,44,255,.4);
+}
+
+footer{
+margin-top:40px;
+color:#777;
+font-size:13px;
+}
+
+.loading{
+position:fixed;
+inset:0;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:#07040d;
+
+z-index:100;
+
+font-size:18px;
+color:#ccc;
+}
+
+.loading span{
+animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+
+0%,100%{
+opacity:.4;
+}
+
+50%{
+opacity:1;
+}
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<!-- پشتیبانی -->
+<div class="loading" id="loading">
+<span>🔐 در حال بررسی حساب...</span>
+</div>
 
-<a class="support-corner" href="contact.html">
 
+<a class="support-btn" href="contact.html">
 📩 پشتیبانی
-
 </a>
 
-<div class="container">
 
-<!-- لوگو -->
+<a class="rank-btn" href="rank.html">
+👑 خرید رنک
+</a>
+
+
+<div class="container" id="mainContent" style="display:none;">
 
 <div class="logo">
-    AG
+AG
 </div>
-
-
-<!-- نام سایت -->
 
 <h1>
-    ArsinGang
+ArsinGang
 </h1>
 
-
-<!-- توضیحات -->
-
 <div class="subtitle">
+به دنیای ArsinGang خوش اومدی 🎮💜
+<br>
+دنیای گیم، Minecraft و کلی محتوای جذاب!
+</div>
 
-    به دنیای ArsinGang خوش اومدی 🎮💜
 
-    <br>
+<div class="buttons">
 
-    دنیای گیم، Minecraft و کلی محتوای جذاب!
+<a class="main-btn" href="support.html">
+💜 حمایت مالی از ArsinGang
+</a>
+
+
+<a class="main-btn" href="server.html">
+⛏️ سرور Minecraft ArsinGang
+</a>
+
+
+<a class="main-btn" href="https://arsingang.github.io/live.html">
+🔴 مشاهده استریم ArsinGang
+</a>
+
+
+<a class="main-btn" href="box.html">
+🎁 باکس مرموز ArsinGang
+</a>
 
 </div>
 
 
-<!-- منوی اصلی -->
-
-<div class="menu">
-
-
-    <!-- حمایت -->
-
-    <a
-        class="button donate"
-        href="support.html">
-
-        💜 حمایت مالی از ArsinGang
-
-    </a>
-
-
-    <!-- سرور -->
-
-    <a
-        class="button server"
-        href="server.html">
-
-        ⛏️ سرور Minecraft ArsinGang
-
-    </a>
-
-
-    <!-- لایو -->
-
-    <a
-        class="button live"
-        href="https://arsingang.github.io/live.html">
-
-        🔴 مشاهده استریم ArsinGang
-
-    </a>
-
+<footer>
+ArsinGang 🎮 © 2026 ArsinGang
+</footer>
 
 </div>
 
 
-<!-- فوتر -->
+<script>
 
-<div class="footer">
+const SUPABASE_URL =
+"https://lhddjuomukejpvssyhuv.supabase.co";
 
-    ArsinGang 🎮
+const SUPABASE_KEY =
+"sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
-    <br>
 
-    © 2026 ArsinGang
+let accessToken =
+localStorage.getItem("arsin_user_token");
 
-</div>
+let refreshToken =
+localStorage.getItem("arsin_user_refresh");
 
-</div>
+
+async function refreshAccessToken(){
+
+if(!refreshToken){
+return false;
+}
+
+try{
+
+const response = await fetch(
+SUPABASE_URL +
+"/auth/v1/token?grant_type=refresh_token",
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"apikey":SUPABASE_KEY
+},
+
+body:JSON.stringify({
+refresh_token:refreshToken
+})
+}
+);
+
+const data = await response.json();
+
+if(!response.ok || !data.access_token){
+
+localStorage.removeItem("arsin_user_token");
+localStorage.removeItem("arsin_user_refresh");
+
+accessToken = null;
+refreshToken = null;
+
+return false;
+}
+
+
+accessToken = data.access_token;
+
+refreshToken =
+data.refresh_token || refreshToken;
+
+
+localStorage.setItem(
+"arsin_user_token",
+accessToken
+);
+
+localStorage.setItem(
+"arsin_user_refresh",
+refreshToken
+);
+
+return true;
+
+}catch(error){
+
+return false;
+
+}
+
+}
+
+
+async function checkUser(){
+
+if(!accessToken){
+
+window.location.replace("login.html");
+return;
+}
+
+
+try{
+
+let response = await fetch(
+SUPABASE_URL + "/auth/v1/user",
+{
+method:"GET",
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer " + accessToken
+}
+}
+);
+
+
+if(response.status === 401){
+
+const refreshed =
+await refreshAccessToken();
+
+if(!refreshed){
+
+window.location.replace("login.html");
+return;
+}
+
+
+response = await fetch(
+SUPABASE_URL + "/auth/v1/user",
+{
+method:"GET",
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer " + accessToken
+}
+}
+);
+
+}
+
+
+if(!response.ok){
+
+localStorage.removeItem("arsin_user_token");
+localStorage.removeItem("arsin_user_refresh");
+
+window.location.replace("login.html");
+return;
+
+}
+
+
+const user = await response.json();
+
+
+if(!user || !user.id){
+
+localStorage.removeItem("arsin_user_token");
+localStorage.removeItem("arsin_user_refresh");
+
+window.location.replace("login.html");
+return;
+
+}
+
+
+/*
+   کاربر معتبر است.
+   حالا صفحه اصلی نمایش داده می‌شود.
+*/
+
+document.getElementById("loading").style.display =
+"none";
+
+document.getElementById("mainContent").style.display =
+"block";
+
+
+}catch(error){
+
+window.location.replace("login.html");
+
+}
+
+}
+
+
+checkUser();
+
+</script>
 
 </body>
-
 </html>
