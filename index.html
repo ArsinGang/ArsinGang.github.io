@@ -204,13 +204,17 @@ footer{
     height:38px;
     flex-shrink:0;
     border-radius:50%;
-    background:white;
+    background:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
-    color:#5d28c9;
-    font-size:21px;
     box-shadow:0 0 12px rgba(255,255,255,.18);
+}
+
+.avatar svg{
+    width:23px;
+    height:23px;
+    display:block;
 }
 
 .profile-info{
@@ -384,7 +388,31 @@ footer{
         <div class="profile-box">
 
             <div class="avatar">
-                👤
+
+                <!-- Simple contact/person icon -->
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+
+                    <circle
+                        cx="12"
+                        cy="8"
+                        r="4"
+                        stroke="#5b2bbf"
+                        stroke-width="2"
+                    />
+
+                    <path
+                        d="M4.5 20C5.3 16.6 8 14.5 12 14.5C16 14.5 18.7 16.6 19.5 20"
+                        stroke="#5b2bbf"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+
+                </svg>
+
             </div>
 
             <div class="profile-info">
@@ -551,6 +579,11 @@ async function refreshAccessToken(){
 
     }catch(error){
 
+        console.error(
+            "Refresh error:",
+            error
+        );
+
         return false;
 
     }
@@ -607,6 +640,12 @@ async function getUser(){
 
 
     if(!response.ok){
+
+        console.error(
+            "User request failed:",
+            response.status
+        );
+
         return null;
     }
 
@@ -667,12 +706,6 @@ async function getRank(){
             await response.json();
 
 
-        console.log(
-            "Gang account:",
-            data
-        );
-
-
         const account =
             Array.isArray(data)
                 ? data[0]
@@ -708,7 +741,7 @@ async function getRank(){
 
 
 /* =========================
-   SHOW PROFILE
+   LOAD PROFILE
 ========================= */
 
 async function loadProfile(user){
@@ -730,16 +763,16 @@ async function loadProfile(user){
 
 
     /*
-       مهم:
-       فقط username واقعی که
-       هنگام ثبت‌نام داخل metadata
-       ذخیره شده استفاده می‌شود.
+       username فقط از metadata حساب
+       فعلی خوانده می‌شود.
     */
 
+    const metadata =
+        user.user_metadata || {};
+
     const username =
-        user.user_metadata &&
-        typeof user.user_metadata.username === "string"
-            ? user.user_metadata.username.trim()
+        typeof metadata.username === "string"
+            ? metadata.username.trim()
             : "";
 
 
@@ -750,17 +783,12 @@ async function loadProfile(user){
 
     }else{
 
-        /*
-           اگر username واقعاً در حساب وجود نداشته باشد،
-           ایمیل را به‌عنوان اسم نشان نمی‌دهیم.
-        */
-
         nameElement.textContent =
             "نام ثبت نشده";
 
         console.warn(
-            "Username is missing from Supabase user metadata.",
-            user.user_metadata
+            "این حساب username ندارد.",
+            metadata
         );
 
     }
@@ -838,12 +866,6 @@ async function checkUser(){
             return;
         }
 
-
-        /*
-           اینجا سیستم کاربری
-           اطلاعات همان حساب واردشده
-           را می‌خواند.
-        */
 
         await loadProfile(
             user
