@@ -1,258 +1,551 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ArsinGang | ورود</title>
 
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237b2cff'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='38' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
+
 <style>
+
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+box-sizing:border-box;
 }
 
 body{
-    min-height:100vh;
-    font-family:Tahoma,Arial,sans-serif;
-    background:
-        radial-gradient(circle at top,#241044 0%,#10051e 45%,#07030d 100%);
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+margin:0;
+min-height:100vh;
+
+font-family:Tahoma,Arial,sans-serif;
+
+background:
+radial-gradient(
+circle at top,
+#24104d 0%,
+#0b0714 45%,
+#05030a 100%
+);
+
+color:white;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:20px;
 }
 
 .container{
-    width:100%;
-    max-width:430px;
-    padding:20px;
+width:100%;
+max-width:430px;
 }
 
 .logo{
-    text-align:center;
-    margin-bottom:25px;
+width:82px;
+height:82px;
+
+margin:0 auto 18px;
+
+border-radius:24px;
+
+background:#7b2cff;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-family:Arial,sans-serif;
+font-size:30px;
+font-weight:bold;
+
+box-shadow:
+0 0 20px #7b2cff,
+0 0 45px rgba(0,220,255,.35);
 }
 
-.logo-box{
-    width:75px;
-    height:75px;
-    margin:auto;
-    border-radius:20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#6d2cff,#20d9ff);
-    box-shadow:0 0 30px rgba(102,45,255,.45);
-    font-size:27px;
-    font-weight:bold;
+h1{
+text-align:center;
+margin:0;
+font-size:28px;
 }
 
-.logo h1{
-    margin-top:13px;
-    font-size:27px;
-}
-
-.logo p{
-    margin-top:7px;
-    color:#aaa;
-    font-size:13px;
+.subtitle{
+text-align:center;
+color:#bbb;
+margin:10px 0 25px;
 }
 
 .card{
-    background:rgba(19,8,35,.88);
-    border:1px solid rgba(125,65,255,.35);
-    border-radius:18px;
-    padding:25px;
-    box-shadow:0 0 35px rgba(0,0,0,.35);
+background:rgba(15,10,28,.88);
+
+border:1px solid rgba(139,75,255,.5);
+
+border-radius:22px;
+
+padding:25px;
+
+box-shadow:
+0 0 25px rgba(123,44,255,.18),
+inset 0 0 20px rgba(0,220,255,.03);
+
+backdrop-filter:blur(10px);
 }
 
-h2{
-    text-align:center;
-    margin-bottom:20px;
+.tabs{
+display:flex;
+gap:10px;
+margin-bottom:20px;
 }
 
-.input-group{
-    margin-bottom:15px;
+.tab{
+flex:1;
+
+padding:12px;
+
+border:none;
+
+border-radius:12px;
+
+background:#171020;
+
+color:#aaa;
+
+font-size:15px;
+
+cursor:pointer;
+
+transition:.2s;
 }
 
-.input-group label{
-    display:block;
-    margin-bottom:7px;
-    font-size:13px;
-    color:#ccc;
+.tab.active{
+background:
+linear-gradient(
+135deg,
+#7b2cff,
+#00cfff
+);
+
+color:white;
+
+box-shadow:
+0 0 15px rgba(123,44,255,.35);
 }
 
-.input-group input{
-    width:100%;
-    padding:13px;
-    border-radius:10px;
-    border:1px solid #3b205d;
-    outline:none;
-    background:#0d0618;
-    color:white;
-    font-size:14px;
+label{
+display:block;
+
+margin:12px 3px 7px;
+
+color:#ddd;
+
+font-size:14px;
 }
 
-.input-group input:focus{
-    border-color:#713cff;
-    box-shadow:0 0 10px rgba(113,60,255,.2);
+input{
+width:100%;
+
+padding:13px 14px;
+
+border-radius:12px;
+
+border:1px solid #34244d;
+
+background:#090711;
+
+color:white;
+
+outline:none;
+
+font-size:14px;
+
+direction:ltr;
 }
 
-.human{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin:12px 0 18px;
-    font-size:13px;
-    color:#bbb;
+input:focus{
+border-color:#8b4dff;
+
+box-shadow:
+0 0 10px rgba(123,44,255,.25);
 }
 
-.human input{
-    width:16px;
-    height:16px;
-    accent-color:#6d2cff;
+
+/* HUMAN CHECK */
+
+.human-box{
+
+margin-top:18px;
+
+width:100%;
+
+padding:14px 15px;
+
+border-radius:13px;
+
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.035),
+rgba(123,44,255,.08)
+);
+
+border:1px solid #34244d;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+cursor:pointer;
+
+transition:.2s;
+
+user-select:none;
+
+direction:ltr;
 }
 
-button{
-    width:100%;
-    border:none;
-    border-radius:10px;
-    padding:13px;
-    background:linear-gradient(90deg,#6d2cff,#18cfff);
-    color:white;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 0 20px rgba(72,55,255,.2);
+.human-box:hover{
+
+border-color:#7b2cff;
+
+box-shadow:
+0 0 14px rgba(123,44,255,.2);
+
 }
 
-button:hover{
-    opacity:.92;
+.human-check{
+
+width:24px;
+height:24px;
+
+border-radius:6px;
+
+border:2px solid #71677e;
+
+background:#090711;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+flex-shrink:0;
+
+transition:.2s;
+
 }
 
-.switch{
-    text-align:center;
-    margin-top:18px;
-    font-size:13px;
-    color:#aaa;
+.human-check::after{
+
+content:"";
+
+width:10px;
+height:6px;
+
+border-left:3px solid white;
+border-bottom:3px solid white;
+
+transform:
+rotate(-45deg)
+scale(0);
+
+transition:.2s;
+
+margin-top:-3px;
+
 }
 
-.switch span{
-    color:#55d8ff;
-    cursor:pointer;
+.human-box.checked .human-check{
+
+background:#16c784;
+
+border-color:#16c784;
+
+box-shadow:
+0 0 12px rgba(22,199,132,.45);
+
 }
 
-#username,
-#humanBox{
-    display:none;
+.human-box.checked .human-check::after{
+
+transform:
+rotate(-45deg)
+scale(1);
+
 }
+
+.human-text{
+
+font-family:Arial,sans-serif;
+
+font-size:15px;
+
+font-weight:bold;
+
+color:#eee;
+
+}
+
+.human-small{
+
+margin-right:auto;
+
+font-family:Arial,sans-serif;
+
+font-size:11px;
+
+color:#777;
+
+}
+
+
+/* MAIN BUTTON */
+
+.main-btn{
+width:100%;
+
+margin-top:20px;
+
+padding:14px;
+
+border:0;
+
+border-radius:13px;
+
+background:
+linear-gradient(
+135deg,
+#7b2cff,
+#00cfff
+);
+
+color:white;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+box-shadow:
+0 0 18px rgba(123,44,255,.3);
+
+transition:.2s;
+}
+
+.main-btn:hover{
+
+transform:translateY(-1px);
+
+box-shadow:
+0 0 25px rgba(123,44,255,.45);
+
+}
+
+.main-btn:disabled{
+opacity:.55;
+cursor:not-allowed;
+transform:none;
+}
+
+
+/* MESSAGE */
 
 .message{
-    text-align:center;
-    margin-top:14px;
-    font-size:13px;
-    color:#ff7777;
-    min-height:18px;
+display:none;
+
+margin-top:15px;
+
+padding:13px;
+
+border-radius:12px;
+
+text-align:center;
+
+font-size:14px;
+
+line-height:1.9;
 }
 
-.loader{
-    position:fixed;
-    inset:0;
-    background:#08030f;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:100;
+.message.error{
+display:block;
+
+background:rgba(255,50,80,.1);
+
+border:1px solid rgba(255,70,100,.4);
+
+color:#ff9aaa;
 }
 
-.loader div{
-    width:40px;
-    height:40px;
-    border:4px solid #25143b;
-    border-top-color:#6d2cff;
-    border-radius:50%;
-    animation:spin 1s linear infinite;
+.message.success{
+display:block;
+
+background:rgba(0,220,255,.08);
+
+border:1px solid rgba(0,220,255,.35);
+
+color:#75eaff;
 }
 
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
+.message.info{
+display:block;
+
+background:rgba(123,44,255,.09);
+
+border:1px solid rgba(123,44,255,.35);
+
+color:#c7a9ff;
 }
+
+
+/* SIGNUP */
+
+#signupFields{
+display:none;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<div class="loader" id="loader">
-    <div></div>
-</div>
-
 <div class="container">
 
-    <div class="logo">
-        <div class="logo-box">AG</div>
-        <h1>ArsinGang</h1>
-        <p>به گنگ آرسین خوش اومدی</p>
-    </div>
-
-    <div class="card">
-
-        <h2 id="title">ورود به حساب</h2>
-
-        <form id="authForm">
-
-            <div class="input-group" id="usernameBox">
-                <label>نام کاربری</label>
-                <input
-                    type="text"
-                    id="username"
-                    placeholder="نام کاربری خود را وارد کنید"
-                >
-            </div>
-
-            <div class="input-group">
-                <label>ایمیل</label>
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="ایمیل خود را وارد کنید"
-                    required
-                >
-            </div>
-
-            <div class="input-group">
-                <label>رمز عبور</label>
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="رمز عبور خود را وارد کنید"
-                    required
-                >
-            </div>
-
-            <div class="human" id="humanBox">
-                <input type="checkbox" id="human">
-                <label for="human">من ربات نیستم</label>
-            </div>
-
-            <button type="submit" id="submitBtn">
-                ورود
-            </button>
-
-        </form>
-
-        <div class="message" id="message"></div>
-
-        <div class="switch">
-            <span id="switchText">
-                حساب نداری؟ ثبت نام کن
-            </span>
-        </div>
-
-    </div>
+<div class="logo">
+AG
 </div>
+
+<h1>
+ArsinGang
+</h1>
+
+<div class="subtitle">
+🔐 حساب کاربری ArsinGang
+</div>
+
+<div class="card">
+
+<div class="tabs">
+
+<button
+class="tab active"
+id="loginTab"
+type="button"
+onclick="showLogin()">
+
+ورود
+
+</button>
+
+<button
+class="tab"
+id="signupTab"
+type="button"
+onclick="showSignup()">
+
+ثبت‌نام
+
+</button>
+
+</div>
+
+
+<form id="authForm">
+
+
+<div id="signupFields">
+
+<label>
+نام کاربری
+</label>
+
+<input
+id="username"
+type="text"
+placeholder="مثلاً USER"
+autocomplete="username"
+>
+
+</div>
+
+
+<label>
+ایمیل
+</label>
+
+<input
+id="email"
+type="email"
+placeholder="example@email.com"
+autocomplete="email"
+required
+>
+
+
+<label>
+رمز عبور
+</label>
+
+<input
+id="password"
+type="password"
+placeholder="رمز عبور"
+autocomplete="current-password"
+required
+>
+
+
+<!-- I'M HUMAN -->
+
+<div
+class="human-box"
+id="humanBox"
+onclick="toggleHuman()"
+style="display:none;"
+>
+
+<div
+class="human-check"
+id="humanCheck">
+</div>
+
+<div class="human-text">
+I'm Human
+</div>
+
+<div class="human-small">
+ArsinGang
+</div>
+
+</div>
+
+
+<button
+class="main-btn"
+id="submitBtn"
+type="submit">
+
+🔐 ورود به حساب
+
+</button>
+
+</form>
+
+
+<div
+id="message"
+class="message">
+</div>
+
+</div>
+
+</div>
+
 
 <script>
 
@@ -262,274 +555,591 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
-async function supabaseRequest(path, options = {}){
 
-    const response = await fetch(
-        SUPABASE_URL + path,
-        {
-            ...options,
-            headers:{
-                "Content-Type":"application/json",
-                "apikey":SUPABASE_KEY,
-                ...(options.headers || {})
-            }
-        }
-    );
+let mode = "login";
 
-    let data = {};
+let humanVerified = false;
 
-    try{
-        data = await response.json();
-    }catch(e){}
 
-    return{
-        ok:response.ok,
-        status:response.status,
-        data:data
-    };
-}
-
-const form =
-document.getElementById("authForm");
-
-const title =
-document.getElementById("title");
-
-const usernameBox =
-document.getElementById("usernameBox");
-
-const username =
-document.getElementById("username");
-
-const humanBox =
-document.getElementById("humanBox");
-
-const human =
-document.getElementById("human");
-
-const submitBtn =
-document.getElementById("submitBtn");
-
-const switchText =
-document.getElementById("switchText");
-
-const message =
-document.getElementById("message");
-
-let signupMode = false;
-
-function showMessage(text){
-    message.textContent = text;
-}
-
-function showSignup(){
-
-    signupMode = true;
-
-    title.textContent = "ساخت حساب";
-
-    usernameBox.style.display = "block";
-    username.style.display = "block";
-
-    humanBox.style.display = "flex";
-
-    submitBtn.textContent = "ثبت نام";
-
-    switchText.textContent =
-        "حساب داری؟ وارد شو";
-
-    username.required = true;
-}
+/* -------------------------
+   LOGIN MODE
+------------------------- */
 
 function showLogin(){
 
-    signupMode = false;
+mode = "login";
 
-    title.textContent = "ورود به حساب";
+document
+.getElementById("loginTab")
+.classList.add("active");
 
-    usernameBox.style.display = "none";
-    username.style.display = "none";
+document
+.getElementById("signupTab")
+.classList.remove("active");
 
-    humanBox.style.display = "none";
+document
+.getElementById("signupFields")
+.style.display = "none";
 
-    submitBtn.textContent = "ورود";
+document
+.getElementById("humanBox")
+.style.display = "none";
 
-    switchText.textContent =
-        "حساب نداری؟ ثبت نام کن";
+document
+.getElementById("submitBtn")
+.textContent =
+"🔐 ورود به حساب";
 
-    username.required = false;
+document
+.getElementById("password")
+.setAttribute(
+"autocomplete",
+"current-password"
+);
+
+clearMessage();
+
+showMessage(
+"🔐 برای ورود به سایت، ابتدا ایمیل و رمز عبورت رو وارد کن.",
+"info"
+);
+
 }
 
-switchText.addEventListener(
-    "click",
-    () => {
 
-        showMessage("");
+/* -------------------------
+   SIGNUP MODE
+------------------------- */
 
-        if(signupMode){
-            showLogin();
-        }else{
-            showSignup();
-        }
+function showSignup(){
 
-    }
+mode = "signup";
+
+document
+.getElementById("signupTab")
+.classList.add("active");
+
+document
+.getElementById("loginTab")
+.classList.remove("active");
+
+document
+.getElementById("signupFields")
+.style.display = "block";
+
+document
+.getElementById("humanBox")
+.style.display = "flex";
+
+document
+.getElementById("submitBtn")
+.textContent =
+"✨ ساخت حساب";
+
+document
+.getElementById("password")
+.setAttribute(
+"autocomplete",
+"new-password"
 );
 
-form.addEventListener(
-    "submit",
-    async function(e){
+humanVerified = false;
 
-        e.preventDefault();
+document
+.getElementById("humanBox")
+.classList.remove("checked");
 
-        showMessage("");
+clearMessage();
 
-        const email =
-            document
-            .getElementById("email")
-            .value
-            .trim();
+}
 
-        const password =
-            document
-            .getElementById("password")
-            .value;
 
-        submitBtn.disabled = true;
+/* -------------------------
+   HUMAN CHECK
+------------------------- */
 
-        if(signupMode){
+function toggleHuman(){
 
-            if(!human.checked){
+if(mode !== "signup"){
+return;
+}
 
-                showMessage(
-                    "لطفاً تأیید کنید که ربات نیستید."
-                );
+humanVerified =
+!humanVerified;
 
-                submitBtn.disabled = false;
+const box =
+document.getElementById("humanBox");
 
-                return;
-            }
+if(humanVerified){
 
-            const usernameValue =
-                document
-                .getElementById("username")
-                .value
-                .trim();
+box.classList.add("checked");
 
-            if(!usernameValue){
+}else{
 
-                showMessage(
-                    "لطفاً نام کاربری را وارد کنید."
-                );
+box.classList.remove("checked");
 
-                submitBtn.disabled = false;
+}
 
-                return;
-            }
+}
 
-            const result =
-                await supabaseRequest(
-                    "/auth/v1/signup",
-                    {
-                        method:"POST",
 
-                        body:JSON.stringify({
-                            email:email,
-                            password:password,
+/* -------------------------
+   MESSAGE
+------------------------- */
 
-                            data:{
-                                username:usernameValue
-                            }
-                        })
-                    }
-                );
+function showMessage(text,type){
 
-            if(!result.ok){
+const box =
+document.getElementById("message");
 
-                showMessage(
-                    result.data?.msg ||
-                    result.data?.message ||
-                    "ثبت نام انجام نشد."
-                );
+box.textContent = text;
 
-                submitBtn.disabled = false;
+box.className =
+"message " + type;
 
-                return;
-            }
+box.scrollIntoView({
+behavior:"smooth",
+block:"nearest"
+});
 
-            showMessage(
-                "ثبت نام با موفقیت انجام شد. حالا وارد شوید."
-            );
+}
 
-            document.getElementById("email").value =
-                email;
 
-            showLogin();
+function clearMessage(){
 
-            submitBtn.disabled = false;
+const box =
+document.getElementById("message");
 
-            return;
-        }
+box.textContent = "";
 
-        const result =
-            await supabaseRequest(
-                "/auth/v1/token?grant_type=password",
-                {
-                    method:"POST",
+box.className =
+"message";
 
-                    body:JSON.stringify({
-                        email:email,
-                        password:password
-                    })
-                }
-            );
+}
 
-        if(!result.ok){
 
-            showMessage(
-                result.data?.error_description ||
-                result.data?.msg ||
-                result.data?.message ||
-                "ایمیل یا رمز عبور اشتباه است."
-            );
+/* -------------------------
+   SUPABASE REQUEST
+------------------------- */
 
-            submitBtn.disabled = false;
+async function supabaseRequest(
+path,
+options={}
+){
 
-            return;
-        }
+try{
 
-        localStorage.setItem(
-            "arsin_user_token",
-            result.data.access_token
-        );
+const response =
+await fetch(
+SUPABASE_URL + path,
+{
+...options,
 
-        if(result.data.refresh_token){
+headers:{
+"Content-Type":"application/json",
 
-            localStorage.setItem(
-                "arsin_user_refresh",
-                result.data.refresh_token
-            );
-        }
+"apikey":SUPABASE_KEY,
 
-        /*
-         * اینجا فقط تغییر داده شده:
-         * قبلاً:
-         * window.location.replace("index.html");
-         *
-         * الان:
-         * صفحه اصلی بدون نمایش index.html
-         */
-        window.location.replace("./");
-
-    }
+...(options.headers || {})
+}
+}
 );
 
-setTimeout(
-    () => {
-        document.getElementById("loader").style.display =
-            "none";
-    },
-    500
+const data =
+await response
+.json()
+.catch(()=>null);
+
+return {
+ok:response.ok,
+status:response.status,
+data:data
+};
+
+}catch(error){
+
+return {
+ok:false,
+status:0,
+data:{
+message:"اتصال به سرور برقرار نشد."
+}
+};
+
+}
+
+}
+
+
+/* -------------------------
+   ERROR TRANSLATOR
+------------------------- */
+
+function getErrorMessage(data, currentMode){
+
+const raw =
+(
+data?.msg ||
+data?.message ||
+data?.error_description ||
+data?.error ||
+""
+).toString();
+
+const error =
+raw.toLowerCase();
+
+
+if(
+error.includes("email rate exceeded") ||
+error.includes("rate limit") ||
+error.includes("rate exceeded")
+){
+
+return "⏳ تعداد درخواست‌های ایمیل زیاد شده است. لطفاً کمی صبر کن و بعد دوباره امتحان کن.";
+
+}
+
+
+if(
+error.includes("email not confirmed")
+){
+
+return "📧 ایمیل این حساب هنوز تأیید نشده است.";
+
+}
+
+
+if(
+error.includes("user already registered") ||
+error.includes("already registered")
+){
+
+return "⚠️ این ایمیل قبلاً ثبت‌نام شده است. از بخش «ورود» وارد حسابت شو.";
+
+}
+
+
+if(
+error.includes("invalid login credentials")
+){
+
+return "❌ ایمیل یا رمز عبور اشتباه است.";
+
+}
+
+
+if(
+error.includes("invalid email")
+){
+
+return "📧 ایمیل واردشده معتبر نیست.";
+
+}
+
+
+if(
+error.includes("password") &&
+(
+error.includes("at least") ||
+error.includes("short") ||
+error.includes("weak")
+)
+){
+
+return "🔑 رمز عبور انتخاب‌شده خیلی کوتاه یا ضعیف است.";
+
+}
+
+
+if(
+error.includes("signup") &&
+error.includes("disabled")
+){
+
+return "❌ ثبت‌نام در حال حاضر فعال نیست.";
+
+}
+
+
+if(currentMode === "signup"){
+
+return "❌ ساخت حساب انجام نشد. اطلاعات را بررسی کن و دوباره امتحان کن.";
+
+}
+
+return "❌ ورود انجام نشد. ایمیل و رمز عبور را بررسی کن.";
+
+}
+
+
+/* -------------------------
+   FORM SUBMIT
+------------------------- */
+
+document
+.getElementById("authForm")
+.addEventListener(
+"submit",
+async function(event){
+
+event.preventDefault();
+
+clearMessage();
+
+
+const email =
+document
+.getElementById("email")
+.value
+.trim();
+
+
+const password =
+document
+.getElementById("password")
+.value;
+
+
+const username =
+document
+.getElementById("username")
+.value
+.trim();
+
+
+const button =
+document.getElementById("submitBtn");
+
+
+/* -------------------------
+   SIGNUP
+------------------------- */
+
+if(mode === "signup"){
+
+if(username.length < 3){
+
+showMessage(
+"❌ نام کاربری باید حداقل ۳ کاراکتر باشد.",
+"error"
 );
+
+return;
+
+}
+
+
+if(!humanVerified){
+
+showMessage(
+"🤖 لطفاً تیک «I'm Human» را بزن تا مشخص شود ربات نیستی.",
+"error"
+);
+
+return;
+
+}
+
+
+button.disabled = true;
+
+button.textContent =
+"⏳ در حال ساخت حساب...";
+
+
+const result =
+await supabaseRequest(
+"/auth/v1/signup",
+{
+method:"POST",
+
+body:JSON.stringify({
+
+email:email,
+
+password:password,
+
+data:{
+username:username
+}
+
+})
+}
+);
+
+
+if(!result.ok){
+
+showMessage(
+getErrorMessage(
+result.data,
+"signup"
+),
+"error"
+);
+
+button.textContent =
+"✨ ساخت حساب";
+
+button.disabled = false;
+
+return;
+
+}
+
+
+/*
+   مهم:
+   حتی اگر Supabase توکن برگرداند،
+   اینجا خودکار وارد سایت نمی‌شویم.
+*/
+
+showMessage(
+"✅ حساب ساخته شد! الان باید بری و در سایت وارد حساب کاربریت بشی.",
+"success"
+);
+
+
+/*
+   پاک کردن رمز
+*/
+
+document
+.getElementById("password")
+.value = "";
+
+
+/*
+   رفتن به بخش ورود
+*/
+
+setTimeout(function(){
+
+showLogin();
+
+document
+.getElementById("email")
+.value = email;
+
+showMessage(
+"✅ حساب ساخته شد! الان باید بری و در سایت وارد حساب کاربریت بشی.",
+"success"
+);
+
+},700);
+
+
+button.disabled = false;
+
+return;
+
+}
+
+
+/* -------------------------
+   LOGIN
+------------------------- */
+
+button.disabled = true;
+
+button.textContent =
+"⏳ در حال ورود...";
+
+
+const result =
+await supabaseRequest(
+"/auth/v1/token?grant_type=password",
+{
+method:"POST",
+
+body:JSON.stringify({
+
+email:email,
+
+password:password
+
+})
+}
+);
+
+
+if(!result.ok){
+
+showMessage(
+getErrorMessage(
+result.data,
+"login"
+),
+"error"
+);
+
+button.textContent =
+"🔐 ورود به حساب";
+
+button.disabled = false;
+
+return;
+
+}
+
+
+if(!result.data?.access_token){
+
+showMessage(
+"❌ ورود انجام نشد. توکن ورود از سرور دریافت نشد.",
+"error"
+);
+
+button.textContent =
+"🔐 ورود به حساب";
+
+button.disabled = false;
+
+return;
+
+}
+
+
+/*
+   ذخیره توکن
+*/
+
+localStorage.setItem(
+"arsin_user_token",
+result.data.access_token
+);
+
+
+if(result.data.refresh_token){
+
+localStorage.setItem(
+"arsin_user_refresh",
+result.data.refresh_token
+);
+
+}
+
+
+/*
+   موفقیت ورود
+*/
+
+showMessage(
+"✅ ورود موفق بود! در حال ورود به سایت...",
+"success"
+);
+
+
+setTimeout(function(){
+
+window.location.replace(
+"index.html"
+);
+
+},700);
+
+});
 
 </script>
 
