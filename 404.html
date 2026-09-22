@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArsinGang</title>
+</head>
+
+<body>
+
+<div id="loading" style="
+position:fixed;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#050308;
+color:white;
+font-family:Tahoma,Arial,sans-serif;
+font-size:18px;
+">
+در حال بارگذاری...
+</div>
+
+<script>
+
+const path = window.location.pathname.replace(/\/+$/, "");
+
+const pages = {
+    "/login": "/login.html",
+    "/rank": "/rank.html",
+    "/contact": "/contact.html"
+};
+
+const target = pages[path];
+
+if (!target) {
+
+    document.getElementById("loading").textContent =
+        "صفحه پیدا نشد.";
+
+} else {
+
+    fetch(target)
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("Page not found");
+            }
+
+            return response.text();
+
+        })
+        .then(html => {
+
+            const base = document.createElement("base");
+            base.href = target;
+
+            document.open();
+            document.write(html);
+            document.close();
+
+            document.head.prepend(base);
+
+        })
+        .catch(() => {
+
+            document.getElementById("loading").textContent =
+                "❌ خطا در بارگذاری صفحه.";
+
+        });
+
+}
+
+</script>
+
+</body>
+</html>
