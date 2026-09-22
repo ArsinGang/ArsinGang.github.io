@@ -19,8 +19,10 @@ body{
     margin:0;
     min-height:100vh;
     font-family:Tahoma,Arial,sans-serif;
+
     background:
         radial-gradient(circle at top,#24104d 0%,#0b0714 45%,#05030a 100%);
+
     color:white;
     overflow-x:hidden;
 }
@@ -30,6 +32,7 @@ body::before{
     position:fixed;
     inset:0;
     pointer-events:none;
+
     background:
         radial-gradient(circle at 20% 20%,rgba(123,44,255,.12),transparent 30%),
         radial-gradient(circle at 80% 70%,rgba(0,229,255,.08),transparent 30%);
@@ -38,20 +41,27 @@ body::before{
 .loading{
     position:fixed;
     inset:0;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     background:#05030a;
+
     z-index:9999;
 }
 
 .loader{
     width:55px;
     height:55px;
+
     border:5px solid rgba(255,255,255,.15);
+
     border-top-color:#8b3dff;
     border-right-color:#00e5ff;
+
     border-radius:50%;
+
     animation:spin 1s linear infinite;
 }
 
@@ -67,118 +77,478 @@ body::before{
     z-index:1;
 }
 
+
+/* =========================
+   PROFILE
+========================= */
+
+.user-profile{
+    position:fixed;
+
+    top:18px;
+    right:145px;
+
+    min-width:205px;
+
+    padding:8px 12px 8px 10px;
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    direction:rtl;
+
+    background:rgba(15,9,28,.92);
+
+    border:1px solid rgba(139,61,255,.45);
+
+    border-radius:16px;
+
+    box-shadow:
+        0 0 20px rgba(123,44,255,.2),
+        inset 0 0 12px rgba(255,255,255,.02);
+
+    backdrop-filter:blur(10px);
+
+    z-index:50;
+}
+
+
+/* AVATAR */
+
+.profile-avatar{
+    width:42px;
+    height:42px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,.25);
+
+    position:relative;
+}
+
+
+/* PERSON ICON */
+
+.person-icon{
+    position:relative;
+
+    width:21px;
+    height:21px;
+}
+
+.person-icon::before{
+    content:"";
+
+    position:absolute;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#777;
+
+    top:0;
+    left:50%;
+
+    transform:translateX(-50%);
+}
+
+.person-icon::after{
+    content:"";
+
+    position:absolute;
+
+    width:17px;
+    height:9px;
+
+    border-radius:10px 10px 5px 5px;
+
+    background:#777;
+
+    bottom:0;
+    left:50%;
+
+    transform:translateX(-50%);
+}
+
+
+/* PROFILE TEXT */
+
+.profile-info{
+    min-width:0;
+
+    text-align:right;
+}
+
+.profile-name-wrap{
+    position:relative;
+
+    display:inline-block;
+
+    max-width:125px;
+}
+
+.profile-name{
+    position:relative;
+
+    display:block;
+
+    max-width:125px;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    font-size:14px;
+    font-weight:bold;
+
+    color:white;
+
+    z-index:2;
+}
+
+.profile-rank{
+    display:inline-block;
+
+    margin-top:3px;
+
+    padding:2px 7px;
+
+    border-radius:6px;
+
+    font-size:9px;
+    font-weight:bold;
+
+    letter-spacing:.5px;
+}
+
+.profile-rank.owner{
+    color:#fff;
+
+    background:
+        linear-gradient(135deg,#7b2cff,#00cfff);
+
+    box-shadow:
+        0 0 8px rgba(123,44,255,.4);
+}
+
+.profile-rank.mvp{
+    color:#fff;
+
+    background:#b87900;
+
+    box-shadow:
+        0 0 8px rgba(255,193,7,.4);
+}
+
+.profile-rank.vip{
+    color:#111;
+
+    background:#ffd83d;
+
+    box-shadow:
+        0 0 8px rgba(255,216,61,.45);
+}
+
+.profile-rank.none{
+    color:#aaa;
+
+    background:rgba(255,255,255,.08);
+}
+
+
+/* =========================
+   GOLD PARTICLES
+========================= */
+
+.gold-particles{
+    position:absolute;
+
+    inset:-12px -18px;
+
+    pointer-events:none;
+
+    z-index:1;
+}
+
+.gold-particles span{
+    position:absolute;
+
+    width:4px;
+    height:4px;
+
+    border-radius:50%;
+
+    background:#ffd83d;
+
+    box-shadow:
+        0 0 5px #ffd83d,
+        0 0 10px rgba(255,216,61,.7);
+
+    animation:floatParticle 2.8s ease-in-out infinite;
+}
+
+.gold-particles span:nth-child(1){
+    top:10%;
+    left:8%;
+    animation-delay:0s;
+}
+
+.gold-particles span:nth-child(2){
+    top:75%;
+    left:18%;
+    animation-delay:.5s;
+}
+
+.gold-particles span:nth-child(3){
+    top:15%;
+    right:10%;
+    animation-delay:1s;
+}
+
+.gold-particles span:nth-child(4){
+    top:80%;
+    right:20%;
+    animation-delay:1.5s;
+}
+
+.gold-particles span:nth-child(5){
+    top:45%;
+    left:-3%;
+    animation-delay:2s;
+}
+
+.gold-particles span:nth-child(6){
+    top:40%;
+    right:-3%;
+    animation-delay:2.5s;
+}
+
+@keyframes floatParticle{
+
+    0%,100%{
+        transform:translate(0,0) scale(.7);
+        opacity:.3;
+    }
+
+    50%{
+        transform:translate(0,-7px) scale(1.2);
+        opacity:1;
+    }
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
 .container{
     width:min(900px,92%);
+
     margin:auto;
+
     padding:70px 0 40px;
+
     text-align:center;
 }
 
 .logo{
     width:105px;
     height:105px;
+
     margin:auto;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-radius:28px;
-    background:linear-gradient(135deg,#7b2cff,#00cfff);
+
+    background:
+        linear-gradient(135deg,#7b2cff,#00cfff);
+
     box-shadow:
         0 0 25px rgba(123,44,255,.6),
         0 0 45px rgba(0,229,255,.25);
+
     font-size:38px;
     font-weight:bold;
 }
 
 h1{
     margin:25px 0 8px;
+
     font-size:42px;
-    text-shadow:0 0 20px rgba(150,70,255,.7);
+
+    text-shadow:
+        0 0 20px rgba(150,70,255,.7);
 }
 
 .subtitle{
     color:#cfc7dd;
+
     font-size:17px;
+
     margin-bottom:8px;
 }
 
 .description{
     color:#9990aa;
+
     font-size:14px;
+
     margin-bottom:35px;
 }
 
 .buttons{
     display:grid;
+
     gap:15px;
+
     width:min(600px,100%);
+
     margin:auto;
 }
 
 .main-btn{
     display:block;
+
     text-decoration:none;
+
     color:white;
+
     padding:18px 20px;
+
     border-radius:16px;
+
     border:1px solid rgba(255,255,255,.1);
+
     background:rgba(255,255,255,.055);
-    box-shadow:0 8px 25px rgba(0,0,0,.25);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.25);
+
     font-size:16px;
+
     transition:.25s;
 }
 
 .main-btn:hover{
     transform:translateY(-3px);
+
     border-color:#8b3dff;
+
     box-shadow:
         0 0 20px rgba(123,44,255,.35),
         0 10px 30px rgba(0,0,0,.3);
 }
 
+
+/* =========================
+   TOP BUTTONS
+========================= */
+
 .support{
     position:fixed;
+
     top:18px;
     left:18px;
+
     z-index:20;
 }
 
 .rank{
     position:fixed;
+
     top:18px;
     right:18px;
+
     z-index:20;
 }
 
 .top-btn{
     display:block;
+
     text-decoration:none;
+
     color:white;
+
     padding:11px 17px;
+
     border-radius:12px;
+
     background:rgba(25,15,45,.9);
+
     border:1px solid rgba(139,61,255,.5);
-    box-shadow:0 0 18px rgba(123,44,255,.25);
+
+    box-shadow:
+        0 0 18px rgba(123,44,255,.25);
+
     font-size:14px;
+
     transition:.25s;
 }
 
 .top-btn:hover{
     transform:translateY(-2px);
-    box-shadow:0 0 25px rgba(123,44,255,.55);
+
+    box-shadow:
+        0 0 25px rgba(123,44,255,.55);
 }
+
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
     margin-top:45px;
+
     color:#777080;
+
     font-size:13px;
 }
 
-@media(max-width:600px){
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    .user-profile{
+        right:10px;
+        top:65px;
+
+        min-width:175px;
+    }
+
+    .rank{
+        top:18px;
+        right:10px;
+    }
 
     .container{
-        padding-top:85px;
+        padding-top:125px;
     }
+
+}
+
+
+@media(max-width:600px){
 
     h1{
         font-size:32px;
@@ -187,11 +557,13 @@ footer{
     .logo{
         width:90px;
         height:90px;
+
         font-size:32px;
     }
 
     .top-btn{
         font-size:12px;
+
         padding:9px 12px;
     }
 
@@ -199,8 +571,8 @@ footer{
         left:10px;
     }
 
-    .rank{
-        right:10px;
+    .profile-name{
+        max-width:105px;
     }
 
 }
@@ -208,71 +580,207 @@ footer{
 </style>
 </head>
 
+
 <body>
 
+
+<!-- LOADING -->
+
 <div class="loading" id="loading">
+
     <div class="loader"></div>
+
 </div>
+
+
+<!-- MAIN -->
 
 <div id="mainContent">
 
+
+    <!-- SUPPORT -->
+
     <div class="support">
-        <a class="top-btn" href="contact.html">
+
+        <a
+            class="top-btn"
+            href="contact.html">
+
             📩 پشتیبانی
+
         </a>
+
     </div>
 
+
+    <!-- RANK -->
+
     <div class="rank">
-        <a class="top-btn" href="rank.html">
+
+        <a
+            class="top-btn"
+            href="rank.html">
+
             👑 خرید رنک
+
         </a>
+
     </div>
+
+
+    <!-- PROFILE -->
+
+    <div
+        class="user-profile"
+        id="userProfile">
+
+
+        <div class="profile-avatar">
+
+            <div class="person-icon"></div>
+
+        </div>
+
+
+        <div class="profile-info">
+
+
+            <div class="profile-name-wrap">
+
+                <div
+                    class="gold-particles"
+                    id="goldParticles"
+                    style="display:none;">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+
+                <div
+                    class="profile-name"
+                    id="profileName">
+
+                    در حال بارگذاری...
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="profile-rank none"
+                id="profileRank">
+
+                USER
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
 
     <main class="container">
 
+
         <div class="logo">
+
             AG
+
         </div>
 
-        <h1>ArsinGang</h1>
+
+        <h1>
+
+            ArsinGang
+
+        </h1>
+
 
         <div class="subtitle">
+
             به دنیای ArsinGang خوش اومدی 🎮💜
+
         </div>
 
+
         <div class="description">
+
             دنیای گیم، Minecraft و کلی محتوای جذاب!
+
         </div>
+
 
         <div class="buttons">
 
-            <a class="main-btn" href="support.html">
+
+            <a
+                class="main-btn"
+                href="support.html">
+
                 💜 حمایت مالی از ArsinGang
+
             </a>
 
-            <a class="main-btn" href="server.html">
+
+            <a
+                class="main-btn"
+                href="server.html">
+
                 ⛏️ سرور Minecraft ArsinGang
+
             </a>
 
-            <a class="main-btn" href="https://arsingang.github.io/live.html">
+
+            <a
+                class="main-btn"
+                href="https://arsingang.github.io/live.html">
+
                 🔴 مشاهده استریم ArsinGang
+
             </a>
 
-            <a class="main-btn" href="box.html">
+
+            <a
+                class="main-btn"
+                href="box.html">
+
                 🎁 باکس مرموز ArsinGang
+
             </a>
+
 
         </div>
 
+
         <footer>
+
             ArsinGang 🎮 © 2026 ArsinGang
+
         </footer>
+
 
     </main>
 
+
 </div>
 
+
 <script>
+
+
+/* =========================
+   SUPABASE
+========================= */
 
 const SUPABASE_URL =
 "https://lhddjuomukejpvssyhuv.supabase.co";
@@ -280,39 +788,56 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
+
 let accessToken =
-localStorage.getItem("arsin_user_token");
+localStorage.getItem(
+    "arsin_user_token"
+);
+
 
 let refreshToken =
-localStorage.getItem("arsin_user_refresh");
+localStorage.getItem(
+    "arsin_user_refresh"
+);
 
+
+/* =========================
+   REFRESH TOKEN
+========================= */
 
 async function refreshAccessToken(){
 
     if(!refreshToken){
+
         return false;
+
     }
+
 
     try{
 
-        const response = await fetch(
-            SUPABASE_URL +
-            "/auth/v1/token?grant_type=refresh_token",
-            {
-                method:"POST",
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/auth/v1/token?grant_type=refresh_token",
+                {
+                    method:"POST",
 
-                headers:{
-                    "Content-Type":"application/json",
-                    "apikey":SUPABASE_KEY
-                },
+                    headers:{
+                        "Content-Type":"application/json",
+                        "apikey":SUPABASE_KEY
+                    },
 
-                body:JSON.stringify({
-                    refresh_token:refreshToken
-                })
-            }
-        );
+                    body:JSON.stringify({
+                        refresh_token:refreshToken
+                    })
+                }
+            );
 
-        const data = await response.json();
+
+        const data =
+            await response.json();
+
 
         if(
             !response.ok ||
@@ -331,26 +856,33 @@ async function refreshAccessToken(){
             refreshToken = null;
 
             return false;
+
         }
+
 
         accessToken =
             data.access_token;
 
+
         refreshToken =
             data.refresh_token ||
             refreshToken;
+
 
         localStorage.setItem(
             "arsin_user_token",
             accessToken
         );
 
+
         localStorage.setItem(
             "arsin_user_refresh",
             refreshToken
         );
 
+
         return true;
+
 
     }catch(error){
 
@@ -361,50 +893,65 @@ async function refreshAccessToken(){
 }
 
 
-async function checkUser(){
+/* =========================
+   LOAD ACCOUNT
+========================= */
 
-    if(!accessToken){
-
-        window.location.replace(
-            "login.html"
-        );
-
-        return;
-    }
+async function loadAccount(){
 
     try{
 
-        let response = await fetch(
-            SUPABASE_URL +
-            "/auth/v1/user",
-            {
-                method:"GET",
+        /*
+         * گرفتن اطلاعات حساب از gang_users
+         */
 
-                headers:{
-                    "apikey":SUPABASE_KEY,
-                    "Authorization":
-                        "Bearer " + accessToken
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/rest/v1/rpc/get_my_gang_account",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":"application/json",
+                        "apikey":SUPABASE_KEY,
+                        "Authorization":
+                            "Bearer " + accessToken
+                    },
+
+                    body:"{}"
                 }
-            }
-        );
+            );
 
 
-        if(response.status === 401){
+        if(!response.ok){
 
-            const refreshed =
-                await refreshAccessToken();
+            return;
 
-            if(!refreshed){
-
-                window.location.replace(
-                    "login.html"
-                );
-
-                return;
-            }
+        }
 
 
-            response = await fetch(
+        const data =
+            await response.json();
+
+
+        /*
+         * تابع RPC ممکن است
+         * یک آبجکت یا آرایه برگرداند
+         */
+
+        const account =
+            Array.isArray(data)
+                ? data[0]
+                : data;
+
+
+        /*
+         * اسم کاربر از Supabase Auth
+         */
+
+        const userResponse =
+            await fetch(
                 SUPABASE_URL +
                 "/auth/v1/user",
                 {
@@ -418,8 +965,253 @@ async function checkUser(){
                 }
             );
 
+
+        if(!userResponse.ok){
+
+            return;
+
         }
 
+
+        const user =
+            await userResponse.json();
+
+
+        let username =
+            user?.user_metadata?.username;
+
+
+        /*
+         * اگر username وجود نداشت،
+         * ایمیل قبل از @ نمایش داده می‌شود.
+         */
+
+        if(
+            !username ||
+            !username.trim()
+        ){
+
+            username =
+                user?.email?.split("@")[0] ||
+                "USER";
+
+        }
+
+
+        username =
+            username.trim();
+
+
+        /*
+         * اسم
+         */
+
+        document.getElementById(
+            "profileName"
+        ).textContent =
+            username;
+
+
+        /*
+         * رنک
+         */
+
+        let rank =
+            account?.rank ||
+            "NONE";
+
+
+        rank =
+            rank.toString()
+                .trim()
+                .toUpperCase();
+
+
+        const rankElement =
+            document.getElementById(
+                "profileRank"
+            );
+
+
+        const particles =
+            document.getElementById(
+                "goldParticles"
+            );
+
+
+        /*
+         * OWNER
+         *
+         * فقط حساب Arsin_Gang
+         */
+
+        if(username === "Arsin_Gang"){
+
+            rank = "OWNER";
+
+        }
+
+
+        /*
+         * تنظیم ظاهر رنک
+         */
+
+        rankElement.className =
+            "profile-rank";
+
+
+        if(rank === "OWNER"){
+
+            rankElement.classList.add(
+                "owner"
+            );
+
+            rankElement.textContent =
+                "OWNER";
+
+            particles.style.display =
+                "none";
+
+        }
+
+        else if(rank === "MVP"){
+
+            rankElement.classList.add(
+                "mvp"
+            );
+
+            rankElement.textContent =
+                "MVP";
+
+            particles.style.display =
+                "block";
+
+        }
+
+        else if(rank === "VIP"){
+
+            rankElement.classList.add(
+                "vip"
+            );
+
+            rankElement.textContent =
+                "VIP";
+
+            particles.style.display =
+                "block";
+
+        }
+
+        else{
+
+            rankElement.classList.add(
+                "none"
+            );
+
+            rankElement.textContent =
+                "USER";
+
+            particles.style.display =
+                "none";
+
+        }
+
+
+    }catch(error){
+
+        /*
+         * اگر مشکلی در دریافت اطلاعات
+         * پروفایل پیش آمد، سایت همچنان
+         * باز می‌شود.
+         */
+
+        document.getElementById(
+            "profileName"
+        ).textContent =
+            "USER";
+
+    }
+
+}
+
+
+/* =========================
+   CHECK USER
+========================= */
+
+async function checkUser(){
+
+    if(!accessToken){
+
+        window.location.replace(
+            "login.html"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        let response =
+            await fetch(
+                SUPABASE_URL +
+                "/auth/v1/user",
+                {
+                    method:"GET",
+
+                    headers:{
+                        "apikey":SUPABASE_KEY,
+                        "Authorization":
+                            "Bearer " + accessToken
+                    }
+                }
+            );
+
+
+        /*
+         * توکن منقضی شده
+         */
+
+        if(response.status === 401){
+
+            const refreshed =
+                await refreshAccessToken();
+
+
+            if(!refreshed){
+
+                window.location.replace(
+                    "login.html"
+                );
+
+                return;
+
+            }
+
+
+            response =
+                await fetch(
+                    SUPABASE_URL +
+                    "/auth/v1/user",
+                    {
+                        method:"GET",
+
+                        headers:{
+                            "apikey":SUPABASE_KEY,
+                            "Authorization":
+                                "Bearer " + accessToken
+                        }
+                    }
+                );
+
+        }
+
+
+        /*
+         * ورود نامعتبر
+         */
 
         if(!response.ok){
 
@@ -431,11 +1223,13 @@ async function checkUser(){
                 "arsin_user_refresh"
             );
 
+
             window.location.replace(
                 "login.html"
             );
 
             return;
+
         }
 
 
@@ -443,7 +1237,10 @@ async function checkUser(){
             await response.json();
 
 
-        if(!user || !user.id){
+        if(
+            !user ||
+            !user.id
+        ){
 
             localStorage.removeItem(
                 "arsin_user_token"
@@ -453,22 +1250,37 @@ async function checkUser(){
                 "arsin_user_refresh"
             );
 
+
             window.location.replace(
                 "login.html"
             );
 
             return;
+
         }
 
 
+        /*
+         * گرفتن پروفایل و رنک
+         */
+
+        await loadAccount();
+
+
+        /*
+         * نمایش سایت
+         */
+
         document.getElementById(
             "loading"
-        ).style.display = "none";
+        ).style.display =
+            "none";
 
 
         document.getElementById(
             "mainContent"
-        ).style.display = "block";
+        ).style.display =
+            "block";
 
 
     }catch(error){
@@ -482,9 +1294,14 @@ async function checkUser(){
 }
 
 
+/* =========================
+   START
+========================= */
+
 checkUser();
 
 </script>
+
 
 </body>
 </html>
