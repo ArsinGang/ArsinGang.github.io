@@ -24,24 +24,26 @@ font-size:18px;
 
 <script>
 
-const path = window.location.pathname.replace(/\/+$/, "");
-
-const pages = {
-    "/login": "/login.html",
-    "/rank": "/rank.html",
-    "/contact": "/contact.html"
+const routes = {
+    "/login/": "/login.html",
+    "/rank/": "/rank.html",
+    "/contact/": "/contact.html",
+    "/ticket/": "/ticket.html"
 };
 
-const target = pages[path];
+const currentPath = window.location.pathname;
+const target = routes[currentPath];
 
 if (!target) {
 
     document.getElementById("loading").textContent =
-        "صفحه پیدا نشد.";
+        "❌ صفحه پیدا نشد.";
 
 } else {
 
-    fetch(target)
+    const targetUrl = target + window.location.search;
+
+    fetch(targetUrl)
         .then(response => {
 
             if (!response.ok) {
@@ -53,17 +55,24 @@ if (!target) {
         })
         .then(html => {
 
-            const base = document.createElement("base");
-            base.href = target;
+            const baseTag =
+                '<base href="' +
+                window.location.origin +
+                '/">';
+
+            html = html.replace(
+                /<head([^>]*)>/i,
+                '<head$1>' + baseTag
+            );
 
             document.open();
             document.write(html);
             document.close();
 
-            document.head.prepend(base);
-
         })
-        .catch(() => {
+        .catch(error => {
+
+            console.error(error);
 
             document.getElementById("loading").textContent =
                 "❌ خطا در بارگذاری صفحه.";
