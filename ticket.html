@@ -202,7 +202,7 @@ color:#00e5ff;
 
 </div>
 
-<a class="back-btn" href="contact.html">
+<a class="back-btn" href="../contact/">
 ⬅️ بازگشت به پشتیبانی
 </a>
 
@@ -215,7 +215,6 @@ color:#00e5ff;
 const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
-
 const loading = document.getElementById("loading");
 const errorBox = document.getElementById("errorBox");
 const ticketContent = document.getElementById("ticketContent");
@@ -225,7 +224,6 @@ const ticketName = document.getElementById("ticketName");
 const ticketMessage = document.getElementById("ticketMessage");
 const adminReply = document.getElementById("adminReply");
 
-
 function showError(message){
 
 loading.style.display="none";
@@ -234,7 +232,6 @@ errorBox.textContent=message;
 errorBox.style.display="block";
 
 }
-
 
 function getStatusText(status){
 
@@ -262,7 +259,6 @@ className:"status-open"
 };
 
 }
-
 
 async function loadTicket(){
 
@@ -349,7 +345,6 @@ showError("❌ دریافت تیکت انجام نشد. دوباره تلاش ک
 }
 
 }
-
 
 loadTicket();
 
