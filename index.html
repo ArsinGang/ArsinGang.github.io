@@ -246,12 +246,60 @@ footer{
     text-transform:uppercase;
 }
 
+
+/* =========================
+   VIP / MVP
+========================= */
+
 .profile.vip .profile-name,
 .profile.mvp .profile-name{
     text-shadow:
         0 0 7px rgba(255,215,0,.8),
         0 0 15px rgba(255,190,0,.45);
 }
+
+
+/* =========================
+   MEDIA
+========================= */
+
+.profile.media .profile-name{
+    color:#00e5ff;
+    text-shadow:
+        0 0 7px rgba(0,229,255,.95),
+        0 0 15px rgba(0,229,255,.7),
+        0 0 28px rgba(0,180,255,.45);
+}
+
+.profile.media .profile-rank{
+    color:#00e5ff;
+    text-shadow:
+        0 0 7px rgba(0,229,255,.7);
+}
+
+
+/* =========================
+   OWNER
+========================= */
+
+.profile.owner .profile-name{
+    color:#ffffff;
+    text-shadow:
+        0 0 7px rgba(255,215,70,1),
+        0 0 15px rgba(255,170,0,.9),
+        0 0 28px rgba(123,44,255,.75);
+}
+
+.profile.owner .profile-rank{
+    color:#ffd83d;
+    text-shadow:
+        0 0 7px rgba(255,215,61,.8);
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
 
 .rank-particles{
     position:absolute;
@@ -262,7 +310,9 @@ footer{
 }
 
 .profile.vip .rank-particles,
-.profile.mvp .rank-particles{
+.profile.mvp .rank-particles,
+.profile.media .rank-particles,
+.profile.owner .rank-particles{
     display:block;
 }
 
@@ -275,6 +325,36 @@ footer{
     box-shadow:0 0 6px #ffd83d;
     animation:particleFloat 2s infinite ease-in-out;
 }
+
+
+/* VIP / MVP particles */
+
+.profile.vip .rank-particles span,
+.profile.mvp .rank-particles span{
+    background:#ffd83d;
+    box-shadow:0 0 6px #ffd83d;
+}
+
+
+/* MEDIA particles */
+
+.profile.media .rank-particles span{
+    background:#00e5ff;
+    box-shadow:
+        0 0 6px #00e5ff,
+        0 0 12px rgba(0,229,255,.8);
+}
+
+
+/* OWNER particles */
+
+.profile.owner .rank-particles span{
+    background:#ffd83d;
+    box-shadow:
+        0 0 6px #ffd83d,
+        0 0 12px #ff9d00;
+}
+
 
 .rank-particles span:nth-child(1){
     left:5%;
@@ -320,6 +400,10 @@ footer{
 
 }
 
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
 
@@ -390,6 +474,7 @@ footer{
             <div class="avatar">
 
                 <!-- Simple contact/person icon -->
+
                 <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -804,7 +889,9 @@ async function loadProfile(user){
 
     profileElement.classList.remove(
         "vip",
-        "mvp"
+        "mvp",
+        "media",
+        "owner"
     );
 
 
@@ -821,6 +908,24 @@ async function loadProfile(user){
 
         profileElement.classList.add(
             "mvp"
+        );
+
+    }
+
+
+    if(rank === "MEDIA"){
+
+        profileElement.classList.add(
+            "media"
+        );
+
+    }
+
+
+    if(rank === "OWNER"){
+
+        profileElement.classList.add(
+            "owner"
         );
 
     }
