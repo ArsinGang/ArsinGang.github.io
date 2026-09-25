@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -548,7 +547,7 @@ footer{
 
 <button class="repeat-btn" id="repeatBtn">
 
-<svg viewBox="0 0 24 24" fill="none">
+<svg id="repeatIcon" viewBox="0 0 24 24" fill="none">
   <path d="M17 2L21 6L17 10"
     stroke="currentColor"
     stroke-width="2"
@@ -569,7 +568,7 @@ footer{
     stroke-linecap="round"/>
 </svg>
 
-تکرار آهنگ: خاموش
+<span id="repeatText">تکرار آهنگ: خاموش</span>
 
 </button>
 
@@ -636,10 +635,18 @@ const downloadBtn = document.getElementById("downloadBtn");
 const status = document.getElementById("status");
 const songList = document.getElementById("songList");
 const repeatBtn = document.getElementById("repeatBtn");
+const repeatIcon = document.getElementById("repeatIcon");
+const repeatText = document.getElementById("repeatText");
 
 let songs = [];
 let currentIndex = 0;
-let repeatSong = false;
+
+/*
+  0 = خاموش
+  1 = تکرار یک آهنگ
+  2 = تکرار همه آهنگ‌ها
+*/
+let repeatMode = 0;
 
 function formatTime(seconds){
 
@@ -820,6 +827,120 @@ function setPlayIcon(isPlaying){
 
 }
 
+function updateRepeatButton(){
+
+  if(repeatMode === 0){
+
+    repeatBtn.classList.remove("active");
+
+    repeatText.textContent =
+      "تکرار آهنگ: خاموش";
+
+    repeatIcon.innerHTML = `
+      <path d="M17 2L21 6L17 10"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+      <path d="M3 11V9C3 7.34 4.34 6 6 6H21"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"/>
+
+      <path d="M7 22L3 18L7 14"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+      <path d="M21 13V15C21 16.66 19.66 18 18 18H3"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"/>
+    `;
+
+  }
+
+  else if(repeatMode === 1){
+
+    repeatBtn.classList.add("active");
+
+    repeatText.textContent =
+      "تکرار آهنگ: 1";
+
+    repeatIcon.innerHTML = `
+      <path d="M17 2L21 6L17 10"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+      <path d="M3 11V9C3 7.34 4.34 6 6 6H21"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"/>
+
+      <path d="M7 22L3 18L7 14"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+      <path d="M21 13V15C21 16.66 19.66 18 18 18H3"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"/>
+
+      <text
+        x="12"
+        y="14.5"
+        fill="currentColor"
+        font-size="7"
+        font-family="Arial"
+        font-weight="bold"
+        text-anchor="middle">
+        1
+      </text>
+    `;
+
+  }
+
+  else{
+
+    repeatBtn.classList.add("active");
+
+    repeatText.textContent =
+      "تکرار آهنگ: همه";
+
+    repeatIcon.innerHTML = `
+      <path d="M17 2L21 6L17 10"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+      <path d="M3 11V9C3 7.34 4.34 6 6 6H21"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"/>
+
+      <path d="M7 22L3 18L7 14"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+      <path d="M21 13V15C21 16.66 19.66 18 18 18H3"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"/>
+    `;
+
+  }
+
+}
+
 async function playAudio(){
 
   try{
@@ -953,21 +1074,27 @@ document
 
 });
 
+
+/* =========================
+   REPEAT MODES
+========================= */
+
 repeatBtn.addEventListener("click",()=>{
 
-  repeatSong = !repeatSong;
+  repeatMode++;
 
-  repeatBtn.classList.toggle(
-    "active",
-    repeatSong
-  );
+  if(repeatMode > 2){
+    repeatMode = 0;
+  }
 
-  repeatBtn.lastChild.textContent =
-    repeatSong
-      ? " تکرار آهنگ: روشن"
-      : " تکرار آهنگ: خاموش";
+  updateRepeatButton();
 
 });
+
+
+/* =========================
+   PLAY / PAUSE ICON
+========================= */
 
 audio.addEventListener("play",()=>{
 
@@ -981,13 +1108,21 @@ audio.addEventListener("pause",()=>{
 
 });
 
+
+/* =========================
+   SONG END
+========================= */
+
 audio.addEventListener("ended",()=>{
 
   if(songs.length === 0){
     return;
   }
 
-  if(repeatSong){
+
+  /* تکرار یک آهنگ */
+
+  if(repeatMode === 1){
 
     audio.currentTime = 0;
 
@@ -997,15 +1132,43 @@ audio.addEventListener("ended",()=>{
 
   }
 
-  currentIndex =
-    (currentIndex + 1) %
-    songs.length;
 
-  loadSong(currentIndex);
+  /* آهنگ بعدی */
 
-  playAudio();
+  if(currentIndex < songs.length - 1){
+
+    currentIndex++;
+
+    loadSong(currentIndex);
+
+    playAudio();
+
+    return;
+
+  }
+
+
+  /* آخرین آهنگ */
+
+  if(repeatMode === 2){
+
+    currentIndex = 0;
+
+    loadSong(currentIndex);
+
+    playAudio();
+
+    return;
+
+  }
+
+
+  /* حالت خاموش */
+
+  setPlayIcon(false);
 
 });
+
 
 audio.addEventListener("error",()=>{
 
@@ -1017,6 +1180,9 @@ audio.addEventListener("error",()=>{
   }
 
 });
+
+
+updateRepeatButton();
 
 loadSongs();
 
