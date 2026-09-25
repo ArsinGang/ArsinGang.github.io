@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Arsin_Gang Music | Funk Music</title>
+<title>FUNK MUSIC Arsin_Gang</title>
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237b2cff'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='38' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
 
@@ -334,6 +334,42 @@ h1{
     min-height:16px;
 }
 
+.song-list{
+    margin-top:25px;
+}
+
+.song-list-title{
+    font-size:16px;
+    color:#aaa0b8;
+    margin-bottom:10px;
+}
+
+.song-item{
+    width:100%;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.04);
+    color:white;
+    border-radius:12px;
+    padding:12px 15px;
+    margin-top:8px;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    text-align:right;
+    transition:.2s;
+}
+
+.song-item:hover{
+    background:rgba(123,44,255,.15);
+    border-color:rgba(139,61,255,.4);
+}
+
+.song-item.active{
+    background:rgba(123,44,255,.2);
+    border-color:rgba(139,61,255,.6);
+}
+
 footer{
     text-align:center;
     margin-top:40px;
@@ -405,11 +441,11 @@ footer{
         </div>
 
         <h1>
-            Arsin_Gang Music
+            FUNK MUSIC Arsin_Gang
         </h1>
 
         <div class="subtitle">
-            موسیقی‌های منتخب ArsinGang 🎵💜
+            موسیقی‌های فانک منتخب ArsinGang 🎵💜
         </div>
 
     </header>
@@ -428,8 +464,8 @@ footer{
 
             <div class="song-text">
 
-                <div class="song-title">
-                    LONELY FUNK
+                <div class="song-title" id="songTitle">
+                    در حال بارگذاری...
                 </div>
 
                 <div class="song-type">
@@ -442,8 +478,7 @@ footer{
 
         <audio
             id="audio"
-            preload="metadata"
-            src="lonely-funk.mp3">
+            preload="metadata">
         </audio>
 
         <div class="progress-area">
@@ -525,33 +560,13 @@ footer{
 
                 <select id="speed">
 
-                    <option value="0.5">
-                        0.5x
-                    </option>
-
-                    <option value="0.75">
-                        0.75x
-                    </option>
-
-                    <option value="1" selected>
-                        1x
-                    </option>
-
-                    <option value="1.25">
-                        1.25x
-                    </option>
-
-                    <option value="1.5">
-                        1.5x
-                    </option>
-
-                    <option value="1.75">
-                        1.75x
-                    </option>
-
-                    <option value="2">
-                        2x
-                    </option>
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.25">1.25x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="1.75">1.75x</option>
+                    <option value="2">2x</option>
 
                 </select>
 
@@ -562,8 +577,9 @@ footer{
         <div class="download">
 
             <a
-                href="lonely-funk.mp3"
-                download="LONELY FUNK.mp3">
+                id="downloadBtn"
+                href="#"
+                download>
                 ⬇️ دانلود آهنگ
             </a>
 
@@ -574,45 +590,43 @@ footer{
             id="status">
         </div>
 
+        <div class="song-list">
+
+            <div class="song-list-title">
+                🎶 لیست آهنگ‌ها
+            </div>
+
+            <div id="songList">
+            </div>
+
+        </div>
+
     </div>
 
     <footer>
-        Arsin_Gang Music 🎵 © 2026 ArsinGang
+        FUNK MUSIC Arsin_Gang 🎵 © 2026 ArsinGang
     </footer>
 
 </div>
 
 <script>
 
-const audio =
-    document.getElementById("audio");
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("playBtn");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const progress = document.getElementById("progress");
+const currentTime = document.getElementById("currentTime");
+const duration = document.getElementById("duration");
+const volume = document.getElementById("volume");
+const speed = document.getElementById("speed");
+const status = document.getElementById("status");
+const songTitle = document.getElementById("songTitle");
+const downloadBtn = document.getElementById("downloadBtn");
+const songList = document.getElementById("songList");
 
-const playBtn =
-    document.getElementById("playBtn");
-
-const prevBtn =
-    document.getElementById("prevBtn");
-
-const nextBtn =
-    document.getElementById("nextBtn");
-
-const progress =
-    document.getElementById("progress");
-
-const currentTime =
-    document.getElementById("currentTime");
-
-const duration =
-    document.getElementById("duration");
-
-const volume =
-    document.getElementById("volume");
-
-const speed =
-    document.getElementById("speed");
-
-const status =
-    document.getElementById("status");
+let songs = [];
+let currentIndex = 0;
 
 
 function formatTime(seconds){
@@ -621,11 +635,9 @@ function formatTime(seconds){
         return "0:00";
     }
 
-    const minutes =
-        Math.floor(seconds / 60);
+    const minutes = Math.floor(seconds / 60);
 
-    const secs =
-        Math.floor(seconds % 60)
+    const secs = Math.floor(seconds % 60)
         .toString()
         .padStart(2,"0");
 
@@ -633,22 +645,176 @@ function formatTime(seconds){
 }
 
 
+async function loadSongs(){
+
+    try{
+
+        const response = await fetch("music/songs.json", {
+            cache: "no-store"
+        });
+
+        if(!response.ok){
+            throw new Error("songs.json not found");
+        }
+
+        songs = await response.json();
+
+        if(!Array.isArray(songs) || songs.length === 0){
+            throw new Error("No songs");
+        }
+
+        createSongList();
+
+        loadSong(0);
+
+        status.textContent =
+            "🎵 " + songs.length + " آهنگ آماده است";
+
+    }catch(error){
+
+        songTitle.textContent =
+            "خطا در بارگذاری آهنگ‌ها";
+
+        status.textContent =
+            "❌ فایل music/songs.json پیدا نشد.";
+
+    }
+
+}
+
+
+function createSongList(){
+
+    songList.innerHTML = "";
+
+    songs.forEach(function(song,index){
+
+        const button =
+            document.createElement("button");
+
+        button.className =
+            "song-item";
+
+        button.type =
+            "button";
+
+        button.innerHTML =
+            "<span>🎵 " +
+            escapeHTML(song.title) +
+            "</span><span>▶</span>";
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                loadSong(index);
+                playSong();
+
+            }
+        );
+
+        songList.appendChild(button);
+
+    });
+
+    updateActiveSong();
+
+}
+
+
+function escapeHTML(text){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+function updateActiveSong(){
+
+    const items =
+        document.querySelectorAll(".song-item");
+
+    items.forEach(function(item,index){
+
+        item.classList.toggle(
+            "active",
+            index === currentIndex
+        );
+
+    });
+
+}
+
+
+function loadSong(index){
+
+    if(!songs[index]){
+        return;
+    }
+
+    currentIndex =
+        index;
+
+    const song =
+        songs[currentIndex];
+
+    audio.src =
+        "music/" + song.file;
+
+    audio.load();
+
+    songTitle.textContent =
+        song.title;
+
+    downloadBtn.href =
+        "music/" + song.file;
+
+    downloadBtn.download =
+        song.title + ".mp3";
+
+    progress.value =
+        0;
+
+    currentTime.textContent =
+        "0:00";
+
+    duration.textContent =
+        "0:00";
+
+    updateActiveSong();
+
+}
+
+
+async function playSong(){
+
+    try{
+
+        await audio.play();
+
+    }catch(error){
+
+        status.textContent =
+            "❌ فایل آهنگ پیدا نشد.";
+
+    }
+
+}
+
+
 playBtn.addEventListener(
     "click",
-    async function(){
+    function(){
 
         if(audio.paused){
 
-            try{
-
-                await audio.play();
-
-            }catch(error){
-
-                status.textContent =
-                    "❌ فایل آهنگ پیدا نشد.";
-
-            }
+            playSong();
 
         }else{
 
@@ -766,8 +932,19 @@ prevBtn.addEventListener(
     "click",
     function(){
 
-        audio.currentTime =
-            0;
+        if(songs.length === 0){
+            return;
+        }
+
+        currentIndex--;
+
+        if(currentIndex < 0){
+            currentIndex =
+                songs.length - 1;
+        }
+
+        loadSong(currentIndex);
+        playSong();
 
     }
 );
@@ -777,12 +954,19 @@ nextBtn.addEventListener(
     "click",
     function(){
 
-        audio.currentTime =
-            0;
+        if(songs.length === 0){
+            return;
+        }
 
-        audio.play().catch(
-            function(){}
-        );
+        currentIndex++;
+
+        if(currentIndex >= songs.length){
+            currentIndex =
+                0;
+        }
+
+        loadSong(currentIndex);
+        playSong();
 
     }
 );
@@ -792,17 +976,18 @@ audio.addEventListener(
     "ended",
     function(){
 
-        playBtn.textContent =
-            "▶";
+        if(songs.length > 0){
 
-        progress.value =
-            0;
+            currentIndex++;
 
-        currentTime.textContent =
-            "0:00";
+            if(currentIndex >= songs.length){
+                currentIndex = 0;
+            }
 
-        status.textContent =
-            "🎵 آهنگ به پایان رسید";
+            loadSong(currentIndex);
+            playSong();
+
+        }
 
     }
 );
@@ -813,7 +998,7 @@ audio.addEventListener(
     function(){
 
         status.textContent =
-            "❌ فایل LONELY FUNK در مسیر lonely-funk.mp3 پیدا نشد.";
+            "❌ فایل این آهنگ پیدا نشد.";
 
     }
 );
@@ -824,6 +1009,9 @@ audio.volume =
 
 audio.playbackRate =
     1;
+
+
+loadSongs();
 
 </script>
 
