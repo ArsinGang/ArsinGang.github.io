@@ -1,861 +1,1026 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>FUNK MUSIC Arsin_Gang</title>
+<title>FUNK MUSIC Arsin_Gang</title>
 
-  <meta
-    name="description"
-    content="موسیقی‌های فانک منتخب ArsinGang"
-  >
+<meta name="description" content="موسیقی‌های فانک منتخب ArsinGang">
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%237b2cff'/%3E%3Ctext x='50' y='64' text-anchor='middle' font-size='42' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%237b2cff'/%3E%3Ctext x='50' y='64' text-anchor='middle' font-size='42' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
 
-  <style>
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    body{
-      min-height:100vh;
-      font-family:Arial, sans-serif;
-      color:white;
-      background:
-        radial-gradient(circle at top,#25104d 0%,#0b0615 42%,#05030a 100%);
-      overflow-x:hidden;
-    }
+body{
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  color:white;
+  background:
+    radial-gradient(circle at top,#25104d 0%,#0b0615 42%,#05030a 100%);
+  overflow-x:hidden;
+}
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(circle at 20% 20%,rgba(123,44,255,.18),transparent 30%),
-        radial-gradient(circle at 80% 80%,rgba(0,217,255,.12),transparent 30%);
-      z-index:-1;
-    }
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(123,44,255,.18),transparent 30%),
+    radial-gradient(circle at 80% 80%,rgba(0,217,255,.12),transparent 30%);
+  z-index:-1;
+}
 
-    .container{
-      width:min(900px,92%);
-      margin:0 auto;
-      padding:35px 0 25px;
-    }
+.container{
+  width:min(900px,92%);
+  margin:0 auto;
+  padding:35px 0 25px;
+}
 
-    .back{
-      display:inline-block;
-      text-decoration:none;
-      color:white;
-      background:rgba(123,44,255,.16);
-      border:1px solid rgba(123,44,255,.55);
-      padding:11px 18px;
-      border-radius:12px;
-      box-shadow:0 0 18px rgba(123,44,255,.2);
-      transition:.2s;
-      margin-bottom:25px;
-    }
+.back{
+  display:inline-block;
+  text-decoration:none;
+  color:white;
+  background:rgba(123,44,255,.16);
+  border:1px solid rgba(123,44,255,.55);
+  padding:11px 18px;
+  border-radius:12px;
+  box-shadow:0 0 18px rgba(123,44,255,.2);
+  transition:.2s;
+  margin-bottom:25px;
+}
 
-    .back:hover{
-      transform:translateY(-2px);
-      box-shadow:
-        0 0 25px rgba(123,44,255,.4),
-        0 0 15px rgba(0,217,255,.15);
-    }
+.back:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 0 25px rgba(123,44,255,.4),
+    0 0 15px rgba(0,217,255,.15);
+}
 
-    .logo{
-      width:82px;
-      height:82px;
-      margin:0 auto 18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:22px;
-      background:linear-gradient(135deg,#7b2cff,#4d16a8);
-      font-size:30px;
-      font-weight:900;
-      box-shadow:
-        0 0 25px rgba(123,44,255,.55),
-        inset 0 0 20px rgba(255,255,255,.08);
-    }
+.logo{
+  width:82px;
+  height:82px;
+  margin:0 auto 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:22px;
+  background:linear-gradient(135deg,#7b2cff,#4d16a8);
+  font-size:30px;
+  font-weight:900;
+  box-shadow:
+    0 0 25px rgba(123,44,255,.55),
+    inset 0 0 20px rgba(255,255,255,.08);
+}
 
-    h1{
-      text-align:center;
-      font-size:clamp(28px,6vw,46px);
-      margin-bottom:10px;
-      text-shadow:
-        0 0 15px rgba(123,44,255,.7),
-        0 0 30px rgba(0,217,255,.2);
-    }
+h1{
+  text-align:center;
+  font-size:clamp(28px,6vw,46px);
+  margin-bottom:10px;
+  text-shadow:
+    0 0 15px rgba(123,44,255,.7),
+    0 0 30px rgba(0,217,255,.2);
+}
 
-    .subtitle{
-      text-align:center;
-      color:#cfc8e8;
-      margin-bottom:30px;
-      font-size:16px;
-    }
+.subtitle{
+  text-align:center;
+  color:#cfc8e8;
+  margin-bottom:30px;
+  font-size:16px;
+}
 
-    .card{
-      background:rgba(13,8,27,.78);
-      border:1px solid rgba(123,44,255,.35);
-      border-radius:24px;
-      padding:25px;
-      box-shadow:
-        0 0 35px rgba(123,44,255,.16),
-        inset 0 0 30px rgba(0,217,255,.025);
-      backdrop-filter:blur(12px);
-    }
+.card{
+  background:rgba(13,8,27,.78);
+  border:1px solid rgba(123,44,255,.35);
+  border-radius:24px;
+  padding:25px;
+  box-shadow:
+    0 0 35px rgba(123,44,255,.16),
+    inset 0 0 30px rgba(0,217,255,.025);
+  backdrop-filter:blur(12px);
+}
 
-    .music-label{
-      text-align:center;
-      color:#bfa9ff;
-      font-size:15px;
-      margin-bottom:20px;
-    }
+.music-label{
+  text-align:center;
+  color:#bfa9ff;
+  font-size:15px;
+  margin-bottom:20px;
+}
 
-    .music-icon{
-      text-align:center;
-      font-size:45px;
-      margin-bottom:10px;
-      filter:drop-shadow(0 0 12px rgba(123,44,255,.65));
-    }
+.music-icon{
+  width:58px;
+  height:58px;
+  margin:0 auto 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#b98cff;
+  filter:drop-shadow(0 0 12px rgba(123,44,255,.65));
+}
 
-    .song-title{
-      text-align:center;
-      font-size:25px;
-      font-weight:bold;
-      margin-bottom:7px;
-    }
+.music-icon svg{
+  width:48px;
+  height:48px;
+}
 
-    .song-subtitle{
-      text-align:center;
-      color:#9f97b5;
-      font-size:14px;
-      margin-bottom:25px;
-    }
+.song-title{
+  text-align:center;
+  font-size:25px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
 
-    .time-row{
-      display:flex;
-      justify-content:space-between;
-      direction:ltr;
-      color:#aaa2b8;
-      font-size:13px;
-      margin-bottom:7px;
-    }
+.song-subtitle{
+  text-align:center;
+  color:#9f97b5;
+  font-size:14px;
+  margin-bottom:25px;
+}
 
-    input[type="range"]{
-      width:100%;
-      accent-color:#7b2cff;
-      cursor:pointer;
-    }
+.time-row{
+  display:flex;
+  justify-content:space-between;
+  direction:ltr;
+  color:#aaa2b8;
+  font-size:13px;
+  margin-bottom:7px;
+}
 
-    .controls{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:14px;
-      margin:22px 0;
-      direction:ltr;
-    }
+input[type="range"]{
+  width:100%;
+  accent-color:#7b2cff;
+  cursor:pointer;
+}
 
-    .control{
-      width:48px;
-      height:48px;
-      border-radius:50%;
-      border:1px solid rgba(123,44,255,.45);
-      background:rgba(123,44,255,.12);
-      color:white;
-      cursor:pointer;
-      font-size:20px;
-      transition:.2s;
-    }
+#progress{
+  direction:ltr;
+}
 
-    .control:hover{
-      transform:scale(1.07);
-      box-shadow:0 0 18px rgba(123,44,255,.35);
-    }
+.controls{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  margin:22px 0;
+  direction:ltr;
+}
 
-    .play{
-      width:62px;
-      height:62px;
-      font-size:25px;
-      background:linear-gradient(135deg,#7b2cff,#5520b4);
-      border:none;
-      box-shadow:0 0 22px rgba(123,44,255,.4);
-    }
+.control{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:1px solid rgba(123,44,255,.45);
+  background:rgba(123,44,255,.12);
+  color:white;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.2s;
+}
 
-    .volume-row{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      direction:ltr;
-      margin:20px 0;
-    }
+.control svg{
+  width:21px;
+  height:21px;
+}
 
-    .volume-row span{
-      font-size:20px;
-    }
+.control:hover{
+  transform:scale(1.07);
+  box-shadow:0 0 18px rgba(123,44,255,.35);
+}
 
-    .speed-title{
-      color:#cfc8e8;
-      margin-bottom:12px;
-      font-weight:bold;
-    }
+.play{
+  width:62px;
+  height:62px;
+  background:linear-gradient(135deg,#7b2cff,#5520b4);
+  border:none;
+  box-shadow:0 0 22px rgba(123,44,255,.4);
+}
 
-    .speed-buttons{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:8px;
-      margin-bottom:22px;
-    }
+.play svg{
+  width:26px;
+  height:26px;
+}
 
-    .speed-btn{
-      border:1px solid rgba(0,217,255,.25);
-      background:rgba(0,217,255,.06);
-      color:#dffbff;
-      padding:8px 13px;
-      border-radius:9px;
-      cursor:pointer;
-      transition:.2s;
-    }
+.volume-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  direction:ltr;
+  margin:20px 0;
+}
 
-    .speed-btn:hover,
-    .speed-btn.active{
-      background:rgba(0,217,255,.15);
-      border-color:#00d9ff;
-      box-shadow:0 0 12px rgba(0,217,255,.2);
-    }
+.volume-icon{
+  width:22px;
+  height:22px;
+  color:#d9d0e8;
+  display:flex;
+}
 
-    .download{
-      display:block;
-      width:100%;
-      text-align:center;
-      text-decoration:none;
-      color:white;
-      padding:13px;
-      border-radius:13px;
-      background:linear-gradient(
-        135deg,
-        rgba(123,44,255,.8),
-        rgba(0,217,255,.3)
-      );
-      border:1px solid rgba(123,44,255,.45);
-      margin-top:5px;
-      transition:.2s;
-    }
+.volume-icon svg{
+  width:22px;
+  height:22px;
+}
 
-    .download:hover{
-      transform:translateY(-2px);
-      box-shadow:0 0 20px rgba(123,44,255,.3);
-    }
+.speed-title{
+  color:#cfc8e8;
+  margin-bottom:12px;
+  font-weight:bold;
+}
 
-    .status{
-      text-align:center;
-      color:#a9a1ba;
-      font-size:13px;
-      margin:16px 0 24px;
-      min-height:18px;
-    }
+.speed-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:18px;
+}
 
-    .list-title{
-      font-size:20px;
-      margin-bottom:13px;
-    }
+.speed-btn{
+  border:1px solid rgba(0,217,255,.25);
+  background:rgba(0,217,255,.06);
+  color:#dffbff;
+  padding:8px 13px;
+  border-radius:9px;
+  cursor:pointer;
+  transition:.2s;
+}
 
-    .song-list{
-      display:flex;
-      flex-direction:column;
-      gap:9px;
-    }
+.speed-btn:hover,
+.speed-btn.active{
+  background:rgba(0,217,255,.15);
+  border-color:#00d9ff;
+  box-shadow:0 0 12px rgba(0,217,255,.2);
+}
 
-    .song-item{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:13px 15px;
-      border-radius:12px;
-      background:rgba(123,44,255,.07);
-      border:1px solid rgba(123,44,255,.16);
-      cursor:pointer;
-      transition:.2s;
-    }
+.repeat-row{
+  display:flex;
+  justify-content:center;
+  margin-bottom:20px;
+}
 
-    .song-item:hover{
-      background:rgba(123,44,255,.13);
-      border-color:rgba(123,44,255,.35);
-    }
+.repeat-btn{
+  border:1px solid rgba(0,217,255,.25);
+  background:rgba(0,217,255,.06);
+  color:#dffbff;
+  padding:9px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:.2s;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+}
 
-    .song-item.active{
-      border-color:rgba(0,217,255,.6);
-      box-shadow:
-        0 0 16px rgba(0,217,255,.1),
-        inset 0 0 15px rgba(123,44,255,.08);
-    }
+.repeat-btn svg{
+  width:19px;
+  height:19px;
+}
 
-    .song-name{
-      color:#eee;
-      font-weight:bold;
-    }
+.repeat-btn:hover,
+.repeat-btn.active{
+  background:rgba(0,217,255,.15);
+  border-color:#00d9ff;
+  box-shadow:0 0 12px rgba(0,217,255,.2);
+}
 
-    .song-play{
-      color:#00d9ff;
-      font-size:18px;
-    }
+.download{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  text-align:center;
+  text-decoration:none;
+  color:white;
+  padding:13px;
+  border-radius:13px;
+  background:linear-gradient(
+    135deg,
+    rgba(123,44,255,.8),
+    rgba(0,217,255,.3)
+  );
+  border:1px solid rgba(123,44,255,.45);
+  margin-top:5px;
+  transition:.2s;
+}
 
-    footer{
-      text-align:center;
-      margin-top:28px;
-      color:#766d87;
-      font-size:13px;
-      padding-bottom:10px;
-    }
+.download svg{
+  width:20px;
+  height:20px;
+}
 
-    @media(max-width:600px){
-      .container{
-        padding-top:22px;
-      }
+.download:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 20px rgba(123,44,255,.3);
+}
 
-      .card{
-        padding:18px;
-        border-radius:20px;
-      }
+.status{
+  text-align:center;
+  color:#a9a1ba;
+  font-size:13px;
+  margin:16px 0 24px;
+  min-height:18px;
+}
 
-      .controls{
-        gap:9px;
-      }
+.list-title{
+  font-size:20px;
+  margin-bottom:13px;
+}
 
-      .control{
-        width:44px;
-        height:44px;
-      }
+.song-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
 
-      .play{
-        width:58px;
-        height:58px;
-      }
-    }
-  </style>
+.song-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:13px 15px;
+  border-radius:12px;
+  background:rgba(123,44,255,.07);
+  border:1px solid rgba(123,44,255,.16);
+  cursor:pointer;
+  transition:.2s;
+}
+
+.song-item:hover{
+  background:rgba(123,44,255,.13);
+  border-color:rgba(123,44,255,.35);
+}
+
+.song-item.active{
+  border-color:rgba(0,217,255,.6);
+  box-shadow:
+    0 0 16px rgba(0,217,255,.1),
+    inset 0 0 15px rgba(123,44,255,.08);
+}
+
+.song-name{
+  color:#eee;
+  font-weight:bold;
+}
+
+.song-play{
+  color:#00d9ff;
+  width:20px;
+  height:20px;
+  display:flex;
+}
+
+.song-play svg{
+  width:20px;
+  height:20px;
+}
+
+footer{
+  text-align:center;
+  margin-top:28px;
+  color:#766d87;
+  font-size:13px;
+  padding-bottom:10px;
+}
+
+@media(max-width:600px){
+  .container{
+    padding-top:22px;
+  }
+
+  .card{
+    padding:18px;
+    border-radius:20px;
+  }
+
+  .controls{
+    gap:9px;
+  }
+
+  .control{
+    width:44px;
+    height:44px;
+  }
+
+  .play{
+    width:58px;
+    height:58px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <a class="back" href="/">← بازگشت به صفحه اصلی</a>
+<a class="back" href="/">
+  ← بازگشت به صفحه اصلی
+</a>
 
-    <div class="logo">AG</div>
+<div class="logo">AG</div>
 
-    <h1>FUNK MUSIC Arsin_Gang</h1>
+<h1>FUNK MUSIC Arsin_Gang</h1>
 
-    <div class="subtitle">
-      موسیقی‌های فانک منتخب ArsinGang 🎵💜
-    </div>
+<div class="subtitle">
+  موسیقی‌های فانک منتخب ArsinGang
+  <span style="color:#b98cff;">♪</span>
+</div>
 
-    <div class="card">
+<div class="card">
 
-      <div class="music-label">
-        🎵 Funk Music
-      </div>
+<div class="music-label">
+  <span style="color:#00d9ff;">♪</span>
+  Funk Music
+</div>
 
-      <div class="music-icon">
-        🎧
-      </div>
+<div class="music-icon">
+  <svg viewBox="0 0 64 64" fill="none">
+    <path d="M24 46.5C24 50.09 20.87 53 17 53C13.13 53 10 50.09 10 46.5C10 42.91 13.13 40 17 40C18.65 40 20.18 40.54 21.4 41.45V17L52 10V37.5C52 41.09 48.87 44 45 44C41.13 44 38 41.09 38 37.5C38 33.91 41.13 31 45 31C46.65 31 48.18 31.54 49.4 32.45V17.5L24 23.3V46.5Z"
+      stroke="currentColor"
+      stroke-width="3"
+      stroke-linejoin="round"/>
+  </svg>
+</div>
 
-      <div class="song-title" id="songTitle">
-        در حال بارگذاری...
-      </div>
+<div class="song-title" id="songTitle">
+  در حال بارگذاری...
+</div>
 
-      <div class="song-subtitle">
-        Funk Music • Arsin_Gang Music
-      </div>
+<div class="song-subtitle">
+  Funk Music • Arsin_Gang Music
+</div>
 
-      <div class="time-row">
-        <span id="duration">0:00</span>
-        <span id="currentTime">0:00</span>
-      </div>
+<div class="time-row">
+  <span id="currentTime">0:00</span>
+  <span id="duration">0:00</span>
+</div>
 
-      <input
-        type="range"
-        id="progress"
-        min="0"
-        max="100"
-        value="0"
-      >
+<input
+  type="range"
+  id="progress"
+  min="0"
+  max="100"
+  value="0"
+>
 
-      <div class="controls">
+<div class="controls">
 
-        <button
-          class="control"
-          id="prevBtn"
-          title="آهنگ قبلی"
-        >
-          ⏮
-        </button>
+<button class="control" id="prevBtn" title="آهنگ قبلی">
+<svg viewBox="0 0 24 24" fill="none">
+  <path d="M6 5V19M18 6L8 12L18 18V6Z"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+</svg>
+</button>
 
-        <button
-          class="control play"
-          id="playBtn"
-          title="پخش"
-        >
-          ▶
-        </button>
+<button class="control play" id="playBtn" title="پخش">
+<svg id="playIcon" viewBox="0 0 24 24" fill="none">
+  <path d="M8 5L19 12L8 19V5Z"
+    fill="currentColor"/>
+</svg>
+</button>
 
-        <button
-          class="control"
-          id="nextBtn"
-          title="آهنگ بعدی"
-        >
-          ⏭
-        </button>
+<button class="control" id="nextBtn" title="آهنگ بعدی">
+<svg viewBox="0 0 24 24" fill="none">
+  <path d="M18 5V19M6 6L16 12L6 18V6Z"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+</svg>
+</button>
 
-      </div>
+</div>
 
-      <div class="volume-row">
+<div class="volume-row">
 
-        <span>🔊</span>
+<span class="volume-icon">
+<svg viewBox="0 0 24 24" fill="none">
+  <path d="M4 9V15H8L13 19V5L8 9H4Z"
+    fill="currentColor"/>
+  <path d="M16 9C17.33 10.33 17.33 13.67 16 15M19 6C21.67 8.67 21.67 15.33 19 18"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"/>
+</svg>
+</span>
 
-        <input
-          type="range"
-          id="volume"
-          min="0"
-          max="1"
-          step="0.01"
-          value="1"
-        >
+<input
+  type="range"
+  id="volume"
+  min="0"
+  max="1"
+  step="0.01"
+  value="1"
+>
 
-      </div>
+</div>
 
-      <div class="speed-title">
-        ⚡ سرعت
-      </div>
+<div class="speed-title">
+  سرعت
+</div>
 
-      <div class="speed-buttons">
+<div class="speed-buttons">
 
-        <button class="speed-btn" data-speed="0.5">
-          0.5x
-        </button>
+<button class="speed-btn" data-speed="0.5">0.5x</button>
+<button class="speed-btn" data-speed="0.75">0.75x</button>
+<button class="speed-btn active" data-speed="1">1x</button>
+<button class="speed-btn" data-speed="1.25">1.25x</button>
+<button class="speed-btn" data-speed="1.5">1.5x</button>
+<button class="speed-btn" data-speed="1.75">1.75x</button>
+<button class="speed-btn" data-speed="2">2x</button>
 
-        <button class="speed-btn" data-speed="0.75">
-          0.75x
-        </button>
+</div>
 
-        <button class="speed-btn active" data-speed="1">
-          1x
-        </button>
+<div class="repeat-row">
 
-        <button class="speed-btn" data-speed="1.25">
-          1.25x
-        </button>
+<button class="repeat-btn" id="repeatBtn">
 
-        <button class="speed-btn" data-speed="1.5">
-          1.5x
-        </button>
+<svg viewBox="0 0 24 24" fill="none">
+  <path d="M17 2L21 6L17 10"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+  <path d="M3 11V9C3 7.34 4.34 6 6 6H21"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"/>
+  <path d="M7 22L3 18L7 14"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+  <path d="M21 13V15C21 16.66 19.66 18 18 18H3"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"/>
+</svg>
 
-        <button class="speed-btn" data-speed="1.75">
-          1.75x
-        </button>
+تکرار آهنگ: خاموش
 
-        <button class="speed-btn" data-speed="2">
-          2x
-        </button>
+</button>
 
-      </div>
+</div>
 
-      <a
-        class="download"
-        id="downloadBtn"
-        href="#"
-        download
-      >
-        ⬇️ دانلود آهنگ
-      </a>
+<a
+  class="download"
+  id="downloadBtn"
+  href="#"
+  download
+>
 
-      <div
-        class="status"
-        id="status"
-      >
-        در حال بارگذاری آهنگ‌ها...
-      </div>
+<svg viewBox="0 0 24 24" fill="none">
+  <path d="M12 3V15M7 10L12 15L17 10"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+  <path d="M4 20H20"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"/>
+</svg>
 
-      <div class="list-title">
-        🎶 لیست آهنگ‌ها
-      </div>
+دانلود آهنگ
 
-      <div
-        class="song-list"
-        id="songList"
-      ></div>
+</a>
 
-    </div>
+<div class="status" id="status">
+  در حال بارگذاری آهنگ‌ها...
+</div>
 
-    <footer>
-      FUNK MUSIC Arsin_Gang 🎵 © 2026 ArsinGang
-    </footer>
+<div class="list-title">
+  لیست آهنگ‌ها
+</div>
 
-  </div>
+<div class="song-list" id="songList"></div>
 
-  <audio id="audio" preload="metadata"></audio>
+</div>
 
-  <script>
-    const audio = document.getElementById("audio");
-    const playBtn = document.getElementById("playBtn");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const progress = document.getElementById("progress");
-    const volume = document.getElementById("volume");
-    const songTitle = document.getElementById("songTitle");
-    const currentTime = document.getElementById("currentTime");
-    const duration = document.getElementById("duration");
-    const downloadBtn = document.getElementById("downloadBtn");
-    const status = document.getElementById("status");
-    const songList = document.getElementById("songList");
+<footer>
+  FUNK MUSIC Arsin_Gang
+  <span style="color:#b98cff;">♪</span>
+  © 2026 ArsinGang
+</footer>
 
-    let songs = [];
-    let currentIndex = 0;
+</div>
 
-    function formatTime(seconds){
-      if(!Number.isFinite(seconds)){
-        return "0:00";
+<audio id="audio" preload="metadata"></audio>
+
+<script>
+
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("playBtn");
+const playIcon = document.getElementById("playIcon");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const progress = document.getElementById("progress");
+const volume = document.getElementById("volume");
+const songTitle = document.getElementById("songTitle");
+const currentTime = document.getElementById("currentTime");
+const duration = document.getElementById("duration");
+const downloadBtn = document.getElementById("downloadBtn");
+const status = document.getElementById("status");
+const songList = document.getElementById("songList");
+const repeatBtn = document.getElementById("repeatBtn");
+
+let songs = [];
+let currentIndex = 0;
+let repeatSong = false;
+
+function formatTime(seconds){
+
+  if(!Number.isFinite(seconds)){
+    return "0:00";
+  }
+
+  const minutes = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+
+  return minutes + ":" + String(secs).padStart(2,"0");
+}
+
+async function loadSongs(){
+
+  try{
+
+    const response = await fetch(
+      "/music/songs.json",
+      {
+        cache:"no-store"
       }
+    );
 
-      const minutes = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-
-      return minutes + ":" + String(secs).padStart(2,"0");
+    if(!response.ok){
+      throw new Error(
+        "songs.json HTTP " + response.status
+      );
     }
 
-    async function loadSongs(){
+    const data = await response.json();
 
-      try{
-
-        /*
-         * مهم:
-         * از /music/songs.json استفاده می‌کنیم
-         * تا Worker دقیقاً همین مسیر را دریافت کند.
-         */
-
-        const response = await fetch(
-          "/music/songs.json",
-          {
-            cache:"no-store"
-          }
-        );
-
-        if(!response.ok){
-          throw new Error(
-            "songs.json HTTP " + response.status
-          );
-        }
-
-        const data = await response.json();
-
-        if(!Array.isArray(data) || data.length === 0){
-          throw new Error("No songs");
-        }
-
-        songs = data;
-
-        createSongList();
-
-        loadSong(0);
-
-        status.textContent =
-          "🎵 " + songs.length + " آهنگ آماده است";
-
-      }catch(error){
-
-        console.error(error);
-
-        songTitle.textContent =
-          "خطا در بارگذاری آهنگ‌ها";
-
-        status.textContent =
-          "❌ فایل music/songs.json پیدا نشد.";
-
-      }
+    if(!Array.isArray(data) || data.length === 0){
+      throw new Error("No songs");
     }
 
-    function createSongList(){
+    songs = data;
 
-      songList.innerHTML = "";
+    createSongList();
 
-      songs.forEach((song,index)=>{
+    loadSong(0);
 
-        const item = document.createElement("div");
+    status.textContent =
+      " " + songs.length + " آهنگ آماده است";
 
-        item.className = "song-item";
+  }catch(error){
 
-        item.innerHTML = `
-          <span class="song-name">
-            🎵 ${escapeHtml(song.title)}
-          </span>
+    console.error(error);
 
-          <span class="song-play">
-            ▶
-          </span>
-        `;
+    songTitle.textContent =
+      "خطا در بارگذاری آهنگ‌ها";
 
-        item.addEventListener("click",()=>{
+    status.textContent =
+      "فایل music/songs.json پیدا نشد.";
 
-          loadSong(index);
+  }
+}
 
-          playAudio();
+function createSongList(){
 
-        });
+  songList.innerHTML = "";
 
-        songList.appendChild(item);
+  songs.forEach((song,index)=>{
 
-      });
+    const item = document.createElement("div");
 
-    }
+    item.className = "song-item";
 
-    function escapeHtml(text){
+    item.innerHTML = `
+      <span class="song-name">
+        ${escapeHtml(song.title)}
+      </span>
 
-      const div = document.createElement("div");
+      <span class="song-play">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M8 5L19 12L8 19V5Z"
+            fill="currentColor"/>
+        </svg>
+      </span>
+    `;
 
-      div.textContent = text;
+    item.addEventListener("click",()=>{
 
-      return div.innerHTML;
-
-    }
-
-    function loadSong(index){
-
-      if(!songs[index]){
-        return;
-      }
-
-      currentIndex = index;
-
-      const song = songs[currentIndex];
-
-      /*
-       * فایل MP3 داخل پوشه music قرار دارد.
-       */
-
-      audio.src =
-        "/music/" +
-        encodeURIComponent(song.file);
-
-      audio.load();
-
-      songTitle.textContent = song.title;
-
-      downloadBtn.href =
-        "/music/" +
-        encodeURIComponent(song.file);
-
-      downloadBtn.download =
-        song.title + ".mp3";
-
-      progress.value = 0;
-
-      currentTime.textContent = "0:00";
-      duration.textContent = "0:00";
-
-      updateActiveSong();
-
-    }
-
-    function updateActiveSong(){
-
-      const items =
-        document.querySelectorAll(".song-item");
-
-      items.forEach((item,index)=>{
-
-        item.classList.toggle(
-          "active",
-          index === currentIndex
-        );
-
-      });
-
-    }
-
-    async function playAudio(){
-
-      try{
-
-        await audio.play();
-
-        playBtn.textContent = "⏸";
-
-      }catch(error){
-
-        console.error(error);
-
-        status.textContent =
-          "❌ پخش آهنگ انجام نشد.";
-
-      }
-
-    }
-
-    function pauseAudio(){
-
-      audio.pause();
-
-      playBtn.textContent = "▶";
-
-    }
-
-    playBtn.addEventListener("click",()=>{
-
-      if(audio.paused){
-
-        playAudio();
-
-      }else{
-
-        pauseAudio();
-
-      }
-
-    });
-
-    prevBtn.addEventListener("click",()=>{
-
-      if(songs.length === 0){
-        return;
-      }
-
-      currentIndex =
-        (currentIndex - 1 + songs.length) %
-        songs.length;
-
-      loadSong(currentIndex);
-
+      loadSong(index);
       playAudio();
 
     });
 
-    nextBtn.addEventListener("click",()=>{
+    songList.appendChild(item);
 
-      if(songs.length === 0){
-        return;
-      }
+  });
 
-      currentIndex =
-        (currentIndex + 1) %
-        songs.length;
+}
 
-      loadSong(currentIndex);
+function escapeHtml(text){
 
-      playAudio();
+  const div = document.createElement("div");
 
-    });
+  div.textContent = text;
 
-    audio.addEventListener("loadedmetadata",()=>{
+  return div.innerHTML;
+}
 
-      duration.textContent =
-        formatTime(audio.duration);
+function loadSong(index){
 
-    });
+  if(!songs[index]){
+    return;
+  }
 
-    audio.addEventListener("timeupdate",()=>{
+  currentIndex = index;
 
-      currentTime.textContent =
-        formatTime(audio.currentTime);
+  const song = songs[currentIndex];
 
-      if(audio.duration){
+  audio.src =
+    "/music/" +
+    encodeURIComponent(song.file);
 
-        progress.value =
-          (audio.currentTime / audio.duration) * 100;
+  audio.load();
 
-      }
+  songTitle.textContent =
+    song.title;
 
-    });
+  downloadBtn.href =
+    "/music/" +
+    encodeURIComponent(song.file);
 
-    progress.addEventListener("input",()=>{
+  downloadBtn.download =
+    song.title + ".mp3";
 
-      if(audio.duration){
+  progress.value = 0;
 
-        audio.currentTime =
-          (progress.value / 100) *
-          audio.duration;
+  currentTime.textContent = "0:00";
+  duration.textContent = "0:00";
 
-      }
+  updateActiveSong();
 
-    });
+}
 
-    volume.addEventListener("input",()=>{
+function updateActiveSong(){
 
-      audio.volume =
-        Number(volume.value);
+  const items =
+    document.querySelectorAll(".song-item");
 
-    });
+  items.forEach((item,index)=>{
+
+    item.classList.toggle(
+      "active",
+      index === currentIndex
+    );
+
+  });
+
+}
+
+function setPlayIcon(isPlaying){
+
+  if(isPlaying){
+
+    playIcon.innerHTML = `
+      <path
+        d="M7 5V19M17 5V19"
+        stroke="currentColor"
+        stroke-width="3"
+        stroke-linecap="round"
+      />
+    `;
+
+  }else{
+
+    playIcon.innerHTML = `
+      <path
+        d="M8 5L19 12L8 19V5Z"
+        fill="currentColor"
+      />
+    `;
+
+  }
+
+}
+
+async function playAudio(){
+
+  try{
+
+    await audio.play();
+
+  }catch(error){
+
+    console.error(error);
+
+    status.textContent =
+      "پخش آهنگ انجام نشد.";
+
+  }
+
+}
+
+function pauseAudio(){
+
+  audio.pause();
+
+}
+
+playBtn.addEventListener("click",()=>{
+
+  if(audio.paused){
+
+    playAudio();
+
+  }else{
+
+    pauseAudio();
+
+  }
+
+});
+
+prevBtn.addEventListener("click",()=>{
+
+  if(songs.length === 0){
+    return;
+  }
+
+  currentIndex =
+    (currentIndex - 1 + songs.length) %
+    songs.length;
+
+  loadSong(currentIndex);
+
+  playAudio();
+
+});
+
+nextBtn.addEventListener("click",()=>{
+
+  if(songs.length === 0){
+    return;
+  }
+
+  currentIndex =
+    (currentIndex + 1) %
+    songs.length;
+
+  loadSong(currentIndex);
+
+  playAudio();
+
+});
+
+audio.addEventListener("loadedmetadata",()=>{
+
+  duration.textContent =
+    formatTime(audio.duration);
+
+});
+
+audio.addEventListener("timeupdate",()=>{
+
+  currentTime.textContent =
+    formatTime(audio.currentTime);
+
+  if(audio.duration){
+
+    progress.value =
+      (audio.currentTime / audio.duration) * 100;
+
+  }
+
+});
+
+progress.addEventListener("input",()=>{
+
+  if(audio.duration){
+
+    audio.currentTime =
+      (progress.value / 100) *
+      audio.duration;
+
+  }
+
+});
+
+volume.addEventListener("input",()=>{
+
+  audio.volume =
+    Number(volume.value);
+
+});
+
+document
+.querySelectorAll(".speed-btn")
+.forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    const speed =
+      Number(button.dataset.speed);
+
+    audio.playbackRate =
+      speed;
 
     document
-      .querySelectorAll(".speed-btn")
-      .forEach(button=>{
-
-        button.addEventListener("click",()=>{
-
-          const speed =
-            Number(button.dataset.speed);
-
-          audio.playbackRate = speed;
-
-          document
-            .querySelectorAll(".speed-btn")
-            .forEach(btn=>{
-              btn.classList.remove("active");
-            });
-
-          button.classList.add("active");
-
-        });
-
-      });
-
-    audio.addEventListener("play",()=>{
-
-      playBtn.textContent = "⏸";
-
+    .querySelectorAll(".speed-btn")
+    .forEach(btn=>{
+      btn.classList.remove("active");
     });
 
-    audio.addEventListener("pause",()=>{
+    button.classList.add("active");
 
-      playBtn.textContent = "▶";
+  });
 
-    });
+});
 
-    audio.addEventListener("ended",()=>{
+repeatBtn.addEventListener("click",()=>{
 
-      if(songs.length === 0){
-        return;
-      }
+  repeatSong = !repeatSong;
 
-      currentIndex =
-        (currentIndex + 1) %
-        songs.length;
+  repeatBtn.classList.toggle(
+    "active",
+    repeatSong
+  );
 
-      loadSong(currentIndex);
+  repeatBtn.lastChild.textContent =
+    repeatSong
+      ? " تکرار آهنگ: روشن"
+      : " تکرار آهنگ: خاموش";
 
-      playAudio();
+});
 
-    });
+audio.addEventListener("play",()=>{
 
-    audio.addEventListener("error",()=>{
+  setPlayIcon(true);
 
-      if(audio.src){
+});
 
-        status.textContent =
-          "❌ فایل آهنگ پیدا نشد.";
+audio.addEventListener("pause",()=>{
 
-      }
+  setPlayIcon(false);
 
-    });
+});
 
-    loadSongs();
+audio.addEventListener("ended",()=>{
 
-  </script>
+  if(songs.length === 0){
+    return;
+  }
+
+  if(repeatSong){
+
+    audio.currentTime = 0;
+
+    playAudio();
+
+    return;
+
+  }
+
+  currentIndex =
+    (currentIndex + 1) %
+    songs.length;
+
+  loadSong(currentIndex);
+
+  playAudio();
+
+});
+
+audio.addEventListener("error",()=>{
+
+  if(audio.src){
+
+    status.textContent =
+      "فایل آهنگ پیدا نشد.";
+
+  }
+
+});
+
+loadSongs();
+
+</script>
 
 </body>
 </html>
