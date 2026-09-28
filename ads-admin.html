@@ -303,6 +303,7 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
     "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
+
 const statusBox =
     document.getElementById("status");
 
@@ -320,97 +321,213 @@ function showStatus(text, type) {
 }
 
 
-async function getSession() {
+/*
+    گرفتن توکن ورود از سیستم لاگین سایت
+*/
+function getStoredToken() {
 
-    const response = await fetch(
-        SUPABASE_URL + "/auth/v1/session",
-        {
-            method: "GET",
+    const possibleKeys = [
+        "arsin_user_token",
+        "supabase_access_token",
+        "access_token"
+    ];
 
-            headers: {
-                "apikey": SUPABASE_KEY,
-                "Authorization":
-                    "Bearer " + SUPABASE_KEY
-            }
+    for (const key of possibleKeys) {
+
+        const token =
+            localStorage.getItem(key);
+
+        if (token &&
+            token !== "null" &&
+            token !== "undefined") {
+
+            return token;
         }
-    );
-
-    if (!response.ok) {
-        throw new Error("خطا در بررسی ورود");
     }
 
-    return await response.json();
+    return null;
 }
 
 
-async function getOwner() {
+/*
+    بررسی کاربر فعلی با توکن
+*/
+async function getCurrentUser() {
 
-    const session =
-        await getSession();
+    const accessToken =
+        getStoredToken();
 
-    if (!session ||
-        !session.user) {
+    if (!accessToken) {
 
         throw new Error(
             "ابتدا باید وارد حساب کاربری شوید."
         );
     }
 
-    const userId =
-        session.user.id;
 
-    const response = await fetch(
-        SUPABASE_URL +
-        "/rest/v1/gang_users?id=eq." +
-        encodeURIComponent(userId) +
-        "&select=id,rank",
-        {
-            method: "GET",
+    const response =
+        await fetch(
+            SUPABASE_URL +
+            "/auth/v1/user",
+            {
+                method: "GET",
 
-            headers: {
-                "apikey": SUPABASE_KEY,
-                "Authorization":
-                    "Bearer " + session.access_token
+                headers: {
+                    "apikey":
+                        SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " +
+                        accessToken
+                }
             }
-        }
-    );
+        );
+
 
     if (!response.ok) {
+
+        if (
+            response.status === 401 ||
+            response.status === 403
+        ) {
+
+            throw new Error(
+                "ورود شما منقضی شده است. دوباره وارد حساب شوید."
+            );
+        }
+
         throw new Error(
-            "خطا در بررسی رتبه حساب."
+            "خطا در بررسی حساب کاربری."
         );
     }
+
+
+    const user =
+        await response.json();
+
+
+    if (!user ||
+        !user.id) {
+
+        throw new Error(
+            "اطلاعات حساب کاربری پیدا نشد."
+        );
+    }
+
+
+    return {
+        user: user,
+        accessToken: accessToken
+    };
+}
+
+
+/*
+    بررسی OWNER بودن کاربر
+*/
+async function getOwner() {
+
+    const auth =
+        await getCurrentUser();
+
+    const userId =
+        auth.user.id;
+
+
+    const response =
+        await fetch(
+            SUPABASE_URL +
+            "/rest/v1/gang_users?id=eq." +
+            encodeURIComponent(userId) +
+            "&select=id,rank",
+            {
+                method: "GET",
+
+                headers: {
+                    "apikey":
+                        SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " +
+                        auth.accessToken
+                }
+            }
+        );
+
+
+    if (!response.ok) {
+
+        let errorMessage =
+            "خطا در بررسی رتبه حساب.";
+
+        try {
+
+            const data =
+                await response.json();
+
+            errorMessage =
+                data.message ||
+                data.error ||
+                errorMessage;
+
+        } catch {}
+
+        throw new Error(errorMessage);
+    }
+
 
     const users =
         await response.json();
 
-    if (!users.length ||
-        String(users[0].rank).toUpperCase() !== "OWNER") {
+
+    if (!users.length) {
+
+        throw new Error(
+            "حساب شما در سیستم ArsinGang پیدا نشد."
+        );
+    }
+
+
+    const rank =
+        String(users[0].rank || "")
+            .toUpperCase();
+
+
+    if (rank !== "OWNER") {
 
         throw new Error(
             "دسترسی فقط برای OWNER مجاز است."
         );
     }
 
-    return session.access_token;
+
+    return auth.accessToken;
 }
 
 
+/*
+    دریافت تبلیغات در انتظار
+*/
 async function loadAds(accessToken) {
 
-    const response = await fetch(
-        SUPABASE_URL +
-        "/rest/v1/ads?status=eq.pending&order=created_at.desc",
-        {
-            method: "GET",
+    const response =
+        await fetch(
+            SUPABASE_URL +
+            "/rest/v1/ads?status=eq.pending&order=created_at.desc",
+            {
+                method: "GET",
 
-            headers: {
-                "apikey": SUPABASE_KEY,
-                "Authorization":
-                    "Bearer " + accessToken
+                headers: {
+                    "apikey":
+                        SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " +
+                        accessToken
+                }
             }
-        }
-    );
+        );
+
 
     if (!response.ok) {
 
@@ -418,6 +535,7 @@ async function loadAds(accessToken) {
             "خطا در دریافت تبلیغات.";
 
         try {
+
             const data =
                 await response.json();
 
@@ -428,13 +546,18 @@ async function loadAds(accessToken) {
 
         } catch {}
 
+
         throw new Error(errorText);
     }
+
 
     return await response.json();
 }
 
 
+/*
+    جلوگیری از اجرای HTML داخل اطلاعات تبلیغ
+*/
 function escapeHtml(value) {
 
     return String(value ?? "")
@@ -446,6 +569,9 @@ function escapeHtml(value) {
 }
 
 
+/*
+    نمایش تبلیغات
+*/
 function renderAds(ads) {
 
     if (!ads.length) {
@@ -505,10 +631,22 @@ function renderAds(ads) {
                         </div>
 
                         <div class="info-box">
+                            <strong>ایمیل</strong>
+                            ${escapeHtml(
+                                ad.advertiser_email || "ثبت نشده"
+                            )}
+                        </div>
+
+                        <div class="info-box">
                             <strong>مدت تبلیغ</strong>
                             ${escapeHtml(
                                 ad.duration_days
                             )} روز
+                        </div>
+
+                        <div class="info-box">
+                            <strong>وضعیت</strong>
+                            در انتظار بررسی
                         </div>
 
                     </div>
@@ -554,16 +692,19 @@ function renderAds(ads) {
 }
 
 
+/*
+    اجرای RPC های مدیریت تبلیغ
+*/
 async function callAdminFunction(
     functionName,
     adId
 ) {
 
-    const session =
-        await getSession();
+    const accessToken =
+        getStoredToken();
 
-    if (!session ||
-        !session.access_token) {
+
+    if (!accessToken) {
 
         throw new Error(
             "نشست ورود پیدا نشد."
@@ -571,26 +712,32 @@ async function callAdminFunction(
     }
 
 
-    const response = await fetch(
-        SUPABASE_URL +
-        "/rest/v1/rpc/" +
-        functionName,
-        {
-            method: "POST",
+    const response =
+        await fetch(
+            SUPABASE_URL +
+            "/rest/v1/rpc/" +
+            functionName,
+            {
+                method: "POST",
 
-            headers: {
-                "apikey": SUPABASE_KEY,
-                "Authorization":
-                    "Bearer " + session.access_token,
-                "Content-Type":
-                    "application/json"
-            },
+                headers: {
+                    "apikey":
+                        SUPABASE_KEY,
 
-            body: JSON.stringify({
-                ad_id: adId
-            })
-        }
-    );
+                    "Authorization":
+                        "Bearer " +
+                        accessToken,
+
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body:
+                    JSON.stringify({
+                        ad_id: adId
+                    })
+            }
+        );
 
 
     if (!response.ok) {
@@ -606,17 +753,23 @@ async function callAdminFunction(
             errorText =
                 data.message ||
                 data.error ||
+                data.hint ||
                 errorText;
 
         } catch {}
 
+
         throw new Error(errorText);
     }
+
 
     return true;
 }
 
 
+/*
+    تأیید تبلیغ
+*/
 async function approveAd(
     adId,
     button
@@ -628,9 +781,12 @@ async function approveAd(
         return;
     }
 
+
     button.disabled = true;
+
     button.textContent =
         "در حال تأیید...";
+
 
     try {
 
@@ -639,27 +795,34 @@ async function approveAd(
             adId
         );
 
+
         const ad =
             document.querySelector(
                 `.ad[data-id="${adId}"]`
             );
 
+
         if (ad) {
             ad.remove();
         }
+
 
         showStatus(
             "✅ تبلیغ با موفقیت تأیید شد.",
             "success"
         );
 
+
         checkEmpty();
+
 
     } catch (error) {
 
         button.disabled = false;
+
         button.textContent =
             "✅ تأیید";
+
 
         showStatus(
             "❌ " + error.message,
@@ -669,6 +832,9 @@ async function approveAd(
 }
 
 
+/*
+    رد تبلیغ
+*/
 async function rejectAd(
     adId,
     button
@@ -680,9 +846,12 @@ async function rejectAd(
         return;
     }
 
+
     button.disabled = true;
+
     button.textContent =
         "در حال رد کردن...";
+
 
     try {
 
@@ -691,27 +860,34 @@ async function rejectAd(
             adId
         );
 
+
         const ad =
             document.querySelector(
                 `.ad[data-id="${adId}"]`
             );
 
+
         if (ad) {
             ad.remove();
         }
+
 
         showStatus(
             "✅ تبلیغ رد شد.",
             "success"
         );
 
+
         checkEmpty();
+
 
     } catch (error) {
 
         button.disabled = false;
+
         button.textContent =
             "❌ رد";
+
 
         showStatus(
             "❌ " + error.message,
@@ -721,6 +897,9 @@ async function rejectAd(
 }
 
 
+/*
+    حذف تبلیغ
+*/
 async function deleteAd(
     adId,
     button
@@ -732,9 +911,12 @@ async function deleteAd(
         return;
     }
 
+
     button.disabled = true;
+
     button.textContent =
         "در حال حذف...";
+
 
     try {
 
@@ -743,27 +925,34 @@ async function deleteAd(
             adId
         );
 
+
         const ad =
             document.querySelector(
                 `.ad[data-id="${adId}"]`
             );
 
+
         if (ad) {
             ad.remove();
         }
+
 
         showStatus(
             "✅ تبلیغ حذف شد.",
             "success"
         );
 
+
         checkEmpty();
+
 
     } catch (error) {
 
         button.disabled = false;
+
         button.textContent =
             "🗑️ حذف";
+
 
         showStatus(
             "❌ " + error.message,
@@ -773,6 +962,9 @@ async function deleteAd(
 }
 
 
+/*
+    اگر تبلیغی باقی نمانده باشد
+*/
 function checkEmpty() {
 
     if (!adsContainer.querySelector(".ad")) {
@@ -786,32 +978,50 @@ function checkEmpty() {
 }
 
 
+/*
+    شروع پنل
+*/
 async function start() {
 
     try {
 
+        showStatus(
+            "در حال بررسی حساب کاربری...",
+            "loading"
+        );
+
+
         const accessToken =
             await getOwner();
+
 
         showStatus(
             "✅ دسترسی OWNER تأیید شد.",
             "success"
         );
 
+
         const ads =
             await loadAds(accessToken);
 
+
         renderAds(ads);
+
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "ADS ADMIN ERROR:",
+            error
+        );
+
 
         adsContainer.innerHTML = `
             <div class="empty">
                 🔒 ${escapeHtml(error.message)}
             </div>
         `;
+
 
         showStatus(
             "❌ " + error.message,
