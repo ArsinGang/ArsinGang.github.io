@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Leaderboard | ArsinGang</title>
+    <title>Gang Coin Leaderboard | ArsinGang</title>
     <meta name="description" content="جدول برترین کاربران بر اساس Gang Coin در ArsinGang">
 
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237b2cff'/%3E%3Ctext x='50' y='66' font-size='48' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3EAG%3C/text%3E%3C/svg%3E">
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -21,56 +26,119 @@
             font-family: Tahoma, Arial, sans-serif;
             color: white;
             background:
-                radial-gradient(circle at 20% 20%, rgba(123, 44, 255, 0.18), transparent 35%),
-                radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.12), transparent 35%),
+                radial-gradient(circle at 15% 15%, rgba(123, 44, 255, 0.18), transparent 32%),
+                radial-gradient(circle at 85% 80%, rgba(0, 217, 255, 0.12), transparent 32%),
+                radial-gradient(circle at 50% 0%, rgba(123, 44, 255, 0.10), transparent 40%),
                 #080812;
             overflow-x: hidden;
         }
 
-        body::before {
+        /* Background lights */
+
+        body::before,
+        body::after {
             content: "";
             position: fixed;
-            inset: 0;
             pointer-events: none;
-            background:
-                radial-gradient(circle at 50% 0%, rgba(123, 44, 255, 0.12), transparent 40%);
+            border-radius: 50%;
+            filter: blur(80px);
             z-index: -1;
+            animation: floatingGlow 8s ease-in-out infinite alternate;
+        }
+
+        body::before {
+            width: 280px;
+            height: 280px;
+            background: rgba(123, 44, 255, 0.10);
+            top: 10%;
+            left: -100px;
+        }
+
+        body::after {
+            width: 260px;
+            height: 260px;
+            background: rgba(0, 217, 255, 0.08);
+            bottom: 5%;
+            right: -100px;
+            animation-delay: 2s;
+        }
+
+        @keyframes floatingGlow {
+            from {
+                transform: translateY(-20px) translateX(0);
+            }
+
+            to {
+                transform: translateY(20px) translateX(25px);
+            }
         }
 
         .container {
             width: min(1100px, 92%);
             margin: auto;
-            padding: 45px 0 60px;
+            padding: 48px 0 65px;
         }
+
+        /* Header */
 
         .header {
             text-align: center;
-            margin-bottom: 38px;
+            margin-bottom: 42px;
+            animation: headerIn 0.8s ease both;
+        }
+
+        @keyframes headerIn {
+            from {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .logo {
-            width: 72px;
-            height: 72px;
-            margin: 0 auto 18px;
-            border-radius: 20px;
+            width: 76px;
+            height: 76px;
+            margin: 0 auto 19px;
+            border-radius: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #7b2cff;
+            background: linear-gradient(145deg, #8d4cff, #651de5);
             box-shadow:
-                0 0 20px rgba(123, 44, 255, 0.55),
-                0 0 55px rgba(123, 44, 255, 0.25);
+                0 0 22px rgba(123, 44, 255, 0.60),
+                0 0 60px rgba(123, 44, 255, 0.24);
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% {
+                box-shadow:
+                    0 0 22px rgba(123, 44, 255, 0.60),
+                    0 0 60px rgba(123, 44, 255, 0.24);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 30px rgba(123, 44, 255, 0.78),
+                    0 0 75px rgba(123, 44, 255, 0.32);
+            }
         }
 
         .logo svg {
-            width: 47px;
-            height: 47px;
+            width: 49px;
+            height: 49px;
         }
 
         h1 {
             font-size: 34px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(123, 44, 255, 0.7);
+            margin-bottom: 11px;
+            text-shadow:
+                0 0 18px rgba(123, 44, 255, 0.65),
+                0 0 45px rgba(123, 44, 255, 0.20);
         }
 
         .subtitle {
@@ -78,104 +146,197 @@
             font-size: 15px;
         }
 
+        /* Top three */
+
         .top-three {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 18px;
-            margin-bottom: 28px;
+            margin-bottom: 30px;
         }
 
         .top-card {
             position: relative;
-            padding: 28px 20px;
+            padding: 29px 20px;
             text-align: center;
             border: 1px solid rgba(123, 44, 255, 0.35);
-            border-radius: 20px;
-            background: linear-gradient(
-                145deg,
-                rgba(25, 20, 48, 0.92),
-                rgba(12, 12, 25, 0.94)
-            );
-            box-shadow: 0 0 25px rgba(123, 44, 255, 0.08);
+            border-radius: 21px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(28, 22, 53, 0.94),
+                    rgba(10, 10, 23, 0.96)
+                );
+            box-shadow:
+                0 0 25px rgba(123, 44, 255, 0.08),
+                inset 0 0 30px rgba(123, 44, 255, 0.025);
             overflow: hidden;
+            opacity: 0;
+            animation: cardIn 0.65s ease forwards;
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .top-card:nth-child(1) {
+            animation-delay: 0.15s;
+        }
+
+        .top-card:nth-child(2) {
+            animation-delay: 0.30s;
+        }
+
+        .top-card:nth-child(3) {
+            animation-delay: 0.45s;
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(28px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .top-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(123, 44, 255, 0.65);
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.28),
+                0 0 30px rgba(123, 44, 255, 0.14);
         }
 
         .top-card::before {
             content: "";
             position: absolute;
-            width: 130px;
-            height: 130px;
-            top: -70px;
-            right: -50px;
+            width: 150px;
+            height: 150px;
+            top: -80px;
+            right: -55px;
             background: rgba(123, 44, 255, 0.18);
             border-radius: 50%;
-            filter: blur(25px);
+            filter: blur(28px);
+            transition: 0.4s ease;
+        }
+
+        .top-card:hover::before {
+            transform: scale(1.25);
         }
 
         .top-card.first {
-            border-color: rgba(255, 208, 64, 0.45);
-            box-shadow: 0 0 30px rgba(255, 208, 64, 0.08);
+            border-color: rgba(255, 208, 64, 0.48);
+            box-shadow:
+                0 0 28px rgba(255, 208, 64, 0.08),
+                inset 0 0 25px rgba(255, 208, 64, 0.025);
+            animation:
+                cardIn 0.65s ease forwards,
+                championGlow 3s ease-in-out 1s infinite;
+        }
+
+        @keyframes championGlow {
+            0%, 100% {
+                box-shadow:
+                    0 0 28px rgba(255, 208, 64, 0.08),
+                    inset 0 0 25px rgba(255, 208, 64, 0.025);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 40px rgba(255, 208, 64, 0.16),
+                    inset 0 0 30px rgba(255, 208, 64, 0.04);
+            }
         }
 
         .top-card.second {
-            border-color: rgba(190, 205, 220, 0.4);
+            border-color: rgba(190, 205, 220, 0.40);
         }
 
         .top-card.third {
-            border-color: rgba(190, 125, 70, 0.4);
+            border-color: rgba(190, 125, 70, 0.40);
         }
 
         .position {
             font-size: 31px;
             font-weight: bold;
             margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
         }
 
         .first .position {
             color: #ffd84d;
-            text-shadow: 0 0 18px rgba(255, 216, 77, 0.45);
+            text-shadow: 0 0 18px rgba(255, 216, 77, 0.48);
         }
 
         .second .position {
             color: #d5dbe5;
+            text-shadow: 0 0 15px rgba(213, 219, 229, 0.20);
         }
 
         .third .position {
             color: #cd8c5c;
+            text-shadow: 0 0 15px rgba(205, 140, 92, 0.20);
         }
 
         .top-name {
             font-size: 20px;
             font-weight: bold;
-            margin-bottom: 9px;
+            margin-bottom: 10px;
             word-break: break-word;
+            position: relative;
+            z-index: 1;
         }
 
         .top-coins {
             color: #00d9ff;
             font-size: 16px;
             font-weight: bold;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 12px rgba(0, 217, 255, 0.28);
         }
 
         .top-rank {
-            margin-top: 10px;
+            margin-top: 11px;
             display: inline-block;
             padding: 6px 13px;
             border-radius: 999px;
             background: rgba(123, 44, 255, 0.16);
-            border: 1px solid rgba(123, 44, 255, 0.3);
+            border: 1px solid rgba(123, 44, 255, 0.30);
             color: #cdb7ff;
             font-size: 12px;
+            position: relative;
+            z-index: 1;
         }
+
+        /* Leaderboard box */
 
         .leaderboard-box {
             border: 1px solid rgba(123, 44, 255, 0.28);
             border-radius: 22px;
-            background: rgba(12, 12, 25, 0.84);
+            background: rgba(12, 12, 25, 0.86);
             box-shadow:
                 0 0 35px rgba(123, 44, 255, 0.08),
                 inset 0 0 30px rgba(123, 44, 255, 0.025);
             overflow: hidden;
+            animation: boxIn 0.8s ease 0.45s both;
+        }
+
+        @keyframes boxIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .box-header {
@@ -223,11 +384,68 @@
         }
 
         tbody tr {
-            transition: 0.2s ease;
+            opacity: 0;
+            animation: rowIn 0.45s ease forwards;
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        tbody tr:nth-child(1) {
+            animation-delay: 0.10s;
+        }
+
+        tbody tr:nth-child(2) {
+            animation-delay: 0.16s;
+        }
+
+        tbody tr:nth-child(3) {
+            animation-delay: 0.22s;
+        }
+
+        tbody tr:nth-child(4) {
+            animation-delay: 0.28s;
+        }
+
+        tbody tr:nth-child(5) {
+            animation-delay: 0.34s;
+        }
+
+        tbody tr:nth-child(6) {
+            animation-delay: 0.40s;
+        }
+
+        tbody tr:nth-child(7) {
+            animation-delay: 0.46s;
+        }
+
+        tbody tr:nth-child(8) {
+            animation-delay: 0.52s;
+        }
+
+        tbody tr:nth-child(9) {
+            animation-delay: 0.58s;
+        }
+
+        tbody tr:nth-child(10) {
+            animation-delay: 0.64s;
+        }
+
+        @keyframes rowIn {
+            from {
+                opacity: 0;
+                transform: translateX(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         tbody tr:hover {
             background: rgba(123, 44, 255, 0.07);
+            transform: translateX(-3px);
         }
 
         .number {
@@ -244,6 +462,7 @@
         .coins {
             color: #00d9ff;
             font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.20);
         }
 
         .rank-badge {
@@ -255,6 +474,22 @@
             color: #cbb6ff;
             font-size: 11px;
         }
+
+        /* Special ranks */
+
+        .rank-owner {
+            color: #ffd84d;
+            border-color: rgba(255, 216, 77, 0.35);
+            background: rgba(255, 216, 77, 0.08);
+        }
+
+        .rank-media {
+            color: #00d9ff;
+            border-color: rgba(0, 217, 255, 0.30);
+            background: rgba(0, 217, 255, 0.07);
+        }
+
+        /* Loading */
 
         .loading,
         .error,
@@ -272,7 +507,7 @@
             width: 34px;
             height: 34px;
             margin: 0 auto 15px;
-            border: 3px solid rgba(123, 44, 255, 0.2);
+            border: 3px solid rgba(123, 44, 255, 0.20);
             border-top-color: #7b2cff;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
@@ -284,10 +519,12 @@
             }
         }
 
+        /* Back button */
+
         .back-button {
             display: flex;
             width: fit-content;
-            margin: 30px auto 0;
+            margin: 32px auto 0;
             padding: 13px 25px;
             align-items: center;
             justify-content: center;
@@ -298,10 +535,23 @@
             border: 1px solid rgba(123, 44, 255, 0.45);
             background: rgba(123, 44, 255, 0.12);
             transition: 0.25s ease;
+            animation: buttonIn 0.7s ease 0.8s both;
+        }
+
+        @keyframes buttonIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .back-button:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             background: rgba(123, 44, 255, 0.22);
             box-shadow: 0 0 22px rgba(123, 44, 255, 0.25);
         }
@@ -311,7 +561,10 @@
             height: 18px;
         }
 
+        /* Mobile */
+
         @media (max-width: 750px) {
+
             .container {
                 padding-top: 30px;
             }
@@ -320,19 +573,40 @@
                 font-size: 28px;
             }
 
+            .subtitle {
+                font-size: 13px;
+            }
+
             .top-three {
                 grid-template-columns: 1fr;
             }
 
             .top-card {
-                padding: 22px 18px;
+                padding: 23px 18px;
             }
 
             .box-header {
                 align-items: flex-start;
                 flex-direction: column;
             }
+
+            .leaderboard-box {
+                border-radius: 18px;
+            }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
     </style>
 </head>
 
@@ -343,7 +617,9 @@
     <header class="header">
 
         <div class="logo">
+
             <svg viewBox="0 0 100 100" fill="none">
+
                 <text
                     x="50"
                     y="67"
@@ -354,7 +630,9 @@
                     font-weight="bold">
                     AG
                 </text>
+
             </svg>
+
         </div>
 
         <h1>🏆 Gang Coin Leaderboard</h1>
@@ -391,8 +669,11 @@
         <div id="tableContent">
 
             <div class="loading">
+
                 <div class="spinner"></div>
+
                 در حال دریافت رتبه‌بندی...
+
             </div>
 
         </div>
@@ -401,9 +682,15 @@
 
     <a class="back-button" href="/">
 
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+
             <path d="M19 12H5"></path>
             <path d="M12 19l-7-7 7-7"></path>
+
         </svg>
 
         بازگشت به صفحه اصلی
@@ -414,42 +701,72 @@
 
 <script>
 
-const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co";
+const SUPABASE_URL =
+    "https://lhddjuomukejpvssyhuv.supabase.co";
 
 const SUPABASE_KEY =
     "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
+
 async function loadLeaderboard() {
 
-    const topThree = document.getElementById("topThree");
-    const tableContent = document.getElementById("tableContent");
-    const updateText = document.getElementById("updateText");
+    const topThree =
+        document.getElementById("topThree");
+
+    const tableContent =
+        document.getElementById("tableContent");
+
+    const updateText =
+        document.getElementById("updateText");
 
     try {
 
         const response = await fetch(
-            SUPABASE_URL + "/rest/v1/rpc/get_gang_leaderboard",
+            SUPABASE_URL +
+            "/rest/v1/rpc/get_gang_leaderboard",
             {
                 method: "POST",
+
                 headers: {
                     "apikey": SUPABASE_KEY,
-                    "Authorization": "Bearer " + SUPABASE_KEY,
-                    "Content-Type": "application/json"
+                    "Authorization":
+                        "Bearer " + SUPABASE_KEY,
+                    "Content-Type":
+                        "application/json"
                 },
+
                 body: JSON.stringify({})
             }
         );
 
         if (!response.ok) {
-            throw new Error("RPC request failed");
+
+            const errorText =
+                await response.text();
+
+            console.error(
+                "Supabase RPC Error:",
+                response.status,
+                errorText
+            );
+
+            throw new Error(
+                "RPC request failed"
+            );
         }
 
-        const users = await response.json();
+        const users =
+            await response.json();
 
-        if (!Array.isArray(users) || users.length === 0) {
+        if (
+            !Array.isArray(users) ||
+            users.length === 0
+        ) {
 
             topThree.innerHTML = `
-                <div class="empty" style="grid-column: 1 / -1;">
+                <div
+                    class="empty"
+                    style="grid-column: 1 / -1;">
                     هنوز کاربری برای نمایش وجود ندارد.
                 </div>
             `;
@@ -460,12 +777,15 @@ async function loadLeaderboard() {
                 </div>
             `;
 
-            updateText.textContent = "بدون اطلاعات";
+            updateText.textContent =
+                "بدون اطلاعات";
 
             return;
         }
 
-        renderTopThree(users.slice(0, 3));
+        renderTopThree(
+            users.slice(0, 3)
+        );
 
         renderTable(users);
 
@@ -473,17 +793,25 @@ async function loadLeaderboard() {
 
         updateText.textContent =
             "آخرین بروزرسانی: " +
-            now.toLocaleTimeString("fa-IR", {
-                hour: "2-digit",
-                minute: "2-digit"
-            });
+            now.toLocaleTimeString(
+                "fa-IR",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Leaderboard Error:",
+            error
+        );
 
         topThree.innerHTML = `
-            <div class="error" style="grid-column: 1 / -1;">
+            <div
+                class="error"
+                style="grid-column: 1 / -1;">
                 دریافت اطلاعات با مشکل مواجه شد.
             </div>
         `;
@@ -494,16 +822,21 @@ async function loadLeaderboard() {
             </div>
         `;
 
-        updateText.textContent = "خطا در بروزرسانی";
+        updateText.textContent =
+            "خطا در بروزرسانی";
     }
 }
 
+
 function renderTopThree(users) {
 
-    const container = document.getElementById("topThree");
+    const container =
+        document.getElementById("topThree");
 
     if (users.length === 0) {
+
         container.innerHTML = "";
+
         return;
     }
 
@@ -522,67 +855,91 @@ function renderTopThree(users) {
         }
     ];
 
-    container.innerHTML = users.map((user, index) => {
+    container.innerHTML =
+        users.map(
+            (user, index) => {
 
-        const position = positions[index];
+                const position =
+                    positions[index];
 
-        return `
-            <div class="top-card ${position.className}">
+                return `
+                    <div
+                        class="top-card ${position.className}">
 
-                <div class="position">
-                    ${position.number}
-                </div>
+                        <div class="position">
+                            ${position.number}
+                        </div>
 
-                <div class="top-name">
-                    ${escapeHtml(user.username)}
-                </div>
+                        <div class="top-name">
+                            ${escapeHtml(user.username)}
+                        </div>
 
-                <div class="top-coins">
-                    ${formatCoins(user.gang_coins)} Gang Coin
-                </div>
+                        <div class="top-coins">
+                            ${formatCoins(user.gang_coins)}
+                            Gang Coin
+                        </div>
 
-                <div class="top-rank">
-                    ${escapeHtml(user.rank || "بدون رنک")}
-                </div>
+                        <div class="top-rank">
+                            ${escapeHtml(
+                                user.rank || "بدون رنک"
+                            )}
+                        </div>
 
-            </div>
-        `;
+                    </div>
+                `;
 
-    }).join("");
+            }
+        ).join("");
 
 }
 
+
 function renderTable(users) {
 
-    const container = document.getElementById("tableContent");
+    const container =
+        document.getElementById("tableContent");
 
-    const rows = users.map((user, index) => {
+    const rows =
+        users.map(
+            (user, index) => {
 
-        return `
-            <tr>
+                const rankClass =
+                    getRankClass(user.rank);
 
-                <td class="number">
-                    #${index + 1}
-                </td>
+                return `
+                    <tr>
 
-                <td class="username">
-                    ${escapeHtml(user.username)}
-                </td>
+                        <td class="number">
+                            #${index + 1}
+                        </td>
 
-                <td class="coins">
-                    ${formatCoins(user.gang_coins)}
-                </td>
+                        <td class="username">
+                            ${escapeHtml(
+                                user.username
+                            )}
+                        </td>
 
-                <td>
-                    <span class="rank-badge">
-                        ${escapeHtml(user.rank || "بدون رنک")}
-                    </span>
-                </td>
+                        <td class="coins">
+                            ${formatCoins(
+                                user.gang_coins
+                            )}
+                        </td>
 
-            </tr>
-        `;
+                        <td>
+                            <span
+                                class="rank-badge ${rankClass}">
+                                ${escapeHtml(
+                                    user.rank ||
+                                    "بدون رنک"
+                                )}
+                            </span>
+                        </td>
 
-    }).join("");
+                    </tr>
+                `;
+
+            }
+        ).join("");
 
     container.innerHTML = `
         <div class="table-wrap">
@@ -590,12 +947,27 @@ function renderTable(users) {
             <table>
 
                 <thead>
+
                     <tr>
-                        <th>رتبه</th>
-                        <th>نام کاربر</th>
-                        <th>Gang Coin</th>
-                        <th>رنک</th>
+
+                        <th>
+                            رتبه
+                        </th>
+
+                        <th>
+                            نام کاربر
+                        </th>
+
+                        <th>
+                            Gang Coin
+                        </th>
+
+                        <th>
+                            رنک
+                        </th>
+
                     </tr>
+
                 </thead>
 
                 <tbody>
@@ -608,12 +980,38 @@ function renderTable(users) {
     `;
 }
 
+
+function getRankClass(rank) {
+
+    if (!rank) {
+        return "";
+    }
+
+    const value =
+        String(rank).toUpperCase();
+
+    if (value === "OWNER") {
+        return "rank-owner";
+    }
+
+    if (value === "MEDIA") {
+        return "rank-media";
+    }
+
+    return "";
+}
+
+
 function formatCoins(value) {
 
-    const number = Number(value) || 0;
+    const number =
+        Number(value) || 0;
 
-    return number.toLocaleString("fa-IR");
+    return number.toLocaleString(
+        "fa-IR"
+    );
 }
+
 
 function escapeHtml(value) {
 
@@ -624,6 +1022,7 @@ function escapeHtml(value) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 }
+
 
 loadLeaderboard();
 
