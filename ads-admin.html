@@ -1,1033 +1,1063 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>مدیریت تبلیغات | ArsinGang</title>
-    <meta name="description" content="پنل مدیریت تبلیغات ArsinGang">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237b2cff'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='28' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
+<title>ArsinGang | مدیریت تبلیغات</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237b2cff'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='38' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
 
-        body {
-            min-height: 100vh;
-            font-family: Tahoma, Arial, sans-serif;
-            background:
-                radial-gradient(circle at top right, rgba(123,44,255,.25), transparent 35%),
-                radial-gradient(circle at bottom left, rgba(0,217,255,.18), transparent 35%),
-                #080811;
-            color: white;
-            padding: 30px 15px;
-        }
+<style>
 
-        .container {
-            width: 100%;
-            max-width: 900px;
-            margin: auto;
-        }
+*{
+box-sizing:border-box;
+}
 
-        .logo {
-            width: 82px;
-            height: 82px;
-            margin: 0 auto 20px;
-            border-radius: 22px;
-            background: #7b2cff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 31px;
-            font-weight: bold;
-            box-shadow:
-                0 0 25px rgba(123,44,255,.7),
-                0 0 60px rgba(0,217,255,.2);
-        }
+body{
+margin:0;
+min-height:100vh;
 
-        h1 {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 8px;
-            text-shadow: 0 0 18px rgba(123,44,255,.8);
-        }
+font-family:Tahoma,Arial,sans-serif;
 
-        .subtitle {
-            text-align: center;
-            color: #aaaabe;
-            margin-bottom: 25px;
-        }
+background:
+radial-gradient(
+circle at top,
+#24104d 0%,
+#0b0714 45%,
+#05030a 100%
+);
 
-        .card {
-            background: rgba(15,15,30,.88);
-            border: 1px solid rgba(123,44,255,.35);
-            border-radius: 22px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow:
-                0 0 35px rgba(123,44,255,.12),
-                inset 0 0 30px rgba(0,217,255,.025);
-            backdrop-filter: blur(10px);
-        }
+color:white;
 
-        .status {
-            text-align: center;
-            padding: 13px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            font-size: 13px;
-            line-height: 1.8;
-        }
+padding:30px 20px;
+}
 
-        .loading {
-            background: rgba(123,44,255,.08);
-            border: 1px solid rgba(123,44,255,.3);
-            color: #c9aaff;
-        }
+.container{
+width:100%;
+max-width:900px;
+margin:auto;
+}
 
-        .success {
-            background: rgba(0,217,255,.08);
-            border: 1px solid rgba(0,217,255,.35);
-            color: #69eaff;
-        }
+.logo{
+width:82px;
+height:82px;
 
-        .error {
-            background: rgba(255,60,90,.08);
-            border: 1px solid rgba(255,60,90,.35);
-            color: #ff7188;
-        }
+margin:0 auto 18px;
 
-        .ad {
-            background: rgba(8,8,18,.8);
-            border: 1px solid #292943;
-            border-radius: 17px;
-            padding: 20px;
-            margin-bottom: 16px;
-        }
+border-radius:24px;
 
-        .ad:last-child {
-            margin-bottom: 0;
-        }
+background:#7b2cff;
 
-        .ad-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 10px;
-        }
+display:flex;
+align-items:center;
+justify-content:center;
 
-        .ad-description {
-            color: #aaaabe;
-            font-size: 13px;
-            line-height: 1.9;
-            margin-bottom: 15px;
-        }
+font-family:Arial,sans-serif;
+font-size:30px;
+font-weight:bold;
 
-        .ad-info {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
-        }
+box-shadow:
+0 0 20px #7b2cff,
+0 0 45px rgba(0,220,255,.35);
+}
 
-        .info-box {
-            background: rgba(123,44,255,.06);
-            border: 1px solid rgba(123,44,255,.16);
-            border-radius: 10px;
-            padding: 10px;
-            font-size: 12px;
-            color: #aaaabe;
-            word-break: break-word;
-        }
+h1{
+text-align:center;
+margin:0;
+font-size:28px;
+}
 
-        .info-box strong {
-            display: block;
-            color: #ddd;
-            margin-bottom: 4px;
-        }
+.subtitle{
+text-align:center;
+color:#bbb;
+margin:10px 0 25px;
+}
 
-        .ad-image {
-            width: 100%;
-            max-height: 250px;
-            object-fit: contain;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            background: #05050c;
-        }
+.card{
+background:rgba(15,10,28,.88);
 
-        .target-link {
-            display: block;
-            color: #00d9ff;
-            text-decoration: none;
-            font-size: 12px;
-            margin-bottom: 15px;
-            word-break: break-all;
-        }
+border:1px solid rgba(139,75,255,.5);
 
-        .target-link:hover {
-            text-decoration: underline;
-        }
+border-radius:22px;
 
-        .actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-        }
+padding:25px;
 
-        .action-btn {
-            border: none;
-            border-radius: 11px;
-            padding: 12px;
-            color: white;
-            font-family: inherit;
-            font-weight: bold;
-            cursor: pointer;
-            transition: .2s;
-        }
+box-shadow:
+0 0 25px rgba(123,44,255,.18),
+inset 0 0 20px rgba(0,220,255,.03);
 
-        .approve {
-            background: linear-gradient(90deg, #00a878, #00d9a0);
-        }
+backdrop-filter:blur(10px);
 
-        .reject {
-            background: linear-gradient(90deg, #c52b48, #ff4565);
-        }
+margin-bottom:20px;
+}
 
-        .delete {
-            background: linear-gradient(90deg, #5a1d8f, #7b2cff);
-        }
+.status{
+padding:14px;
 
-        .action-btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
-        }
+border-radius:12px;
 
-        .action-btn:disabled {
-            opacity: .5;
-            cursor: not-allowed;
-            transform: none;
-        }
+text-align:center;
 
-        .empty {
-            text-align: center;
-            padding: 35px 15px;
-            color: #77778f;
-            line-height: 2;
-        }
+font-size:14px;
 
-        .back-box {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 18px;
-            background: rgba(15,15,30,.88);
-            border: 1px solid rgba(123,44,255,.35);
-            box-shadow: 0 0 35px rgba(123,44,255,.12);
-        }
+line-height:1.9;
 
-        .back {
-            display: block;
-            text-align: center;
-            color: #aaa;
-            text-decoration: none;
-            font-size: 13px;
-        }
+background:rgba(123,44,255,.08);
 
-        .back:hover {
-            color: #00d9ff;
-        }
+border:1px solid rgba(123,44,255,.35);
 
-        @media (max-width: 600px) {
+color:#c7a9ff;
 
-            h1 {
-                font-size: 26px;
-            }
+margin-bottom:20px;
+}
 
-            .card {
-                padding: 18px;
-            }
+.success{
+background:rgba(0,220,255,.08);
 
-            .ad-info {
-                grid-template-columns: 1fr;
-            }
+border:1px solid rgba(0,220,255,.35);
 
-            .actions {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+color:#75eaff;
+}
+
+.error{
+background:rgba(255,50,80,.1);
+
+border:1px solid rgba(255,70,100,.4);
+
+color:#ff9aaa;
+}
+
+.ad{
+background:#090711;
+
+border:1px solid #34244d;
+
+border-radius:16px;
+
+padding:18px;
+
+margin-bottom:15px;
+
+box-shadow:
+0 0 15px rgba(123,44,255,.08);
+}
+
+.ad:last-child{
+margin-bottom:0;
+}
+
+.ad h2{
+margin:0 0 10px;
+
+font-size:20px;
+}
+
+.ad-description{
+color:#ccc;
+
+line-height:1.9;
+
+margin-bottom:15px;
+}
+
+.ad-image{
+width:100%;
+
+max-height:300px;
+
+object-fit:contain;
+
+border-radius:12px;
+
+margin:10px 0 15px;
+
+background:#05030a;
+}
+
+.info-box{
+background:rgba(123,44,255,.07);
+
+border:1px solid rgba(123,44,255,.2);
+
+border-radius:12px;
+
+padding:12px;
+
+line-height:2;
+
+font-size:13px;
+
+color:#ccc;
+}
+
+.info-box strong{
+color:white;
+}
+
+.ad-link{
+color:#00d9ff;
+
+word-break:break-all;
+
+text-decoration:none;
+}
+
+.actions{
+display:flex;
+
+gap:10px;
+
+margin-top:15px;
+
+flex-wrap:wrap;
+}
+
+.main-btn{
+flex:1;
+
+min-width:130px;
+
+padding:13px 16px;
+
+border:0;
+
+border-radius:12px;
+
+color:white;
+
+font-size:14px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.2s;
+}
+
+.main-btn:hover{
+transform:translateY(-1px);
+}
+
+.approve-btn{
+background:
+linear-gradient(
+135deg,
+#16c784,
+#00b8a9
+);
+
+box-shadow:
+0 0 15px rgba(22,199,132,.2);
+}
+
+.reject-btn{
+background:
+linear-gradient(
+135deg,
+#ff4567,
+#d7264f
+);
+
+box-shadow:
+0 0 15px rgba(255,50,80,.18);
+}
+
+.delete-btn{
+background:#21152d;
+
+border:1px solid #5a315f;
+
+color:#ff9aaa;
+}
+
+.empty{
+text-align:center;
+
+color:#aaa;
+
+padding:30px 10px;
+
+line-height:2;
+}
+
+.loading{
+text-align:center;
+
+color:#aaa;
+
+padding:25px;
+}
+
+.back-btn{
+display:block;
+
+width:100%;
+
+margin-top:20px;
+
+padding:13px;
+
+border-radius:12px;
+
+background:#171020;
+
+border:1px solid #34244d;
+
+color:#ddd;
+
+text-decoration:none;
+
+text-align:center;
+
+transition:.2s;
+}
+
+.back-btn:hover{
+border-color:#7b2cff;
+
+box-shadow:
+0 0 15px rgba(123,44,255,.2);
+}
+
+</style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <div class="logo">AG</div>
+<div class="logo">
+AG
+</div>
 
-    <h1>📢 مدیریت تبلیغات</h1>
+<h1>
+🛠️ مدیریت تبلیغات
+</h1>
 
-    <p class="subtitle">
-        پنل مدیریت تبلیغات ArsinGang
-    </p>
+<div class="subtitle">
+بررسی و مدیریت درخواست‌های تبلیغاتی ArsinGang
+</div>
 
-    <div id="status" class="status loading">
-        در حال بررسی دسترسی...
-    </div>
+<div class="card">
 
-    <div class="card">
+<div
+id="status"
+class="status">
 
-        <div id="adsContainer">
-            <div class="empty">
-                در حال دریافت تبلیغات...
-            </div>
-        </div>
-
-    </div>
-
-    <div class="back-box">
-        <a href="/" class="back">
-            ← بازگشت به صفحه اصلی
-        </a>
-    </div>
+⏳ در حال بررسی حساب کاربری...
 
 </div>
+
+<div
+id="adsContainer">
+
+<div class="loading">
+⏳ در حال دریافت درخواست‌های تبلیغاتی...
+</div>
+
+</div>
+
+<a
+class="back-btn"
+href="/">
+
+⬅️ بازگشت به صفحه اصلی
+
+</a>
+
+</div>
+
+</div>
+
 
 <script>
 
 const SUPABASE_URL =
-    "https://lhddjuomukejpvssyhuv.supabase.co";
+"https://lhddjuomukejpvssyhuv.supabase.co";
 
 const SUPABASE_KEY =
-    "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
+"sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
 
-const statusBox =
-    document.getElementById("status");
+/* -------------------------
+   STATUS
+------------------------- */
 
-const adsContainer =
-    document.getElementById("adsContainer");
+function showStatus(text,type=""){
 
+const box =
+document.getElementById("status");
 
-function showStatus(text, type) {
+box.textContent = text;
 
-    statusBox.className =
-        "status " + type;
+box.className =
+"status " + type;
 
-    statusBox.textContent =
-        text;
 }
 
 
-/*
-    گرفتن توکن ورود از سیستم لاگین سایت
-*/
-function getStoredToken() {
+/* -------------------------
+   GET TOKEN
+------------------------- */
 
-    const possibleKeys = [
-        "arsin_user_token",
-        "supabase_access_token",
-        "access_token"
-    ];
+function getToken(){
 
-    for (const key of possibleKeys) {
+return localStorage.getItem(
+"arsin_user_token"
+);
 
-        const token =
-            localStorage.getItem(key);
-
-        if (token &&
-            token !== "null" &&
-            token !== "undefined") {
-
-            return token;
-        }
-    }
-
-    return null;
 }
 
 
-/*
-    بررسی کاربر فعلی با توکن
-*/
-async function getCurrentUser() {
+/* -------------------------
+   SUPABASE REQUEST
+------------------------- */
 
-    const accessToken =
-        getStoredToken();
+async function supabaseRequest(
+path,
+options={}
+){
 
-    if (!accessToken) {
+try{
 
-        throw new Error(
-            "ابتدا باید وارد حساب کاربری شوید."
-        );
-    }
+const token =
+getToken();
 
+const headers = {
 
-    const response =
-        await fetch(
-            SUPABASE_URL +
-            "/auth/v1/user",
-            {
-                method: "GET",
+"Content-Type":
+"application/json",
 
-                headers: {
-                    "apikey":
-                        SUPABASE_KEY,
+"apikey":
+SUPABASE_KEY,
 
-                    "Authorization":
-                        "Bearer " +
-                        accessToken
-                }
-            }
-        );
+...(options.headers || {})
 
+};
 
-    if (!response.ok) {
+if(token){
 
-        if (
-            response.status === 401 ||
-            response.status === 403
-        ) {
+headers["Authorization"] =
+"Bearer " + token;
 
-            throw new Error(
-                "ورود شما منقضی شده است. دوباره وارد حساب شوید."
-            );
-        }
+}
 
-        throw new Error(
-            "خطا در بررسی حساب کاربری."
-        );
-    }
+const response =
+await fetch(
+SUPABASE_URL + path,
+{
+...options,
+headers:headers
+}
+);
 
+const data =
+await response
+.json()
+.catch(()=>null);
 
-    const user =
-        await response.json();
+return {
 
+ok:response.ok,
 
-    if (!user ||
-        !user.id) {
+status:response.status,
 
-        throw new Error(
-            "اطلاعات حساب کاربری پیدا نشد."
-        );
-    }
+data:data
 
+};
 
-    return {
-        user: user,
-        accessToken: accessToken
-    };
+}catch(error){
+
+return {
+
+ok:false,
+
+status:0,
+
+data:{
+message:
+"اتصال به سرور برقرار نشد."
+}
+
+};
+
+}
+
 }
 
 
-/*
-    بررسی OWNER بودن کاربر
-*/
-async function getOwner() {
+/* -------------------------
+   CHECK LOGIN
+------------------------- */
 
-    const auth =
-        await getCurrentUser();
+async function checkLogin(){
 
-    const userId =
-        auth.user.id;
+const token =
+getToken();
 
+if(!token){
 
-    const response =
-        await fetch(
-            SUPABASE_URL +
-            "/rest/v1/gang_users?id=eq." +
-            encodeURIComponent(userId) +
-            "&select=id,rank",
-            {
-                method: "GET",
+showStatus(
+"🔒 ابتدا باید وارد حساب کاربری شوید.",
+"error"
+);
 
-                headers: {
-                    "apikey":
-                        SUPABASE_KEY,
+document.getElementById(
+"adsContainer"
+).innerHTML = "";
 
-                    "Authorization":
-                        "Bearer " +
-                        auth.accessToken
-                }
-            }
-        );
+return false;
 
+}
 
-    if (!response.ok) {
+return true;
 
-        let errorMessage =
-            "خطا در بررسی رتبه حساب.";
-
-        try {
-
-            const data =
-                await response.json();
-
-            errorMessage =
-                data.message ||
-                data.error ||
-                errorMessage;
-
-        } catch {}
-
-        throw new Error(errorMessage);
-    }
-
-
-    const users =
-        await response.json();
-
-
-    if (!users.length) {
-
-        throw new Error(
-            "حساب شما در سیستم ArsinGang پیدا نشد."
-        );
-    }
-
-
-    const rank =
-        String(users[0].rank || "")
-            .toUpperCase();
-
-
-    if (rank !== "OWNER") {
-
-        throw new Error(
-            "دسترسی فقط برای OWNER مجاز است."
-        );
-    }
-
-
-    return auth.accessToken;
 }
 
 
-/*
-    دریافت تبلیغات در انتظار
-*/
-async function loadAds(accessToken) {
+/* -------------------------
+   CHECK OWNER
+------------------------- */
 
-    const response =
-        await fetch(
-            SUPABASE_URL +
-            "/rest/v1/ads?status=eq.pending&order=created_at.desc",
-            {
-                method: "GET",
+async function checkOwner(){
 
-                headers: {
-                    "apikey":
-                        SUPABASE_KEY,
+const result =
+await supabaseRequest(
+"/auth/v1/user"
+);
 
-                    "Authorization":
-                        "Bearer " +
-                        accessToken
-                }
-            }
-        );
+if(!result.ok){
 
+localStorage.removeItem(
+"arsin_user_token"
+);
 
-    if (!response.ok) {
+localStorage.removeItem(
+"arsin_user_refresh"
+);
 
-        let errorText =
-            "خطا در دریافت تبلیغات.";
+showStatus(
+"🔒 ورود شما معتبر نیست. لطفاً دوباره وارد حساب کاربری شوید.",
+"error"
+);
 
-        try {
+document.getElementById(
+"adsContainer"
+).innerHTML = "";
 
-            const data =
-                await response.json();
+return false;
 
-            errorText =
-                data.message ||
-                data.error ||
-                errorText;
+}
 
-        } catch {}
+const userId =
+result.data?.id;
 
+if(!userId){
 
-        throw new Error(errorText);
-    }
+showStatus(
+"❌ شناسه کاربر پیدا نشد.",
+"error"
+);
 
+return false;
 
-    return await response.json();
 }
 
 
-/*
-    جلوگیری از اجرای HTML داخل اطلاعات تبلیغ
-*/
-function escapeHtml(value) {
+const ownerResult =
+await supabaseRequest(
+"/rest/v1/gang_users?id=eq." +
+encodeURIComponent(userId) +
+"&select=id,rank"
+);
 
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+if(!ownerResult.ok){
+
+showStatus(
+"❌ خطا در بررسی سطح دسترسی.",
+"error"
+);
+
+return false;
+
 }
 
 
-/*
-    نمایش تبلیغات
-*/
-function renderAds(ads) {
+if(
+!ownerResult.data ||
+!ownerResult.data.length
+){
 
-    if (!ads.length) {
+showStatus(
+"🚫 حساب شما در سیستم ArsinGang پیدا نشد.",
+"error"
+);
 
-        adsContainer.innerHTML = `
-            <div class="empty">
-                🎉 هیچ درخواست تبلیغی در انتظار بررسی نیست.
-            </div>
-        `;
+return false;
 
-        return;
-    }
-
-
-    adsContainer.innerHTML =
-        ads.map(ad => {
-
-            const image =
-                ad.image_url
-                ? `
-                    <img
-                        class="ad-image"
-                        src="${escapeHtml(ad.image_url)}"
-                        alt="تصویر تبلیغ"
-                        onerror="this.style.display='none'"
-                    >
-                `
-                : "";
-
-
-            return `
-                <div class="ad" data-id="${ad.id}">
-
-                    <div class="ad-title">
-                        ${escapeHtml(ad.title)}
-                    </div>
-
-                    ${
-                        ad.description
-                        ? `
-                            <div class="ad-description">
-                                ${escapeHtml(ad.description)}
-                            </div>
-                        `
-                        : ""
-                    }
-
-                    ${image}
-
-                    <div class="ad-info">
-
-                        <div class="info-box">
-                            <strong>تبلیغ‌دهنده</strong>
-                            ${escapeHtml(
-                                ad.advertiser_name || "ثبت نشده"
-                            )}
-                        </div>
-
-                        <div class="info-box">
-                            <strong>ایمیل</strong>
-                            ${escapeHtml(
-                                ad.advertiser_email || "ثبت نشده"
-                            )}
-                        </div>
-
-                        <div class="info-box">
-                            <strong>مدت تبلیغ</strong>
-                            ${escapeHtml(
-                                ad.duration_days
-                            )} روز
-                        </div>
-
-                        <div class="info-box">
-                            <strong>وضعیت</strong>
-                            در انتظار بررسی
-                        </div>
-
-                    </div>
-
-                    <a
-                        class="target-link"
-                        href="${escapeHtml(ad.target_url)}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        🔗 ${escapeHtml(ad.target_url)}
-                    </a>
-
-                    <div class="actions">
-
-                        <button
-                            class="action-btn approve"
-                            onclick="approveAd(${ad.id}, this)"
-                        >
-                            ✅ تأیید
-                        </button>
-
-                        <button
-                            class="action-btn reject"
-                            onclick="rejectAd(${ad.id}, this)"
-                        >
-                            ❌ رد
-                        </button>
-
-                        <button
-                            class="action-btn delete"
-                            onclick="deleteAd(${ad.id}, this)"
-                        >
-                            🗑️ حذف
-                        </button>
-
-                    </div>
-
-                </div>
-            `;
-
-        }).join("");
 }
 
 
-/*
-    اجرای RPC های مدیریت تبلیغ
-*/
+const rank =
+(ownerResult.data[0].rank || "")
+.toString()
+.toUpperCase();
+
+
+if(rank !== "OWNER"){
+
+showStatus(
+"🚫 دسترسی غیرمجاز. فقط OWNER می‌تواند درخواست‌های تبلیغاتی را مدیریت کند.",
+"error"
+);
+
+document.getElementById(
+"adsContainer"
+).innerHTML = "";
+
+return false;
+
+}
+
+
+showStatus(
+"👑 ورود موفق بود. دسترسی OWNER تأیید شد.",
+"success"
+);
+
+return true;
+
+}
+
+
+/* -------------------------
+   ESCAPE HTML
+------------------------- */
+
+function escapeHtml(value){
+
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* -------------------------
+   LOAD ADS
+------------------------- */
+
+async function loadAds(){
+
+const result =
+await supabaseRequest(
+"/rest/v1/ads?status=eq.pending&order=created_at.desc&select=*"
+);
+
+
+if(!result.ok){
+
+showStatus(
+"❌ دریافت درخواست‌های تبلیغاتی انجام نشد.",
+"error"
+);
+
+document.getElementById(
+"adsContainer"
+).innerHTML = "";
+
+return;
+
+}
+
+
+const ads =
+Array.isArray(result.data)
+? result.data
+: [];
+
+
+renderAds(ads);
+
+}
+
+
+/* -------------------------
+   RENDER ADS
+------------------------- */
+
+function renderAds(ads){
+
+const container =
+document.getElementById(
+"adsContainer"
+);
+
+
+if(!ads.length){
+
+container.innerHTML = `
+<div class="empty">
+🎉 در حال حاضر هیچ درخواست تبلیغاتی در انتظار بررسی نیست.
+<br>
+درخواست‌های جدید اینجا نمایش داده می‌شوند.
+</div>
+`;
+
+return;
+
+}
+
+
+container.innerHTML =
+ads.map(ad => {
+
+const image =
+ad.image_url
+? `
+<img
+class="ad-image"
+src="${escapeHtml(ad.image_url)}"
+alt="تصویر تبلیغ"
+onerror="this.style.display='none';">
+`
+: "";
+
+
+const description =
+ad.description
+? escapeHtml(ad.description)
+: "توضیحی ثبت نشده است.";
+
+
+const advertiser =
+ad.advertiser_name
+? escapeHtml(ad.advertiser_name)
+: "ثبت نشده";
+
+
+const email =
+ad.advertiser_email
+? escapeHtml(ad.advertiser_email)
+: "ثبت نشده";
+
+
+const duration =
+ad.duration_days
+? escapeHtml(ad.duration_days) + " روز"
+: "ثبت نشده";
+
+
+const target =
+ad.target_url
+? `
+<a
+class="ad-link"
+href="${escapeHtml(ad.target_url)}"
+target="_blank"
+rel="noopener noreferrer">
+
+${escapeHtml(ad.target_url)}
+
+</a>
+`
+: "ثبت نشده";
+
+
+const created =
+ad.created_at
+? new Date(ad.created_at)
+.toLocaleString("fa-IR")
+: "ثبت نشده";
+
+
+return `
+
+<div
+class="ad"
+data-id="${escapeHtml(ad.id)}">
+
+<h2>
+📢 ${escapeHtml(ad.title)}
+</h2>
+
+<div class="ad-description">
+${description}
+</div>
+
+${image}
+
+<div class="info-box">
+
+<div>
+<strong>👤 تبلیغ‌دهنده:</strong>
+${advertiser}
+</div>
+
+<div>
+<strong>📧 ایمیل:</strong>
+${email}
+</div>
+
+<div>
+<strong>⏱️ مدت تبلیغ:</strong>
+${duration}
+</div>
+
+<div>
+<strong>🔗 لینک:</strong>
+${target}
+</div>
+
+<div>
+<strong>📅 زمان ارسال:</strong>
+${created}
+</div>
+
+</div>
+
+<div class="actions">
+
+<button
+class="main-btn approve-btn"
+onclick="approveAd(${Number(ad.id)})">
+
+✅ تأیید تبلیغ
+
+</button>
+
+<button
+class="main-btn reject-btn"
+onclick="rejectAd(${Number(ad.id)})">
+
+❌ رد تبلیغ
+
+</button>
+
+<button
+class="main-btn delete-btn"
+onclick="deleteAd(${Number(ad.id)})">
+
+🗑️ حذف
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+/* -------------------------
+   RPC
+------------------------- */
+
 async function callAdminFunction(
-    functionName,
-    adId
-) {
+functionName,
+adId
+){
 
-    const accessToken =
-        getStoredToken();
+const result =
+await supabaseRequest(
+"/rest/v1/rpc/" + functionName,
+{
+method:"POST",
 
+body:JSON.stringify({
+ad_id:adId
+})
+}
+);
 
-    if (!accessToken) {
+return result;
 
-        throw new Error(
-            "نشست ورود پیدا نشد."
-        );
-    }
-
-
-    const response =
-        await fetch(
-            SUPABASE_URL +
-            "/rest/v1/rpc/" +
-            functionName,
-            {
-                method: "POST",
-
-                headers: {
-                    "apikey":
-                        SUPABASE_KEY,
-
-                    "Authorization":
-                        "Bearer " +
-                        accessToken,
-
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body:
-                    JSON.stringify({
-                        ad_id: adId
-                    })
-            }
-        );
-
-
-    if (!response.ok) {
-
-        let errorText =
-            "عملیات انجام نشد.";
-
-        try {
-
-            const data =
-                await response.json();
-
-            errorText =
-                data.message ||
-                data.error ||
-                data.hint ||
-                errorText;
-
-        } catch {}
-
-
-        throw new Error(errorText);
-    }
-
-
-    return true;
 }
 
 
-/*
-    تأیید تبلیغ
-*/
-async function approveAd(
-    adId,
-    button
-) {
+/* -------------------------
+   APPROVE
+------------------------- */
 
-    if (!confirm(
-        "آیا این تبلیغ تأیید شود؟"
-    )) {
-        return;
-    }
+async function approveAd(adId){
 
+if(
+!confirm(
+"آیا مطمئن هستید که می‌خواهید این تبلیغ را تأیید کنید؟"
+)
+){
 
-    button.disabled = true;
+return;
 
-    button.textContent =
-        "در حال تأیید...";
+}
 
-
-    try {
-
-        await callAdminFunction(
-            "approve_ad",
-            adId
-        );
+const result =
+await callAdminFunction(
+"approve_ad",
+adId
+);
 
 
-        const ad =
-            document.querySelector(
-                `.ad[data-id="${adId}"]`
-            );
+if(!result.ok){
 
+alert(
+"❌ تأیید تبلیغ انجام نشد.\n\n" +
+(
+result.data?.message ||
+result.data?.hint ||
+"خطای نامشخص"
+)
+);
 
-        if (ad) {
-            ad.remove();
-        }
+return;
 
-
-        showStatus(
-            "✅ تبلیغ با موفقیت تأیید شد.",
-            "success"
-        );
-
-
-        checkEmpty();
-
-
-    } catch (error) {
-
-        button.disabled = false;
-
-        button.textContent =
-            "✅ تأیید";
-
-
-        showStatus(
-            "❌ " + error.message,
-            "error"
-        );
-    }
 }
 
 
-/*
-    رد تبلیغ
-*/
-async function rejectAd(
-    adId,
-    button
-) {
+alert(
+"✅ تبلیغ با موفقیت تأیید شد."
+);
 
-    if (!confirm(
-        "آیا این تبلیغ رد شود؟"
-    )) {
-        return;
-    }
+await loadAds();
 
-
-    button.disabled = true;
-
-    button.textContent =
-        "در حال رد کردن...";
-
-
-    try {
-
-        await callAdminFunction(
-            "reject_ad",
-            adId
-        );
-
-
-        const ad =
-            document.querySelector(
-                `.ad[data-id="${adId}"]`
-            );
-
-
-        if (ad) {
-            ad.remove();
-        }
-
-
-        showStatus(
-            "✅ تبلیغ رد شد.",
-            "success"
-        );
-
-
-        checkEmpty();
-
-
-    } catch (error) {
-
-        button.disabled = false;
-
-        button.textContent =
-            "❌ رد";
-
-
-        showStatus(
-            "❌ " + error.message,
-            "error"
-        );
-    }
 }
 
 
-/*
-    حذف تبلیغ
-*/
-async function deleteAd(
-    adId,
-    button
-) {
+/* -------------------------
+   REJECT
+------------------------- */
 
-    if (!confirm(
-        "⚠️ این تبلیغ برای همیشه حذف می‌شود. ادامه می‌دهید؟"
-    )) {
-        return;
-    }
+async function rejectAd(adId){
 
+if(
+!confirm(
+"آیا مطمئن هستید که می‌خواهید این تبلیغ را رد کنید؟"
+)
+){
 
-    button.disabled = true;
+return;
 
-    button.textContent =
-        "در حال حذف...";
+}
 
-
-    try {
-
-        await callAdminFunction(
-            "delete_ad",
-            adId
-        );
+const result =
+await callAdminFunction(
+"reject_ad",
+adId
+);
 
 
-        const ad =
-            document.querySelector(
-                `.ad[data-id="${adId}"]`
-            );
+if(!result.ok){
 
+alert(
+"❌ رد تبلیغ انجام نشد.\n\n" +
+(
+result.data?.message ||
+result.data?.hint ||
+"خطای نامشخص"
+)
+);
 
-        if (ad) {
-            ad.remove();
-        }
+return;
 
-
-        showStatus(
-            "✅ تبلیغ حذف شد.",
-            "success"
-        );
-
-
-        checkEmpty();
-
-
-    } catch (error) {
-
-        button.disabled = false;
-
-        button.textContent =
-            "🗑️ حذف";
-
-
-        showStatus(
-            "❌ " + error.message,
-            "error"
-        );
-    }
 }
 
 
-/*
-    اگر تبلیغی باقی نمانده باشد
-*/
-function checkEmpty() {
+alert(
+"✅ تبلیغ با موفقیت رد شد."
+);
 
-    if (!adsContainer.querySelector(".ad")) {
+await loadAds();
 
-        adsContainer.innerHTML = `
-            <div class="empty">
-                🎉 هیچ درخواست تبلیغی در انتظار بررسی نیست.
-            </div>
-        `;
-    }
 }
 
 
-/*
-    شروع پنل
-*/
-async function start() {
+/* -------------------------
+   DELETE
+------------------------- */
 
-    try {
+async function deleteAd(adId){
 
-        showStatus(
-            "در حال بررسی حساب کاربری...",
-            "loading"
-        );
+if(
+!confirm(
+"⚠️ آیا مطمئن هستید که می‌خواهید این درخواست را حذف کنید؟"
+)
+){
 
+return;
 
-        const accessToken =
-            await getOwner();
+}
 
-
-        showStatus(
-            "✅ دسترسی OWNER تأیید شد.",
-            "success"
-        );
-
-
-        const ads =
-            await loadAds(accessToken);
+const result =
+await callAdminFunction(
+"delete_ad",
+adId
+);
 
 
-        renderAds(ads);
+if(!result.ok){
+
+alert(
+"❌ حذف تبلیغ انجام نشد.\n\n" +
+(
+result.data?.message ||
+result.data?.hint ||
+"خطای نامشخص"
+)
+);
+
+return;
+
+}
 
 
-    } catch (error) {
+alert(
+"🗑️ درخواست با موفقیت حذف شد."
+);
 
-        console.error(
-            "ADS ADMIN ERROR:",
-            error
-        );
+await loadAds();
 
-
-        adsContainer.innerHTML = `
-            <div class="empty">
-                🔒 ${escapeHtml(error.message)}
-            </div>
-        `;
+}
 
 
-        showStatus(
-            "❌ " + error.message,
-            "error"
-        );
-    }
+/* -------------------------
+   START
+------------------------- */
+
+async function start(){
+
+const loggedIn =
+await checkLogin();
+
+if(!loggedIn){
+
+return;
+
+}
+
+
+const owner =
+await checkOwner();
+
+if(!owner){
+
+return;
+
+}
+
+
+await loadAds();
+
 }
 
 
