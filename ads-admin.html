@@ -337,9 +337,6 @@ linear-gradient(
 #16c784,
 #00b8a9
 );
-
-box-shadow:
-0 0 15px rgba(22,199,132,.2);
 }
 
 .reject-btn{
@@ -349,9 +346,6 @@ linear-gradient(
 #ff4567,
 #d7264f
 );
-
-box-shadow:
-0 0 15px rgba(255,50,80,.18);
 }
 
 .delete-btn{
@@ -368,8 +362,6 @@ background:#21152d;
 border:1px solid #5a315f;
 
 color:#ddd;
-
-margin-top:10px;
 }
 
 .empty{
@@ -456,7 +448,7 @@ id="loginCard">
 id="loginStatus"
 class="status info">
 
-🔐 برای ورود به مدیریت تبلیغات، وارد حساب مدیر شوید.
+🔐 برای ورود به مدیریت تبلیغات، ایمیل و رمز عبور را وارد کنید.
 
 </div>
 
@@ -470,7 +462,6 @@ class="status info">
 id="adminEmail"
 type="email"
 placeholder="example@email.com"
-autocomplete="email"
 required
 >
 
@@ -482,7 +473,6 @@ required
 id="adminPassword"
 type="password"
 placeholder="رمز عبور"
-autocomplete="current-password"
 required
 >
 
@@ -508,7 +498,7 @@ href="/">
 </div>
 
 
-<!-- ADMIN PANEL -->
+<!-- ADMIN -->
 
 <div
 class="card hidden"
@@ -518,7 +508,16 @@ id="adminCard">
 id="adminStatus"
 class="status success">
 
-👑 مدیریت تبلیغات فعال است.
+👑 دسترسی مدیریت تأیید شد.
+
+</div>
+
+<div
+id="adsContainer">
+
+<div class="loading">
+⏳ در حال دریافت درخواست‌های تبلیغاتی...
+</div>
 
 </div>
 
@@ -529,17 +528,6 @@ onclick="logout()">
 🚪 خروج از مدیریت
 
 </button>
-
-<br><br>
-
-<div
-id="adsContainer">
-
-<div class="loading">
-⏳ در حال دریافت درخواست‌های تبلیغاتی...
-</div>
-
-</div>
 
 <a
 class="back-btn"
@@ -563,22 +551,22 @@ const SUPABASE_KEY =
 "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
 
-/*
-   این توکن فقط مخصوص همین پنل است.
-   با arsin_user_token سایت کاری نداریم.
-*/
-
 let adminAccessToken = null;
 
 
 /* -------------------------
-   STATUS
+   LOGIN STATUS
 ------------------------- */
 
-function showLoginStatus(text,type="info"){
+function showLoginStatus(
+text,
+type="info"
+){
 
 const box =
-document.getElementById("loginStatus");
+document.getElementById(
+"loginStatus"
+);
 
 box.textContent = text;
 
@@ -588,10 +576,19 @@ box.className =
 }
 
 
-function showAdminStatus(text,type="success"){
+/* -------------------------
+   ADMIN STATUS
+------------------------- */
+
+function showAdminStatus(
+text,
+type="success"
+){
 
 const box =
-document.getElementById("adminStatus");
+document.getElementById(
+"adminStatus"
+);
 
 box.textContent = text;
 
@@ -628,13 +625,16 @@ document
 
 
 const button =
-document.getElementById("loginButton");
+document.getElementById(
+"loginButton"
+);
 
 
 button.disabled = true;
 
 button.textContent =
 "⏳ در حال ورود...";
+
 
 showLoginStatus(
 "⏳ در حال بررسی اطلاعات ورود...",
@@ -685,7 +685,8 @@ data?.message ||
 data?.error_description ||
 data?.error ||
 ""
-).toString()
+)
+.toString()
 .toLowerCase();
 
 
@@ -714,7 +715,7 @@ showLoginStatus(
 }else{
 
 showLoginStatus(
-"❌ ورود انجام نشد. اطلاعات ورود را بررسی کن.",
+"❌ ورود انجام نشد.",
 "error"
 );
 
@@ -747,17 +748,11 @@ return;
 }
 
 
-/*
-   توکن فقط در متغیر همین صفحه نگه داشته می‌شود.
-*/
-
 adminAccessToken =
 data.access_token;
 
 
-/*
-   بررسی OWNER
-*/
+/* بررسی OWNER */
 
 const owner =
 await checkOwner();
@@ -777,9 +772,7 @@ return;
 }
 
 
-/*
-   نمایش پنل
-*/
+/* نمایش پنل */
 
 document
 .getElementById("loginCard")
@@ -799,6 +792,11 @@ showAdminStatus(
 await loadAds();
 
 
+button.disabled = false;
+
+button.textContent =
+"🔐 ورود به مدیریت تبلیغات";
+
 }catch(error){
 
 showLoginStatus(
@@ -817,204 +815,19 @@ button.textContent =
 
 
 /* -------------------------
-   CHECK OWNER
+   CHECK OWNER RPC
 ------------------------- */
 
 async function checkOwner(){
-
-if(!adminAccessToken){
-
-showLoginStatus(
-"❌ توکن ورود پیدا نشد.",
-"error"
-);
-
-return false;
-
-}
-
-
-try{
-
-const userResponse =
-await fetch(
-SUPABASE_URL +
-"/auth/v1/user",
-{
-method:"GET",
-
-headers:{
-"Content-Type":
-"application/json",
-
-"apikey":
-SUPABASE_KEY,
-
-"Authorization":
-"Bearer " +
-adminAccessToken
-}
-}
-);
-
-
-const userData =
-await userResponse
-.json()
-.catch(()=>null);
-
-
-if(!userResponse.ok){
-
-showLoginStatus(
-"❌ اطلاعات حساب دریافت نشد.",
-"error"
-);
-
-return false;
-
-}
-
-
-const userId =
-userData?.id;
-
-
-if(!userId){
-
-showLoginStatus(
-"❌ شناسه حساب پیدا نشد.",
-"error"
-);
-
-return false;
-
-}
-
-
-/*
-   بررسی رتبه OWNER
-*/
-
-const ownerResponse =
-await fetch(
-SUPABASE_URL +
-"/rest/v1/gang_users?id=eq." +
-encodeURIComponent(userId) +
-"&select=id,rank",
-{
-method:"GET",
-
-headers:{
-"Content-Type":
-"application/json",
-
-"apikey":
-SUPABASE_KEY,
-
-"Authorization":
-"Bearer " +
-adminAccessToken
-}
-}
-);
-
-
-const ownerData =
-await ownerResponse
-.json()
-.catch(()=>null);
-
-
-if(!ownerResponse.ok){
-
-showLoginStatus(
-"❌ خطا در بررسی دسترسی مدیر.",
-"error"
-);
-
-return false;
-
-}
-
-
-if(
-!Array.isArray(ownerData) ||
-ownerData.length === 0
-){
-
-showLoginStatus(
-"🚫 این حساب در سیستم ArsinGang ثبت نشده است.",
-"error"
-);
-
-return false;
-
-}
-
-
-const rank =
-(ownerData[0].rank || "")
-.toString()
-.toUpperCase();
-
-
-if(rank !== "OWNER"){
-
-showLoginStatus(
-"🚫 این حساب دسترسی مدیریت تبلیغات را ندارد.",
-"error"
-);
-
-return false;
-
-}
-
-
-return true;
-
-
-}catch(error){
-
-showLoginStatus(
-"❌ خطا در بررسی حساب مدیر.",
-"error"
-);
-
-return false;
-
-}
-
-}
-
-
-/* -------------------------
-   LOAD ADS
-------------------------- */
-
-async function loadAds(){
-
-const container =
-document.getElementById(
-"adsContainer"
-);
-
-
-container.innerHTML = `
-<div class="loading">
-⏳ در حال دریافت درخواست‌های تبلیغاتی...
-</div>
-`;
-
 
 try{
 
 const response =
 await fetch(
 SUPABASE_URL +
-"/rest/v1/ads?status=eq.pending&order=created_at.desc&select=*",
+"/rest/v1/rpc/check_ads_admin",
 {
-method:"GET",
+method:"POST",
 
 headers:{
 "Content-Type":
@@ -1039,9 +852,116 @@ await response
 
 if(!response.ok){
 
+console.error(
+"OWNER CHECK ERROR:",
+data
+);
+
+showLoginStatus(
+"❌ خطا در بررسی دسترسی مدیر.",
+"error"
+);
+
+return false;
+
+}
+
+
+if(data !== true){
+
+showLoginStatus(
+"🚫 این حساب دسترسی مدیریت تبلیغات را ندارد.",
+"error"
+);
+
+return false;
+
+}
+
+
+return true;
+
+
+}catch(error){
+
+console.error(error);
+
+showLoginStatus(
+"❌ اتصال هنگام بررسی دسترسی مدیر برقرار نشد.",
+"error"
+);
+
+return false;
+
+}
+
+}
+
+
+/* -------------------------
+   LOAD PENDING ADS RPC
+------------------------- */
+
+async function loadAds(){
+
+const container =
+document.getElementById(
+"adsContainer"
+);
+
+
+container.innerHTML = `
+<div class="loading">
+⏳ در حال دریافت درخواست‌های تبلیغاتی...
+</div>
+`;
+
+
+try{
+
+const response =
+await fetch(
+SUPABASE_URL +
+"/rest/v1/rpc/get_pending_ads",
+{
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json",
+
+"apikey":
+SUPABASE_KEY,
+
+"Authorization":
+"Bearer " +
+adminAccessToken
+}
+}
+);
+
+
+const data =
+await response
+.json()
+.catch(()=>null);
+
+
+if(!response.ok){
+
+console.error(
+"ADS ERROR:",
+data
+);
+
 container.innerHTML = `
 <div class="status error">
 ❌ دریافت درخواست‌های تبلیغاتی انجام نشد.
+<br>
+${escapeHtml(
+data?.message ||
+"خطای نامشخص"
+)}
 </div>
 `;
 
@@ -1050,20 +970,20 @@ return;
 }
 
 
-const ads =
+renderAds(
 Array.isArray(data)
 ? data
-: [];
-
-
-renderAds(ads);
+: []
+);
 
 
 }catch(error){
 
+console.error(error);
+
 container.innerHTML = `
 <div class="status error">
-❌ اتصال به سرور برای دریافت تبلیغات برقرار نشد.
+❌ اتصال به سرور برقرار نشد.
 </div>
 `;
 
@@ -1073,7 +993,7 @@ container.innerHTML = `
 
 
 /* -------------------------
-   ESCAPE HTML
+   ESCAPE
 ------------------------- */
 
 function escapeHtml(value){
@@ -1089,7 +1009,7 @@ return String(value ?? "")
 
 
 /* -------------------------
-   RENDER ADS
+   RENDER
 ------------------------- */
 
 function renderAds(ads){
@@ -1154,8 +1074,7 @@ ad.advertiser_email
 
 const duration =
 ad.duration_days
-? escapeHtml(ad.duration_days) +
-" روز"
+? escapeHtml(ad.duration_days) + " روز"
 : "ثبت نشده";
 
 
@@ -1265,25 +1184,13 @@ onclick="deleteAd(${Number(ad.id)})">
 
 
 /* -------------------------
-   RPC
+   ADMIN RPC
 ------------------------- */
 
 async function callAdminFunction(
 functionName,
 adId
 ){
-
-if(!adminAccessToken){
-
-return {
-ok:false,
-data:{
-message:"توکن مدیریت پیدا نشد."
-}
-};
-
-}
-
 
 try{
 
@@ -1527,15 +1434,6 @@ showLoginStatus(
 );
 
 }
-
-
-/* -------------------------
-   START
-------------------------- */
-
-document
-.getElementById("adsContainer")
-.innerHTML = "";
 
 </script>
 
