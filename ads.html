@@ -156,6 +156,7 @@
             text-align: center;
             font-size: 13px;
             line-height: 1.8;
+            word-break: break-word;
         }
 
         .success {
@@ -172,10 +173,21 @@
             color: #ff7188;
         }
 
+        .back-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 18px;
+            background: rgba(15,15,30,.88);
+            border: 1px solid rgba(123,44,255,.35);
+            box-shadow:
+                0 0 35px rgba(123,44,255,.12),
+                inset 0 0 30px rgba(0,217,255,.025);
+            backdrop-filter: blur(10px);
+        }
+
         .back {
             display: block;
             text-align: center;
-            margin-top: 20px;
             color: #aaa;
             text-decoration: none;
             font-size: 13px;
@@ -315,9 +327,11 @@
 
     </div>
 
-    <a href="/" class="back">
-        ← بازگشت به صفحه اصلی
-    </a>
+    <div class="back-box">
+        <a href="/" class="back">
+            ← بازگشت به صفحه اصلی
+        </a>
+    </div>
 
 </div>
 
@@ -330,6 +344,7 @@
     const message = document.getElementById("message");
 
     form.addEventListener("submit", async function(event) {
+
         event.preventDefault();
 
         message.className = "message";
@@ -338,12 +353,23 @@
         submitBtn.disabled = true;
         submitBtn.textContent = "در حال ارسال...";
 
-        const title = document.getElementById("title").value.trim();
-        const description = document.getElementById("description").value.trim();
-        const imageUrl = document.getElementById("imageUrl").value.trim();
-        const targetUrl = document.getElementById("targetUrl").value.trim();
-        const advertiserName = document.getElementById("advertiserName").value.trim();
-        const durationDays = Number(document.getElementById("duration").value);
+        const title =
+            document.getElementById("title").value.trim();
+
+        const description =
+            document.getElementById("description").value.trim();
+
+        const imageUrl =
+            document.getElementById("imageUrl").value.trim();
+
+        const targetUrl =
+            document.getElementById("targetUrl").value.trim();
+
+        const advertiserName =
+            document.getElementById("advertiserName").value.trim();
+
+        const durationDays =
+            Number(document.getElementById("duration").value);
 
         try {
 
@@ -373,19 +399,29 @@
 
             if (!response.ok) {
 
-                let errorText = "خطا در ثبت تبلیغ";
+                let errorMessage = "خطای نامشخص";
 
                 try {
+
                     const errorData = await response.json();
 
                     if (errorData.message) {
-                        errorText = errorData.message;
+                        errorMessage = errorData.message;
+                    } else if (errorData.error) {
+                        errorMessage = errorData.error;
                     } else if (errorData.hint) {
-                        errorText = errorData.hint;
+                        errorMessage = errorData.hint;
+                    } else {
+                        errorMessage = JSON.stringify(errorData);
                     }
-                } catch {}
 
-                throw new Error(errorText);
+                } catch {
+                    errorMessage = await response.text();
+                }
+
+                throw new Error(
+                    "Supabase: " + errorMessage
+                );
             }
 
             message.className = "message success";
@@ -403,7 +439,7 @@
             message.className = "message error";
 
             message.textContent =
-                "❌ ثبت تبلیغ انجام نشد. لطفاً دوباره تلاش کنید.";
+                "❌ خطا: " + error.message;
         }
 
         submitBtn.disabled = false;
