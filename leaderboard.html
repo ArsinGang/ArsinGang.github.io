@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leaderboard | ArsinGang</title>
+    <meta name="description" content="جدول برترین کاربران بر اساس Gang Coin در ArsinGang">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237b2cff'/%3E%3Ctext x='50' y='66' font-size='48' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3EAG%3C/text%3E%3C/svg%3E">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Tahoma, Arial, sans-serif;
+            color: white;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(123, 44, 255, 0.18), transparent 35%),
+                radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.12), transparent 35%),
+                #080812;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(123, 44, 255, 0.12), transparent 40%);
+            z-index: -1;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: auto;
+            padding: 45px 0 60px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .logo {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 18px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #7b2cff;
+            box-shadow:
+                0 0 20px rgba(123, 44, 255, 0.55),
+                0 0 55px rgba(123, 44, 255, 0.25);
+        }
+
+        .logo svg {
+            width: 47px;
+            height: 47px;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(123, 44, 255, 0.7);
+        }
+
+        .subtitle {
+            color: #aeb0c4;
+            font-size: 15px;
+        }
+
+        .top-three {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .top-card {
+            position: relative;
+            padding: 28px 20px;
+            text-align: center;
+            border: 1px solid rgba(123, 44, 255, 0.35);
+            border-radius: 20px;
+            background: linear-gradient(
+                145deg,
+                rgba(25, 20, 48, 0.92),
+                rgba(12, 12, 25, 0.94)
+            );
+            box-shadow: 0 0 25px rgba(123, 44, 255, 0.08);
+            overflow: hidden;
+        }
+
+        .top-card::before {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            top: -70px;
+            right: -50px;
+            background: rgba(123, 44, 255, 0.18);
+            border-radius: 50%;
+            filter: blur(25px);
+        }
+
+        .top-card.first {
+            border-color: rgba(255, 208, 64, 0.45);
+            box-shadow: 0 0 30px rgba(255, 208, 64, 0.08);
+        }
+
+        .top-card.second {
+            border-color: rgba(190, 205, 220, 0.4);
+        }
+
+        .top-card.third {
+            border-color: rgba(190, 125, 70, 0.4);
+        }
+
+        .position {
+            font-size: 31px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .first .position {
+            color: #ffd84d;
+            text-shadow: 0 0 18px rgba(255, 216, 77, 0.45);
+        }
+
+        .second .position {
+            color: #d5dbe5;
+        }
+
+        .third .position {
+            color: #cd8c5c;
+        }
+
+        .top-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 9px;
+            word-break: break-word;
+        }
+
+        .top-coins {
+            color: #00d9ff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .top-rank {
+            margin-top: 10px;
+            display: inline-block;
+            padding: 6px 13px;
+            border-radius: 999px;
+            background: rgba(123, 44, 255, 0.16);
+            border: 1px solid rgba(123, 44, 255, 0.3);
+            color: #cdb7ff;
+            font-size: 12px;
+        }
+
+        .leaderboard-box {
+            border: 1px solid rgba(123, 44, 255, 0.28);
+            border-radius: 22px;
+            background: rgba(12, 12, 25, 0.84);
+            box-shadow:
+                0 0 35px rgba(123, 44, 255, 0.08),
+                inset 0 0 30px rgba(123, 44, 255, 0.025);
+            overflow: hidden;
+        }
+
+        .box-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .box-title {
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .update {
+            color: #888ba0;
+            font-size: 12px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th {
+            padding: 16px 20px;
+            color: #8e91a8;
+            font-size: 12px;
+            font-weight: normal;
+            text-align: right;
+            background: rgba(123, 44, 255, 0.045);
+        }
+
+        td {
+            padding: 17px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.055);
+            font-size: 14px;
+        }
+
+        tbody tr {
+            transition: 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(123, 44, 255, 0.07);
+        }
+
+        .number {
+            width: 80px;
+            color: #8e91a8;
+            font-weight: bold;
+        }
+
+        .username {
+            font-weight: bold;
+            color: white;
+        }
+
+        .coins {
+            color: #00d9ff;
+            font-weight: bold;
+        }
+
+        .rank-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(123, 44, 255, 0.12);
+            border: 1px solid rgba(123, 44, 255, 0.25);
+            color: #cbb6ff;
+            font-size: 11px;
+        }
+
+        .loading,
+        .error,
+        .empty {
+            padding: 45px 20px;
+            text-align: center;
+            color: #9699ad;
+        }
+
+        .error {
+            color: #ff7d9b;
+        }
+
+        .spinner {
+            width: 34px;
+            height: 34px;
+            margin: 0 auto 15px;
+            border: 3px solid rgba(123, 44, 255, 0.2);
+            border-top-color: #7b2cff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .back-button {
+            display: flex;
+            width: fit-content;
+            margin: 30px auto 0;
+            padding: 13px 25px;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            color: white;
+            text-decoration: none;
+            border-radius: 13px;
+            border: 1px solid rgba(123, 44, 255, 0.45);
+            background: rgba(123, 44, 255, 0.12);
+            transition: 0.25s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            background: rgba(123, 44, 255, 0.22);
+            box-shadow: 0 0 22px rgba(123, 44, 255, 0.25);
+        }
+
+        .back-button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media (max-width: 750px) {
+            .container {
+                padding-top: 30px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .top-three {
+                grid-template-columns: 1fr;
+            }
+
+            .top-card {
+                padding: 22px 18px;
+            }
+
+            .box-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+
+        <div class="logo">
+            <svg viewBox="0 0 100 100" fill="none">
+                <text
+                    x="50"
+                    y="67"
+                    text-anchor="middle"
+                    fill="white"
+                    font-size="43"
+                    font-family="Arial"
+                    font-weight="bold">
+                    AG
+                </text>
+            </svg>
+        </div>
+
+        <h1>🏆 Gang Coin Leaderboard</h1>
+
+        <p class="subtitle">
+            برترین کاربران ArsinGang بر اساس مقدار Gang Coin
+        </p>
+
+    </header>
+
+    <section class="top-three" id="topThree">
+
+        <div class="loading" style="grid-column: 1 / -1;">
+            <div class="spinner"></div>
+            در حال دریافت اطلاعات...
+        </div>
+
+    </section>
+
+    <section class="leaderboard-box">
+
+        <div class="box-header">
+
+            <div class="box-title">
+                جدول برترین‌ها
+            </div>
+
+            <div class="update" id="updateText">
+                در حال بروزرسانی...
+            </div>
+
+        </div>
+
+        <div id="tableContent">
+
+            <div class="loading">
+                <div class="spinner"></div>
+                در حال دریافت رتبه‌بندی...
+            </div>
+
+        </div>
+
+    </section>
+
+    <a class="back-button" href="/">
+
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5"></path>
+            <path d="M12 19l-7-7 7-7"></path>
+        </svg>
+
+        بازگشت به صفحه اصلی
+
+    </a>
+
+</div>
+
+<script>
+
+const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
+
+async function loadLeaderboard() {
+
+    const topThree = document.getElementById("topThree");
+    const tableContent = document.getElementById("tableContent");
+    const updateText = document.getElementById("updateText");
+
+    try {
+
+        const response = await fetch(
+            SUPABASE_URL + "/rest/v1/rpc/get_gang_leaderboard",
+            {
+                method: "POST",
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": "Bearer " + SUPABASE_KEY,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({})
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("RPC request failed");
+        }
+
+        const users = await response.json();
+
+        if (!Array.isArray(users) || users.length === 0) {
+
+            topThree.innerHTML = `
+                <div class="empty" style="grid-column: 1 / -1;">
+                    هنوز کاربری برای نمایش وجود ندارد.
+                </div>
+            `;
+
+            tableContent.innerHTML = `
+                <div class="empty">
+                    جدول خالی است.
+                </div>
+            `;
+
+            updateText.textContent = "بدون اطلاعات";
+
+            return;
+        }
+
+        renderTopThree(users.slice(0, 3));
+
+        renderTable(users);
+
+        const now = new Date();
+
+        updateText.textContent =
+            "آخرین بروزرسانی: " +
+            now.toLocaleTimeString("fa-IR", {
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+    } catch (error) {
+
+        console.error(error);
+
+        topThree.innerHTML = `
+            <div class="error" style="grid-column: 1 / -1;">
+                دریافت اطلاعات با مشکل مواجه شد.
+            </div>
+        `;
+
+        tableContent.innerHTML = `
+            <div class="error">
+                اتصال به Leaderboard برقرار نشد.
+            </div>
+        `;
+
+        updateText.textContent = "خطا در بروزرسانی";
+    }
+}
+
+function renderTopThree(users) {
+
+    const container = document.getElementById("topThree");
+
+    if (users.length === 0) {
+        container.innerHTML = "";
+        return;
+    }
+
+    const positions = [
+        {
+            className: "first",
+            number: "1"
+        },
+        {
+            className: "second",
+            number: "2"
+        },
+        {
+            className: "third",
+            number: "3"
+        }
+    ];
+
+    container.innerHTML = users.map((user, index) => {
+
+        const position = positions[index];
+
+        return `
+            <div class="top-card ${position.className}">
+
+                <div class="position">
+                    ${position.number}
+                </div>
+
+                <div class="top-name">
+                    ${escapeHtml(user.username)}
+                </div>
+
+                <div class="top-coins">
+                    ${formatCoins(user.gang_coins)} Gang Coin
+                </div>
+
+                <div class="top-rank">
+                    ${escapeHtml(user.rank || "بدون رنک")}
+                </div>
+
+            </div>
+        `;
+
+    }).join("");
+
+}
+
+function renderTable(users) {
+
+    const container = document.getElementById("tableContent");
+
+    const rows = users.map((user, index) => {
+
+        return `
+            <tr>
+
+                <td class="number">
+                    #${index + 1}
+                </td>
+
+                <td class="username">
+                    ${escapeHtml(user.username)}
+                </td>
+
+                <td class="coins">
+                    ${formatCoins(user.gang_coins)}
+                </td>
+
+                <td>
+                    <span class="rank-badge">
+                        ${escapeHtml(user.rank || "بدون رنک")}
+                    </span>
+                </td>
+
+            </tr>
+        `;
+
+    }).join("");
+
+    container.innerHTML = `
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>رتبه</th>
+                        <th>نام کاربر</th>
+                        <th>Gang Coin</th>
+                        <th>رنک</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    ${rows}
+                </tbody>
+
+            </table>
+
+        </div>
+    `;
+}
+
+function formatCoins(value) {
+
+    const number = Number(value) || 0;
+
+    return number.toLocaleString("fa-IR");
+}
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+loadLeaderboard();
+
+</script>
+
+</body>
+</html>
