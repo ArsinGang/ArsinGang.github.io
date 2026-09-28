@@ -120,6 +120,18 @@
             margin-top: 6px;
         }
 
+        .price-box {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            background: rgba(0,217,255,.06);
+            border: 1px solid rgba(0,217,255,.18);
+            color: #69eaff;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
         .submit-btn {
             width: 100%;
             border: none;
@@ -247,6 +259,7 @@
 
             <div class="field">
                 <label for="title">عنوان تبلیغ *</label>
+
                 <input
                     type="text"
                     id="title"
@@ -258,6 +271,7 @@
 
             <div class="field">
                 <label for="description">توضیحات تبلیغ</label>
+
                 <textarea
                     id="description"
                     maxlength="500"
@@ -267,11 +281,13 @@
 
             <div class="field">
                 <label for="imageUrl">لینک تصویر تبلیغ</label>
+
                 <input
                     type="url"
                     id="imageUrl"
                     placeholder="https://example.com/banner.png"
                 >
+
                 <div class="hint">
                     فعلاً باید لینک مستقیم تصویر باشد.
                 </div>
@@ -279,6 +295,7 @@
 
             <div class="field">
                 <label for="targetUrl">لینک مقصد تبلیغ *</label>
+
                 <input
                     type="url"
                     id="targetUrl"
@@ -289,6 +306,7 @@
 
             <div class="field">
                 <label for="advertiserName">نام تبلیغ‌دهنده</label>
+
                 <input
                     type="text"
                     id="advertiserName"
@@ -298,13 +316,56 @@
             </div>
 
             <div class="field">
-                <label for="duration">مدت تبلیغ</label>
+                <label for="advertiserEmail">
+                    ایمیل تبلیغ‌دهنده *
+                </label>
+
+                <input
+                    type="email"
+                    id="advertiserEmail"
+                    maxlength="200"
+                    placeholder="example@gmail.com"
+                    required
+                >
+
+                <div class="hint">
+                    برای پیگیری درخواست تبلیغ استفاده می‌شود.
+                </div>
+            </div>
+
+            <div class="field">
+
+                <label for="duration">
+                    مدت تبلیغ
+                </label>
+
                 <select id="duration">
-                    <option value="1">۱ روز</option>
-                    <option value="7" selected>۷ روز</option>
-                    <option value="14">۱۴ روز</option>
-                    <option value="30">۳۰ روز</option>
+
+                    <option value="1">
+                        ۱ روز — ۵۰٬۰۰۰ تومان
+                    </option>
+
+                    <option value="7" selected>
+                        ۷ روز — ۲۵۰٬۰۰۰ تومان
+                    </option>
+
+                    <option value="14">
+                        ۱۴ روز — ۴۵۰٬۰۰۰ تومان
+                    </option>
+
+                    <option value="30">
+                        ۳۰ روز — ۸۰۰٬۰۰۰ تومان
+                    </option>
+
                 </select>
+
+                <div
+                    class="price-box"
+                    id="priceBox"
+                >
+                    مبلغ تبلیغ: ۲۵۰٬۰۰۰ تومان
+                </div>
+
             </div>
 
             <button
@@ -315,12 +376,16 @@
                 📢 ارسال درخواست تبلیغ
             </button>
 
-            <div id="message" class="message"></div>
+            <div
+                id="message"
+                class="message"
+            ></div>
 
         </form>
 
         <div class="info">
             <strong>نکته:</strong><br>
+
             بعد از ارسال، تبلیغ شما ابتدا بررسی می‌شود.
             تا زمانی که تبلیغ تأیید نشده باشد، در سایت نمایش داده نمی‌شود.
         </div>
@@ -328,22 +393,69 @@
     </div>
 
     <div class="back-box">
+
         <a href="/" class="back">
             ← بازگشت به صفحه اصلی
         </a>
+
     </div>
 
 </div>
 
 <script>
-    const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
-    const form = document.getElementById("adForm");
-    const submitBtn = document.getElementById("submitBtn");
-    const message = document.getElementById("message");
+const SUPABASE_URL =
+    "https://lhddjuomukejpvssyhuv.supabase.co";
 
-    form.addEventListener("submit", async function(event) {
+const SUPABASE_KEY =
+    "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
+
+
+const form =
+    document.getElementById("adForm");
+
+const submitBtn =
+    document.getElementById("submitBtn");
+
+const message =
+    document.getElementById("message");
+
+const duration =
+    document.getElementById("duration");
+
+const priceBox =
+    document.getElementById("priceBox");
+
+
+const prices = {
+
+    1: "۵۰٬۰۰۰",
+
+    7: "۲۵۰٬۰۰۰",
+
+    14: "۴۵۰٬۰۰۰",
+
+    30: "۸۰۰٬۰۰۰"
+
+};
+
+
+duration.addEventListener(
+    "change",
+    function() {
+
+        priceBox.textContent =
+            "مبلغ تبلیغ: " +
+            prices[this.value] +
+            " تومان";
+
+    }
+);
+
+
+form.addEventListener(
+    "submit",
+    async function(event) {
 
         event.preventDefault();
 
@@ -351,100 +463,211 @@
         message.textContent = "";
 
         submitBtn.disabled = true;
-        submitBtn.textContent = "در حال ارسال...";
+        submitBtn.textContent =
+            "در حال ارسال...";
+
 
         const title =
-            document.getElementById("title").value.trim();
+            document
+                .getElementById("title")
+                .value
+                .trim();
+
 
         const description =
-            document.getElementById("description").value.trim();
+            document
+                .getElementById("description")
+                .value
+                .trim();
+
 
         const imageUrl =
-            document.getElementById("imageUrl").value.trim();
+            document
+                .getElementById("imageUrl")
+                .value
+                .trim();
+
 
         const targetUrl =
-            document.getElementById("targetUrl").value.trim();
+            document
+                .getElementById("targetUrl")
+                .value
+                .trim();
+
 
         const advertiserName =
-            document.getElementById("advertiserName").value.trim();
+            document
+                .getElementById("advertiserName")
+                .value
+                .trim();
+
+
+        const advertiserEmail =
+            document
+                .getElementById("advertiserEmail")
+                .value
+                .trim();
+
 
         const durationDays =
-            Number(document.getElementById("duration").value);
+            Number(duration.value);
+
 
         try {
 
-            const response = await fetch(
-                SUPABASE_URL + "/rest/v1/ads",
-                {
-                    method: "POST",
+            const response =
+                await fetch(
+                    SUPABASE_URL +
+                    "/rest/v1/ads",
+                    {
 
-                    headers: {
-                        "apikey": SUPABASE_KEY,
-                        "Authorization": "Bearer " + SUPABASE_KEY,
-                        "Content-Type": "application/json",
-                        "Prefer": "return=minimal"
-                    },
+                        method: "POST",
 
-                    body: JSON.stringify({
-                        title: title,
-                        description: description || null,
-                        image_url: imageUrl || null,
-                        target_url: targetUrl,
-                        advertiser_name: advertiserName || null,
-                        duration_days: durationDays,
-                        status: "pending"
-                    })
-                }
-            );
+                        headers: {
+
+                            "apikey":
+                                SUPABASE_KEY,
+
+                            "Authorization":
+                                "Bearer " +
+                                SUPABASE_KEY,
+
+                            "Content-Type":
+                                "application/json",
+
+                            "Prefer":
+                                "return=minimal"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                title:
+                                    title,
+
+                                description:
+                                    description ||
+                                    null,
+
+                                image_url:
+                                    imageUrl ||
+                                    null,
+
+                                target_url:
+                                    targetUrl,
+
+                                advertiser_name:
+                                    advertiserName ||
+                                    null,
+
+                                advertiser_email:
+                                    advertiserEmail,
+
+                                duration_days:
+                                    durationDays,
+
+                                status:
+                                    "pending"
+
+                            })
+
+                    }
+                );
+
 
             if (!response.ok) {
 
-                let errorMessage = "خطای نامشخص";
+                let errorMessage =
+                    "خطای نامشخص";
+
 
                 try {
 
-                    const errorData = await response.json();
+                    const errorData =
+                        await response.json();
+
 
                     if (errorData.message) {
-                        errorMessage = errorData.message;
+
+                        errorMessage =
+                            errorData.message;
+
                     } else if (errorData.error) {
-                        errorMessage = errorData.error;
+
+                        errorMessage =
+                            errorData.error;
+
                     } else if (errorData.hint) {
-                        errorMessage = errorData.hint;
+
+                        errorMessage =
+                            errorData.hint;
+
                     } else {
-                        errorMessage = JSON.stringify(errorData);
+
+                        errorMessage =
+                            JSON.stringify(
+                                errorData
+                            );
+
                     }
 
                 } catch {
-                    errorMessage = await response.text();
+
+                    errorMessage =
+                        await response.text();
+
                 }
 
+
                 throw new Error(
-                    "Supabase: " + errorMessage
+                    "Supabase: " +
+                    errorMessage
                 );
+
             }
 
-            message.className = "message success";
+
+            message.className =
+                "message success";
+
 
             message.innerHTML =
                 "✅ درخواست تبلیغ با موفقیت ثبت شد!<br>" +
                 "تبلیغ شما پس از بررسی و تأیید نمایش داده خواهد شد.";
 
+
             form.reset();
+
+
+            priceBox.textContent =
+                "مبلغ تبلیغ: ۲۵۰٬۰۰۰ تومان";
+
 
         } catch (error) {
 
             console.error(error);
 
-            message.className = "message error";
+
+            message.className =
+                "message error";
+
 
             message.textContent =
-                "❌ خطا: " + error.message;
+                "❌ خطا: " +
+                error.message;
+
         }
 
+
         submitBtn.disabled = false;
-        submitBtn.textContent = "📢 ارسال درخواست تبلیغ";
-    });
+
+        submitBtn.textContent =
+            "📢 ارسال درخواست تبلیغ";
+
+    }
+);
+
 </script>
 
 </body>
