@@ -1,5 +1,5 @@
-
 <!DOCTYPE html>
+
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -36,26 +36,6 @@ body{
 
     color:white;
     overflow-x:hidden;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-
-    background:
-        linear-gradient(
-            rgba(255,255,255,.015) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.015) 1px,
-            transparent 1px
-        );
-
-    background-size:40px 40px;
 }
 
 .container{
@@ -902,218 +882,217 @@ h1{
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
 <div class="container">
 
-    <!-- LOGO -->
+```
+<!-- LOGO -->
 
-    <div class="logo">
-        AG
-    </div>
+<div class="logo">
+    AG
+</div>
 
 
-    <!-- TITLE -->
+<!-- TITLE -->
 
-    <h1>
-        👑 خرید رنک ArsinGang
-    </h1>
+<h1>
+    👑 خرید رنک ArsinGang
+</h1>
 
-    <p class="subtitle">
-        با استفاده از Gang Coin می‌تونی رنک VIP یا MVP بگیری
-        و برای مدت ۳۰ روز از رنکت استفاده کنی.
+<p class="subtitle">
+    با استفاده از Gang Coin می‌تونی رنک VIP یا MVP بگیری
+    و برای مدت ۳۰ روز از رنکت استفاده کنی.
+</p>
+
+
+<!-- INFO -->
+
+<div class="info-box">
+
+    <h2>
+        💜 رنک‌ها چطور کار می‌کنن؟
+    </h2>
+
+    <p>
+
+        رنک‌ها با Gang Coin خریداری می‌شن و هر رنک به مدت
+        <b>۳۰ روز</b> فعال می‌مونه.
+
+        <br>
+
+        💜 VIP با قیمت ۵۰۰۰ Gang Coin
+
+        <br>
+
+        👑 MVP با قیمت ۱۰۰۰۰ Gang Coin
+
+        <br><br>
+
+        Gang Coin موجودی حساب خودته و از فعالیت‌ها و
+        <b>باکس روزانه مرموز</b> می‌تونی به دست بیاری.
+
     </p>
 
 
-    <!-- INFO -->
-
-    <div class="info-box">
-
-        <h2>
-            💜 رنک‌ها چطور کار می‌کنن؟
-        </h2>
-
-        <p>
-
-            رنک‌ها با Gang Coin خریداری می‌شن و هر رنک به مدت
-            <b>۳۰ روز</b> فعال می‌مونه.
-
-            <br>
-
-            💜 VIP با قیمت ۵۰۰۰ Gang Coin
-
-            <br>
-
-            👑 MVP با قیمت ۱۰۰۰۰ Gang Coin
-
-            <br><br>
-
-            Gang Coin موجودی حساب خودته و از فعالیت‌ها و
-            <b>باکس روزانه مرموز</b> می‌تونی به دستش بیاری.
-
-        </p>
-
-
-        <!-- BOX BUTTON INSIDE INFO -->
-
-        <a
-            href="box.html"
-            class="box-link"
-        >
-
-            <span class="box-icon"></span>
-
-            <span>
-                باز کردن باکس روزانه مرموز
-            </span>
-
-        </a>
-
-    </div>
-
-
-    <!-- WALLET -->
-
-    <div class="wallet">
-
-        <div class="wallet-title">
-
-            <span class="coin-icon"></span>
-
-            <span>
-                Gang Coin Wallet
-            </span>
-
-        </div>
-
-
-        <div
-            class="balance"
-            id="balance"
-        >
-            ...
-        </div>
-
-    </div>
-
-
-    <!-- RANKS -->
-
-    <div class="ranks">
-
-
-        <!-- VIP -->
-
-        <div class="card vip">
-
-            <div class="rank-icon"></div>
-
-            <h2>
-                VIP
-            </h2>
-
-            <div class="card-desc">
-
-                رنک VIP برای ۳۰ روز فعال می‌شود.
-
-                <br>
-
-                با Gang Coin خریداری می‌شود.
-
-            </div>
-
-
-            <div class="price">
-
-                <span class="coin-icon"></span>
-
-                <span>
-                    5,000
-                </span>
-
-            </div>
-
-
-            <button
-                class="buy-btn"
-                id="vipBtn"
-                onclick="buyRank('VIP')"
-            >
-                خرید VIP
-            </button>
-
-        </div>
-
-
-        <!-- MVP -->
-
-        <div class="card mvp">
-
-            <div class="rank-icon"></div>
-
-            <h2>
-                MVP
-            </h2>
-
-            <div class="card-desc">
-
-                رنک MVP برای ۳۰ روز فعال می‌شود.
-
-                <br>
-
-                با Gang Coin خریداری می‌شود.
-
-            </div>
-
-
-            <div class="price">
-
-                <span class="coin-icon"></span>
-
-                <span>
-                    10,000
-                </span>
-
-            </div>
-
-
-            <button
-                class="buy-btn"
-                id="mvpBtn"
-                onclick="buyRank('MVP')"
-            >
-                خرید MVP
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="note">
-
-        اگر رنک فعالی داشته باشی،
-        قوانین خرید رنک از طرف سیستم بررسی می‌شود.
-
-    </div>
-
-
-    <!-- BACK TO HOME -->
+    <!-- BOX BUTTON INSIDE INFO -->
 
     <a
-        href="index.html"
-        class="home-btn"
+        href="box.html"
+        class="box-link"
     >
-        🏠 بازگشت به صفحه اصلی
-    </a>
 
+        <span class="box-icon"></span>
+
+        <span>
+            باز کردن باکس روزانه مرموز
+        </span>
+
+    </a>
 
 </div>
 
 
+<!-- WALLET -->
+
+<div class="wallet">
+
+    <div class="wallet-title">
+
+        <span class="coin-icon"></span>
+
+        <span>
+            Gang Coin Wallet
+        </span>
+
+    </div>
+
+
+    <div
+        class="balance"
+        id="balance"
+    >
+        ...
+    </div>
+
+</div>
+
+
+<!-- RANKS -->
+
+<div class="ranks">
+
+
+    <!-- VIP -->
+
+    <div class="card vip">
+
+        <div class="rank-icon"></div>
+
+        <h2>
+            VIP
+        </h2>
+
+        <div class="card-desc">
+
+            رنک VIP برای ۳۰ روز فعال می‌شود.
+
+            <br>
+
+            با Gang Coin خریداری می‌شود.
+
+        </div>
+
+
+        <div class="price">
+
+            <span class="coin-icon"></span>
+
+            <span>
+                5,000
+            </span>
+
+        </div>
+
+
+        <button
+            class="buy-btn"
+            id="vipBtn"
+            onclick="buyRank('VIP')"
+        >
+            خرید VIP
+        </button>
+
+    </div>
+
+
+    <!-- MVP -->
+
+    <div class="card mvp">
+
+        <div class="rank-icon"></div>
+
+        <h2>
+            MVP
+        </h2>
+
+        <div class="card-desc">
+
+            رنک MVP برای ۳۰ روز فعال می‌شود.
+
+            <br>
+
+            با Gang Coin خریداری می‌شود.
+
+        </div>
+
+
+        <div class="price">
+
+            <span class="coin-icon"></span>
+
+            <span>
+                10,000
+            </span>
+
+        </div>
+
+
+        <button
+            class="buy-btn"
+            id="mvpBtn"
+            onclick="buyRank('MVP')"
+        >
+            خرید MVP
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="note">
+
+    اگر رنک فعالی داشته باشی،
+    قوانین خرید رنک از طرف سیستم بررسی می‌شود.
+
+</div>
+
+
+<!-- BACK TO HOME -->
+
+<a
+    href="index.html"
+    class="home-btn"
+>
+    🏠 بازگشت به صفحه اصلی
+</a>
+```
+
+</div>
 
 <!-- MODAL -->
 
@@ -1122,33 +1101,33 @@ h1{
     id="modalBg"
 >
 
-    <div
-        class="modal"
-        id="modal"
+```
+<div
+    class="modal"
+    id="modal"
+>
+
+    <div class="modal-coin"></div>
+
+    <h3 id="modalTitle">
+        Gang Coin کافی نیست!
+    </h3>
+
+    <p id="modalText">
+        برای خرید این رنک Gang Coin بیشتری لازم داری.
+    </p>
+
+    <button
+        class="modal-close"
+        onclick="closeModal()"
     >
-
-        <div class="modal-coin"></div>
-
-        <h3 id="modalTitle">
-            Gang Coin کافی نیست!
-        </h3>
-
-        <p id="modalText">
-            برای خرید این رنک Gang Coin بیشتری لازم داری.
-        </p>
-
-        <button
-            class="modal-close"
-            onclick="closeModal()"
-        >
-            بستن
-        </button>
-
-    </div>
+        بستن
+    </button>
 
 </div>
+```
 
-
+</div>
 
 <script>
 
@@ -1179,7 +1158,6 @@ let account = null;
 async function refreshAccessToken(){
 
     if(!refreshToken){
-
         return false;
     }
 
@@ -1207,10 +1185,8 @@ async function refreshAccessToken(){
                 }
             );
 
-
         const data =
             await response.json();
-
 
         if(
             !response.ok ||
@@ -1226,12 +1202,10 @@ async function refreshAccessToken(){
             );
 
             accessToken = null;
-
             refreshToken = null;
 
             return false;
         }
-
 
         accessToken =
             data.access_token;
@@ -1239,7 +1213,6 @@ async function refreshAccessToken(){
         refreshToken =
             data.refresh_token ||
             refreshToken;
-
 
         localStorage.setItem(
             "arsin_user_token",
@@ -1250,7 +1223,6 @@ async function refreshAccessToken(){
             "arsin_user_refresh",
             refreshToken
         );
-
 
         return true;
 
@@ -1282,13 +1254,11 @@ async function supabaseFetch(
             "Bearer " + accessToken
     };
 
-
     let response =
         await fetch(
             SUPABASE_URL + path,
             options
         );
-
 
     if(
         response.status === 401 &&
@@ -1297,7 +1267,6 @@ async function supabaseFetch(
 
         const refreshed =
             await refreshAccessToken();
-
 
         if(!refreshed){
 
@@ -1310,12 +1279,10 @@ async function supabaseFetch(
             );
         }
 
-
         options.headers[
             "Authorization"
         ] =
             "Bearer " + accessToken;
-
 
         response =
             await fetch(
@@ -1323,7 +1290,6 @@ async function supabaseFetch(
                 options
             );
     }
-
 
     return response;
 }
@@ -1340,7 +1306,6 @@ async function checkLogin(){
         const refreshed =
             await refreshAccessToken();
 
-
         if(!refreshed){
 
             window.location.replace(
@@ -1350,7 +1315,6 @@ async function checkLogin(){
             return false;
         }
     }
-
 
     return true;
 }
@@ -1380,10 +1344,8 @@ async function loadAccount(){
                 }
             );
 
-
         const data =
             await response.json();
-
 
         if(!response.ok){
 
@@ -1392,7 +1354,6 @@ async function loadAccount(){
                 "خطا در دریافت اطلاعات حساب"
             );
         }
-
 
         if(
             Array.isArray(data) &&
@@ -1414,14 +1375,12 @@ async function loadAccount(){
             };
         }
 
-
         document.getElementById(
             "balance"
         ).textContent =
             Number(
                 account.gang_coins || 0
             ).toLocaleString("en-US");
-
 
     }catch(error){
 
@@ -1446,19 +1405,14 @@ async function buyRank(rank){
         ? document.getElementById("vipBtn")
         : document.getElementById("mvpBtn");
 
-
     if(button.disabled){
-
         return;
     }
 
-
     button.disabled = true;
-
 
     button.textContent =
         "در حال بررسی...";
-
 
     try{
 
@@ -1480,10 +1434,8 @@ async function buyRank(rank){
                 }
             );
 
-
         const data =
             await response.json();
-
 
         if(!response.ok){
 
@@ -1493,12 +1445,10 @@ async function buyRank(rank){
             );
         }
 
-
         const result =
             Array.isArray(data)
             ? data[0]
             : data;
-
 
         if(result.success){
 
@@ -1511,7 +1461,6 @@ async function buyRank(rank){
             account.rank_expires_at =
                 result.expires_at;
 
-
             document.getElementById(
                 "balance"
             ).textContent =
@@ -1519,11 +1468,9 @@ async function buyRank(rank){
                     result.new_balance
                 ).toLocaleString("en-US");
 
-
             showSuccess(
                 result.rank_name
             );
-
 
         }else{
 
@@ -1533,22 +1480,18 @@ async function buyRank(rank){
             );
         }
 
-
     }catch(error){
 
         console.error(error);
-
 
         showError(
             error.message ||
             "خطایی رخ داد. دوباره امتحان کن."
         );
 
-
     }finally{
 
         button.disabled = false;
-
 
         button.textContent =
             rank === "VIP"
@@ -1569,23 +1512,19 @@ function showError(message){
             "modal"
         );
 
-
     modal.classList.remove(
         "success-modal"
     );
-
 
     document.getElementById(
         "modalTitle"
     ).textContent =
         "خرید انجام نشد";
 
-
     document.getElementById(
         "modalText"
     ).textContent =
         message;
-
 
     document.getElementById(
         "modalBg"
@@ -1606,27 +1545,22 @@ function showSuccess(rank){
             "modal"
         );
 
-
     modal.classList.add(
         "success-modal"
     );
-
 
     const coin =
         document.querySelector(
             ".modal-coin"
         );
 
-
     coin.style.display =
         "none";
-
 
     let successIcon =
         document.querySelector(
             ".success-icon"
         );
-
 
     if(!successIcon){
 
@@ -1635,14 +1569,11 @@ function showSuccess(rank){
                 "div"
             );
 
-
         successIcon.className =
             "success-icon";
 
-
         successIcon.textContent =
             "✓";
-
 
         modal.insertBefore(
             successIcon,
@@ -1650,12 +1581,10 @@ function showSuccess(rank){
         );
     }
 
-
     document.getElementById(
         "modalTitle"
     ).textContent =
         "🎉 خرید موفق بود!";
-
 
     document.getElementById(
         "modalText"
@@ -1663,7 +1592,6 @@ function showSuccess(rank){
         "رنک " +
         rank +
         " با موفقیت برای ۳۰ روز فعال شد.";
-
 
     document.getElementById(
         "modalBg"
@@ -1685,36 +1613,29 @@ function closeModal(){
         "show"
     );
 
-
     const modal =
         document.getElementById(
             "modal"
         );
 
-
     modal.classList.remove(
         "success-modal"
     );
-
 
     const coin =
         document.querySelector(
             ".modal-coin"
         );
 
-
     coin.style.display =
         "block";
-
 
     const successIcon =
         document.querySelector(
             ".success-icon"
         );
 
-
     if(successIcon){
-
         successIcon.remove();
     }
 }
@@ -1729,12 +1650,9 @@ function closeModal(){
     const loggedIn =
         await checkLogin();
 
-
     if(!loggedIn){
-
         return;
     }
-
 
     await loadAccount();
 
