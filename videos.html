@@ -289,6 +289,54 @@ header{
 }
 
 
+/* ================= MORE INFO ================= */
+
+.more-info{
+    position:fixed;
+
+    left:18px;
+    bottom:18px;
+
+    z-index:100;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:10px 15px;
+
+    border:
+        1px solid rgba(0,217,255,.30);
+
+    border-radius:11px;
+
+    color:#fff;
+
+    background:
+        rgba(8,8,18,.92);
+
+    box-shadow:
+        0 0 18px rgba(0,217,255,.10),
+        0 0 25px rgba(123,44,255,.10);
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    transition:.2s;
+}
+
+.more-info:hover{
+    border-color:#00d9ff;
+
+    background:
+        rgba(0,217,255,.10);
+
+    transform:translateY(-2px);
+}
+
+
 /* ================= VIDEOS ================= */
 
 .videos-section{
@@ -671,6 +719,15 @@ footer{
         grid-template-columns:1fr;
     }
 
+    .more-info{
+        left:12px;
+        bottom:12px;
+
+        padding:9px 13px;
+
+        font-size:11px;
+    }
+
 }
 
 </style>
@@ -779,6 +836,19 @@ footer{
 </section>
 
 
+<!-- ================= MORE INFO ================= -->
+
+<a
+    id="moreInfo"
+    class="more-info"
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    اطلاعات بیشتر
+</a>
+
+
 <!-- ================= VIDEOS ================= -->
 
 <section class="videos-section">
@@ -862,8 +932,8 @@ footer{
 <script>
 
 
-const AD_PATH =
-    "/videos/ads/ad.mp4";
+const ADS_JSON_PATH =
+    "/videos/ads.json";
 
 const JSON_PATH =
     "/videos/videos.json";
@@ -882,6 +952,11 @@ const adVideo =
 const adClose =
     document.getElementById(
         "adClose"
+    );
+
+const moreInfo =
+    document.getElementById(
+        "moreInfo"
     );
 
 const emptyState =
@@ -908,35 +983,88 @@ async function checkAd(){
 
         const response =
             await fetch(
-                AD_PATH,
+                ADS_JSON_PATH +
+                "?t=" +
+                Date.now(),
+
                 {
-                    method:"HEAD",
                     cache:"no-store"
                 }
             );
 
 
-        if(response.ok){
-
-            adVideo.src =
-                AD_PATH;
-
-            adSection.style.display =
-                "block";
-
-            adVideo.play().catch(() => {});
-
-        }else{
+        if(!response.ok){
 
             adSection.style.display =
                 "none";
 
+            moreInfo.style.display =
+                "none";
+
+            return;
+
         }
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !data.ad ||
+            !data.ad.video
+        ){
+
+            adSection.style.display =
+                "none";
+
+            moreInfo.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        adVideo.src =
+            data.ad.video;
+
+        adSection.style.display =
+            "block";
+
+
+        if(
+            data.ad.more_info
+        ){
+
+            moreInfo.href =
+                data.ad.more_info;
+
+            moreInfo.style.display =
+                "flex";
+
+        }else{
+
+            moreInfo.style.display =
+                "none";
+
+        }
+
+
+        adVideo.play().catch(() => {});
+
 
     }catch(error){
 
         adSection.style.display =
             "none";
+
+        moreInfo.style.display =
+            "none";
+
+        console.error(
+            error
+        );
 
     }
 
@@ -958,6 +1086,9 @@ adClose.addEventListener(
         adVideo.load();
 
         adSection.style.display =
+            "none";
+
+        moreInfo.style.display =
             "none";
 
     }
