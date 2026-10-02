@@ -1,3 +1,6 @@
 {
-  "ad": null
+  "ad": {
+    "video": "/videos/ads/ad.mp4",
+    "more_info": "https://example.com"
+  }
 }
