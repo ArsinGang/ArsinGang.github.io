@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -289,7 +288,7 @@ header{
     position:absolute;
 
     left:20px;
-    bottom:48px;
+    top:50%;
 
     z-index:8;
 
@@ -308,6 +307,8 @@ header{
     border:1px solid rgba(0,217,255,.18);
 
     transition:.2s;
+
+    transform:translateY(-50%);
 }
 
 .more-info:hover{
@@ -317,7 +318,7 @@ header{
 
     border-color:#7b2cff;
 
-    transform:translateY(-2px);
+    transform:translateY(-50%) scale(1.03);
 }
 
 
@@ -701,11 +702,19 @@ footer{
 
     .more-info{
         left:14px;
-        bottom:40px;
+        top:50%;
+
+        bottom:auto;
 
         font-size:11px;
 
         padding:6px 9px;
+
+        transform:translateY(-50%);
+    }
+
+    .more-info:hover{
+        transform:translateY(-50%) scale(1.03);
     }
 
     .video-grid{
@@ -715,60 +724,58 @@ footer{
 }
 
 </style>
-
 </head>
+
 
 <body>
 
 <div class="container">
 
+
 <header>
 
-```
-<div class="topbar">
+    <div class="topbar">
 
-    <div class="brand">
+        <div class="brand">
 
-        <div class="logo-box">
-            AG
-        </div>
+            <div class="logo-box">
+                AG
+            </div>
 
-        <div class="brand-text">
+            <div class="brand-text">
 
-            <strong>
-                VIDEO
-            </strong>
+                <strong>
+                    VIDEO
+                </strong>
 
-            <span>
-                Arsin_Gang
-            </span>
+                <span>
+                    Arsin_Gang
+                </span>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
-```
-
 </header>
+
 
 <main>
 
+
 <section class="hero">
 
-```
-<h1>
-    ویدیوهای اختصاصی ArsinGang
-</h1>
+    <h1>
+        ویدیوهای اختصاصی ArsinGang
+    </h1>
 
-<p>
-    ویدیوهای ویژه برای اعضای ArsinGang
-</p>
-```
+    <p>
+        ویدیوهای ویژه برای اعضای ArsinGang
+    </p>
 
 </section>
 
-<!-- ================= AD ================= -->
 
 <section
     class="ad-section"
@@ -776,141 +783,137 @@ footer{
     style="display:none;"
 >
 
-```
-<div class="ad-card">
+    <div class="ad-card">
 
 
-    <button
-        class="ad-close"
-        id="adClose"
-        type="button"
-        aria-label="بستن تبلیغ"
-    >
-        ×
-    </button>
+        <button
+            class="ad-close"
+            id="adClose"
+            type="button"
+            aria-label="بستن تبلیغ"
+        >
+            ×
+        </button>
 
 
-    <div class="ad-label">
+        <div class="ad-label">
 
-        <span>
-            ● تبلیغات
-        </span>
+            <span>
+                ● تبلیغات
+            </span>
 
-        <span>
-            ArsinGang
-        </span>
+            <span>
+                ArsinGang
+            </span>
+
+        </div>
+
+
+        <div class="ad-video-wrap">
+
+            <video
+                id="adVideo"
+                class="ad-video"
+                controls
+                preload="auto"
+                playsinline>
+            </video>
+
+        </div>
+
+
+        <a
+            id="moreInfo"
+            class="more-info"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="display:none;"
+        >
+            اطلاعات بیشتر
+        </a>
+
 
     </div>
-
-
-    <div class="ad-video-wrap">
-
-        <video
-            id="adVideo"
-            class="ad-video"
-            controls
-            preload="auto"
-            playsinline>
-        </video>
-
-    </div>
-
-
-    <a
-        id="moreInfo"
-        class="more-info"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="display:none;"
-    >
-        اطلاعات بیشتر
-    </a>
-
-
-</div>
-```
 
 </section>
 
-<!-- ================= VIDEOS ================= -->
 
 <section class="videos-section">
 
-```
-<div class="section-title">
 
-    <h2>
-        🎬 ویدیوها
-    </h2>
+    <div class="section-title">
 
-    <div class="line"></div>
+        <h2>
+            🎬 ویدیوها
+        </h2>
 
-</div>
+        <div class="line"></div>
 
-
-<div
-    id="emptyState"
-    class="empty"
->
-
-    <div class="empty-icon">
-        🎬
     </div>
 
-    <h3>
-        هنوز ویدیویی اضافه نشده است.
-    </h3>
 
-    <p>
-        به‌زودی ویدیوهای جدید ArsinGang اینجا قرار می‌گیرند.
-    </p>
+    <div
+        id="emptyState"
+        class="empty"
+    >
 
-</div>
+        <div class="empty-icon">
+            🎬
+        </div>
+
+        <h3>
+            هنوز ویدیویی اضافه نشده است.
+        </h3>
+
+        <p>
+            به‌زودی ویدیوهای جدید ArsinGang اینجا قرار می‌گیرند.
+        </p>
+
+    </div>
 
 
-<div
-    id="errorState"
-    class="error"
->
-    دریافت اطلاعات ویدیوها با مشکل مواجه شد.
-</div>
+    <div
+        id="errorState"
+        class="error"
+    >
+        دریافت اطلاعات ویدیوها با مشکل مواجه شد.
+    </div>
 
 
-<div
-    id="videoGrid"
-    class="video-grid">
-</div>
-```
+    <div
+        id="videoGrid"
+        class="video-grid">
+    </div>
+
 
 </section>
 
-<!-- ================= HOME BUTTON ================= -->
 
 <div class="home-button-wrap">
 
-```
-<a
-    class="home-button"
-    href="/"
->
-    ← بازگشت به صفحه اصلی
-</a>
-```
+    <a
+        class="home-button"
+        href="/"
+    >
+        ← بازگشت به صفحه اصلی
+    </a>
 
 </div>
+
 
 </main>
 
+
 <footer>
 
-```
-© 2026 ArsinGang — All Rights Reserved
-```
+    © 2026 ArsinGang — All Rights Reserved
 
 </footer>
 
+
 </div>
+
 
 <script>
 
@@ -1034,16 +1037,16 @@ async function checkAd(){
         adVideo.load();
 
 
-        /*
-            تلاش برای پخش خودکار
-            با صدا
-        */
+        adVideo.muted =
+            false;
 
-        adVideo.muted = false;
 
         try{
 
             await adVideo.play();
+
+            adStarted =
+                true;
 
         }catch(error){
 
@@ -1074,13 +1077,6 @@ async function checkAd(){
 
 /* ================= FALLBACK AUTOPLAY ================= */
 
-/*
-    اگر مرورگر Autoplay با صدا را
-    در لحظه ورود مسدود کرد،
-    اولین تعامل کاربر با صفحه را
-    برای شروع تبلیغ امتحان می‌کنیم.
-*/
-
 let adStarted =
     false;
 
@@ -1098,14 +1094,16 @@ async function tryStartAd(){
     }
 
 
-    adVideo.muted = false;
+    adVideo.muted =
+        false;
 
 
     try{
 
         await adVideo.play();
 
-        adStarted = true;
+        adStarted =
+            true;
 
     }catch(error){
 
@@ -1155,7 +1153,8 @@ adClose.addEventListener(
         moreInfo.style.display =
             "none";
 
-        adStarted = true;
+        adStarted =
+            true;
 
     }
 );
@@ -1537,6 +1536,7 @@ loadVideos();
 
 
 </script>
+
 
 </body>
 </html>
