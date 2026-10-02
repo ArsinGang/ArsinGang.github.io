@@ -55,8 +55,8 @@ header{
 .topbar{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    gap:20px;
+    justify-content:flex-start;
+    gap:14px;
 }
 
 .logo-box{
@@ -93,22 +93,6 @@ header{
 .brand-text span{
     color:#a9a9c4;
     font-size:12px;
-}
-
-.back-btn{
-    text-decoration:none;
-    color:#fff;
-    border:1px solid rgba(255,255,255,.10);
-    background:rgba(255,255,255,.045);
-    padding:11px 17px;
-    border-radius:13px;
-    transition:.2s;
-}
-
-.back-btn:hover{
-    border-color:#7b2cff;
-    background:rgba(123,44,255,.12);
-    transform:translateY(-2px);
 }
 
 /* TITLE */
@@ -356,6 +340,33 @@ header{
     background:rgba(255,50,50,.04);
 }
 
+/* HOME BUTTON */
+
+.home-button-wrap{
+    display:flex;
+    justify-content:center;
+    padding:0 0 45px;
+}
+
+.home-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#fff;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.045);
+    padding:12px 20px;
+    border-radius:13px;
+    transition:.2s;
+}
+
+.home-button:hover{
+    border-color:#7b2cff;
+    background:rgba(123,44,255,.12);
+    transform:translateY(-2px);
+}
+
 /* FOOTER */
 
 footer{
@@ -369,6 +380,7 @@ footer{
 /* MOBILE */
 
 @media(max-width:650px){
+
     header{
         padding-top:18px;
     }
@@ -386,11 +398,6 @@ footer{
 
     .brand-text span{
         font-size:10px;
-    }
-
-    .back-btn{
-        padding:9px 12px;
-        font-size:12px;
     }
 
     .hero{
@@ -418,42 +425,65 @@ footer{
 <div class="container">
 
 <header>
+
     <div class="topbar">
 
         <div class="brand">
-            <div class="logo-box">AG</div>
+
+            <div class="logo-box">
+                AG
+            </div>
 
             <div class="brand-text">
                 <strong>VIDEO</strong>
                 <span>Arsin_Gang</span>
             </div>
+
         </div>
 
-        <a class="back-btn" href="/">
-            ← بازگشت به صفحه اصلی
-        </a>
-
     </div>
+
 </header>
 
 <main>
 
     <section class="hero">
-        <h1>ویدیوهای اختصاصی ArsinGang</h1>
-        <p>ویدیوهای ویژه برای اعضای ArsinGang</p>
+
+        <h1>
+            ویدیوهای اختصاصی ArsinGang
+        </h1>
+
+        <p>
+            ویدیوهای ویژه برای اعضای ArsinGang
+        </p>
+
     </section>
 
+
     <!-- AD -->
-    <section class="ad-section" id="adSection" style="display:none;">
+
+    <section
+        class="ad-section"
+        id="adSection"
+        style="display:none;"
+    >
 
         <div class="ad-card">
 
             <div class="ad-label">
-                <span>● تبلیغات</span>
-                <span>ArsinGang</span>
+
+                <span>
+                    ● تبلیغات
+                </span>
+
+                <span>
+                    ArsinGang
+                </span>
+
             </div>
 
             <div class="ad-video-wrap">
+
                 <video
                     id="adVideo"
                     class="ad-video"
@@ -461,35 +491,80 @@ footer{
                     preload="metadata"
                     playsinline>
                 </video>
+
             </div>
 
         </div>
 
     </section>
 
+
     <!-- VIDEOS -->
+
     <section class="videos-section">
 
         <div class="section-title">
-            <h2>🎬 ویدیوها</h2>
+
+            <h2>
+                🎬 ویدیوها
+            </h2>
+
             <div class="line"></div>
+
         </div>
 
-        <div id="emptyState" class="empty">
-            <div class="empty-icon">🎬</div>
-            <h3>هنوز ویدیویی اضافه نشده است.</h3>
-            <p>به‌زودی ویدیوهای جدید ArsinGang اینجا قرار می‌گیرند.</p>
+
+        <div
+            id="emptyState"
+            class="empty"
+        >
+
+            <div class="empty-icon">
+                🎬
+            </div>
+
+            <h3>
+                هنوز ویدیویی اضافه نشده است.
+            </h3>
+
+            <p>
+                به‌زودی ویدیوهای جدید ArsinGang اینجا قرار می‌گیرند.
+            </p>
+
         </div>
 
-        <div id="errorState" class="error">
+
+        <div
+            id="errorState"
+            class="error"
+        >
             دریافت اطلاعات ویدیوها با مشکل مواجه شد.
         </div>
 
-        <div id="videoGrid" class="video-grid"></div>
+
+        <div
+            id="videoGrid"
+            class="video-grid">
+        </div>
 
     </section>
 
+
+    <!-- HOME BUTTON -->
+
+    <div class="home-button-wrap">
+
+        <a
+            class="home-button"
+            href="/"
+        >
+            ← بازگشت به صفحه اصلی
+        </a>
+
+    </div>
+
 </main>
+
 
 <footer>
     © 2026 ArsinGang — All Rights Reserved
@@ -497,16 +572,27 @@ footer{
 
 </div>
 
+
 <script>
+
 const AD_PATH = "/videos/ads/ad.mp4";
 const JSON_PATH = "/videos/videos.json";
 
-const adSection = document.getElementById("adSection");
-const adVideo = document.getElementById("adVideo");
+const adSection =
+    document.getElementById("adSection");
 
-const emptyState = document.getElementById("emptyState");
-const errorState = document.getElementById("errorState");
-const videoGrid = document.getElementById("videoGrid");
+const adVideo =
+    document.getElementById("adVideo");
+
+const emptyState =
+    document.getElementById("emptyState");
+
+const errorState =
+    document.getElementById("errorState");
+
+const videoGrid =
+    document.getElementById("videoGrid");
+
 
 /* ---------------- AD ---------------- */
 
@@ -514,16 +600,24 @@ async function checkAd(){
 
     try{
 
-        const response = await fetch(AD_PATH, {
-            method:"HEAD",
-            cache:"no-store"
-        });
+        const response = await fetch(
+            AD_PATH,
+            {
+                method:"HEAD",
+                cache:"no-store"
+            }
+        );
 
         if(response.ok){
+
             adVideo.src = AD_PATH;
+
             adSection.style.display = "block";
+
         }else{
+
             adSection.style.display = "none";
+
         }
 
     }catch(error){
@@ -531,14 +625,21 @@ async function checkAd(){
         adSection.style.display = "none";
 
     }
+
 }
+
 
 /* ---------------- VIDEOS ---------------- */
 
 function escapeHTML(value){
 
-    if(value === null || value === undefined){
+    if(
+        value === null ||
+        value === undefined
+    ){
+
         return "";
+
     }
 
     return String(value)
@@ -547,17 +648,23 @@ function escapeHTML(value){
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
+
 }
+
 
 function getVideoURL(url){
 
     return String(url || "").trim();
+
 }
+
 
 function getThumbnail(item){
 
     if(!item.thumbnail){
+
         return "";
+
     }
 
     if(
@@ -565,109 +672,190 @@ function getThumbnail(item){
         item.thumbnail.startsWith("https://") ||
         item.thumbnail.startsWith("/")
     ){
+
         return item.thumbnail;
+
     }
 
-    return "/videos/thumbnails/" + item.thumbnail;
+    return "/videos/thumbnails/" +
+        item.thumbnail;
+
 }
+
 
 function renderVideos(videos){
 
     videoGrid.innerHTML = "";
 
-    if(!Array.isArray(videos) || videos.length === 0){
+    if(
+        !Array.isArray(videos) ||
+        videos.length === 0
+    ){
 
         emptyState.style.display = "block";
+
         videoGrid.style.display = "none";
 
         return;
+
     }
 
     emptyState.style.display = "none";
+
     videoGrid.style.display = "grid";
+
 
     videos.forEach(item => {
 
-        const url = getVideoURL(item.url);
+        const url =
+            getVideoURL(item.url);
+
 
         if(!url){
+
             return;
+
         }
 
-        const card = document.createElement("a");
 
-        card.className = "video-card";
-        card.href = url;
-        card.target = "_blank";
-        card.rel = "noopener noreferrer";
+        const card =
+            document.createElement("a");
 
-        const thumbnail = getThumbnail(item);
+
+        card.className =
+            "video-card";
+
+
+        card.href =
+            url;
+
+
+        card.target =
+            "_blank";
+
+
+        card.rel =
+            "noopener noreferrer";
+
+
+        const thumbnail =
+            getThumbnail(item);
+
 
         card.innerHTML = `
+
             <div class="thumbnail">
 
                 ${
                     thumbnail
-                    ? `<img
-                        src="${escapeHTML(thumbnail)}"
-                        alt="${escapeHTML(item.title || "ویدیو")}"
-                        loading="lazy">`
-                    : `<div style="
-                        width:100%;
-                        height:100%;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        color:#55556d;
-                        font-size:42px;">
-                        🎬
-                    </div>`
+
+                    ? `
+                        <img
+                            src="${escapeHTML(thumbnail)}"
+                            alt="${escapeHTML(
+                                item.title ||
+                                "ویدیو"
+                            )}"
+                            loading="lazy">
+                      `
+
+                    : `
+                        <div style="
+                            width:100%;
+                            height:100%;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            color:#55556d;
+                            font-size:42px;">
+                            🎬
+                        </div>
+                      `
                 }
 
+
                 <div class="play-icon">
-                    <div class="play-circle">▶</div>
+
+                    <div class="play-circle">
+                        ▶
+                    </div>
+
                 </div>
+
 
                 ${
                     item.duration
-                    ? `<div class="duration">${escapeHTML(item.duration)}</div>`
+
+                    ? `
+                        <div class="duration">
+                            ${escapeHTML(
+                                item.duration
+                            )}
+                        </div>
+                      `
+
                     : ""
                 }
 
             </div>
 
+
             <div class="video-info">
 
                 <div class="video-title">
-                    ${escapeHTML(item.title || "ویدیوی ArsinGang")}
+
+                    ${escapeHTML(
+                        item.title ||
+                        "ویدیوی ArsinGang"
+                    )}
+
                 </div>
+
 
                 ${
                     item.description
-                    ? `<div class="video-description">
-                        ${escapeHTML(item.description)}
-                    </div>`
+
+                    ? `
+                        <div class="video-description">
+                            ${escapeHTML(
+                                item.description
+                            )}
+                        </div>
+                      `
+
                     : ""
                 }
+
 
                 <div class="video-meta">
 
                     <span>
-                        ${escapeHTML(item.date || "")}
+                        ${escapeHTML(
+                            item.date || ""
+                        )}
                     </span>
+
 
                     ${
                         item.quality
-                        ? `<span class="quality">
-                            ${escapeHTML(item.quality)}
-                        </span>`
+
+                        ? `
+                            <span class="quality">
+                                ${escapeHTML(
+                                    item.quality
+                                )}
+                            </span>
+                          `
+
                         : ""
                     }
 
                 </div>
 
             </div>
+
         `;
+
 
         videoGrid.appendChild(card);
 
@@ -675,32 +863,55 @@ function renderVideos(videos){
 
 }
 
+
 /* ---------------- LOAD JSON ---------------- */
 
 async function loadVideos(){
 
     try{
 
-        const response = await fetch(
-            JSON_PATH + "?t=" + Date.now(),
-            {
-                cache:"no-store"
-            }
-        );
+        const response =
+            await fetch(
+                JSON_PATH +
+                "?t=" +
+                Date.now(),
+                {
+                    cache:"no-store"
+                }
+            );
+
 
         if(!response.ok){
-            throw new Error("JSON not found");
+
+            throw new Error(
+                "JSON not found"
+            );
+
         }
 
-        const data = await response.json();
 
-        renderVideos(data.videos || []);
+        const data =
+            await response.json();
+
+
+        renderVideos(
+            data.videos || []
+        );
+
 
     }catch(error){
 
-        emptyState.style.display = "none";
-        videoGrid.style.display = "none";
-        errorState.style.display = "block";
+        emptyState.style.display =
+            "none";
+
+
+        videoGrid.style.display =
+            "none";
+
+
+        errorState.style.display =
+            "block";
+
 
         console.error(error);
 
@@ -708,10 +919,13 @@ async function loadVideos(){
 
 }
 
+
 /* ---------------- START ---------------- */
 
 checkAd();
+
 loadVideos();
+
 </script>
 
 </body>
