@@ -5,422 +5,411 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Videos | ArsinGang</title>
-<meta name="description" content="ویدیوهای ArsinGang">
+<meta name="description" content="ویدیوهای اختصاصی ArsinGang">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237b2cff'/%3E%3Ctext x='50' y='66' text-anchor='middle' font-size='42' font-family='Arial' font-weight='900' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237b2cff'/%3E%3Ctext x='50' y='65' text-anchor='middle' font-family='Arial' font-size='48' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     min-height:100vh;
-    background:
-        radial-gradient(circle at 15% 15%,rgba(123,44,255,.18),transparent 35%),
-        radial-gradient(circle at 85% 85%,rgba(0,217,255,.12),transparent 35%),
-        #080812;
+    font-family:Tahoma,Arial,sans-serif;
     color:#fff;
-    font-family:Arial,sans-serif;
-    overflow-x:hidden;
+    background:
+        radial-gradient(circle at 15% 15%,rgba(123,44,255,.20),transparent 32%),
+        radial-gradient(circle at 85% 25%,rgba(0,217,255,.12),transparent 30%),
+        radial-gradient(circle at 50% 100%,rgba(123,44,255,.12),transparent 35%),
+        #080812;
 }
 
 body::after{
     content:"";
     position:fixed;
-    width:500px;
-    height:500px;
-    right:-180px;
-    top:-180px;
-    background:#7b2cff;
-    opacity:.08;
-    filter:blur(120px);
-    border-radius:50%;
+    inset:0;
     pointer-events:none;
+    background:
+        radial-gradient(circle at center,transparent 35%,rgba(0,0,0,.28) 100%);
+    z-index:-1;
 }
 
 .container{
-    width:min(1000px,92%);
+    width:min(1150px,92%);
     margin:auto;
-    padding:35px 0 60px;
 }
 
-.back{
-    display:inline-flex;
+/* HEADER */
+
+header{
+    padding:28px 0 18px;
+}
+
+.topbar{
+    display:flex;
     align-items:center;
-    gap:8px;
-    text-decoration:none;
-    color:#fff;
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.1);
-    padding:11px 18px;
-    border-radius:12px;
-    transition:.25s;
-    margin-bottom:28px;
+    justify-content:space-between;
+    gap:20px;
 }
 
-.back:hover{
-    border-color:#7b2cff;
-    box-shadow:0 0 20px rgba(123,44,255,.25);
-    transform:translateY(-2px);
-}
-
-.header{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-.logo{
-    width:82px;
-    height:82px;
-    margin:0 auto 18px;
-    border-radius:22px;
+.logo-box{
+    width:58px;
+    height:58px;
+    border-radius:17px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:29px;
+    font-size:24px;
     font-weight:900;
     background:linear-gradient(135deg,#7b2cff,#00d9ff);
     box-shadow:
-        0 0 25px rgba(123,44,255,.4),
-        0 0 45px rgba(0,217,255,.12);
+        0 0 22px rgba(123,44,255,.45),
+        0 0 35px rgba(0,217,255,.15);
 }
 
-.header h1{
-    font-size:32px;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.brand-text{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+
+.brand-text strong{
+    font-size:18px;
+}
+
+.brand-text span{
+    color:#a9a9c4;
+    font-size:12px;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:#fff;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.045);
+    padding:11px 17px;
+    border-radius:13px;
+    transition:.2s;
+}
+
+.back-btn:hover{
+    border-color:#7b2cff;
+    background:rgba(123,44,255,.12);
+    transform:translateY(-2px);
+}
+
+/* TITLE */
+
+.hero{
+    text-align:center;
+    padding:28px 0 25px;
+}
+
+.hero h1{
+    font-size:clamp(27px,5vw,42px);
     margin-bottom:10px;
+    background:linear-gradient(90deg,#fff,#b77cff,#00d9ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
 }
 
-.header p{
-    color:#aaa;
-    font-size:15px;
+.hero p{
+    color:#aaaac0;
+    font-size:14px;
 }
 
-.video-box{
-    background:rgba(15,15,28,.82);
-    border:1px solid rgba(255,255,255,.08);
+/* AD */
+
+.ad-section{
+    margin:8px 0 34px;
+}
+
+.ad-card{
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(123,44,255,.30);
     border-radius:22px;
-    padding:18px;
-    box-shadow:0 15px 50px rgba(0,0,0,.4);
-    backdrop-filter:blur(12px);
+    padding:10px;
+    background:
+        linear-gradient(145deg,rgba(123,44,255,.10),rgba(0,217,255,.035)),
+        rgba(11,11,24,.90);
+    box-shadow:
+        0 0 35px rgba(123,44,255,.12),
+        inset 0 0 30px rgba(0,217,255,.025);
 }
 
-.player{
+.ad-label{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:5px 7px 10px;
+    color:#bdbdd1;
+    font-size:12px;
+}
+
+.ad-label span:first-child{
+    color:#00d9ff;
+}
+
+.ad-video-wrap{
     position:relative;
     width:100%;
-    background:#000;
-    border-radius:16px;
-    overflow:hidden;
     aspect-ratio:16/9;
+    background:#05050b;
+    border-radius:15px;
+    overflow:hidden;
 }
 
-.player video{
+.ad-video{
     width:100%;
     height:100%;
     display:block;
     object-fit:contain;
-    background:#000;
+    background:#05050b;
 }
 
-.cover{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#090912;
-    z-index:3;
-    cursor:pointer;
-}
+/* VIDEOS */
 
-.cover img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.cover::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,.3);
-}
-
-.big-play{
-    position:absolute;
-    z-index:4;
-    width:75px;
-    height:75px;
-    border:0;
-    border-radius:50%;
-    cursor:pointer;
-    color:#fff;
-    font-size:28px;
-    background:linear-gradient(135deg,#7b2cff,#00d9ff);
-    box-shadow:
-        0 0 30px rgba(123,44,255,.55),
-        0 0 45px rgba(0,217,255,.2);
-    transition:.25s;
-}
-
-.big-play:hover{
-    transform:scale(1.08);
-}
-
-.controls{
-    background:#10101c;
-    border-top:1px solid rgba(255,255,255,.07);
-    padding:13px;
-}
-
-.progress{
-    width:100%;
-    height:5px;
-    appearance:none;
-    background:#29293b;
-    border-radius:10px;
-    cursor:pointer;
-    margin-bottom:12px;
-}
-
-.progress::-webkit-slider-thumb{
-    appearance:none;
-    width:13px;
-    height:13px;
-    border-radius:50%;
-    background:#00d9ff;
-    box-shadow:0 0 10px rgba(0,217,255,.7);
-}
-
-.control-row{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    flex-wrap:wrap;
-}
-
-.control-btn{
-    border:1px solid rgba(255,255,255,.08);
-    background:rgba(255,255,255,.04);
-    color:#fff;
-    border-radius:10px;
-    min-width:38px;
-    height:38px;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.control-btn:hover{
-    border-color:#7b2cff;
-    background:rgba(123,44,255,.12);
-}
-
-.play-main{
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    border:0;
-    color:#fff;
-    background:linear-gradient(135deg,#7b2cff,#00d9ff);
-    cursor:pointer;
-    font-size:17px;
-}
-
-.time{
-    color:#aaa;
-    font-size:12px;
-    direction:ltr;
-    margin:0 4px;
-}
-
-.volume{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    margin-right:auto;
-}
-
-.volume input{
-    width:90px;
-    accent-color:#7b2cff;
-}
-
-.speed{
-    display:flex;
-    gap:5px;
-}
-
-.speed button{
-    border:1px solid rgba(255,255,255,.08);
-    background:rgba(255,255,255,.04);
-    color:#aaa;
-    padding:7px 9px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.speed button.active{
-    color:#fff;
-    border-color:#7b2cff;
-    background:rgba(123,44,255,.18);
-}
-
-.info{
-    padding:22px 5px 5px;
-}
-
-.info h2{
-    font-size:22px;
-    margin-bottom:8px;
-}
-
-.info p{
-    color:#999;
-    line-height:1.8;
-    font-size:14px;
-}
-
-.meta{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:15px;
-}
-
-.badge{
-    padding:7px 11px;
-    border-radius:9px;
-    background:rgba(123,44,255,.1);
-    border:1px solid rgba(123,44,255,.2);
-    color:#bbb;
-    font-size:12px;
+.videos-section{
+    padding-bottom:45px;
 }
 
 .section-title{
-    margin:35px 0 15px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.section-title h2{
     font-size:20px;
 }
 
-.video-list{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
+.section-title .line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg,rgba(123,44,255,.45),transparent);
 }
 
-.video-item{
-    background:rgba(15,15,28,.75);
-    border:1px solid rgba(255,255,255,.07);
-    border-radius:15px;
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+    gap:20px;
+}
+
+.video-card{
+    display:block;
+    text-decoration:none;
+    color:#fff;
     overflow:hidden;
-    cursor:pointer;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    background:rgba(14,14,29,.82);
     transition:.25s;
 }
 
-.video-item:hover{
-    transform:translateY(-3px);
+.video-card:hover{
+    transform:translateY(-5px);
     border-color:rgba(123,44,255,.55);
-    box-shadow:0 8px 25px rgba(123,44,255,.12);
+    box-shadow:
+        0 10px 35px rgba(123,44,255,.15),
+        0 0 20px rgba(0,217,255,.05);
 }
 
-.video-item-thumb{
+.thumbnail{
+    position:relative;
+    width:100%;
     aspect-ratio:16/9;
-    background:#090912;
     overflow:hidden;
+    background:#11111d;
 }
 
-.video-item-thumb img{
+.thumbnail img{
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
+    transition:.3s;
 }
 
-.video-item-info{
-    padding:13px;
+.video-card:hover .thumbnail img{
+    transform:scale(1.035);
 }
 
-.video-item-info h3{
-    font-size:15px;
-    margin-bottom:6px;
-}
-
-.video-item-info p{
-    color:#777;
-    font-size:12px;
-}
-
-.empty{
-    text-align:center;
-    padding:60px 20px;
-    color:#777;
-}
-
-footer{
-    text-align:center;
-    color:#555;
-    font-size:12px;
-    margin-top:35px;
-}
-
-.theater{
-    position:fixed;
+.play-icon{
+    position:absolute;
     inset:0;
-    z-index:9999;
-    background:rgba(0,0,0,.94);
     display:flex;
     align-items:center;
     justify-content:center;
+    background:linear-gradient(transparent,rgba(0,0,0,.22));
+}
+
+.play-circle{
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding-right:2px;
+    background:rgba(123,44,255,.90);
+    box-shadow:
+        0 0 25px rgba(123,44,255,.55),
+        0 0 45px rgba(0,217,255,.12);
+    font-size:21px;
+}
+
+.duration{
+    position:absolute;
+    left:9px;
+    bottom:8px;
+    padding:4px 7px;
+    border-radius:7px;
+    background:rgba(0,0,0,.78);
+    font-size:11px;
+    direction:ltr;
+}
+
+.video-info{
+    padding:14px;
+}
+
+.video-title{
+    font-size:15px;
+    font-weight:bold;
+    line-height:1.7;
+    margin-bottom:7px;
+}
+
+.video-description{
+    color:#9292aa;
+    font-size:12px;
+    line-height:1.7;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+
+.video-meta{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:12px;
+    color:#77778f;
+    font-size:10px;
+}
+
+.quality{
+    color:#00d9ff;
+}
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    padding:65px 20px;
+    border:1px dashed rgba(255,255,255,.10);
+    border-radius:22px;
+    background:rgba(255,255,255,.025);
+}
+
+.empty-icon{
+    font-size:48px;
+    margin-bottom:16px;
+}
+
+.empty h3{
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.empty p{
+    color:#85859d;
+    font-size:13px;
+}
+
+/* ERROR */
+
+.error{
+    display:none;
+    text-align:center;
     padding:25px;
+    color:#ff8d8d;
+    border:1px solid rgba(255,80,80,.15);
+    border-radius:18px;
+    background:rgba(255,50,50,.04);
 }
 
-.theater .video-box{
-    width:min(1200px,96%);
-    max-height:95vh;
-    overflow:auto;
+/* FOOTER */
+
+footer{
+    border-top:1px solid rgba(255,255,255,.06);
+    padding:22px 0 28px;
+    text-align:center;
+    color:#69697f;
+    font-size:11px;
 }
 
-@media(max-width:700px){
+/* MOBILE */
 
-    .container{
-        width:94%;
-        padding-top:22px;
+@media(max-width:650px){
+    header{
+        padding-top:18px;
     }
 
-    .header h1{
-        font-size:26px;
+    .logo-box{
+        width:50px;
+        height:50px;
+        border-radius:15px;
+        font-size:21px;
     }
 
-    .logo{
-        width:72px;
-        height:72px;
-        font-size:25px;
+    .brand-text strong{
+        font-size:15px;
     }
 
-    .video-box{
-        padding:10px;
+    .brand-text span{
+        font-size:10px;
     }
 
-    .video-list{
+    .back-btn{
+        padding:9px 12px;
+        font-size:12px;
+    }
+
+    .hero{
+        padding-top:20px;
+    }
+
+    .ad-card{
+        border-radius:17px;
+        padding:7px;
+    }
+
+    .ad-video-wrap{
+        border-radius:11px;
+    }
+
+    .video-grid{
         grid-template-columns:1fr;
     }
-
-    .volume input{
-        width:65px;
-    }
-
-    .speed{
-        width:100%;
-    }
-
-    .speed button{
-        flex:1;
-    }
-
 }
-
 </style>
 </head>
 
@@ -428,31 +417,79 @@ footer{
 
 <div class="container">
 
-<a href="/" class="back">
-    ← بازگشت به صفحه اصلی
-</a>
+<header>
+    <div class="topbar">
 
-<header class="header">
+        <div class="brand">
+            <div class="logo-box">AG</div>
 
-    <div class="logo">
-        AG
+            <div class="brand-text">
+                <strong>VIDEO</strong>
+                <span>Arsin_Gang</span>
+            </div>
+        </div>
+
+        <a class="back-btn" href="/">
+            ← بازگشت به صفحه اصلی
+        </a>
+
     </div>
-
-    <h1>VIDEO | Arsin_Gang</h1>
-
-    <p>
-        ویدیوهای اختصاصی ArsinGang
-    </p>
-
 </header>
 
-<div id="content">
+<main>
 
-    <div class="empty">
-        در حال بارگذاری ویدیوها...
-    </div>
+    <section class="hero">
+        <h1>ویدیوهای اختصاصی ArsinGang</h1>
+        <p>ویدیوهای ویژه برای اعضای ArsinGang</p>
+    </section>
 
-</div>
+    <!-- AD -->
+    <section class="ad-section" id="adSection" style="display:none;">
+
+        <div class="ad-card">
+
+            <div class="ad-label">
+                <span>● تبلیغات</span>
+                <span>ArsinGang</span>
+            </div>
+
+            <div class="ad-video-wrap">
+                <video
+                    id="adVideo"
+                    class="ad-video"
+                    controls
+                    preload="metadata"
+                    playsinline>
+                </video>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- VIDEOS -->
+    <section class="videos-section">
+
+        <div class="section-title">
+            <h2>🎬 ویدیوها</h2>
+            <div class="line"></div>
+        </div>
+
+        <div id="emptyState" class="empty">
+            <div class="empty-icon">🎬</div>
+            <h3>هنوز ویدیویی اضافه نشده است.</h3>
+            <p>به‌زودی ویدیوهای جدید ArsinGang اینجا قرار می‌گیرند.</p>
+        </div>
+
+        <div id="errorState" class="error">
+            دریافت اطلاعات ویدیوها با مشکل مواجه شد.
+        </div>
+
+        <div id="videoGrid" class="video-grid"></div>
+
+    </section>
+
+</main>
 
 <footer>
     © 2026 ArsinGang — All Rights Reserved
@@ -461,545 +498,220 @@ footer{
 </div>
 
 <script>
+const AD_PATH = "/videos/ads/ad.mp4";
+const JSON_PATH = "/videos/videos.json";
 
-const content = document.getElementById("content");
+const adSection = document.getElementById("adSection");
+const adVideo = document.getElementById("adVideo");
 
-let videos = [];
-let currentIndex = 0;
+const emptyState = document.getElementById("emptyState");
+const errorState = document.getElementById("errorState");
+const videoGrid = document.getElementById("videoGrid");
 
-let player;
-let cover;
-let playMain;
-let progress;
-let currentTimeEl;
-let durationEl;
-let volumeInput;
+/* ---------------- AD ---------------- */
+
+async function checkAd(){
+
+    try{
+
+        const response = await fetch(AD_PATH, {
+            method:"HEAD",
+            cache:"no-store"
+        });
+
+        if(response.ok){
+            adVideo.src = AD_PATH;
+            adSection.style.display = "block";
+        }else{
+            adSection.style.display = "none";
+        }
+
+    }catch(error){
+
+        adSection.style.display = "none";
+
+    }
+}
+
+/* ---------------- VIDEOS ---------------- */
+
+function escapeHTML(value){
+
+    if(value === null || value === undefined){
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+function getVideoURL(url){
+
+    return String(url || "").trim();
+}
+
+function getThumbnail(item){
+
+    if(!item.thumbnail){
+        return "";
+    }
+
+    if(
+        item.thumbnail.startsWith("http://") ||
+        item.thumbnail.startsWith("https://") ||
+        item.thumbnail.startsWith("/")
+    ){
+        return item.thumbnail;
+    }
+
+    return "/videos/thumbnails/" + item.thumbnail;
+}
+
+function renderVideos(videos){
+
+    videoGrid.innerHTML = "";
+
+    if(!Array.isArray(videos) || videos.length === 0){
+
+        emptyState.style.display = "block";
+        videoGrid.style.display = "none";
+
+        return;
+    }
+
+    emptyState.style.display = "none";
+    videoGrid.style.display = "grid";
+
+    videos.forEach(item => {
+
+        const url = getVideoURL(item.url);
+
+        if(!url){
+            return;
+        }
+
+        const card = document.createElement("a");
+
+        card.className = "video-card";
+        card.href = url;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+
+        const thumbnail = getThumbnail(item);
+
+        card.innerHTML = `
+            <div class="thumbnail">
+
+                ${
+                    thumbnail
+                    ? `<img
+                        src="${escapeHTML(thumbnail)}"
+                        alt="${escapeHTML(item.title || "ویدیو")}"
+                        loading="lazy">`
+                    : `<div style="
+                        width:100%;
+                        height:100%;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        color:#55556d;
+                        font-size:42px;">
+                        🎬
+                    </div>`
+                }
+
+                <div class="play-icon">
+                    <div class="play-circle">▶</div>
+                </div>
+
+                ${
+                    item.duration
+                    ? `<div class="duration">${escapeHTML(item.duration)}</div>`
+                    : ""
+                }
+
+            </div>
+
+            <div class="video-info">
+
+                <div class="video-title">
+                    ${escapeHTML(item.title || "ویدیوی ArsinGang")}
+                </div>
+
+                ${
+                    item.description
+                    ? `<div class="video-description">
+                        ${escapeHTML(item.description)}
+                    </div>`
+                    : ""
+                }
+
+                <div class="video-meta">
+
+                    <span>
+                        ${escapeHTML(item.date || "")}
+                    </span>
+
+                    ${
+                        item.quality
+                        ? `<span class="quality">
+                            ${escapeHTML(item.quality)}
+                        </span>`
+                        : ""
+                    }
+
+                </div>
+
+            </div>
+        `;
+
+        videoGrid.appendChild(card);
+
+    });
+
+}
+
+/* ---------------- LOAD JSON ---------------- */
 
 async function loadVideos(){
 
     try{
 
-        const response = await fetch("/videos/videos.json", {
-            cache:"no-cache"
-        });
+        const response = await fetch(
+            JSON_PATH + "?t=" + Date.now(),
+            {
+                cache:"no-store"
+            }
+        );
 
         if(!response.ok){
-            throw new Error("videos.json not found");
+            throw new Error("JSON not found");
         }
 
         const data = await response.json();
 
-        videos = Array.isArray(data.videos) ? data.videos : [];
-
-        if(videos.length === 0){
-
-            content.innerHTML = `
-                <div class="video-box">
-                    <div class="empty">
-                        <div style="font-size:45px;margin-bottom:15px;">🎬</div>
-                        هنوز ویدیویی اضافه نشده است.
-                    </div>
-                </div>
-            `;
-
-            return;
-        }
-
-        render();
+        renderVideos(data.videos || []);
 
     }catch(error){
 
+        emptyState.style.display = "none";
+        videoGrid.style.display = "none";
+        errorState.style.display = "block";
+
         console.error(error);
 
-        content.innerHTML = `
-            <div class="video-box">
-                <div class="empty">
-                    <div style="font-size:45px;margin-bottom:15px;">⚠️</div>
-                    خطا در بارگذاری لیست ویدیوها.
-                </div>
-            </div>
-        `;
-
     }
 
 }
 
-function render(){
+/* ---------------- START ---------------- */
 
-    const first = videos[0];
-
-    content.innerHTML = `
-
-        <div class="video-box" id="mainBox">
-
-            <div class="player" id="playerContainer">
-
-                <video
-                    id="videoPlayer"
-                    preload="metadata"
-                ></video>
-
-                <div class="cover" id="cover">
-
-                    <img
-                        src="${getThumbnail(first)}"
-                        alt="${escapeHTML(first.title || "Video")}"
-                    >
-
-                    <button class="big-play" id="bigPlay">
-                        ▶
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="controls">
-
-                <input
-                    class="progress"
-                    id="progress"
-                    type="range"
-                    min="0"
-                    max="100"
-                    value="0"
-                >
-
-                <div class="control-row">
-
-                    <button class="play-main" id="playMain">
-                        ▶
-                    </button>
-
-                    <button class="control-btn" id="back10">
-                        ↶
-                    </button>
-
-                    <button class="control-btn" id="forward10">
-                        ↷
-                    </button>
-
-                    <span class="time" id="currentTime">
-                        0:00
-                    </span>
-
-                    <span class="time">
-                        /
-                    </span>
-
-                    <span class="time" id="duration">
-                        0:00
-                    </span>
-
-                    <div class="volume">
-
-                        <button class="control-btn" id="mute">
-                            🔊
-                        </button>
-
-                        <input
-                            id="volumeInput"
-                            type="range"
-                            min="0"
-                            max="1"
-                            step="0.05"
-                            value="1"
-                        >
-
-                    </div>
-
-                    <button class="control-btn" id="theaterBtn">
-                        ▣
-                    </button>
-
-                    <button class="control-btn" id="fullscreenBtn">
-                        ⛶
-                    </button>
-
-                </div>
-
-                <div class="speed" style="margin-top:10px;">
-
-                    <button data-speed="0.5">0.5x</button>
-                    <button data-speed="0.75">0.75x</button>
-                    <button data-speed="1" class="active">1x</button>
-                    <button data-speed="1.25">1.25x</button>
-                    <button data-speed="1.5">1.5x</button>
-                    <button data-speed="2">2x</button>
-
-                </div>
-
-            </div>
-
-            <div class="info">
-
-                <h2 id="videoTitle"></h2>
-
-                <p id="videoDescription"></p>
-
-                <div class="meta">
-
-                    <span class="badge" id="videoQuality">
-                        1080p
-                    </span>
-
-                    <span class="badge" id="videoDate">
-                        ArsinGang
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <h2 class="section-title">
-            ویدیوها
-        </h2>
-
-        <div class="video-list" id="videoList"></div>
-
-    `;
-
-    player = document.getElementById("videoPlayer");
-    cover = document.getElementById("cover");
-    playMain = document.getElementById("playMain");
-    progress = document.getElementById("progress");
-    currentTimeEl = document.getElementById("currentTime");
-    durationEl = document.getElementById("duration");
-    volumeInput = document.getElementById("volumeInput");
-
-    setupPlayer();
-    buildList();
-
-    loadVideo(0);
-
-}
-
-function setupPlayer(){
-
-    document.getElementById("bigPlay").onclick = playPause;
-    cover.onclick = function(e){
-
-        if(e.target.closest(".big-play")) return;
-
-        playPause();
-
-    };
-
-    playMain.onclick = playPause;
-
-    document.getElementById("back10").onclick = function(){
-
-        player.currentTime = Math.max(0, player.currentTime - 10);
-
-    };
-
-    document.getElementById("forward10").onclick = function(){
-
-        player.currentTime = Math.min(
-            player.duration || 0,
-            player.currentTime + 10
-        );
-
-    };
-
-    document.getElementById("mute").onclick = function(){
-
-        player.muted = !player.muted;
-
-        this.textContent = player.muted ? "🔇" : "🔊";
-
-    };
-
-    volumeInput.oninput = function(){
-
-        player.volume = Number(this.value);
-
-        player.muted = false;
-
-        document.getElementById("mute").textContent = "🔊";
-
-    };
-
-    progress.oninput = function(){
-
-        if(player.duration){
-
-            player.currentTime =
-                (Number(progress.value) / 100) *
-                player.duration;
-
-        }
-
-    };
-
-    player.addEventListener("timeupdate",updateProgress);
-
-    player.addEventListener("loadedmetadata",function(){
-
-        durationEl.textContent =
-            formatTime(player.duration);
-
-    });
-
-    player.addEventListener("play",function(){
-
-        playMain.textContent = "⏸";
-
-    });
-
-    player.addEventListener("pause",function(){
-
-        playMain.textContent = "▶";
-
-    });
-
-    player.addEventListener("ended",function(){
-
-        playMain.textContent = "▶";
-        cover.style.display = "flex";
-
-    });
-
-    document.getElementById("fullscreenBtn").onclick = function(){
-
-        const box = document.getElementById("playerContainer");
-
-        if(box.requestFullscreen){
-
-            box.requestFullscreen();
-
-        }
-
-    };
-
-    document.getElementById("theaterBtn").onclick = toggleTheater;
-
-    document.querySelectorAll(".speed button").forEach(button => {
-
-        button.onclick = function(){
-
-            const speed = Number(this.dataset.speed);
-
-            player.playbackRate = speed;
-
-            document.querySelectorAll(".speed button")
-                .forEach(b => b.classList.remove("active"));
-
-            this.classList.add("active");
-
-        };
-
-    });
-
-}
-
-function playPause(){
-
-    if(player.paused){
-
-        player.play();
-
-        cover.style.display = "none";
-
-    }else{
-
-        player.pause();
-
-    }
-
-}
-
-function loadVideo(index){
-
-    if(!videos[index]) return;
-
-    currentIndex = index;
-
-    const video = videos[index];
-
-    player.src = getVideoPath(video);
-
-    player.poster = getThumbnail(video);
-
-    document.getElementById("videoTitle").textContent =
-        video.title || "بدون عنوان";
-
-    document.getElementById("videoDescription").textContent =
-        video.description || "ویدیوی اختصاصی ArsinGang";
-
-    document.getElementById("videoQuality").textContent =
-        video.quality || "1080p";
-
-    document.getElementById("videoDate").textContent =
-        video.date || "ArsinGang";
-
-    cover.querySelector("img").src =
-        getThumbnail(video);
-
-    cover.style.display = "flex";
-
-    progress.value = 0;
-
-    currentTimeEl.textContent = "0:00";
-    durationEl.textContent = "0:00";
-
-    player.load();
-
-}
-
-function buildList(){
-
-    const list = document.getElementById("videoList");
-
-    list.innerHTML = "";
-
-    videos.forEach((video,index) => {
-
-        const item = document.createElement("div");
-
-        item.className = "video-item";
-
-        item.innerHTML = `
-
-            <div class="video-item-thumb">
-
-                <img
-                    src="${getThumbnail(video)}"
-                    alt="${escapeHTML(video.title || "Video")}"
-                >
-
-            </div>
-
-            <div class="video-item-info">
-
-                <h3>
-                    ${escapeHTML(video.title || "بدون عنوان")}
-                </h3>
-
-                <p>
-                    ${escapeHTML(video.quality || "1080p")}
-                </p>
-
-            </div>
-
-        `;
-
-        item.onclick = function(){
-
-            loadVideo(index);
-
-            window.scrollTo({
-                top:0,
-                behavior:"smooth"
-            });
-
-        };
-
-        list.appendChild(item);
-
-    });
-
-}
-
-function updateProgress(){
-
-    if(!player.duration) return;
-
-    const percent =
-        (player.currentTime / player.duration) * 100;
-
-    progress.value = percent;
-
-    currentTimeEl.textContent =
-        formatTime(player.currentTime);
-
-}
-
-function formatTime(seconds){
-
-    if(!Number.isFinite(seconds)) return "0:00";
-
-    const mins = Math.floor(seconds / 60);
-
-    const secs = Math.floor(seconds % 60)
-        .toString()
-        .padStart(2,"0");
-
-    return mins + ":" + secs;
-
-}
-
-function getVideoPath(video){
-
-    if(video.file){
-
-        if(video.file.startsWith("/")){
-
-            return video.file;
-
-        }
-
-        return "/videos/" + video.file;
-
-    }
-
-    return "";
-
-}
-
-function getThumbnail(video){
-
-    if(video.thumbnail){
-
-        if(video.thumbnail.startsWith("/")){
-
-            return video.thumbnail;
-
-        }
-
-        return "/videos/thumbnails/" + video.thumbnail;
-
-    }
-
-    return "";
-
-}
-
-function toggleTheater(){
-
-    const box = document.getElementById("mainBox");
-
-    if(!box.classList.contains("theater")){
-
-        box.classList.add("theater");
-
-        document.body.style.overflow = "hidden";
-
-    }else{
-
-        box.classList.remove("theater");
-
-        document.body.style.overflow = "";
-
-    }
-
-}
-
-function escapeHTML(text){
-
-    return String(text)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-
-}
-
+checkAd();
 loadVideos();
-
 </script>
 
 </body>
