@@ -1317,7 +1317,129 @@ async function getRank(userId){
 
 
 /* =========================
-   VIDEO ACCESS
+   PROTECTED VIDEO ACCESS
+========================= */
+
+async function openProtectedVideos(){
+
+    if(!accessToken){
+
+        window.location.href =
+            "/login/";
+
+        return;
+
+    }
+
+
+    try{
+
+        let response =
+            await fetch(
+                "/videos/session",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Authorization":
+                            "Bearer " +
+                            accessToken
+                    }
+                }
+            );
+
+
+        /*
+         * اگر توکن منقضی شده بود،
+         * یک بار Refresh می‌کنیم.
+         */
+
+        if(response.status === 401){
+
+            const refreshed =
+                await refreshAccessToken();
+
+
+            if(!refreshed){
+
+                window.location.href =
+                    "/login/";
+
+                return;
+
+            }
+
+
+            response =
+                await fetch(
+                    "/videos/session",
+                    {
+                        method:"POST",
+
+                        headers:{
+                            "Authorization":
+                                "Bearer " +
+                                accessToken
+                        }
+                    }
+                );
+
+        }
+
+
+        /*
+         * بدون رنک مجاز
+         */
+
+        if(response.status === 403){
+
+            alert(
+                "این بخش فقط برای رنک‌های VIP، MVP، MEDIA و OWNER قابل دسترسی است."
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * دسترسی تأیید شد
+         */
+
+        if(response.ok){
+
+            window.location.href =
+                "/videos/";
+
+            return;
+
+        }
+
+
+        alert(
+            "خطا در بررسی دسترسی."
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Video access error:",
+            error
+        );
+
+
+        alert(
+            "ارتباط با سرور برقرار نشد."
+        );
+
+    }
+
+}
+
+
+/* =========================
+   VIDEO BUTTON
 ========================= */
 
 function setupEarlyVideoAccess(rank){
@@ -1381,13 +1503,9 @@ function setupEarlyVideoAccess(rank){
 
         button.setAttribute(
             "href",
-            "/videos/"
+            "#"
         );
 
-
-        /*
-           قفل کاملاً حذف می‌شود
-        */
 
         if(overlay){
 
@@ -1405,10 +1523,11 @@ function setupEarlyVideoAccess(rank){
 
 
         button.onclick =
-            function(){
+            function(event){
 
-                window.location.href =
-                    "/videos/";
+                event.preventDefault();
+
+                openProtectedVideos();
 
                 return false;
 
