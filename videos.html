@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -267,13 +268,6 @@ header{
     overflow:hidden;
 }
 
-
-/*
-    بدون aspect-ratio ثابت
-    تا تبلیغ با هر نسبت تصویر
-    درست نمایش داده شود.
-*/
-
 .ad-video{
     width:auto;
     height:auto;
@@ -289,41 +283,38 @@ header{
 }
 
 
-/* ================= MORE INFO ================= */
+/* MORE INFO */
 
 .more-info{
-    display:none;
-
     position:absolute;
 
-    left:18px;
+    left:20px;
     bottom:48px;
 
-    z-index:12;
+    z-index:8;
 
-    padding:9px 15px;
-
-    border-radius:10px;
-
-    background:rgba(20,20,35,.92);
-
-    border:1px solid rgba(0,217,255,.55);
-
-    color:#fff;
+    color:#00d9ff;
 
     text-decoration:none;
 
-    font-size:13px;
-    font-weight:bold;
+    font-size:12px;
 
-    box-shadow:
-        0 0 15px rgba(0,217,255,.18);
+    padding:7px 11px;
+
+    border-radius:9px;
+
+    background:rgba(0,0,0,.70);
+
+    border:1px solid rgba(0,217,255,.18);
 
     transition:.2s;
 }
 
 .more-info:hover{
-    background:#7b2cff;
+    color:#fff;
+
+    background:rgba(123,44,255,.75);
+
     border-color:#7b2cff;
 
     transform:translateY(-2px);
@@ -709,12 +700,12 @@ footer{
     }
 
     .more-info{
-        left:12px;
+        left:14px;
         bottom:40px;
 
-        padding:8px 12px;
+        font-size:11px;
 
-        font-size:12px;
+        padding:6px 9px;
     }
 
     .video-grid{
@@ -724,58 +715,58 @@ footer{
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
 <div class="container">
 
-
 <header>
 
-    <div class="topbar">
+```
+<div class="topbar">
 
-        <div class="brand">
+    <div class="brand">
 
-            <div class="logo-box">
-                AG
-            </div>
+        <div class="logo-box">
+            AG
+        </div>
 
-            <div class="brand-text">
+        <div class="brand-text">
 
-                <strong>
-                    VIDEO
-                </strong>
+            <strong>
+                VIDEO
+            </strong>
 
-                <span>
-                    Arsin_Gang
-                </span>
-
-            </div>
+            <span>
+                Arsin_Gang
+            </span>
 
         </div>
 
     </div>
 
-</header>
+</div>
+```
 
+</header>
 
 <main>
 
-
 <section class="hero">
 
-    <h1>
-        ویدیوهای اختصاصی ArsinGang
-    </h1>
+```
+<h1>
+    ویدیوهای اختصاصی ArsinGang
+</h1>
 
-    <p>
-        ویدیوهای ویژه برای اعضای ArsinGang
-    </p>
+<p>
+    ویدیوهای ویژه برای اعضای ArsinGang
+</p>
+```
 
 </section>
-
 
 <!-- ================= AD ================= -->
 
@@ -785,146 +776,148 @@ footer{
     style="display:none;"
 >
 
-    <div class="ad-card">
+```
+<div class="ad-card">
 
 
-        <button
-            class="ad-close"
-            id="adClose"
-            type="button"
-            aria-label="بستن تبلیغ"
-        >
-            ×
-        </button>
+    <button
+        class="ad-close"
+        id="adClose"
+        type="button"
+        aria-label="بستن تبلیغ"
+    >
+        ×
+    </button>
 
 
-        <div class="ad-label">
+    <div class="ad-label">
 
-            <span>
-                ● تبلیغات
-            </span>
+        <span>
+            ● تبلیغات
+        </span>
 
-            <span>
-                ArsinGang
-            </span>
-
-        </div>
-
-
-        <div class="ad-video-wrap">
-
-            <video
-                id="adVideo"
-                class="ad-video"
-                controls
-                preload="auto"
-                playsinline
-            ></video>
-
-
-            <a
-                id="moreInfo"
-                class="more-info"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                اطلاعات بیشتر
-            </a>
-
-        </div>
-
+        <span>
+            ArsinGang
+        </span>
 
     </div>
 
-</section>
 
+    <div class="ad-video-wrap">
+
+        <video
+            id="adVideo"
+            class="ad-video"
+            controls
+            preload="auto"
+            playsinline>
+        </video>
+
+    </div>
+
+
+    <a
+        id="moreInfo"
+        class="more-info"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="display:none;"
+    >
+        اطلاعات بیشتر
+    </a>
+
+
+</div>
+```
+
+</section>
 
 <!-- ================= VIDEOS ================= -->
 
 <section class="videos-section">
 
+```
+<div class="section-title">
 
-    <div class="section-title">
+    <h2>
+        🎬 ویدیوها
+    </h2>
 
-        <h2>
-            🎬 ویدیوها
-        </h2>
+    <div class="line"></div>
 
-        <div class="line"></div>
+</div>
 
+
+<div
+    id="emptyState"
+    class="empty"
+>
+
+    <div class="empty-icon">
+        🎬
     </div>
 
+    <h3>
+        هنوز ویدیویی اضافه نشده است.
+    </h3>
 
-    <div
-        id="emptyState"
-        class="empty"
-    >
+    <p>
+        به‌زودی ویدیوهای جدید ArsinGang اینجا قرار می‌گیرند.
+    </p>
 
-        <div class="empty-icon">
-            🎬
-        </div>
-
-        <h3>
-            هنوز ویدیویی اضافه نشده است.
-        </h3>
-
-        <p>
-            به‌زودی ویدیوهای جدید ArsinGang اینجا قرار می‌گیرند.
-        </p>
-
-    </div>
+</div>
 
 
-    <div
-        id="errorState"
-        class="error"
-    >
-        دریافت اطلاعات ویدیوها با مشکل مواجه شد.
-    </div>
+<div
+    id="errorState"
+    class="error"
+>
+    دریافت اطلاعات ویدیوها با مشکل مواجه شد.
+</div>
 
 
-    <div
-        id="videoGrid"
-        class="video-grid">
-    </div>
-
+<div
+    id="videoGrid"
+    class="video-grid">
+</div>
+```
 
 </section>
-
 
 <!-- ================= HOME BUTTON ================= -->
 
 <div class="home-button-wrap">
 
-    <a
-        class="home-button"
-        href="/"
-    >
-        ← بازگشت به صفحه اصلی
-    </a>
+```
+<a
+    class="home-button"
+    href="/"
+>
+    ← بازگشت به صفحه اصلی
+</a>
+```
 
 </div>
-
 
 </main>
 
-
 <footer>
 
-    © 2026 ArsinGang — All Rights Reserved
+```
+© 2026 ArsinGang — All Rights Reserved
+```
 
 </footer>
 
-
 </div>
-
 
 <script>
 
 
 const ADS_JSON_PATH =
     "/videos/ads.json";
+
 
 const JSON_PATH =
     "/videos/videos.json";
@@ -985,13 +978,9 @@ async function checkAd(){
 
         if(!response.ok){
 
-            adSection.style.display =
-                "none";
-
-            moreInfo.style.display =
-                "none";
-
-            return;
+            throw new Error(
+                "ads.json not found"
+            );
 
         }
 
@@ -1020,13 +1009,9 @@ async function checkAd(){
             data.ad.video;
 
 
-        adSection.style.display =
-            "block";
-
-
-        /* اطلاعات بیشتر */
-
-        if(data.ad.more_info){
+        if(
+            data.ad.more_info
+        ){
 
             moreInfo.href =
                 data.ad.more_info;
@@ -1042,12 +1027,17 @@ async function checkAd(){
         }
 
 
+        adSection.style.display =
+            "block";
+
+
         adVideo.load();
 
 
         /*
-         * تلاش برای پخش خودکار با صدا
-         */
+            تلاش برای پخش خودکار
+            با صدا
+        */
 
         adVideo.muted = false;
 
@@ -1057,18 +1047,13 @@ async function checkAd(){
 
         }catch(error){
 
-            /*
-             * اگر مرورگر Autoplay
-             * با صدا را مسدود کند،
-             * ویدیو فقط متوقف می‌ماند.
-             */
-
             console.log(
-                "Autoplay was blocked by the browser.",
+                "Autoplay with sound was blocked by the browser.",
                 error
             );
 
         }
+
 
     }catch(error){
 
@@ -1079,13 +1064,75 @@ async function checkAd(){
             "none";
 
         console.error(
-            "Ad loading error:",
             error
         );
 
     }
 
 }
+
+
+/* ================= FALLBACK AUTOPLAY ================= */
+
+/*
+    اگر مرورگر Autoplay با صدا را
+    در لحظه ورود مسدود کرد،
+    اولین تعامل کاربر با صفحه را
+    برای شروع تبلیغ امتحان می‌کنیم.
+*/
+
+let adStarted =
+    false;
+
+
+async function tryStartAd(){
+
+    if(
+        adStarted ||
+        !adVideo.src ||
+        adSection.style.display === "none"
+    ){
+
+        return;
+
+    }
+
+
+    adVideo.muted = false;
+
+
+    try{
+
+        await adVideo.play();
+
+        adStarted = true;
+
+    }catch(error){
+
+        console.log(
+            "Browser still requires user interaction.",
+            error
+        );
+
+    }
+
+}
+
+
+["click","touchstart","keydown"].forEach(
+    eventName => {
+
+        document.addEventListener(
+            eventName,
+            tryStartAd,
+            {
+                once:false,
+                passive:true
+            }
+        );
+
+    }
+);
 
 
 /* ================= CLOSE AD ================= */
@@ -1107,6 +1154,8 @@ adClose.addEventListener(
 
         moreInfo.style.display =
             "none";
+
+        adStarted = true;
 
     }
 );
@@ -1488,7 +1537,6 @@ loadVideos();
 
 
 </script>
-
 
 </body>
 </html>
