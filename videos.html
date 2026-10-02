@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="fa" dir="rtl">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ArsinGang | VIDEO</title>
-
-<meta name="description" content="ویدیوهای اختصاصی ArsinGang؛ ویدیوهای ویژه برای اعضای ArsinGang">
+<title>Videos | ArsinGang</title>
+<meta name="description" content="ویدیوهای اختصاصی ArsinGang">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237b2cff'/%3E%3Ctext x='50' y='65' text-anchor='middle' font-family='Arial' font-size='48' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
 
@@ -17,10 +14,11 @@
 *{
     box-sizing:border-box;
     margin:0;
+    padding:0;
 }
 
 html{
-    min-height:100%;
+    scroll-behavior:smooth;
 }
 
 body{
@@ -31,10 +29,11 @@ body{
     background:
         radial-gradient(circle at 15% 15%,rgba(123,44,255,.20),transparent 32%),
         radial-gradient(circle at 85% 25%,rgba(0,217,255,.12),transparent 30%),
+        radial-gradient(circle at 50% 100%,rgba(123,44,255,.12),transparent 35%),
         #080812;
 }
 
-body::before{
+body::after{
     content:"";
     position:fixed;
     inset:0;
@@ -47,9 +46,10 @@ body::before{
 }
 
 .container{
-    width:min(1100px,92%);
+    width:min(1150px,92%);
     margin:auto;
 }
+
 
 /* ================= HEADER ================= */
 
@@ -61,14 +61,18 @@ header{
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:14px;
     width:100%;
 }
 
 .brand{
     display:flex;
+    flex-direction:column;
     align-items:center;
-    gap:14px;
+    justify-content:center;
+
+    gap:10px;
+
+    text-align:center;
 }
 
 .logo-box{
@@ -99,6 +103,7 @@ header{
     display:flex;
     flex-direction:column;
     align-items:center;
+
     gap:3px;
 }
 
@@ -107,19 +112,22 @@ header{
 }
 
 .brand-text span{
-    color:#00d9ff;
+    color:#a9a9c4;
     font-size:12px;
 }
+
 
 /* ================= TITLE ================= */
 
 .hero{
     text-align:center;
+
     padding:28px 0 25px;
 }
 
 .hero h1{
     font-size:clamp(27px,5vw,42px);
+
     margin-bottom:10px;
 
     background:
@@ -138,8 +146,10 @@ header{
 
 .hero p{
     color:#aaaac0;
+
     font-size:14px;
 }
+
 
 /* ================= AD ================= */
 
@@ -149,12 +159,14 @@ header{
 
 .ad-card{
     position:relative;
+
     overflow:hidden;
 
     border:
         1px solid rgba(123,44,255,.30);
 
     border-radius:22px;
+
     padding:10px;
 
     background:
@@ -170,6 +182,7 @@ header{
         inset 0 0 30px rgba(0,217,255,.025);
 }
 
+
 /* AD CLOSE BUTTON */
 
 .ad-close{
@@ -184,6 +197,7 @@ header{
     height:32px;
 
     border:none;
+
     border-radius:50%;
 
     display:flex;
@@ -199,6 +213,7 @@ header{
     line-height:1;
 
     cursor:pointer;
+
     transition:.2s;
 
     box-shadow:
@@ -212,6 +227,7 @@ header{
     transform:scale(1.08);
 }
 
+
 /* AD LABEL */
 
 .ad-label{
@@ -223,6 +239,7 @@ header{
     padding:5px 7px 10px;
 
     color:#bdbdd1;
+
     font-size:12px;
 }
 
@@ -230,13 +247,13 @@ header{
     color:#00d9ff;
 }
 
+
 /* AD VIDEO */
 
 .ad-video-wrap{
     position:relative;
 
     width:100%;
-    aspect-ratio:16/9;
 
     display:flex;
 
@@ -249,6 +266,13 @@ header{
 
     overflow:hidden;
 }
+
+
+/*
+    بدون aspect-ratio ثابت
+    تا تبلیغ با هر نسبت تصویر
+    درست نمایش داده شود.
+*/
 
 .ad-video{
     width:auto;
@@ -264,48 +288,6 @@ header{
     background:#05050b;
 }
 
-/* ================= MORE INFO ================= */
-
-.more-info{
-    display:none;
-
-    position:absolute;
-
-    left:18px;
-
-    /*
-     * داخل کادر تبلیغ و کمی بالاتر از پایین
-     */
-    bottom:48px;
-
-    z-index:12;
-
-    padding:9px 15px;
-
-    border-radius:10px;
-
-    background:rgba(20,20,35,.92);
-
-    border:1px solid rgba(0,217,255,.55);
-
-    color:#fff;
-
-    text-decoration:none;
-
-    font-size:13px;
-    font-weight:bold;
-
-    box-shadow:
-        0 0 15px rgba(0,217,255,.18);
-
-    transition:.2s;
-}
-
-.more-info:hover{
-    background:#7b2cff;
-    border-color:#7b2cff;
-    transform:translateY(-2px);
-}
 
 /* ================= VIDEOS ================= */
 
@@ -321,6 +303,10 @@ header{
     gap:10px;
 
     margin-bottom:18px;
+}
+
+.section-title h2{
+    font-size:20px;
 }
 
 .section-title .line{
@@ -400,6 +386,10 @@ header{
     display:block;
 
     transition:.3s;
+}
+
+.video-card:hover .thumbnail img{
+    transform:scale(1.035);
 }
 
 .play-icon{
@@ -508,6 +498,7 @@ header{
     color:#00d9ff;
 }
 
+
 /* ================= EMPTY ================= */
 
 .empty{
@@ -526,18 +517,22 @@ header{
 
 .empty-icon{
     font-size:48px;
+
     margin-bottom:16px;
 }
 
 .empty h3{
     font-size:18px;
+
     margin-bottom:8px;
 }
 
 .empty p{
     color:#85859d;
+
     font-size:13px;
 }
+
 
 /* ================= ERROR ================= */
 
@@ -558,6 +553,7 @@ header{
     background:
         rgba(255,50,50,.04);
 }
+
 
 /* ================= HOME BUTTON ================= */
 
@@ -601,6 +597,7 @@ header{
     transform:translateY(-2px);
 }
 
+
 /* ================= FOOTER ================= */
 
 footer{
@@ -616,9 +613,14 @@ footer{
     font-size:11px;
 }
 
+
 /* ================= MOBILE ================= */
 
 @media(max-width:650px){
+
+    header{
+        padding-top:18px;
+    }
 
     .logo-box{
         width:58px;
@@ -629,8 +631,21 @@ footer{
         font-size:23px;
     }
 
+    .brand-text strong{
+        font-size:15px;
+    }
+
+    .brand-text span{
+        font-size:10px;
+    }
+
+    .hero{
+        padding-top:20px;
+    }
+
     .ad-card{
         border-radius:17px;
+
         padding:7px;
     }
 
@@ -652,15 +667,6 @@ footer{
         font-size:19px;
     }
 
-    .more-info{
-        left:12px;
-        bottom:40px;
-
-        padding:8px 12px;
-
-        font-size:12px;
-    }
-
     .video-grid{
         grid-template-columns:1fr;
     }
@@ -668,58 +674,58 @@ footer{
 }
 
 </style>
-
 </head>
+
 
 <body>
 
 <div class="container">
 
+
 <header>
 
-```
-<div class="topbar">
+    <div class="topbar">
 
-    <div class="brand">
+        <div class="brand">
 
-        <div class="logo-box">
-            AG
-        </div>
+            <div class="logo-box">
+                AG
+            </div>
 
-        <div class="brand-text">
+            <div class="brand-text">
 
-            <strong>
-                VIDEO
-            </strong>
+                <strong>
+                    VIDEO
+                </strong>
 
-            <span>
-                Arsin_Gang
-            </span>
+                <span>
+                    Arsin_Gang
+                </span>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
-```
-
 </header>
+
 
 <main>
 
+
 <section class="hero">
 
-```
-<h1>
-    ویدیوهای اختصاصی ArsinGang
-</h1>
+    <h1>
+        ویدیوهای اختصاصی ArsinGang
+    </h1>
 
-<p>
-    ویدیوهای ویژه برای اعضای ArsinGang
-</p>
-```
+    <p>
+        ویدیوهای ویژه برای اعضای ArsinGang
+    </p>
 
 </section>
+
 
 <!-- ================= AD ================= -->
 
@@ -729,140 +735,135 @@ footer{
     style="display:none;"
 >
 
-```
-<div class="ad-card">
+    <div class="ad-card">
 
-    <button
-        class="ad-close"
-        id="adClose"
-        type="button"
-        aria-label="بستن تبلیغ"
-    >
-        ×
-    </button>
 
-    <div class="ad-label">
-
-        <span>
-            ● تبلیغات
-        </span>
-
-        <span>
-            ArsinGang
-        </span>
-
-    </div>
-
-    <div class="ad-video-wrap">
-
-        <video
-            id="adVideo"
-            class="ad-video"
-            controls
-            preload="metadata"
-            playsinline
-        ></video>
-
-        <a
-            id="moreInfo"
-            class="more-info"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
+        <button
+            class="ad-close"
+            id="adClose"
+            type="button"
+            aria-label="بستن تبلیغ"
         >
-            اطلاعات بیشتر
-        </a>
+            ×
+        </button>
+
+
+        <div class="ad-label">
+
+            <span>
+                ● تبلیغات
+            </span>
+
+            <span>
+                ArsinGang
+            </span>
+
+        </div>
+
+
+        <div class="ad-video-wrap">
+
+            <video
+                id="adVideo"
+                class="ad-video"
+                controls
+                preload="metadata"
+                playsinline>
+            </video>
+
+        </div>
+
 
     </div>
-
-</div>
-```
 
 </section>
+
 
 <!-- ================= VIDEOS ================= -->
 
 <section class="videos-section">
 
-```
-<div class="section-title">
 
-    <h2>
-        🎬 ویدیوها
-    </h2>
+    <div class="section-title">
 
-    <div class="line"></div>
+        <h2>
+            🎬 ویدیوها
+        </h2>
 
-</div>
+        <div class="line"></div>
 
-
-<div
-    id="emptyState"
-    class="empty"
->
-
-    <div class="empty-icon">
-        🎬
     </div>
 
-    <h3>
-        هنوز ویدیویی اضافه نشده است.
-    </h3>
 
-    <p>
-        به‌زودی ویدیوهای جدید ArsinGang اینجا قرار می‌گیرند.
-    </p>
+    <div
+        id="emptyState"
+        class="empty"
+    >
 
-</div>
+        <div class="empty-icon">
+            🎬
+        </div>
+
+        <h3>
+            هنوز ویدیویی اضافه نشده است.
+        </h3>
+
+        <p>
+            به‌زودی ویدیوهای جدید ArsinGang اینجا قرار می‌گیرند.
+        </p>
+
+    </div>
 
 
-<div
-    id="errorState"
-    class="error"
->
-    دریافت اطلاعات ویدیوها با مشکل مواجه شد.
-</div>
+    <div
+        id="errorState"
+        class="error"
+    >
+        دریافت اطلاعات ویدیوها با مشکل مواجه شد.
+    </div>
 
 
-<div
-    id="videoGrid"
-    class="video-grid"
-></div>
-```
+    <div
+        id="videoGrid"
+        class="video-grid">
+    </div>
+
 
 </section>
+
 
 <!-- ================= HOME BUTTON ================= -->
 
 <div class="home-button-wrap">
 
-```
-<a
-    class="home-button"
-    href="/"
->
-    ← بازگشت به صفحه اصلی
-</a>
-```
+    <a
+        class="home-button"
+        href="/"
+    >
+        ← بازگشت به صفحه اصلی
+    </a>
 
 </div>
+
 
 </main>
 
+
 <footer>
 
-```
-© 2026 ArsinGang — All Rights Reserved
-```
+    © 2026 ArsinGang — All Rights Reserved
 
 </footer>
 
+
 </div>
+
 
 <script>
 
-const ADS_JSON_PATH =
-    "/videos/ads.json";
+
+const AD_PATH =
+    "/videos/ads/ad.mp4";
 
 const JSON_PATH =
     "/videos/videos.json";
@@ -881,11 +882,6 @@ const adVideo =
 const adClose =
     document.getElementById(
         "adClose"
-    );
-
-const moreInfo =
-    document.getElementById(
-        "moreInfo"
     );
 
 const emptyState =
@@ -912,97 +908,33 @@ async function checkAd(){
 
         const response =
             await fetch(
-                ADS_JSON_PATH +
-                "?t=" +
-                Date.now(),
+                AD_PATH,
                 {
+                    method:"HEAD",
                     cache:"no-store"
                 }
             );
 
 
-        if(!response.ok){
+        if(response.ok){
+
+            adVideo.src =
+                AD_PATH;
 
             adSection.style.display =
-                "none";
-
-            moreInfo.style.display =
-                "none";
-
-            return;
-        }
-
-
-        const data =
-            await response.json();
-
-
-        if(
-            !data.ad ||
-            !data.ad.video
-        ){
-
-            adSection.style.display =
-                "none";
-
-            moreInfo.style.display =
-                "none";
-
-            return;
-        }
-
-
-        adVideo.src =
-            data.ad.video;
-
-
-        adSection.style.display =
-            "block";
-
-
-        /* اطلاعات بیشتر فقط وقتی تبلیغ وجود دارد */
-
-        if(data.ad.more_info){
-
-            moreInfo.href =
-                data.ad.more_info;
-
-            moreInfo.style.display =
                 "block";
 
         }else{
 
-            moreInfo.style.display =
+            adSection.style.display =
                 "none";
 
         }
-
-
-        adVideo.load();
-
-
-        /*
-         * تلاش برای پخش خودکار با صدا.
-         * اگر مرورگر به دلیل سیاست Autoplay
-         * اجازه ندهد، مرورگر جلوی آن را می‌گیرد.
-         */
-
-        adVideo.muted = false;
-
-        adVideo.play().catch(() => {});
 
     }catch(error){
 
         adSection.style.display =
             "none";
-
-        moreInfo.style.display =
-            "none";
-
-        console.error(
-            "Ad loading error:",
-            error
-        );
 
     }
 
@@ -1026,9 +958,6 @@ adClose.addEventListener(
         adSection.style.display =
             "none";
 
-        moreInfo.style.display =
-            "none";
-
     }
 );
 
@@ -1037,12 +966,42 @@ adClose.addEventListener(
 
 function escapeHTML(value){
 
-    return String(value || "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "";
+
+    }
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -1065,6 +1024,7 @@ function getThumbnail(item){
     if(!item.thumbnail){
 
         return "";
+
     }
 
 
@@ -1125,6 +1085,7 @@ function renderVideos(videos){
 
     videos.forEach(item => {
 
+
         const url =
             getVideoURL(
                 item.url
@@ -1132,7 +1093,9 @@ function renderVideos(videos){
 
 
         if(!url){
+
             return;
+
         }
 
 
@@ -1145,11 +1108,14 @@ function renderVideos(videos){
         card.className =
             "video-card";
 
+
         card.href =
             url;
 
+
         card.target =
             "_blank";
+
 
         card.rel =
             "noopener noreferrer";
@@ -1176,10 +1142,9 @@ function renderVideos(videos){
                                 item.title ||
                                 "ویدیو"
                             )}"
-                            loading="lazy"
-                        >
+                            loading="lazy">
 
-                    `
+                      `
 
                     : `
 
@@ -1189,12 +1154,12 @@ function renderVideos(videos){
                             display:flex;
                             align-items:center;
                             justify-content:center;
-                            font-size:42px;
-                        ">
+                            color:#55556d;
+                            font-size:42px;">
                             🎬
                         </div>
 
-                    `
+                      `
                 }
 
 
@@ -1213,12 +1178,14 @@ function renderVideos(videos){
                     ? `
 
                         <div class="duration">
+
                             ${escapeHTML(
                                 item.duration
                             )}
+
                         </div>
 
-                    `
+                      `
 
                     : ""
                 }
@@ -1228,10 +1195,12 @@ function renderVideos(videos){
 
             <div class="video-info">
 
+
                 <div class="video-title">
 
                     ${escapeHTML(
-                        item.title || ""
+                        item.title ||
+                        "ویدیوی ArsinGang"
                     )}
 
                 </div>
@@ -1250,7 +1219,7 @@ function renderVideos(videos){
 
                         </div>
 
-                    `
+                      `
 
                     : ""
                 }
@@ -1280,12 +1249,13 @@ function renderVideos(videos){
 
                             </span>
 
-                        `
+                          `
 
                         : ""
                     }
 
                 </div>
+
 
             </div>
 
@@ -1312,6 +1282,7 @@ async function loadVideos(){
                 JSON_PATH +
                 "?t=" +
                 Date.now(),
+
                 {
                     cache:"no-store"
                 }
@@ -1320,10 +1291,10 @@ async function loadVideos(){
 
         if(!response.ok){
 
-            errorState.style.display =
-                "block";
+            throw new Error(
+                "JSON not found"
+            );
 
-            return;
         }
 
 
@@ -1332,15 +1303,23 @@ async function loadVideos(){
 
 
         renderVideos(
-            Array.isArray(data)
-                ? data
-                : data.videos
+            data.videos || []
         );
+
 
     }catch(error){
 
+        emptyState.style.display =
+            "none";
+
+
+        videoGrid.style.display =
+            "none";
+
+
         errorState.style.display =
             "block";
+
 
         console.error(
             error
@@ -1357,7 +1336,9 @@ checkAd();
 
 loadVideos();
 
+
 </script>
+
 
 </body>
 </html>
