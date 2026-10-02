@@ -289,6 +289,47 @@ header{
 }
 
 
+/* ================= MORE INFO ================= */
+
+.more-info{
+    display:none;
+
+    position:absolute;
+
+    left:18px;
+    bottom:48px;
+
+    z-index:12;
+
+    padding:9px 15px;
+
+    border-radius:10px;
+
+    background:rgba(20,20,35,.92);
+
+    border:1px solid rgba(0,217,255,.55);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:13px;
+    font-weight:bold;
+
+    box-shadow:
+        0 0 15px rgba(0,217,255,.18);
+
+    transition:.2s;
+}
+
+.more-info:hover{
+    background:#7b2cff;
+    border-color:#7b2cff;
+
+    transform:translateY(-2px);
+}
+
+
 /* ================= VIDEOS ================= */
 
 .videos-section{
@@ -667,6 +708,15 @@ footer{
         font-size:19px;
     }
 
+    .more-info{
+        left:12px;
+        bottom:40px;
+
+        padding:8px 12px;
+
+        font-size:12px;
+    }
+
     .video-grid{
         grid-template-columns:1fr;
     }
@@ -767,9 +817,20 @@ footer{
                 id="adVideo"
                 class="ad-video"
                 controls
-                preload="metadata"
-                playsinline>
-            </video>
+                preload="auto"
+                playsinline
+            ></video>
+
+
+            <a
+                id="moreInfo"
+                class="more-info"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                اطلاعات بیشتر
+            </a>
 
         </div>
 
@@ -862,8 +923,8 @@ footer{
 <script>
 
 
-const AD_PATH =
-    "/videos/ads/ad.mp4";
+const ADS_JSON_PATH =
+    "/videos/ads.json";
 
 const JSON_PATH =
     "/videos/videos.json";
@@ -882,6 +943,11 @@ const adVideo =
 const adClose =
     document.getElementById(
         "adClose"
+    );
+
+const moreInfo =
+    document.getElementById(
+        "moreInfo"
     );
 
 const emptyState =
@@ -908,26 +974,99 @@ async function checkAd(){
 
         const response =
             await fetch(
-                AD_PATH,
+                ADS_JSON_PATH +
+                "?t=" +
+                Date.now(),
                 {
-                    method:"HEAD",
                     cache:"no-store"
                 }
             );
 
 
-        if(response.ok){
-
-            adVideo.src =
-                AD_PATH;
+        if(!response.ok){
 
             adSection.style.display =
+                "none";
+
+            moreInfo.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !data.ad ||
+            !data.ad.video
+        ){
+
+            adSection.style.display =
+                "none";
+
+            moreInfo.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        adVideo.src =
+            data.ad.video;
+
+
+        adSection.style.display =
+            "block";
+
+
+        /* اطلاعات بیشتر */
+
+        if(data.ad.more_info){
+
+            moreInfo.href =
+                data.ad.more_info;
+
+            moreInfo.style.display =
                 "block";
 
         }else{
 
-            adSection.style.display =
+            moreInfo.style.display =
                 "none";
+
+        }
+
+
+        adVideo.load();
+
+
+        /*
+         * تلاش برای پخش خودکار با صدا
+         */
+
+        adVideo.muted = false;
+
+        try{
+
+            await adVideo.play();
+
+        }catch(error){
+
+            /*
+             * اگر مرورگر Autoplay
+             * با صدا را مسدود کند،
+             * ویدیو فقط متوقف می‌ماند.
+             */
+
+            console.log(
+                "Autoplay was blocked by the browser.",
+                error
+            );
 
         }
 
@@ -935,6 +1074,14 @@ async function checkAd(){
 
         adSection.style.display =
             "none";
+
+        moreInfo.style.display =
+            "none";
+
+        console.error(
+            "Ad loading error:",
+            error
+        );
 
     }
 
@@ -956,6 +1103,9 @@ adClose.addEventListener(
         adVideo.load();
 
         adSection.style.display =
+            "none";
+
+        moreInfo.style.display =
             "none";
 
     }
