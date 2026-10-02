@@ -816,6 +816,7 @@ footer{
                 class="ad-video"
                 controls
                 preload="auto"
+                autoplay
                 playsinline>
             </video>
 
@@ -917,10 +918,8 @@ footer{
 
 <script>
 
-
 const ADS_JSON_PATH =
     "/videos/ads.json";
-
 
 const JSON_PATH =
     "/videos/videos.json";
@@ -964,7 +963,22 @@ const videoGrid =
 
 /* ================= AD ================= */
 
+let adStarted =
+    false;
+
+let adLoading =
+    false;
+
+
 async function checkAd(){
+
+    if(adLoading){
+        return;
+    }
+
+    adLoading =
+        true;
+
 
     try{
 
@@ -1008,8 +1022,47 @@ async function checkAd(){
         }
 
 
+        adStarted =
+            false;
+
+
+        adVideo.pause();
+
+
+        adVideo.removeAttribute(
+            "src"
+        );
+
+
+        adVideo.load();
+
+
         adVideo.src =
             data.ad.video;
+
+
+        adVideo.preload =
+            "auto";
+
+
+        adVideo.autoplay =
+            true;
+
+
+        adVideo.playsInline =
+            true;
+
+
+        adVideo.muted =
+            false;
+
+
+        adVideo.defaultMuted =
+            false;
+
+
+        adVideo.volume =
+            1.0;
 
 
         if(
@@ -1037,10 +1090,6 @@ async function checkAd(){
         adVideo.load();
 
 
-        adVideo.muted =
-            false;
-
-
         try{
 
             await adVideo.play();
@@ -1048,11 +1097,21 @@ async function checkAd(){
             adStarted =
                 true;
 
+            console.log(
+                "Ad autoplay started with sound."
+            );
+
         }catch(error){
 
             console.log(
-                "Autoplay with sound was blocked by the browser.",
+                "Autoplay with sound was blocked.",
                 error
+            );
+
+
+            setTimeout(
+                tryStartAd,
+                100
             );
 
         }
@@ -1067,19 +1126,21 @@ async function checkAd(){
             "none";
 
         console.error(
+            "Ad error:",
             error
         );
+
+    }finally{
+
+        adLoading =
+            false;
 
     }
 
 }
 
 
-/* ================= FALLBACK AUTOPLAY ================= */
-
-let adStarted =
-    false;
-
+/* ================= AUTOPLAY RETRY ================= */
 
 async function tryStartAd(){
 
@@ -1098,6 +1159,14 @@ async function tryStartAd(){
         false;
 
 
+    adVideo.defaultMuted =
+        false;
+
+
+    adVideo.volume =
+        1.0;
+
+
     try{
 
         await adVideo.play();
@@ -1105,10 +1174,14 @@ async function tryStartAd(){
         adStarted =
             true;
 
+        console.log(
+            "Ad started."
+        );
+
     }catch(error){
 
         console.log(
-            "Browser still requires user interaction.",
+            "Browser requires user interaction.",
             error
         );
 
@@ -1117,14 +1190,40 @@ async function tryStartAd(){
 }
 
 
-["click","touchstart","keydown"].forEach(
+/* ================= VIDEO READY EVENTS ================= */
+
+adVideo.addEventListener(
+    "loadeddata",
+    tryStartAd
+);
+
+
+adVideo.addEventListener(
+    "canplay",
+    tryStartAd
+);
+
+
+adVideo.addEventListener(
+    "canplaythrough",
+    tryStartAd
+);
+
+
+/* ================= USER INTERACTION FALLBACK ================= */
+
+[
+    "click",
+    "touchstart",
+    "pointerdown",
+    "keydown"
+].forEach(
     eventName => {
 
         document.addEventListener(
             eventName,
             tryStartAd,
             {
-                once:false,
                 passive:true
             }
         );
@@ -1139,22 +1238,27 @@ adClose.addEventListener(
     "click",
     function(){
 
+        adStarted =
+            true;
+
+
         adVideo.pause();
+
 
         adVideo.removeAttribute(
             "src"
         );
 
+
         adVideo.load();
+
 
         adSection.style.display =
             "none";
 
+
         moreInfo.style.display =
             "none";
-
-        adStarted =
-            true;
 
     }
 );
@@ -1533,7 +1637,6 @@ async function loadVideos(){
 checkAd();
 
 loadVideos();
-
 
 </script>
 
