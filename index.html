@@ -136,6 +136,88 @@ h1{
         0 10px 30px rgba(0,0,0,.3);
 }
 
+
+/* =========================
+   EARLY VIDEOS
+========================= */
+
+.early-video-btn{
+    position:relative;
+    display:block;
+    text-decoration:none;
+    color:white;
+    padding:18px 20px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.055);
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+    font-size:16px;
+    transition:.25s;
+    overflow:hidden;
+}
+
+.early-video-btn:hover{
+    transform:translateY(-3px);
+    border-color:#8b3dff;
+    box-shadow:
+        0 0 20px rgba(123,44,255,.35),
+        0 10px 30px rgba(0,0,0,.3);
+}
+
+.early-video-btn.locked{
+    cursor:not-allowed;
+    background:rgba(0,0,0,.42);
+    border-color:rgba(255,255,255,.07);
+}
+
+.early-video-btn.locked:hover{
+    transform:none;
+    border-color:rgba(255,255,255,.07);
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.early-video-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.48);
+    backdrop-filter:blur(1.5px);
+    z-index:2;
+}
+
+.early-video-lock{
+    font-size:30px;
+    filter:drop-shadow(0 0 10px rgba(255,255,255,.25));
+}
+
+.early-video-content{
+    position:relative;
+    z-index:1;
+}
+
+.early-video-title{
+    font-size:16px;
+    font-weight:bold;
+}
+
+.early-video-access{
+    margin-top:7px;
+    color:#9990aa;
+    font-size:10px;
+    line-height:1.7;
+}
+
+.early-video-btn:not(.locked) .early-video-access{
+    color:#00e5ff;
+}
+
+
+/* =========================
+   TOP BUTTONS
+========================= */
+
 .support{
     position:fixed;
     top:18px;
@@ -326,17 +408,11 @@ footer{
     animation:particleFloat 2s infinite ease-in-out;
 }
 
-
-/* VIP / MVP particles */
-
 .profile.vip .rank-particles span,
 .profile.mvp .rank-particles span{
     background:#ffd83d;
     box-shadow:0 0 6px #ffd83d;
 }
-
-
-/* MEDIA particles */
 
 .profile.media .rank-particles span{
     background:#00e5ff;
@@ -345,16 +421,12 @@ footer{
         0 0 12px rgba(0,229,255,.8);
 }
 
-
-/* OWNER particles */
-
 .profile.owner .rank-particles span{
     background:#ffd83d;
     box-shadow:
         0 0 6px #ffd83d,
         0 0 12px #ff9d00;
 }
-
 
 .rank-particles span:nth-child(1){
     left:5%;
@@ -473,8 +545,6 @@ footer{
 
             <div class="avatar">
 
-                <!-- Simple contact/person icon -->
-
                 <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -554,6 +624,7 @@ footer{
             دنیای گیم، Minecraft و کلی محتوای جذاب!
         </div>
 
+
         <div class="buttons">
 
             <a class="main-btn" href="/support/">
@@ -580,7 +651,44 @@ footer{
                 🏆 Gang Coin Leaderboard
             </a>
 
+
+            <!-- =========================
+                 EARLY VIDEOS
+            ========================= -->
+
+            <a
+                class="early-video-btn locked"
+                id="earlyVideoButton"
+                href="/videos/"
+                aria-disabled="true"
+            >
+
+                <div class="early-video-overlay">
+                    <div class="early-video-lock">
+                        🔒
+                    </div>
+                </div>
+
+                <div class="early-video-content">
+
+                    <div class="early-video-title">
+                        🎬 دیدن 24 ساعت زودتر ویدیو ها
+                    </div>
+
+                    <div
+                        class="early-video-access"
+                        id="earlyVideoAccess"
+                    >
+                        فقط کسانی با دارای رنک VIP و MVP و MEDIA و OWNER به این گزینه دست رسی دارند
+                    </div>
+
+                </div>
+
+            </a>
+
+
         </div>
+
 
         <footer>
             ArsinGang 🎮 © 2026 ArsinGang
@@ -589,6 +697,7 @@ footer{
     </main>
 
 </div>
+
 
 <script>
 
@@ -604,6 +713,10 @@ localStorage.getItem("arsin_user_token");
 let refreshToken =
 localStorage.getItem("arsin_user_refresh");
 
+
+/* =========================
+   REFRESH TOKEN
+========================= */
 
 async function refreshAccessToken(){
 
@@ -834,6 +947,88 @@ async function getRank(){
 
 
 /* =========================
+   EARLY VIDEO ACCESS
+========================= */
+
+function setupEarlyVideoAccess(rank){
+
+    const button =
+        document.getElementById(
+            "earlyVideoButton"
+        );
+
+    const accessText =
+        document.getElementById(
+            "earlyVideoAccess"
+        );
+
+
+    const allowedRanks = [
+        "VIP",
+        "MVP",
+        "MEDIA",
+        "OWNER"
+    ];
+
+
+    const hasAccess =
+        allowedRanks.includes(
+            String(rank).toUpperCase()
+        );
+
+
+    if(hasAccess){
+
+        button.classList.remove(
+            "locked"
+        );
+
+        button.setAttribute(
+            "aria-disabled",
+            "false"
+        );
+
+        accessText.textContent =
+            "دسترسی فعال است";
+
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                window.location.href =
+                    "/videos/";
+
+            }
+        );
+
+    }else{
+
+        button.classList.add(
+            "locked"
+        );
+
+        button.setAttribute(
+            "aria-disabled",
+            "true"
+        );
+
+
+        button.addEventListener(
+            "click",
+            function(event){
+
+                event.preventDefault();
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================
    LOAD PROFILE
 ========================= */
 
@@ -854,11 +1049,6 @@ async function loadProfile(user){
             "profile"
         );
 
-
-    /*
-       username فقط از metadata حساب
-       فعلی خوانده می‌شود.
-    */
 
     const metadata =
         user.user_metadata || {};
@@ -937,6 +1127,15 @@ async function loadProfile(user){
         );
 
     }
+
+
+    /*
+       فعال کردن سیستم دسترسی ویدیو
+    */
+
+    setupEarlyVideoAccess(
+        rank
+    );
 
 }
 
