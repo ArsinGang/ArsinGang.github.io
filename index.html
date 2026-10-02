@@ -143,25 +143,8 @@ h1{
 
 .early-video-btn{
     position:relative;
-    display:block;
-    text-decoration:none;
-    color:white;
-    padding:18px 20px;
-    border-radius:16px;
-    border:1px solid rgba(255,255,255,.1);
-    background:rgba(255,255,255,.055);
-    box-shadow:0 8px 25px rgba(0,0,0,.25);
-    font-size:16px;
-    transition:.25s;
     overflow:hidden;
-}
-
-.early-video-btn:hover{
-    transform:translateY(-3px);
-    border-color:#8b3dff;
-    box-shadow:
-        0 0 20px rgba(123,44,255,.35),
-        0 10px 30px rgba(0,0,0,.3);
+    cursor:pointer;
 }
 
 .early-video-btn.locked{
@@ -657,9 +640,9 @@ footer{
             ========================= -->
 
             <a
-                class="early-video-btn locked"
+                class="main-btn early-video-btn locked"
                 id="earlyVideoButton"
-                href="/videos/"
+                href="#"
                 aria-disabled="true"
             >
 
@@ -871,27 +854,26 @@ async function getUser(){
 
 
 /* =========================
-   GET RANK
+   GET RANK DIRECTLY
 ========================= */
 
-async function getRank(){
+async function getRank(userId){
 
     try{
 
         const response = await fetch(
             SUPABASE_URL +
-            "/rest/v1/rpc/get_my_gang_account",
+            "/rest/v1/gang_users?id=eq." +
+            encodeURIComponent(userId) +
+            "&select=rank",
             {
-                method:"POST",
+                method:"GET",
 
                 headers:{
-                    "Content-Type":"application/json",
                     "apikey":SUPABASE_KEY,
                     "Authorization":
                         "Bearer " + accessToken
-                },
-
-                body:"{}"
+                }
             }
         );
 
@@ -912,20 +894,15 @@ async function getRank(){
             await response.json();
 
 
-        const account =
-            Array.isArray(data)
-                ? data[0]
-                : data;
-
-
         if(
-            account &&
-            account.rank
+            Array.isArray(data) &&
+            data.length > 0 &&
+            data[0].rank
         ){
 
             return String(
-                account.rank
-            ).toUpperCase();
+                data[0].rank
+            ).trim().toUpperCase();
 
         }
 
@@ -971,9 +948,15 @@ function setupEarlyVideoAccess(rank){
     ];
 
 
+    const cleanRank =
+        String(rank)
+            .trim()
+            .toUpperCase();
+
+
     const hasAccess =
         allowedRanks.includes(
-            String(rank).toUpperCase()
+            cleanRank
         );
 
 
@@ -988,19 +971,24 @@ function setupEarlyVideoAccess(rank){
             "false"
         );
 
+        button.setAttribute(
+            "href",
+            "/videos/"
+        );
+
         accessText.textContent =
             "دسترسی فعال است";
 
 
-        button.addEventListener(
-            "click",
+        button.onclick =
             function(){
 
                 window.location.href =
                     "/videos/";
 
-            }
-        );
+                return false;
+
+            };
 
     }else{
 
@@ -1013,15 +1001,20 @@ function setupEarlyVideoAccess(rank){
             "true"
         );
 
+        button.setAttribute(
+            "href",
+            "#"
+        );
 
-        button.addEventListener(
-            "click",
+
+        button.onclick =
             function(event){
 
                 event.preventDefault();
 
-            }
-        );
+                return false;
+
+            };
 
     }
 
@@ -1078,7 +1071,20 @@ async function loadProfile(user){
 
 
     const rank =
-        await getRank();
+        await getRank(
+            user.id
+        );
+
+
+    console.log(
+        "Current user:",
+        user.id
+    );
+
+    console.log(
+        "Current rank:",
+        rank
+    );
 
 
     rankElement.textContent =
@@ -1128,10 +1134,6 @@ async function loadProfile(user){
 
     }
 
-
-    /*
-       فعال کردن سیستم دسترسی ویدیو
-    */
 
     setupEarlyVideoAccess(
         rank
