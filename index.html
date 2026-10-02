@@ -975,7 +975,7 @@ footer{
             <a
                 class="main-btn early-video-btn locked"
                 id="earlyVideoButton"
-                href="#"
+                href="/videos/"
                 aria-disabled="true"
             >
 
@@ -1408,9 +1408,6 @@ async function openProtectedVideos(){
 
         /*
          * دسترسی تأیید شد
-         *
-         * Worker در این مرحله
-         * Cookie امن را تنظیم می‌کند.
          */
 
         if(response.ok){
@@ -1508,9 +1505,14 @@ function setupEarlyVideoAccess(rank){
         );
 
 
+        /*
+         * به جای # از مسیر واقعی استفاده می‌کنیم
+         * تا URL هیچ وقت به شکل #/... نشود.
+         */
+
         button.setAttribute(
             "href",
-            "#"
+            "/videos/"
         );
 
 
@@ -1560,9 +1562,13 @@ function setupEarlyVideoAccess(rank){
         );
 
 
+        /*
+         * حتی در حالت قفل هم # استفاده نمی‌کنیم.
+         */
+
         button.setAttribute(
             "href",
-            "#"
+            "/videos/"
         );
 
 
