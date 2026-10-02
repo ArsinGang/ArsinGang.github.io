@@ -924,6 +924,8 @@ async function checkAd(){
             adSection.style.display =
                 "block";
 
+            adVideo.play().catch(() => {});
+
         }else{
 
             adSection.style.display =
