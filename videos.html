@@ -1,10 +1,520 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Videos | ArsinGang</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Videos | ArsinGang</title>
+<meta name="description" content="ویدیوهای ArsinGang">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%237b2cff'/%3E%3Ctext x='50' y='66' text-anchor='middle' font-size='42' font-family='Arial' font-weight='900' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(123,44,255,.18), transparent 35%),
+        radial-gradient(circle at 80% 85%, rgba(0,217,255,.12), transparent 35%),
+        #080812;
+    color:#fff;
+    font-family:Arial, sans-serif;
+    overflow-x:hidden;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    right:-180px;
+    top:-180px;
+    background:#7b2cff;
+    opacity:.08;
+    filter:blur(120px);
+    border-radius:50%;
+    pointer-events:none;
+}
+
+.container{
+    width:min(1100px,92%);
+    margin:auto;
+    padding:35px 0 60px;
+}
+
+/* BACK */
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    color:#fff;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.1);
+    padding:11px 18px;
+    border-radius:12px;
+    transition:.25s;
+    margin-bottom:28px;
+}
+
+.back-btn:hover{
+    border-color:#7b2cff;
+    box-shadow:0 0 20px rgba(123,44,255,.25);
+    transform:translateY(-2px);
+}
+
+/* HEADER */
+
+.header{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.logo{
+    width:82px;
+    height:82px;
+    margin:0 auto 18px;
+    border-radius:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:29px;
+    font-weight:900;
+    background:linear-gradient(135deg,#7b2cff,#00d9ff);
+    box-shadow:
+        0 0 25px rgba(123,44,255,.4),
+        0 0 45px rgba(0,217,255,.12);
+}
+
+.header h1{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.header p{
+    color:#aaa;
+    font-size:15px;
+}
+
+/* MAIN CARD */
+
+.main-card{
+    background:rgba(15,15,28,.78);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:22px;
+    padding:24px;
+    box-shadow:0 15px 50px rgba(0,0,0,.35);
+    backdrop-filter:blur(12px);
+}
+
+/* VIDEO GRID */
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+.video-card{
+    position:relative;
+    overflow:hidden;
+    background:#10101d;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    transition:.3s;
+}
+
+.video-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(123,44,255,.65);
+    box-shadow:0 10px 35px rgba(123,44,255,.18);
+}
+
+/* THUMBNAIL */
+
+.thumbnail{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 50%,rgba(123,44,255,.25),transparent 45%),
+        #090912;
+}
+
+.thumbnail img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.thumbnail::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.65),
+        transparent 55%
+    );
+    pointer-events:none;
+}
+
+/* PLAY BUTTON */
+
+.play-btn{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:62px;
+    height:62px;
+    border-radius:50%;
+    border:none;
+    cursor:pointer;
+    color:white;
+    font-size:23px;
+    background:linear-gradient(135deg,#7b2cff,#00d9ff);
+    box-shadow:
+        0 0 25px rgba(123,44,255,.5),
+        0 0 35px rgba(0,217,255,.2);
+    transition:.25s;
+    z-index:2;
+}
+
+.play-btn:hover{
+    transform:translate(-50%,-50%) scale(1.08);
+}
+
+/* DURATION */
+
+.duration{
+    position:absolute;
+    left:12px;
+    bottom:10px;
+    background:rgba(0,0,0,.75);
+    padding:5px 8px;
+    border-radius:7px;
+    font-size:12px;
+    z-index:3;
+}
+
+/* QUALITY */
+
+.quality{
+    position:absolute;
+    right:12px;
+    bottom:10px;
+    background:rgba(123,44,255,.85);
+    padding:5px 8px;
+    border-radius:7px;
+    font-size:11px;
+    z-index:3;
+}
+
+/* INFO */
+
+.video-info{
+    padding:17px;
+}
+
+.video-info h2{
+    font-size:19px;
+    margin-bottom:8px;
+}
+
+.video-info p{
+    color:#999;
+    font-size:13px;
+    line-height:1.7;
+}
+
+.video-meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:15px;
+    color:#888;
+    font-size:12px;
+}
+
+/* LOCKED */
+
+.locked{
+    cursor:not-allowed;
+}
+
+.locked .thumbnail{
+    filter:brightness(.38);
+}
+
+.lock-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:10px;
+    background:rgba(5,5,12,.45);
+    z-index:5;
+}
+
+.lock-icon{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    background:rgba(0,0,0,.7);
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.lock-text{
+    font-size:14px;
+    color:#ddd;
+}
+
+/* RANK INFO */
+
+.rank-info{
+    margin-top:25px;
+    padding:18px;
+    border-radius:16px;
+    text-align:center;
+    background:linear-gradient(
+        135deg,
+        rgba(123,44,255,.10),
+        rgba(0,217,255,.06)
+    );
+    border:1px solid rgba(123,44,255,.18);
+}
+
+.rank-info strong{
+    color:#b98cff;
+}
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    padding:60px 20px;
+    color:#888;
+}
+
+.empty-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    color:#666;
+    font-size:12px;
+    margin-top:35px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+    .container{
+        padding-top:22px;
+    }
+
+    .header h1{
+        font-size:26px;
+    }
+
+    .video-grid{
+        grid-template-columns:1fr;
+    }
+
+    .main-card{
+        padding:15px;
+    }
+
+    .logo{
+        width:72px;
+        height:72px;
+        font-size:25px;
+    }
+
+}
+
+</style>
 </head>
+
 <body>
+
+<div class="container">
+
+<a href="/" class="back-btn">
+    ← بازگشت به صفحه اصلی
+</a>
+
+<header class="header">
+
+    <div class="logo">
+        AG
+    </div>
+
+    <h1>VIDEO | Arsin_Gang</h1>
+
+    <p>
+        ویدیوهای اختصاصی ArsinGang
+    </p>
+
+</header>
+
+<div class="main-card">
+
+    <div class="video-grid">
+
+        <!-- VIDEO 1 -->
+
+        <div class="video-card">
+
+            <div class="thumbnail">
+
+                <img
+                    src="videos/thumbnails/video1.jpg"
+                    alt="ویدیو اول"
+                >
+
+                <button class="play-btn">
+                    ▶
+                </button>
+
+                <span class="duration">
+                    12:35
+                </span>
+
+                <span class="quality">
+                    1080p
+                </span>
+
+            </div>
+
+            <div class="video-info">
+
+                <h2>
+                    ویدیوی اول ArsinGang
+                </h2>
+
+                <p>
+                    توضیحات ویدیوی اول اینجا قرار می‌گیرد.
+                </p>
+
+                <div class="video-meta">
+
+                    <span>
+                        🎬 ویدیو
+                    </span>
+
+                    <span>
+                        1080p
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOCKED VIDEO -->
+
+        <div class="video-card locked">
+
+            <div class="thumbnail">
+
+                <img
+                    src="videos/thumbnails/video2.jpg"
+                    alt="ویدیوی قفل شده"
+                >
+
+                <div class="lock-overlay">
+
+                    <div class="lock-icon">
+                        🔒
+                    </div>
+
+                    <div class="lock-text">
+                        فقط برای اعضای دارای رنک
+                    </div>
+
+                </div>
+
+                <span class="duration">
+                    08:42
+                </span>
+
+                <span class="quality">
+                    1080p
+                </span>
+
+            </div>
+
+            <div class="video-info">
+
+                <h2>
+                    ویدیوی اختصاصی
+                </h2>
+
+                <p>
+                    این ویدیو برای کاربران دارای رنک قابل مشاهده است.
+                </p>
+
+                <div class="video-meta">
+
+                    <span>
+                        🔒 Exclusive
+                    </span>
+
+                    <span>
+                        1080p
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="rank-info">
+
+        🔐 دسترسی ویدیوهای اختصاصی بر اساس رنک حساب شما تعیین می‌شود.
+
+        <br>
+
+        <strong>
+            VIP • MVP • MEDIA • OWNER
+        </strong>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 ArsinGang — All Rights Reserved
+</footer>
+
+</div>
+
 </body>
 </html>
