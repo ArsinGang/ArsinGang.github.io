@@ -1344,7 +1344,9 @@ async function openProtectedVideos(){
                         "Authorization":
                             "Bearer " +
                             accessToken
-                    }
+                    },
+
+                    credentials:"include"
                 }
             );
 
@@ -1380,7 +1382,9 @@ async function openProtectedVideos(){
                             "Authorization":
                                 "Bearer " +
                                 accessToken
-                        }
+                        },
+
+                        credentials:"include"
                     }
                 );
 
@@ -1404,6 +1408,9 @@ async function openProtectedVideos(){
 
         /*
          * دسترسی تأیید شد
+         *
+         * Worker در این مرحله
+         * Cookie امن را تنظیم می‌کند.
          */
 
         if(response.ok){
