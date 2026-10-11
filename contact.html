@@ -178,31 +178,14 @@ text-decoration:none;
 
 <form id="ticketForm">
 
-<label>نام / یوزرنیم</label>
+<label for="name">نام / یوزرنیم</label>
+<input id="name" type="text" placeholder="مثلاً user34" required>
 
-<input
-id="name"
-type="text"
-placeholder="مثلاً user34"
-required
->
+<label for="email">ایمیل</label>
+<input id="email" type="email" placeholder="مثلاً example@gmail.com" required>
 
-<label>ایمیل</label>
-
-<input
-id="email"
-type="email"
-placeholder="مثلاً example@gmail.com"
-required
->
-
-<label>پیام</label>
-
-<textarea
-id="message"
-placeholder="مثلاً مشکل دارم وارد سرور Minecraft بشم..."
-required
-></textarea>
+<label for="message">پیام</label>
+<textarea id="message" placeholder="مثلاً مشکل دارم وارد سرور Minecraft بشم..." required></textarea>
 
 <button id="submitBtn" type="submit">
 📨 ارسال تیکت
@@ -222,42 +205,23 @@ required
 
 <div class="ticket-code">
 
-<input
-id="newTicketCode"
-type="text"
-readonly
->
+<input id="newTicketCode" type="text" readonly aria-label="کد تیکت">
 
-<button
-class="copy-btn"
-id="copyBtn"
-type="button"
->
+<button class="copy-btn" id="copyBtn" type="button">
 📋 کپی کد
 </button>
 
-<button
-class="direct-ticket-btn"
-id="directTicketBtn"
-type="button"
->
+<button class="direct-ticket-btn" id="directTicketBtn" type="button">
 🔓 ورود مستقیم
 </button>
 
 </div>
 
-<span
-class="copy-message"
-id="copyMessage"
-></span>
+<span class="copy-message" id="copyMessage"></span>
 
 </div>
 
-<button
-id="openTicketBtn"
-class="view-button"
-type="button"
->
+<button id="openTicketBtn" class="view-button" type="button">
 🔎 مشاهده تیکت
 </button>
 
@@ -271,8 +235,7 @@ type="button"
 تیکت‌های بسته‌شده هم با کد قابل مشاهده هستند.
 </div>
 
-<label>کد تیکت</label>
-
+<label for="ticketCodeInput">کد تیکت</label>
 <input
 id="ticketCodeInput"
 class="ticket-code-input"
@@ -291,7 +254,7 @@ autocomplete="off"
 
 <div class="divider"></div>
 
-<a class="back-btn" href="index.html">
+<a class="back-btn" href="/">
 ⬅️ بازگشت به صفحه اصلی
 </a>
 
@@ -299,26 +262,21 @@ autocomplete="off"
 </div>
 
 <script>
-
 const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
-
 function createTicketCode(){
+  const bytes = new Uint8Array(5);
+  crypto.getRandomValues(bytes);
 
-const bytes = new Uint8Array(5);
-crypto.getRandomValues(bytes);
+  let code = "";
 
-let code = "";
+  for(const byte of bytes){
+    code += byte.toString(36).toUpperCase().padStart(2,"0");
+  }
 
-for(const byte of bytes){
-code += byte.toString(36).toUpperCase().padStart(2,"0");
+  return "AG-" + code.substring(0,8);
 }
-
-return "AG-" + code.substring(0,8);
-
-}
-
 
 const form = document.getElementById("ticketForm");
 const submitBtn = document.getElementById("submitBtn");
@@ -333,167 +291,139 @@ const ticketCodeInput = document.getElementById("ticketCodeInput");
 const viewBtn = document.getElementById("viewBtn");
 const errorBox = document.getElementById("errorBox");
 
+/* ساخت آدرس استاندارد مشاهده تیکت */
+function getTicketUrl(code){
+  return "/ticket/" + encodeURIComponent(code.trim().toUpperCase());
+}
 
 /* مشاهده تیکت */
-
 openTicketBtn.addEventListener("click",function(){
+  loginBox.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
 
-loginBox.scrollIntoView({
-behavior:"smooth",
-block:"center"
+  ticketCodeInput.focus();
 });
-
-ticketCodeInput.focus();
-
-});
-
 
 /* ارسال تیکت */
-
 form.addEventListener("submit",async function(e){
+  e.preventDefault();
 
-e.preventDefault();
+  submitBtn.disabled = true;
+  submitBtn.textContent = "⏳ در حال ارسال...";
 
-submitBtn.disabled=true;
-submitBtn.textContent="⏳ در حال ارسال...";
+  const ticketCode = createTicketCode();
 
-const ticketCode=createTicketCode();
+  const data = {
+    ticket_code: ticketCode,
+    name: document.getElementById("name").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    message: document.getElementById("message").value.trim(),
+    status: "open"
+  };
 
-const data={
-ticket_code:ticketCode,
-name:document.getElementById("name").value.trim(),
-email:document.getElementById("email").value.trim(),
-message:document.getElementById("message").value.trim(),
-status:"open"
-};
+  try{
+    const response = await fetch(
+      SUPABASE_URL + "/rest/v1/tickets",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+          "apikey":SUPABASE_KEY,
+          "Prefer":"return=minimal"
+        },
+        body:JSON.stringify(data)
+      }
+    );
 
-try{
+    if(!response.ok){
+      throw new Error(await response.text());
+    }
 
-const response=await fetch(
-SUPABASE_URL+"/rest/v1/tickets",
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json",
-"apikey":SUPABASE_KEY,
-"Prefer":"return=minimal"
-},
-body:JSON.stringify(data)
-}
-);
+    form.style.display = "none";
+    newTicketCode.value = ticketCode;
+    successBox.style.display = "block";
 
-if(!response.ok){
-throw new Error(await response.text());
-}
+  }catch(error){
+    console.error(error);
+    alert("❌ ارسال تیکت انجام نشد. لطفاً دوباره تلاش کنید.");
 
-form.style.display="none";
-newTicketCode.value=ticketCode;
-successBox.style.display="block";
-
-}catch(error){
-
-console.error(error);
-
-alert("❌ ارسال تیکت انجام نشد. لطفاً دوباره تلاش کنید.");
-
-}finally{
-
-submitBtn.disabled=false;
-submitBtn.textContent="📨 ارسال تیکت";
-
-}
-
+  }finally{
+    submitBtn.disabled = false;
+    submitBtn.textContent = "📨 ارسال تیکت";
+  }
 });
-
 
 /* ورود مستقیم به صفحه تیکت */
-
 directTicketBtn.addEventListener("click",function(){
+  const code = newTicketCode.value.trim().toUpperCase();
 
-const code=newTicketCode.value.trim().toUpperCase();
+  if(!code) return;
 
-if(!code)return;
-
-window.location.href="ticket.html?code="+encodeURIComponent(code);
-
+  window.location.href = getTicketUrl(code);
 });
-
 
 /* کپی کد */
-
 copyBtn.addEventListener("click",async function(){
+  const code = newTicketCode.value;
 
-const code=newTicketCode.value;
+  if(!code) return;
 
-if(!code)return;
+  try{
+    await navigator.clipboard.writeText(code);
 
-try{
+    copyBtn.textContent = "✅ کپی شد";
+    copyMessage.textContent = "کد تیکت کپی شد؛ آن را برای بعد نگه دار.";
 
-await navigator.clipboard.writeText(code);
+    setTimeout(function(){
+      copyBtn.textContent = "📋 کپی کد";
+      copyMessage.textContent = "";
+    },2500);
 
-copyBtn.textContent="✅ کپی شد";
-copyMessage.textContent="کد تیکت کپی شد؛ آن را برای بعد نگه دار.";
+  }catch(error){
+    newTicketCode.select();
+    document.execCommand("copy");
 
-setTimeout(function(){
+    copyBtn.textContent = "✅ کپی شد";
 
-copyBtn.textContent="📋 کپی کد";
-copyMessage.textContent="";
-
-},2500);
-
-}catch(error){
-
-newTicketCode.select();
-document.execCommand("copy");
-
-copyBtn.textContent="✅ کپی شد";
-
-setTimeout(function(){
-
-copyBtn.textContent="📋 کپی کد";
-
-},2500);
-
-}
-
+    setTimeout(function(){
+      copyBtn.textContent = "📋 کپی کد";
+    },2500);
+  }
 });
-
 
 function showError(message){
-
-errorBox.textContent=message;
-errorBox.style.display="block";
-
+  errorBox.textContent = message;
+  errorBox.style.display = "block";
 }
-
 
 function hideError(){
-
-errorBox.textContent="";
-errorBox.style.display="none";
-
+  errorBox.textContent = "";
+  errorBox.style.display = "none";
 }
-
 
 /* ورود با کد */
-
 viewBtn.addEventListener("click",function(){
+  hideError();
 
-hideError();
+  const code = ticketCodeInput.value.trim().toUpperCase();
 
-const code=ticketCodeInput.value.trim().toUpperCase();
+  if(!code){
+    showError("⚠️ لطفاً کد تیکت را وارد کنید.");
+    return;
+  }
 
-if(!code){
-
-showError("⚠️ لطفاً کد تیکت را وارد کنید.");
-return;
-
-}
-
-window.location.href="ticket.html?code="+encodeURIComponent(code);
-
+  window.location.href = getTicketUrl(code);
 });
 
+/* ورود با زدن Enter در فیلد کد */
+ticketCodeInput.addEventListener("keydown",function(e){
+  if(e.key === "Enter"){
+    e.preventDefault();
+    viewBtn.click();
+  }
+});
 </script>
 
 </body>
