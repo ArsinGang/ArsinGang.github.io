@@ -161,6 +161,40 @@ let humanVerified = false;
 let resendEmail = "";
 let resendBusy = false;
 
+/* فیلتر کلمات نامناسب نام کاربری */
+const BAD_USERNAME_WORDS = [
+  "کسکش", "کصکش", "کیر", "کون", "جنده", "شرموط",
+  "مادرجنده", "پدرسوخته", "گایید", "گاییده", "گوه",
+  "fuck", "fucker", "fucking", "shit", "bullshit",
+  "bitch", "bastard", "asshole", "dick", "pussy",
+  "cunt", "motherfucker", "whore", "slut"
+];
+
+function normalizeUsername(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFKC")
+    .replace(/[أإآٱ]/g, "ا")
+    .replace(/[يى]/g, "ی")
+    .replace(/ك/g, "ک")
+    .replace(/[\u064B-\u065F\u0670]/g, "")
+    .replace(/[0]/g, "o")
+    .replace(/[1!|]/g, "i")
+    .replace(/[3]/g, "e")
+    .replace(/[4@]/g, "a")
+    .replace(/[5$]/g, "s")
+    .replace(/[7]/g, "t")
+    .replace(/[^a-z0-9\u0600-\u06ff]/g, "");
+}
+
+function hasBadUsernameWord(username) {
+  const normalized = normalizeUsername(username);
+
+  return BAD_USERNAME_WORDS.some(word =>
+    normalized.includes(normalizeUsername(word))
+  );
+}
+
 function showLogin(){
   mode = "login";
 
@@ -361,6 +395,11 @@ document.getElementById("authForm").addEventListener("submit",async function(eve
   if(mode === "signup"){
     if(username.length < 3){
       showMessage("❌ نام کاربری باید حداقل ۳ کاراکتر باشد.","error");
+      return;
+    }
+
+    if(hasBadUsernameWord(username)){
+      showMessage("🚫 این نام کاربری شامل کلمات نامناسب است. نام دیگری انتخاب کن.","error");
       return;
     }
 
