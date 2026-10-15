@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10091f">
+  <title>آپدیت سایت | ArsinGang</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237b2cff'/%3E%3Ctext x='32' y='42' font-size='27' font-weight='bold' text-anchor='middle' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --purple: #7b2cff;
+      --cyan: #00d9ff;
+      --bg: #0b0715;
+      --panel: rgba(24, 15, 43, .92);
+      --text: #f7f2ff;
+      --muted: #b6a9cb;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      color: var(--text);
+      font-family: Tahoma, Arial, sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 20%, rgba(123,44,255,.24), transparent 42%),
+        radial-gradient(ellipse at 85% 80%, rgba(0,217,255,.13), transparent 40%),
+        var(--bg);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 560px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 38px 28px;
+      border: 1px solid rgba(123,44,255,.65);
+      border-radius: 24px;
+      background: var(--panel);
+      box-shadow: 0 0 38px rgba(123,44,255,.16),
+                  inset 0 0 25px rgba(0,217,255,.025);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 12%;
+      left: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), var(--purple), transparent);
+      box-shadow: 0 0 18px var(--cyan);
+    }
+
+    .logo {
+      width: 78px;
+      height: 78px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      border-radius: 22px;
+      color: white;
+      font-size: 29px;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--purple), #4212a3);
+      border: 1px solid rgba(0,217,255,.55);
+      box-shadow: 0 0 26px rgba(123,44,255,.4);
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: 3px;
+      direction: ltr;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(25px, 5vw, 34px);
+      line-height: 1.7;
+    }
+
+    .message {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 2.2;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      margin: 0 auto 25px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin: 0 auto 24px;
+      color: #ffd580;
+      font-size: 13px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      flex: 0 0 9px;
+      border-radius: 50%;
+      background: #ffbd4a;
+      box-shadow: 0 0 12px #ffbd4a;
+    }
+
+    .enter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 52px;
+      padding: 13px 20px;
+      border: 0;
+      border-radius: 14px;
+      color: #080512;
+      background: linear-gradient(100deg, var(--cyan), #80f1ff);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 0 22px rgba(0,217,255,.2);
+      transition: .2s ease;
+    }
+
+    .enter:hover:not(.disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0,217,255,.4);
+    }
+
+    .enter.disabled {
+      opacity: .35;
+      filter: grayscale(.55);
+      cursor: not-allowed;
+      pointer-events: none;
+      box-shadow: none;
+    }
+
+    .foot {
+      color: #796b90;
+      font-size: 11px;
+      margin-top: 24px;
+      direction: ltr;
+    }
+
+    @media (max-width: 420px) {
+      .card { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo">AG</div>
+    <div class="eyebrow">ARSINGANG WEBSITE</div>
+    <h1 id="title">اطلاعیهٔ آپدیت سایت</h1>
+    <p class="message" id="message">سایت ArsinGang در حال به‌روزرسانی است.
+لطفاً کمی صبر کنید و سپس برای ورود دوباره تلاش کنید.</p>
+
+    <div class="status" id="status">
+      <span class="dot"></span>
+      <span id="statusText">ورود موقتاً غیرفعال است</span>
+    </div>
+
+    <a class="enter disabled" id="enterButton"
+       href="/login/" aria-disabled="true" tabindex="-1">
+      ورود به سایت
+    </a>
+
+    <div class="foot">© ArsinGang — OFFICIAL WEBSITE</div>
+  </main>
+
+  <script>
+    /*
+      این مقادیر فعلاً نمایشی‌اند.
+      در مرحله بعد از تنظیمات امن Cloudflare Worker خوانده می‌شوند.
+      کاربر نباید بتواند این تنظیمات را از این صفحه مدیریت کند.
+    */
+    const UPDATE_SETTINGS = {
+      noticeEnabled: true,
+      loginEnabled: false,
+      title: "اطلاعیهٔ آپدیت سایت",
+      message: "سایت ArsinGang در حال به‌روزرسانی است.\nلطفاً کمی صبر کنید و سپس برای ورود دوباره تلاش کنید."
+    };
+
+    const title = document.getElementById("title");
+    const message = document.getElementById("message");
+    const status = document.getElementById("status");
+    const statusText = document.getElementById("statusText");
+    const enterButton = document.getElementById("enterButton");
+
+    function showUpdatePage() {
+      if (!UPDATE_SETTINGS.noticeEnabled) {
+        location.replace("/login/");
+        return;
+      }
+
+      title.textContent = UPDATE_SETTINGS.title;
+      message.textContent = UPDATE_SETTINGS.message;
+
+      if (UPDATE_SETTINGS.loginEnabled) {
+        status.querySelector(".dot").style.background = "#43ffae";
+        status.querySelector(".dot").style.boxShadow = "0 0 12px #43ffae";
+        statusText.textContent = "ورود به سایت فعال است";
+        status.style.color = "#43ffae";
+
+        enterButton.classList.remove("disabled");
+        enterButton.setAttribute("aria-disabled", "false");
+        enterButton.removeAttribute("tabindex");
+      } else {
+        statusText.textContent = "ورود موقتاً غیرفعال است";
+        status.style.color = "#ffd580";
+
+        enterButton.classList.add("disabled");
+        enterButton.setAttribute("aria-disabled", "true");
+        enterButton.setAttribute("tabindex", "-1");
+      }
+    }
+
+    showUpdatePage();
+  </script>
+</body>
+</html>
