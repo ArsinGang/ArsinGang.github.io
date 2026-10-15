@@ -161,13 +161,19 @@ let humanVerified = false;
 let resendEmail = "";
 let resendBusy = false;
 
-/* فیلتر کلمات نامناسب نام کاربری */
+/* کلمات نامناسب نام کاربری */
 const BAD_USERNAME_WORDS = [
   "کسکش", "کصکش", "کیر", "کون", "جنده", "شرموط",
   "مادرجنده", "پدرسوخته", "گایید", "گاییده", "گوه",
   "fuck", "fucker", "fucking", "shit", "bullshit",
   "bitch", "bastard", "asshole", "dick", "pussy",
-  "cunt", "motherfucker", "whore", "slut"
+  "cunt", "motherfucker", "whore", "slut",
+  "koskesh", "koskes", "koskash",
+  "kir", "kier", "koon", "kon",
+  "jende", "jande", "sharmoot", "sharmut",
+  "madarjende", "madarjande",
+  "pedarsookhte", "pedarsokhte",
+  "gaeed", "gaiide", "goh"
 ];
 
 function normalizeUsername(value) {
@@ -290,6 +296,31 @@ function getErrorMessage(data,currentMode){
   ).toString();
 
   const error = raw.toLowerCase();
+
+  /* خطای مستقیم فیلتر نام کاربری */
+  if(
+    error.includes("username contains a prohibited word") ||
+    error.includes("prohibited word") ||
+    error.includes("bad username")
+  ){
+    return "🚫 این نام کاربری شامل کلمات نامناسب است. نام دیگری انتخاب کن.";
+  }
+
+  /*
+    Supabase ممکن است خطای تریگر BEFORE INSERT را
+    به پیام عمومی تبدیل کند. این پیام می‌تواند دلایل
+    دیگری هم داشته باشد، پس در صورت نمایش آن باید
+    خطای Auth Logs را بررسی کرد.
+  */
+  if(
+    currentMode === "signup" &&
+    (
+      error.includes("database error saving new user") ||
+      error.includes("username contains a prohibited word")
+    )
+  ){
+    return "🚫 ثبت‌نام با این نام کاربری انجام نشد. نام دیگری انتخاب کن. اگر نام کاربری عادی است، باید خطای Auth Logs بررسی شود.";
+  }
 
   if(
     error.includes("email rate exceeded") ||
@@ -427,10 +458,6 @@ document.getElementById("authForm").addEventListener("submit",async function(eve
       return;
     }
 
-    /*
-      در صورت فعال بودن Confirm email، کاربر را
-      خودکار وارد حساب نمی‌کنیم.
-    */
     localStorage.removeItem("arsin_user_token");
     localStorage.removeItem("arsin_user_refresh");
 
@@ -470,10 +497,6 @@ document.getElementById("authForm").addEventListener("submit",async function(eve
     return;
   }
 
-  /*
-    بررسی اضافی وضعیت تأیید ایمیل.
-    Supabase نیز باید ورود کاربران تأییدنشده را رد کند.
-  */
   const user = result.data.user;
 
   if(
