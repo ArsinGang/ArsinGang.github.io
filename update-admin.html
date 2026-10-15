@@ -1,10 +1,165 @@
 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0715">
+<title>مدیریت آپدیت | ArsinGang</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237b2cff'/%3E%3Ctext x='32' y='42' font-size='27' font-weight='bold' text-anchor='middle' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box}
+:root{--purple:#7b2cff;--cyan:#00d9ff;--bg:#0b0715;--panel:rgba(23,15,42,.94);--text:#f8f4ff;--muted:#b7a9cd;--green:#43ffae;--red:#ff5b79;--gold:#ffd166}
+body{margin:0;min-height:100vh;color:var(--text);font-family:Tahoma,Arial,sans-serif;background:radial-gradient(ellipse at 8% 8%,rgba(123,44,255,.2),transparent 38%),radial-gradient(ellipse at 95% 90%,rgba(0,217,255,.12),transparent 36%),var(--bg)}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+button:disabled{opacity:.55;cursor:wait}
+.container{max-width:1100px;margin:auto;padding:26px 18px 50px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+.brand{display:flex;align-items:center;gap:13px}
+.logo{display:grid;place-items:center;width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,var(--purple),#41109b);border:1px solid rgba(0,217,255,.5);font-size:21px;font-weight:900;box-shadow:0 0 25px rgba(123,44,255,.3)}
+.brand h1{font-size:20px;margin:0 0 6px}
+.brand p{font-size:12px;color:var(--muted);margin:0}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid rgba(0,217,255,.25);border-radius:999px;background:rgba(0,217,255,.06);color:var(--cyan);font-size:12px}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.hero{padding:28px;border:1px solid rgba(123,44,255,.48);border-radius:24px;background:var(--panel);box-shadow:0 0 35px rgba(123,44,255,.1);position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;top:0;right:10%;left:10%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),transparent)}
+.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:3px;direction:ltr}
+.hero h2{font-size:clamp(24px,4vw,34px);margin:13px 0}
+.hero>p{color:var(--muted);line-height:2;font-size:14px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:20px}
+.panel{border:1px solid rgba(123,44,255,.32);border-radius:20px;background:var(--panel);padding:22px;min-width:0}
+.panel h3{margin:0 0 9px;font-size:17px}
+.description{font-size:12px;color:var(--muted);line-height:1.9;margin:0 0 18px}
+.option{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.option:last-child{border-bottom:0;padding-bottom:0}
+.option strong{font-size:13px;display:block;margin-bottom:7px}
+.option small{font-size:11px;color:var(--muted);line-height:1.8;display:block}
+.switch{flex-shrink:0;position:relative;width:52px;height:29px;border:1px solid #65547e;border-radius:999px;background:#30263f;transition:.2s;padding:0}
+.switch:after{content:"";position:absolute;top:3px;right:3px;width:21px;height:21px;border-radius:50%;background:#c7b8d9;transition:.2s}
+.switch.on{background:rgba(0,217,255,.22);border-color:var(--cyan)}
+.switch.on:after{right:26px;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.field{margin-bottom:17px}
+.field label{display:block;font-size:12px;margin-bottom:9px;color:#e5dcf5}
+.field input,.field textarea{width:100%;padding:13px 14px;color:var(--text);border:1px solid rgba(123,44,255,.4);border-radius:12px;background:#100b1d;outline:none}
+.field input:focus,.field textarea:focus{border-color:var(--cyan)}
+.field textarea{min-height:125px;resize:vertical;line-height:2}
+.help{font-size:11px;color:var(--muted);line-height:1.9;margin-top:8px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn{border:0;border-radius:12px;padding:12px 17px;font-weight:bold;font-size:12px;transition:.2s}
+.btn:hover{transform:translateY(-1px)}
+.primary{color:#080512;background:linear-gradient(100deg,var(--cyan),#a0f4ff)}
+.secondary{color:white;border:1px solid rgba(123,44,255,.6);background:rgba(123,44,255,.14)}
+.danger{color:#ffb5c3;border:1px solid rgba(255,91,121,.4);background:rgba(255,91,121,.09)}
+.preview{padding:22px;border-radius:18px;background:#100b1d;border:1px solid rgba(0,217,255,.22)}
+.preview .preview-status{font-size:11px;color:var(--gold);margin-bottom:12px}
+.preview h4{font-size:20px;margin:0 0 10px}
+.preview p{font-size:13px;line-height:2;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}
+.preview-button{width:100%;padding:13px;border:0;border-radius:11px;font-weight:bold;background:var(--cyan);color:#090512;opacity:1}
+.preview-button.disabled{opacity:.32;filter:grayscale(.5);cursor:not-allowed}
+.notice{display:none;margin-top:16px;padding:12px 14px;border-radius:12px;font-size:12px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere}
+.notice.show{display:block}
+.notice.info{background:rgba(0,217,255,.08);border:1px solid rgba(0,217,255,.25);color:#b9f6ff}
+.notice.warn{background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.25);color:#ffe5a6}
+.footer{text-align:center;color:#76688d;font-size:11px;margin-top:26px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero{padding:22px}.panel{padding:19px}}
+</style>
+</head>
+<body>
+<main class="container">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">AG</div>
+      <div><h1>مدیریت آپدیت</h1><p>کنترل اطلاعیه‌های سایت ArsinGang</p></div>
+    </div>
+    <div class="pill"><i id="connectionDot"></i><span id="connectionLabel">در حال اتصال...</span></div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">ARSINGANG CONTROL CENTER</div>
+    <h2>پنل کنترل آپدیت سایت 🚀</h2>
+    <p>از این بخش وضعیت اعلان، دسترسی ورود کاربران و متن پیام آپدیت رو مدیریت کن. تنظیمات از طریق Worker در Supabase ذخیره می‌شن.</p>
+  </section>
+
+  <div class="grid">
+    <section class="panel">
+      <h3>⚙️ کنترل‌های اصلی</h3>
+      <p class="description">تغییرات این بخش پس از ذخیره به سرور ارسال می‌شن.</p>
+      <div class="option">
+        <div><strong>نمایش اعلان آپدیت</strong><small>خاموش: اعلان در صفحهٔ عمومی نمایش داده نمی‌شه.</small></div>
+        <button class="switch on" id="noticeSwitch" role="switch" aria-checked="true" aria-label="نمایش اعلان"></button>
+      </div>
+      <div class="option">
+        <div><strong>فعال بودن ورود کاربران</strong><small>این گزینه وضعیت ورود را در تنظیمات عمومی مشخص می‌کند.</small></div>
+        <button class="switch" id="loginSwitch" role="switch" aria-checked="false" aria-label="فعال بودن ورود"></button>
+      </div>
+      <div class="option">
+        <div><strong>شروع دورهٔ جدید آپدیت</strong><small>شناسهٔ دوره در سرور تغییر می‌کند.</small></div>
+        <button class="btn secondary" id="cycleButton">دورهٔ جدید</button>
+      </div>
+      <div class="notice warn show" id="cycleNotice">دورهٔ نمایشی: <b id="cycleNumber">۱</b><br>با ساخت دورهٔ جدید، شناسهٔ ذخیره‌شده در سرور تغییر می‌کند.</div>
+    </section>
+
+    <section class="panel">
+      <h3>📝 متن اطلاعیه</h3>
+      <p class="description">عنوان و پیام را بنویس و برای ذخیرهٔ دائمی اعمال کن.</p>
+      <div class="field">
+        <label for="titleInput">عنوان اطلاعیه</label>
+        <input id="titleInput" maxlength="100" value="اطلاعیهٔ آپدیت سایت">
+      </div>
+      <div class="field">
+        <label for="messageInput">متن پیام</label>
+        <textarea id="messageInput" maxlength="1500">سایت ArsinGang در حال به‌روزرسانی است.
+لطفاً کمی صبر کنید و بعد دوباره وارد سایت شوید.</textarea>
+        <div class="help">حداکثر ۱۵۰۰ نویسه.</div>
+      </div>
+      <div class="actions">
+        <button class="btn primary" id="savePreviewButton">ذخیره و اعمال</button>
+        <button class="btn secondary" id="resetButton">بازنشانی متن</button>
+      </div>
+      <div class="notice info" id="editNotice" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <h3>👁️ پیش‌نمایش کاربر</h3>
+      <p class="description">پیش‌نمایش تنظیمات فعلی پنل.</p>
+      <div class="preview">
+        <div class="preview-status" id="previewStatus">● ورود موقتاً غیرفعال است</div>
+        <h4 id="previewTitle">اطلاعیهٔ آپدیت سایت</h4>
+        <p id="previewMessage">سایت ArsinGang در حال به‌روزرسانی است.
+لطفاً کمی صبر کنید و بعد دوباره وارد سایت شوید.</p>
+        <button class="preview-button disabled" id="previewLogin" disabled>ورود به سایت</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>🔐 وضعیت و انتشار</h3>
+      <p class="description">وضعیت ذخیره‌شده و عملیات پنل.</p>
+      <div class="option">
+        <div><strong>اعلان</strong><small id="noticeState">در حال بررسی...</small></div>
+        <span id="noticeBadge" class="pill">...</span>
+      </div>
+      <div class="option">
+        <div><strong>ورود کاربران</strong><small id="loginState">در حال بررسی...</small></div>
+        <span id="loginBadge" class="pill">...</span>
+      </div>
+      <div class="notice warn show" id="connectionNotice">در حال بررسی اتصال به Worker و Supabase...</div>
+      <div class="actions">
+        <button class="btn primary" id="copyButton">کپی تنظیمات</button>
+        <button class="btn danger" id="clearButton">بازنشانی همه</button>
+      </div>
+      <div class="notice info" id="copyNotice" aria-live="polite"></div>
+    </section>
+  </div>
+  <div class="footer">ARSINGANG • UPDATE CONTROL PANEL</div>
+</main>
+
 <script>
 (() => {
   "use strict";
 
   const API = "https://arsingang-site.arsingang.workers.dev/api/update-settings";
-
   const defaults = {
     noticeEnabled: true,
     loginEnabled: false,
@@ -13,20 +168,14 @@
     cycle: 1
   };
 
-  let settings = { ...defaults };
+  let settings = { ...defaults, cycleId: "", updatedAt: "" };
   let busy = false;
-
   const $ = id => document.getElementById(id);
-
-  function getToken() {
-    return localStorage.getItem("arsin_user_token");
-  }
 
   function setConnection(text, color) {
     $("connectionLabel").textContent = text;
-    $("connectionLabel").style.color = color || "#00d9ff";
-    const dot = document.querySelector(".pill i");
-    if (dot) dot.style.background = color || "#ffd166";
+    $("connectionLabel").style.color = color;
+    $("connectionDot").style.background = color;
   }
 
   function showMessage(id, text, kind = "info") {
@@ -38,6 +187,70 @@
   function setSwitch(button, enabled) {
     button.classList.toggle("on", Boolean(enabled));
     button.setAttribute("aria-checked", String(Boolean(enabled)));
+  }
+
+  function render() {
+    setSwitch($("noticeSwitch"), settings.noticeEnabled);
+    setSwitch($("loginSwitch"), settings.loginEnabled);
+    $("titleInput").value = settings.title;
+    $("messageInput").value = settings.message;
+    $("cycleNumber").textContent = Number(settings.cycle || 1).toLocaleString("fa-IR");
+    $("previewTitle").textContent = settings.title;
+    $("previewMessage").textContent = settings.message;
+
+    $("previewStatus").textContent = settings.loginEnabled
+      ? "● ورود به سایت فعال است" : "● ورود موقتاً غیرفعال است";
+    $("previewStatus").style.color = settings.loginEnabled ? "#43ffae" : "#ffd166";
+    $("previewLogin").disabled = !settings.loginEnabled;
+    $("previewLogin").classList.toggle("disabled", !settings.loginEnabled);
+
+    $("noticeState").textContent = settings.noticeEnabled ? "فعال" : "غیرفعال";
+    $("noticeBadge").textContent = settings.noticeEnabled ? "فعال" : "غیرفعال";
+    $("loginState").textContent = settings.loginEnabled ? "فعال" : "غیرفعال";
+    $("loginBadge").textContent = settings.loginEnabled ? "فعال" : "غیرفعال";
+    $("noticeBadge").style.color = settings.noticeEnabled ? "#00d9ff" : "#b7a9cd";
+    $("loginBadge").style.color = settings.loginEnabled ? "#43ffae" : "#ffd166";
+    $("cycleNotice").classList.toggle("show", settings.noticeEnabled);
+
+    document.querySelectorAll("#noticeSwitch,#loginSwitch,#cycleButton,#savePreviewButton,#resetButton,#clearButton")
+      .forEach(button => button.disabled = busy);
+  }
+
+  function getToken() {
+    return localStorage.getItem("arsin_user_token");
+  }
+
+  async function apiRequest(method = "GET", body = null) {
+    const headers = { "Accept": "application/json" };
+    if (body) headers["Content-Type"] = "application/json";
+
+    if (method !== "GET") {
+      const token = getToken();
+      if (!token) {
+        throw new Error("توکن ورود پیدا نشد. ابتدا با حساب OWNER وارد سایت شو.");
+      }
+      headers["Authorization"] = "Bearer " + token;
+    }
+
+    const response = await fetch(API, {
+      method,
+      headers,
+      body: body ? JSON.stringify(body) : undefined,
+      cache: "no-store"
+    });
+
+    const text = await response.text();
+    let result;
+    try {
+      result = text ? JSON.parse(text) : {};
+    } catch {
+      throw new Error("پاسخ Worker JSON معتبر نیست؛ وضعیت " + response.status);
+    }
+
+    if (!response.ok || result.ok === false || result.success === false) {
+      throw new Error(result.error || result.message || ("خطای سرور: " + response.status));
+    }
+    return result;
   }
 
   function normalizeSettings(raw) {
@@ -54,92 +267,10 @@
       loginEnabled: row.login_enabled ?? defaults.loginEnabled,
       title: typeof row.title === "string" ? row.title : defaults.title,
       message: typeof row.message === "string" ? row.message : defaults.message,
-      cycle: settings.cycle,
+      cycle: settings.cycle || 1,
       cycleId: row.cycle_id || "",
       updatedAt: row.updated_at || ""
     };
-  }
-
-  async function apiRequest(method = "GET", body = null) {
-    const headers = { "Accept": "application/json" };
-
-    if (body) headers["Content-Type"] = "application/json";
-
-    if (method !== "GET") {
-      const token = getToken();
-      if (!token) {
-        throw new Error("توکن ورود پیدا نشد؛ ابتدا با حساب OWNER وارد سایت شو.");
-      }
-      headers["Authorization"] = "Bearer " + token;
-    }
-
-    const response = await fetch(API, {
-      method,
-      headers,
-      body: body ? JSON.stringify(body) : undefined,
-      cache: "no-store"
-    });
-
-    const text = await response.text();
-    let result = {};
-
-    try {
-      result = text ? JSON.parse(text) : {};
-    } catch {
-      throw new Error("پاسخ Worker معتبر نیست. وضعیت: " + response.status);
-    }
-
-    if (!response.ok || result.ok === false || result.success === false) {
-      throw new Error(
-        result.error || result.message ||
-        ("درخواست ناموفق بود. وضعیت: " + response.status)
-      );
-    }
-
-    return result;
-  }
-
-  function render() {
-    setSwitch($("noticeSwitch"), settings.noticeEnabled);
-    setSwitch($("loginSwitch"), settings.loginEnabled);
-
-    $("titleInput").value = settings.title;
-    $("messageInput").value = settings.message;
-    $("cycleNumber").textContent =
-      Number(settings.cycle || 1).toLocaleString("fa-IR");
-
-    $("previewTitle").textContent = settings.title;
-    $("previewMessage").textContent = settings.message;
-
-    $("previewStatus").textContent = settings.loginEnabled
-      ? "● ورود به سایت فعال است"
-      : "● ورود موقتاً غیرفعال است";
-
-    $("previewStatus").style.color = settings.loginEnabled
-      ? "#43ffae" : "#ffd166";
-
-    $("previewLogin").disabled = !settings.loginEnabled;
-    $("previewLogin").classList.toggle("disabled", !settings.loginEnabled);
-
-    $("noticeState").textContent =
-      settings.noticeEnabled ? "فعال" : "غیرفعال";
-    $("noticeBadge").textContent =
-      settings.noticeEnabled ? "فعال" : "غیرفعال";
-
-    $("loginState").textContent =
-      settings.loginEnabled ? "فعال" : "غیرفعال";
-    $("loginBadge").textContent =
-      settings.loginEnabled ? "فعال" : "غیرفعال";
-
-    $("noticeBadge").style.color =
-      settings.noticeEnabled ? "#00d9ff" : "#b7a9cd";
-    $("loginBadge").style.color =
-      settings.loginEnabled ? "#43ffae" : "#ffd166";
-
-    $("cycleNotice").classList.toggle("show", settings.noticeEnabled);
-
-    document.querySelectorAll("#noticeSwitch, #loginSwitch, #cycleButton, #savePreviewButton, #resetButton, #clearButton")
-      .forEach(button => button.disabled = busy);
   }
 
   async function saveSettings() {
@@ -151,73 +282,56 @@
       message: settings.message
     });
 
+    if (result.settings || result.data) {
+      const updated = normalizeSettings(result);
+      settings = { ...settings, ...updated };
+    }
     setConnection("اتصال برقرار است", "#43ffae");
+    $("connectionNotice").textContent = "تنظیمات از طریق Worker ذخیره می‌شوند.";
+    $("connectionNotice").className = "notice info show";
     return result;
   }
 
   async function loadSettings() {
     try {
-      setConnection("در حال اتصال به سرور...", "#ffd166");
-
+      setConnection("در حال اتصال...", "#ffd166");
       const result = await apiRequest("GET");
-      settings = normalizeSettings(result);
+      settings = { ...settings, ...normalizeSettings(result) };
       render();
-
-      setConnection("تنظیمات از سرور بارگذاری شد", "#43ffae");
-
-      const heroText = document.querySelector(".hero > p");
-      if (heroText) {
-        heroText.textContent =
-          "تنظیمات از سرور بارگذاری می‌شوند و تغییرات ذخیره‌شده در Supabase باقی می‌مانند.";
-      }
-
-      const warning = document.querySelector(".panel .notice.warn.show");
-      if (warning && warning.textContent.includes("هنوز به Supabase")) {
-        warning.textContent =
-          "پنل به Worker متصل است. عملیات ذخیره و تغییر تنظیمات از طریق سرور انجام می‌شود.";
-        warning.className = "notice info show";
-      }
-
+      setConnection("تنظیمات بارگذاری شد", "#43ffae");
+      $("connectionNotice").textContent = "تنظیمات از Worker بارگذاری شدند. برای ذخیره، دکمه‌های پنل را استفاده کن.";
+      $("connectionNotice").className = "notice info show";
       if (settings.updatedAt) {
-        showMessage(
-          "copyNotice",
-          "تنظیمات واقعی بارگذاری شد. آخرین ذخیره: " +
-            new Date(settings.updatedAt).toLocaleString("fa-IR")
-        );
+        showMessage("copyNotice", "آخرین ذخیره: " + new Date(settings.updatedAt).toLocaleString("fa-IR"));
       }
     } catch (error) {
       setConnection("اتصال ناموفق", "#ff5b79");
-      showMessage(
-        "copyNotice",
-        "تنظیمات از سرور بارگذاری نشد: " + error.message,
-        "warn"
-      );
+      $("connectionNotice").textContent = "اتصال ناموفق: " + error.message;
+      $("connectionNotice").className = "notice warn show";
     }
   }
 
-  async function runAction(action, successText) {
+  async function perform(action, successText) {
     if (busy) return;
-
     busy = true;
     render();
 
     try {
       if (action === "new-cycle") {
-        await apiRequest("POST", { action: "new-cycle" });
+        const result = await apiRequest("POST", { action: "new-cycle" });
+        if (result.settings || result.data) {
+          settings = { ...settings, ...normalizeSettings(result) };
+        }
         settings.cycle = Number(settings.cycle || 1) + 1;
-        showMessage("editNotice", successText, "info");
+        showMessage("editNotice", successText);
       } else if (action === "reset") {
         const result = await apiRequest("POST", { action: "reset" });
-        settings = {
-          ...defaults,
-          ...normalizeSettings(result)
-        };
-        showMessage("copyNotice", successText, "info");
+        settings = { ...defaults, cycleId: "", updatedAt: "", ...normalizeSettings(result) };
+        showMessage("copyNotice", successText);
       }
-
-      setConnection("تغییرات در سرور ذخیره شد", "#43ffae");
+      setConnection("تغییرات ذخیره شد", "#43ffae");
     } catch (error) {
-      setConnection("خطا در ذخیره‌سازی", "#ff5b79");
+      setConnection("خطا در ذخیره", "#ff5b79");
       showMessage("editNotice", error.message, "warn");
     } finally {
       busy = false;
@@ -225,70 +339,42 @@
     }
   }
 
-  $("noticeSwitch").addEventListener("click", async () => {
+  async function toggleSetting(key) {
     if (busy) return;
-    const oldValue = settings.noticeEnabled;
-    settings.noticeEnabled = !oldValue;
-    render();
-
+    const old = settings[key];
+    settings[key] = !old;
     busy = true;
     render();
-
     try {
       await saveSettings();
-      showMessage("editNotice", "وضعیت نمایش اعلان در سرور ذخیره شد.");
+      showMessage("editNotice", "تنظیمات در سرور ذخیره شد.");
     } catch (error) {
-      settings.noticeEnabled = oldValue;
-      setConnection("ذخیره انجام نشد", "#ff5b79");
+      settings[key] = old;
+      setConnection("خطا در ذخیره", "#ff5b79");
       showMessage("editNotice", error.message, "warn");
     } finally {
       busy = false;
       render();
     }
-  });
+  }
 
-  $("loginSwitch").addEventListener("click", async () => {
-    if (busy) return;
-    const oldValue = settings.loginEnabled;
-    settings.loginEnabled = !oldValue;
-    render();
-
-    busy = true;
-    render();
-
-    try {
-      await saveSettings();
-      showMessage("editNotice", "وضعیت ورود کاربران در سرور ذخیره شد.");
-    } catch (error) {
-      settings.loginEnabled = oldValue;
-      setConnection("ذخیره انجام نشد", "#ff5b79");
-      showMessage("editNotice", error.message, "warn");
-    } finally {
-      busy = false;
-      render();
-    }
-  });
-
-  $("cycleButton").addEventListener("click", () => {
-    runAction("new-cycle", "دورهٔ جدید در سرور ایجاد شد.");
-  });
+  $("noticeSwitch").addEventListener("click", () => toggleSetting("noticeEnabled"));
+  $("loginSwitch").addEventListener("click", () => toggleSetting("loginEnabled"));
+  $("cycleButton").addEventListener("click", () => perform("new-cycle", "دورهٔ جدید در سرور ایجاد شد."));
 
   $("savePreviewButton").addEventListener("click", async () => {
     if (busy) return;
-
     const old = { ...settings };
     settings.title = $("titleInput").value.trim() || defaults.title;
     settings.message = $("messageInput").value.trim() || defaults.message;
-
     busy = true;
     render();
-
     try {
       await saveSettings();
-      showMessage("editNotice", "عنوان و متن اطلاعیه با موفقیت در سرور ذخیره شدند.");
+      showMessage("editNotice", "عنوان و متن اطلاعیه در سرور ذخیره شدند.");
     } catch (error) {
       settings = old;
-      setConnection("ذخیره انجام نشد", "#ff5b79");
+      setConnection("خطا در ذخیره", "#ff5b79");
       showMessage("editNotice", error.message, "warn");
     } finally {
       busy = false;
@@ -298,20 +384,17 @@
 
   $("resetButton").addEventListener("click", async () => {
     if (busy) return;
-
     const old = { ...settings };
     settings.title = defaults.title;
     settings.message = defaults.message;
-
     busy = true;
     render();
-
     try {
       await saveSettings();
-      showMessage("editNotice", "عنوان و متن پیش‌فرض در سرور ذخیره شدند.");
+      showMessage("editNotice", "عنوان و متن به حالت اولیه برگشتند و ذخیره شدند.");
     } catch (error) {
       settings = old;
-      setConnection("ذخیره انجام نشد", "#ff5b79");
+      setConnection("خطا در ذخیره", "#ff5b79");
       showMessage("editNotice", error.message, "warn");
     } finally {
       busy = false;
@@ -319,9 +402,10 @@
     }
   });
 
-  $("clearButton").addEventListener("click", async () => {
-    if (!confirm("همهٔ تنظیمات واقعی آپدیت به حالت اولیه برگردند؟")) return;
-    await runAction("reset", "همهٔ تنظیمات واقعی بازنشانی شدند.");
+  $("clearButton").addEventListener("click", () => {
+    if (confirm("همهٔ تنظیمات واقعی آپدیت به حالت اولیه برگردند؟")) {
+      perform("reset", "همهٔ تنظیمات واقعی بازنشانی شدند.");
+    }
   });
 
   $("copyButton").addEventListener("click", async () => {
@@ -336,12 +420,15 @@
 
     try {
       await navigator.clipboard.writeText(output);
-      showMessage("copyNotice", "تنظیمات واقعی کپی شدند.");
+      showMessage("copyNotice", "تنظیمات کپی شدند.");
     } catch {
       showMessage("copyNotice", output, "warn");
     }
   });
 
+  render();
   loadSettings();
 })();
 </script>
+</body>
+</html>
