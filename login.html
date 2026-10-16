@@ -95,7 +95,20 @@ border:1px solid rgba(123,44,255,.35);color:#c7a9ff
 }
 #signupFields{display:none}
 
-/* دکمه ارسال دوباره ایمیل؛ فقط در صورت نیاز نمایش داده می‌شود */
+/* بخش کد پیامکی؛ فعلاً فقط ظاهر فرم */
+.phone-code-btn{
+width:100%;margin-top:10px;padding:12px;
+border:1px solid #49316d;border-radius:12px;
+background:#171020;color:#c7a9ff;font-size:14px;
+cursor:pointer
+}
+.phone-code-btn:hover{border-color:#7b2cff}
+.phone-note{
+color:#9387a8;font-size:12px;line-height:1.8;
+margin:8px 3px 0
+}
+
+/* دکمه ارسال دوباره ایمیل */
 .resend-btn{
 display:none;width:100%;margin-top:12px;padding:12px;
 border:1px solid #49316d;border-radius:12px;
@@ -123,6 +136,37 @@ cursor:pointer
       <div id="signupFields">
         <label for="username">نام کاربری</label>
         <input id="username" type="text" placeholder="مثلاً USER" autocomplete="username">
+
+        <label for="phone">شماره موبایل</label>
+        <input
+          id="phone"
+          type="tel"
+          placeholder="+989123456789"
+          autocomplete="tel"
+          inputmode="tel"
+          dir="ltr"
+        >
+
+        <label for="phoneCode">کد تأیید پیامکی</label>
+        <input
+          id="phoneCode"
+          type="text"
+          placeholder="کد پیامک‌شده"
+          autocomplete="one-time-code"
+          inputmode="numeric"
+          dir="ltr"
+        >
+
+        <button
+          class="phone-code-btn"
+          type="button"
+          onclick="requestPhoneCode()">
+          📱 درخواست کد پیامکی
+        </button>
+
+        <div class="phone-note">
+          تأیید پیامکی هنوز فعال نشده است و بعداً به سرویس پیامک متصل می‌شود.
+        </div>
       </div>
 
       <label for="email">ایمیل</label>
@@ -198,6 +242,23 @@ function hasBadUsernameWord(username) {
 
   return BAD_USERNAME_WORDS.some(word =>
     normalized.includes(normalizeUsername(word))
+  );
+}
+
+/* این دکمه فعلاً پیام می‌دهد؛ هیچ پیامکی ارسال نمی‌کند. */
+function requestPhoneCode(){
+  if(mode !== "signup") return;
+
+  const phone = document.getElementById("phone").value.trim();
+
+  if(!phone){
+    showMessage("📱 ابتدا شماره موبایلت رو وارد کن.","error");
+    return;
+  }
+
+  showMessage(
+    "ℹ️ بخش پیامکی هنوز به سرویس ارسال SMS متصل نشده است. فعلاً هیچ کدی ارسال نشده؛ اتصال را در مرحله بعد انجام می‌دهیم.",
+    "info"
   );
 }
 
@@ -297,7 +358,6 @@ function getErrorMessage(data,currentMode){
 
   const error = raw.toLowerCase();
 
-  /* خطای مستقیم فیلتر نام کاربری */
   if(
     error.includes("username contains a prohibited word") ||
     error.includes("prohibited word") ||
@@ -306,12 +366,6 @@ function getErrorMessage(data,currentMode){
     return "🚫 این نام کاربری شامل کلمات نامناسب است. نام دیگری انتخاب کن.";
   }
 
-  /*
-    Supabase ممکن است خطای تریگر BEFORE INSERT را
-    به پیام عمومی تبدیل کند. این پیام می‌تواند دلایل
-    دیگری هم داشته باشد، پس در صورت نمایش آن باید
-    خطای Auth Logs را بررسی کرد.
-  */
   if(
     currentMode === "signup" &&
     (
@@ -377,7 +431,7 @@ function getErrorMessage(data,currentMode){
   return "❌ ورود انجام نشد. اطلاعات را بررسی کن و دوباره امتحان کن.";
 }
 
-/* ارسال دوباره لینک تأیید */
+/* ارسال دوباره لینک تأیید ایمیل؛ بدون کد ایمیلی */
 async function resendConfirmationEmail(){
   if(resendBusy || !resendEmail) return;
 
@@ -465,7 +519,7 @@ document.getElementById("authForm").addEventListener("submit",async function(eve
     showResend(email);
 
     showMessage(
-      "📧 درخواست ثبت‌نام ارسال شد! ایمیلت رو باز کن و روی لینک تأیید Supabase بزن. تا وقتی ایمیلت تأیید نشه، نمی‌تونی وارد حسابت بشی. پوشه Spam رو هم بررسی کن.",
+      "📧 درخواست ثبت‌نام ارسال شد! اگر تأیید ایمیل در Supabase فعال باشد، لینک تأیید برایت ارسال می‌شود. پوشه Spam را هم بررسی کن.",
       "success"
     );
 
