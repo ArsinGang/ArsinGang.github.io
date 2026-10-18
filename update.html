@@ -161,6 +161,7 @@
     }
   </style>
 </head>
+
 <body>
   <main class="card">
     <div class="logo">AG</div>
@@ -176,127 +177,126 @@
 
     <a class="enter disabled" id="enterButton"
        href="/login/" aria-disabled="true" tabindex="-1">
-     بروزرسانی
+      بروزرسانی
     </a>
 
     <div class="foot">© ArsinGang — OFFICIAL WEBSITE</div>
   </main>
 
   <script>
-  (() => {
-    "use strict";
+    (() => {
+      "use strict";
 
-    const API =
-      "https://arsingang-site.arsingang.workers.dev/api/update-settings";
+      const API =
+        "https://arsingang-site.arsingang.workers.dev/api/update-settings";
 
-    const title = document.getElementById("title");
-    const message = document.getElementById("message");
-    const status = document.getElementById("status");
-    const statusText = document.getElementById("statusText");
-    const dot = status.querySelector(".dot");
-    const enterButton = document.getElementById("enterButton");
+      const title = document.getElementById("title");
+      const message = document.getElementById("message");
+      const status = document.getElementById("status");
+      const statusText = document.getElementById("statusText");
+      const dot = status.querySelector(".dot");
+      const enterButton = document.getElementById("enterButton");
 
-    function disableButton() {
-      enterButton.classList.add("disabled");
-      enterButton.setAttribute("aria-disabled", "true");
-      enterButton.setAttribute("tabindex", "-1");
-      enterButton.removeAttribute("href");
-    }
-
-    function enableButton() {
-      enterButton.href = "/login/";
-      enterButton.classList.remove("disabled");
-      enterButton.setAttribute("aria-disabled", "false");
-      enterButton.removeAttribute("tabindex");
-    }
-
-    function setStatus(text, color) {
-      statusText.textContent = text;
-      status.style.color = color;
-      dot.style.background = color;
-      dot.style.boxShadow = "0 0 12px " + color;
-    }
-
-    function showError(text) {
-      title.textContent = "دریافت تنظیمات ناموفق بود";
-      message.textContent = text;
-      setStatus("اتصال به سرور برقرار نشد", "#ff5b79");
-      disableButton();
-    }
-
-    async function loadSettings() {
-      disableButton();
-
-      try {
-        const response = await fetch(API, {
-          method: "GET",
-          headers: { "Accept": "application/json" },
-          cache: "no-store",
-          credentials: "omit"
-        });
-
-        if (!response.ok) {
-          throw new Error("خطای سرور: " + response.status);
-        }
-
-        const result = await response.json();
-
-        const row =
-          result?.settings ||
-          (Array.isArray(result?.data) ? result.data[0] : null) ||
-          (Array.isArray(result) ? result[0] : null) ||
-          result;
-
-        if (
-          !row ||
-          typeof row !== "object" ||
-          !Object.prototype.hasOwnProperty.call(row, "notice_enabled") ||
-          !Object.prototype.hasOwnProperty.call(row, "login_enabled")
-        ) {
-          throw new Error("ساختار تنظیمات سرور معتبر نیست.");
-        }
-
-        const noticeEnabled =
-          row.notice_enabled === true ||
-          row.notice_enabled === "true";
-
-        const loginEnabled =
-          row.login_enabled === true ||
-          row.login_enabled === "true";
-
-        if (!noticeEnabled) {
-          location.replace("/login/");
-          return;
-        }
-
-        title.textContent =
-          typeof row.title === "string" && row.title.trim()
-            ? row.title
-            : "اطلاعیهٔ آپدیت سایت";
-
-        message.textContent =
-          typeof row.message === "string" && row.message.trim()
-            ? row.message
-            : "سایت ArsinGang در حال به‌روزرسانی است.";
-
-        if (loginEnabled) {
-          setStatus("ورود به سایت فعال است", "#43ffae");
-          enableButton();
-        } else {
-          setStatus("ورود موقتاً غیرفعال است", "#ffd580");
-          disableButton();
-        }
-      } catch (error) {
-        console.error("ArsinGang update settings:", error);
-
-        showError(
-          "تنظیمات از سرور دریافت نشد. لطفاً بعداً دوباره تلاش کنید."
-        );
+      function disableButton() {
+        enterButton.classList.add("disabled");
+        enterButton.setAttribute("aria-disabled", "true");
+        enterButton.setAttribute("tabindex", "-1");
+        enterButton.removeAttribute("href");
       }
-    }
 
-    loadSettings();
-  })();
+      function enableButton() {
+        enterButton.href = "/login/";
+        enterButton.classList.remove("disabled");
+        enterButton.setAttribute("aria-disabled", "false");
+        enterButton.removeAttribute("tabindex");
+      }
+
+      function setStatus(text, color) {
+        statusText.textContent = text;
+        status.style.color = color;
+        dot.style.background = color;
+        dot.style.boxShadow = "0 0 12px " + color;
+      }
+
+      function showError(text) {
+        title.textContent = "دریافت تنظیمات ناموفق بود";
+        message.textContent = text;
+        setStatus("اتصال به سرور برقرار نشد", "#ff5b79");
+        disableButton();
+      }
+
+      async function loadSettings() {
+        disableButton();
+
+        try {
+          const response = await fetch(API, {
+            method: "GET",
+            headers: { "Accept": "application/json" },
+            cache: "no-store",
+            credentials: "omit"
+          });
+
+          if (!response.ok) {
+            throw new Error("خطای سرور: " + response.status);
+          }
+
+          const result = await response.json();
+
+          const row =
+            result?.settings ||
+            (Array.isArray(result?.data) ? result.data[0] : null) ||
+            (Array.isArray(result) ? result[0] : null) ||
+            result;
+
+          if (
+            !row ||
+            typeof row !== "object" ||
+            !Object.prototype.hasOwnProperty.call(row, "notice_enabled") ||
+            !Object.prototype.hasOwnProperty.call(row, "login_enabled")
+          ) {
+            throw new Error("ساختار تنظیمات سرور معتبر نیست.");
+          }
+
+          const noticeEnabled =
+            row.notice_enabled === true ||
+            row.notice_enabled === "true";
+
+          const loginEnabled =
+            row.login_enabled === true ||
+            row.login_enabled === "true";
+
+          if (!noticeEnabled) {
+            location.replace("/login/");
+            return;
+          }
+
+          title.textContent =
+            typeof row.title === "string" && row.title.trim()
+              ? row.title
+              : "اطلاعیهٔ آپدیت سایت";
+
+          message.textContent =
+            typeof row.message === "string" && row.message.trim()
+              ? row.message
+              : "سایت ArsinGang در حال به‌روزرسانی است.";
+
+          if (loginEnabled) {
+            setStatus("ورود به سایت فعال است", "#43ffae");
+            enableButton();
+          } else {
+            setStatus("ورود موقتاً غیرفعال است", "#ffd580");
+            disableButton();
+          }
+        } catch (error) {
+          console.error("ArsinGang update settings:", error);
+          showError(
+            "تنظیمات از سرور دریافت نشد. لطفاً بعداً دوباره تلاش کنید."
+          );
+        }
+      }
+
+      loadSettings();
+    })();
   </script>
 </body>
 </html>
