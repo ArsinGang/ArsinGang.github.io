@@ -167,8 +167,7 @@
     <div class="eyebrow">ARSINGANG WEBSITE</div>
 
     <h1 id="title">در حال دریافت اطلاعیه...</h1>
-
-    <p class="message" id="message">برای ادامه، روی دکمهٔ بروزرسانی بزنید.</p>
+    <p class="message" id="message">لطفاً منتظر بمانید...</p>
 
     <div class="status" id="status" aria-live="polite">
       <span class="dot"></span>
@@ -177,7 +176,7 @@
 
     <a class="enter disabled" id="enterButton"
        href="/login/" aria-disabled="true" tabindex="-1">
-      بروزرسانی
+      ورود به سایت
     </a>
 
     <div class="foot">© ArsinGang — OFFICIAL WEBSITE</div>
@@ -270,20 +269,16 @@
           return;
         }
 
-        // عنوان اطلاعیه همچنان از پنل ادمین دریافت می‌شود.
         title.textContent =
           typeof row.title === "string" && row.title.trim()
             ? row.title
             : "اطلاعیهٔ آپدیت سایت";
 
-        // متن اطلاعیه از پنل ادمین دریافت می‌شود؛
-        // اگر خالی باشد، متن پیش‌فرض نمایش داده می‌شود.
         message.textContent =
           typeof row.message === "string" && row.message.trim()
             ? row.message
-            : "برای ادامه، روی دکمهٔ بروزرسانی بزنید.";
+            : "سایت ArsinGang در حال به‌روزرسانی است.";
 
-        // فعال یا غیرفعال بودن دکمه طبق تنظیمات ادمین.
         if (loginEnabled) {
           setStatus("ورود به سایت فعال است", "#43ffae");
           enableButton();
