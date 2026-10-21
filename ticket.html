@@ -9,7 +9,6 @@
 
 <style>
 *{box-sizing:border-box}
-
 body{
 margin:0;
 font-family:Tahoma,Arial,sans-serif;
@@ -21,158 +20,63 @@ justify-content:center;
 align-items:center;
 padding:25px;
 }
-
-.container{
-width:100%;
-max-width:700px;
-}
-
+.container{width:100%;max-width:700px}
 .card{
 background:rgba(20,12,35,.82);
 border:1px solid rgba(123,44,255,.45);
 border-radius:24px;
 padding:30px;
-box-shadow:
-0 0 35px rgba(123,44,255,.18),
-inset 0 0 25px rgba(0,229,255,.03);
+box-shadow:0 0 35px rgba(123,44,255,.18),inset 0 0 25px rgba(0,229,255,.03);
 backdrop-filter:blur(12px);
 }
-
 .logo{
-width:75px;
-height:75px;
-margin:0 auto 15px;
-border-radius:20px;
-background:#7b2cff;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:28px;
-font-weight:bold;
-box-shadow:0 0 25px rgba(123,44,255,.55);
+width:75px;height:75px;margin:0 auto 15px;border-radius:20px;
+background:#7b2cff;display:flex;justify-content:center;align-items:center;
+font-size:28px;font-weight:bold;box-shadow:0 0 25px rgba(123,44,255,.55);
 }
-
-h1{
-text-align:center;
-margin:5px 0 10px;
-font-size:30px;
-}
-
-.subtitle{
-text-align:center;
-color:#cfc5df;
-line-height:2;
-margin-bottom:25px;
-}
-
+h1{text-align:center;margin:5px 0 10px;font-size:30px}
+.subtitle{text-align:center;color:#cfc5df;line-height:2;margin-bottom:25px}
 .ticket-status{
-display:block;
-width:max-content;
-margin:0 auto 20px;
-padding:8px 14px;
-border-radius:20px;
-font-size:13px;
-font-weight:bold;
+display:block;width:max-content;margin:0 auto 20px;padding:8px 14px;
+border-radius:20px;font-size:13px;font-weight:bold;
 }
-
-.status-open{
-background:rgba(0,255,120,.1);
-color:#5cffae;
-border:1px solid rgba(0,255,120,.25);
-}
-
-.status-answered{
-background:rgba(0,200,255,.1);
-color:#5cddff;
-border:1px solid rgba(0,200,255,.25);
-}
-
-.status-closed{
-background:rgba(255,80,80,.1);
-color:#ff8585;
-border:1px solid rgba(255,80,80,.25);
-}
-
-.ticket-info{
-margin-top:15px;
-line-height:2;
-color:#ddd;
-}
-
+.status-open{background:rgba(0,255,120,.1);color:#5cffae;border:1px solid rgba(0,255,120,.25)}
+.status-answered{background:rgba(0,200,255,.1);color:#5cddff;border:1px solid rgba(0,200,255,.25)}
+.status-closed{background:rgba(255,80,80,.1);color:#ff8585;border:1px solid rgba(255,80,80,.25)}
+.ticket-info{margin-top:15px;line-height:2;color:#ddd}
 .ticket-box{
-margin-top:15px;
-padding:18px;
-border-radius:15px;
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.07);
-line-height:2;
-white-space:pre-wrap;
-word-break:break-word;
+margin-top:15px;padding:18px;border-radius:15px;
+background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+line-height:2;white-space:pre-wrap;word-break:break-word;
 }
-
-.admin-reply{
-border-color:rgba(0,229,255,.2);
-}
-
-.ticket-title{
-font-weight:bold;
-margin-bottom:5px;
-}
-
+.admin-reply{border-color:rgba(0,229,255,.2)}
+.ticket-title{font-weight:bold;margin-bottom:5px}
 .error{
-display:none;
-margin-top:15px;
-padding:12px;
-border-radius:12px;
-background:rgba(255,60,60,.08);
-border:1px solid rgba(255,60,60,.3);
-color:#ff9999;
-text-align:center;
+display:none;margin-top:15px;padding:12px;border-radius:12px;
+background:rgba(255,60,60,.08);border:1px solid rgba(255,60,60,.3);
+color:#ff9999;text-align:center;overflow-wrap:anywhere;
 }
-
-.loading{
-text-align:center;
-color:#cfc5df;
-padding:20px;
-}
-
-.back-btn{
-display:block;
-text-align:center;
-margin-top:25px;
-color:#bdb0d0;
-text-decoration:none;
-}
-
-.back-btn:hover{
-color:#00e5ff;
-}
-
+.loading{text-align:center;color:#cfc5df;padding:20px}
+.back-btn{display:block;text-align:center;margin-top:25px;color:#bdb0d0;text-decoration:none}
+.back-btn:hover{color:#00e5ff}
 </style>
 </head>
 
 <body>
-
 <div class="container">
-
 <div class="card">
 
 <div class="logo">AG</div>
-
 <h1>🎫 تیکت پشتیبانی</h1>
 
 <div class="subtitle">
 اینجا می‌تونی وضعیت تیکت و پاسخ پشتیبانی رو مشاهده کنی 💜
 </div>
 
-<div id="loading" class="loading">
-⏳ در حال دریافت اطلاعات تیکت...
-</div>
-
+<div id="loading" class="loading">⏳ در حال دریافت اطلاعات تیکت...</div>
 <div id="errorBox" class="error"></div>
 
 <div id="ticketContent" style="display:none;">
-
 <div id="ticketStatus" class="ticket-status"></div>
 
 <div class="ticket-info">
@@ -181,187 +85,128 @@ color:#00e5ff;
 </div>
 
 <div class="ticket-box">
-
-<div class="ticket-title">
-💬 پیام شما:
-</div>
-
+<div class="ticket-title">💬 پیام شما:</div>
 <span id="ticketMessage"></span>
-
 </div>
 
 <div class="ticket-box admin-reply">
-
-<div class="ticket-title">
-💜 پاسخ پشتیبانی:
-</div>
-
+<div class="ticket-title">💜 پاسخ پشتیبانی:</div>
 <span id="adminReply"></span>
-
+</div>
 </div>
 
+<a class="back-btn" href="/contact/">⬅️ بازگشت به پشتیبانی</a>
 </div>
-
-<a class="back-btn" href="../contact/">
-⬅️ بازگشت به پشتیبانی
-</a>
-
-</div>
-
 </div>
 
 <script>
-
-const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
+"use strict";
 
 const loading = document.getElementById("loading");
 const errorBox = document.getElementById("errorBox");
 const ticketContent = document.getElementById("ticketContent");
-
 const ticketStatus = document.getElementById("ticketStatus");
 const ticketName = document.getElementById("ticketName");
 const ticketMessage = document.getElementById("ticketMessage");
 const adminReply = document.getElementById("adminReply");
 
-function showError(message){
-
-loading.style.display="none";
-
-errorBox.textContent=message;
-errorBox.style.display="block";
-
+function showError(message) {
+  loading.style.display = "none";
+  ticketContent.style.display = "none";
+  errorBox.textContent = message;
+  errorBox.style.display = "block";
 }
 
-function getStatusText(status){
+function getStatusText(status) {
+  if (status === "closed") {
+    return { text: "🔒 تیکت بسته شده", className: "status-closed" };
+  }
 
-if(status==="closed"){
+  if (status === "answered") {
+    return { text: "🔵 تیکت پاسخ داده شده", className: "status-answered" };
+  }
 
-return{
-text:"🔒 تیکت بسته شده",
-className:"status-closed"
-};
-
+  return { text: "🟢 در انتظار پاسخ", className: "status-open" };
 }
 
-if(status==="answered"){
-
-return{
-text:"🔵 تیکت پاسخ داده شده",
-className:"status-answered"
-};
-
+function getAccessToken() {
+  return localStorage.getItem("arsin_user_token");
 }
 
-return{
-text:"🟢 در انتظار پاسخ",
-className:"status-open"
-};
+async function loadTicket() {
+  const params = new URLSearchParams(window.location.search);
+  let code = params.get("code");
 
-}
+  if (!code) {
+    const path = window.location.pathname;
+    if (path.startsWith("/ticket/")) {
+      code = path.slice("/ticket/".length).split("/")[0];
+    }
+  }
 
-async function loadTicket(){
+  if (!code) {
+    showError("❌ کد تیکت پیدا نشد.");
+    return;
+  }
 
-const params=new URLSearchParams(window.location.search);
+  const token = getAccessToken();
 
-let code=params.get("code");
+  if (!token) {
+    showError("برای مشاهدهٔ تیکت، ابتدا وارد حساب کاربری خود شوید.");
+    return;
+  }
 
-// اگر ?code= وجود نداشت، کد را از مسیر /ticket/CODE بخوان
-if(!code){
+  try {
+    const response = await fetch(
+      "/api/my-ticket?code=" + encodeURIComponent(code.trim().toUpperCase()),
+      {
+        method: "GET",
+        headers: {
+          "Authorization": "Bearer " + token
+        },
+        cache: "no-store"
+      }
+    );
 
-const path=window.location.pathname;
+    const result = await response.json().catch(() => ({}));
 
-if(path.startsWith("/ticket/")){
+    if (response.status === 401) {
+      showError("نشست ورود شما معتبر نیست. دوباره وارد حساب خود شوید.");
+      return;
+    }
 
-code=path.slice("/ticket/".length).split("/")[0];
+    if (response.status === 404) {
+      showError("❌ تیکت پیدا نشد یا متعلق به حساب شما نیست.");
+      return;
+    }
 
-}
+    if (!response.ok || !result.ticket) {
+      showError(result.error || "❌ دریافت تیکت انجام نشد. دوباره تلاش کنید.");
+      return;
+    }
 
-}
+    const ticket = result.ticket;
+    const status = getStatusText(ticket.status);
 
-if(!code){
+    ticketStatus.textContent = status.text;
+    ticketStatus.className = "ticket-status " + status.className;
 
-showError("❌ کد تیکت پیدا نشد.");
+    ticketName.textContent = ticket.name || "";
+    ticketMessage.textContent = ticket.message || "";
+    adminReply.textContent = ticket.admin_reply ||
+      "⏳ هنوز پاسخی از پشتیبانی ثبت نشده است.";
 
-return;
+    loading.style.display = "none";
+    errorBox.style.display = "none";
+    ticketContent.style.display = "block";
 
-}
-
-try{
-
-const response=await fetch(
-
-SUPABASE_URL+"/rest/v1/rpc/get_ticket_by_code",
-
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json",
-"apikey":SUPABASE_KEY
-},
-body:JSON.stringify({
-code:code.trim().toUpperCase()
-})
-}
-
-);
-
-if(!response.ok){
-
-const errorText=await response.text();
-
-console.error(errorText);
-
-throw new Error(errorText);
-
-}
-
-const tickets=await response.json();
-
-if(!tickets || tickets.length===0){
-
-showError("❌ کد تیکت اشتباه است یا چنین تیکتی وجود ندارد.");
-
-return;
-
-}
-
-const ticket=tickets[0];
-
-const status=getStatusText(ticket.status);
-
-ticketStatus.textContent=status.text;
-ticketStatus.className="ticket-status "+status.className;
-
-ticketName.textContent=ticket.name||"";
-ticketMessage.textContent=ticket.message||"";
-
-if(ticket.admin_reply){
-
-adminReply.textContent=ticket.admin_reply;
-
-}else{
-
-adminReply.textContent="⏳ هنوز پاسخی از پشتیبانی ثبت نشده است.";
-
-}
-
-loading.style.display="none";
-ticketContent.style.display="block";
-
-}catch(error){
-
-console.error(error);
-
-showError("❌ دریافت تیکت انجام نشد. دوباره تلاش کنید.");
-
-}
-
+  } catch (error) {
+    console.error("LOAD TICKET ERROR:", error);
+    showError("❌ ارتباط با سرور برقرار نشد. دوباره تلاش کنید.");
+  }
 }
 
 loadTicket();
-
 </script>
-
 </body>
 </html>
