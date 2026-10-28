@@ -2,585 +2,890 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101010">
-<meta name="description" content="شبکه‌های اجتماعی رسمی ArsinGang">
-<title>ARSINGANG — ENTER THE GAME</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071522">
+  <meta name="description" content="شبکه‌های اجتماعی رسمی ArsinGang؛ وارد سطح بعدی گیمینگ شو.">
+  <title>ARSINGANG — NEXT LEVEL</title>
 
-<style>
-:root {
-  --red: #ff2638;
-  --black: #101010;
-  --white: #f5f5f2;
-  --gray: #858585;
-}
+  <style>
+    :root {
+      --bg: #07111d;
+      --bg-light: #0b1d2d;
+      --surface: #0d2032;
+      --surface-hover: #102b40;
+      --blue: #38bdf8;
+      --blue-bright: #7dd3fc;
+      --cyan: #67e8f9;
+      --white: #eff9ff;
+      --muted: #8fa9bd;
+      --border: rgba(56, 189, 248, .18);
+      --glow: rgba(56, 189, 248, .15);
+    }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-body {
-  min-height: 100vh;
-  background: var(--black);
-  color: var(--white);
-  font-family: Tahoma, Arial, sans-serif;
-  overflow-x: hidden;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse at 80% 0%, rgba(14, 165, 233, .15), transparent 38%),
+        radial-gradient(ellipse at 10% 48%, rgba(8, 145, 178, .09), transparent 35%),
+        var(--bg);
+      color: var(--white);
+      font-family: Tahoma, Arial, sans-serif;
+    }
 
-.page {
-  max-width: 1200px;
-  margin: auto;
-  padding: 25px 35px 35px;
-  position: relative;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .2;
+      background-image:
+        linear-gradient(rgba(56, 189, 248, .08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, .08) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
 
-.page::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 5px;
-  height: 100%;
-  background: var(--red);
-  z-index: 5;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-header {
-  height: 65px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #ffffff20;
-}
+    a:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 5px;
+    }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  direction: ltr;
-  font-size: 17px;
-  font-weight: 1000;
-  letter-spacing: 2px;
-}
+    .page {
+      width: min(1160px, 100%);
+      margin-inline: auto;
+      padding: 24px 28px 30px;
+    }
 
-.brand-mark {
-  width: 37px;
-  height: 37px;
-  display: grid;
-  place-items: center;
-  background: var(--red);
-  color: #fff;
-  font-size: 20px;
-  font-weight: 1000;
-  transform: skew(-9deg);
-}
+    /* Header */
 
-.header-label {
-  color: #aaa;
-  font-size: 10px;
-  letter-spacing: 2px;
-}
+    header {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
 
-.header-label span {
-  color: var(--red);
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      direction: ltr;
+      font-size: 17px;
+      font-weight: 1000;
+      letter-spacing: 2px;
+    }
 
-.hero {
-  min-height: 390px;
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  align-items: center;
-  gap: 25px;
-  position: relative;
-  padding: 35px 0;
-}
+    .brand-mark {
+      width: 43px;
+      height: 43px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(125, 211, 252, .8);
+      border-radius: 12px;
+      background: linear-gradient(145deg, #0ea5e9, #075985);
+      color: white;
+      font-size: 24px;
+      box-shadow: 0 0 25px rgba(56, 189, 248, .24);
+      transform: skew(-5deg);
+    }
 
-.hero-copy {
-  position: relative;
-  z-index: 2;
-}
+    .header-status {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      direction: ltr;
+    }
 
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--red);
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  margin-bottom: 23px;
-}
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 12px #4ade80;
+    }
 
-.eyebrow::before {
-  content: "";
-  width: 34px;
-  height: 3px;
-  background: var(--red);
-}
+    /* Hero */
 
-h1 {
-  font-family: Impact, "Arial Black", Tahoma, sans-serif;
-  direction: ltr;
-  text-align: right;
-  font-size: clamp(52px, 8vw, 100px);
-  font-weight: 1000;
-  line-height: .99;
-  letter-spacing: -3px;
-}
+    .hero {
+      min-height: 405px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 30px;
+      padding: 52px 0 48px;
+    }
 
-h1 span {
-  display: block;
-  color: var(--red);
-}
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
 
-.hero-description {
-  max-width: 400px;
-  margin-top: 24px;
-  color: #aaa;
-  font-size: 13px;
-  line-height: 2.2;
-}
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 13px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(56, 189, 248, .27);
+      border-radius: 999px;
+      background: rgba(14, 165, 233, .08);
+      color: var(--blue-bright);
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
 
-.hero-art {
-  min-height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  isolation: isolate;
-}
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+    }
 
-.art-circle {
-  position: absolute;
-  width: min(31vw, 330px);
-  height: min(31vw, 330px);
-  min-width: 220px;
-  min-height: 220px;
-  border: 1px solid #ffffff24;
-  border-radius: 50%;
-  transform: rotate(-20deg);
-}
+    h1 {
+      direction: ltr;
+      text-align: right;
+      font-family: Impact, "Arial Black", Tahoma, sans-serif;
+      font-size: clamp(48px, 7.5vw, 88px);
+      line-height: .98;
+      font-weight: 1000;
+      letter-spacing: -2px;
+    }
 
-.art-circle::before,
-.art-circle::after {
-  content: "";
-  position: absolute;
-  inset: 17px;
-  border: 1px dashed #ff263866;
-  border-radius: 50%;
-}
+    h1 span {
+      display: block;
+      margin-top: 9px;
+      color: var(--blue);
+      text-shadow: 0 0 35px rgba(56, 189, 248, .35);
+    }
 
-.art-circle::after {
-  inset: 43px;
-  border: 2px solid #ff263844;
-}
+    .hero-description {
+      max-width: 430px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 2.4;
+    }
 
-.art-symbol {
-  position: relative;
-  z-index: 2;
-  font-family: Impact, "Arial Black", sans-serif;
-  font-size: clamp(130px, 22vw, 235px);
-  font-weight: 1000;
-  font-style: italic;
-  line-height: 1;
-  color: var(--red);
-  text-shadow: 10px 10px 0 #ffffff10;
-  transform: skew(-9deg) rotate(-7deg);
-}
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 27px;
+    }
 
-.art-cross {
-  position: absolute;
-  top: 30px;
-  left: 4%;
-  color: #ff2638;
-  font-size: 45px;
-  font-weight: 1000;
-}
+    .primary-button,
+    .secondary-button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px;
+      border-radius: 11px;
+      font-size: 12px;
+      font-weight: bold;
+      transition: transform .2s, background .2s, box-shadow .2s;
+    }
 
-.art-number {
-  position: absolute;
-  bottom: 25px;
-  right: 2%;
-  font-size: 12px;
-  color: #888;
-  letter-spacing: 4px;
-  direction: ltr;
-}
+    .primary-button {
+      background: linear-gradient(110deg, #0284c7, #0ea5e9);
+      color: white;
+      box-shadow: 0 5px 25px rgba(14, 165, 233, .2);
+    }
 
-.section-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  padding: 20px 0;
-  border-top: 1px solid #ffffff24;
-  border-bottom: 1px solid #ffffff24;
-}
+    .primary-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(14, 165, 233, .35);
+    }
 
-.section-heading h2 {
-  font-size: 17px;
-  font-weight: 900;
-}
+    .secondary-button {
+      border: 1px solid var(--border);
+      background: rgba(13, 32, 50, .7);
+      color: var(--blue-bright);
+    }
 
-.section-heading h2 span {
-  color: var(--red);
-}
+    .secondary-button:hover {
+      transform: translateY(-3px);
+      background: var(--surface-hover);
+    }
 
-.section-heading small {
-  color: #777;
-  font-size: 10px;
-  letter-spacing: 2px;
-  direction: ltr;
-}
+    /* Hero artwork */
 
-.socials {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 13px;
-  padding-top: 20px;
-}
+    .hero-art {
+      min-height: 310px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      isolation: isolate;
+    }
 
-.social {
-  --accent: #ff2638;
-  min-height: 235px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  background: #181818;
-  border: 1px solid #ffffff15;
-  transition: background .25s, border-color .25s,
-              transform .25s;
-}
+    .art-glow {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(14, 165, 233, .12);
+      filter: blur(55px);
+    }
 
-.social::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  width: 130px;
-  height: 130px;
-  background: var(--accent);
-  right: -70px;
-  top: -70px;
-  transform: rotate(45deg);
-  transition: width .3s, height .3s;
-}
+    .art-ring {
+      position: absolute;
+      width: min(29vw, 310px);
+      height: min(29vw, 310px);
+      min-width: 225px;
+      min-height: 225px;
+      border: 1px solid rgba(125, 211, 252, .35);
+      border-radius: 50%;
+      box-shadow: 0 0 35px rgba(56, 189, 248, .05);
+      transform: rotate(-20deg);
+    }
 
-.social:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent);
-  background: #202020;
-}
+    .art-ring::before,
+    .art-ring::after {
+      content: "";
+      position: absolute;
+      inset: 17px;
+      border: 1px dashed rgba(56, 189, 248, .45);
+      border-radius: 50%;
+    }
 
-.social:hover::before {
-  width: 180px;
-  height: 180px;
-}
+    .art-ring::after {
+      inset: 43px;
+      border: 1px solid rgba(103, 232, 249, .35);
+    }
 
-.telegram { --accent: #29a9ea; }
-.aparat { --accent: #ff2638; }
-.youtube { --accent: #ff3434; }
+    .art-symbol {
+      position: relative;
+      z-index: 2;
+      direction: ltr;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: clamp(145px, 23vw, 240px);
+      line-height: 1;
+      font-weight: 1000;
+      font-style: italic;
+      color: var(--blue);
+      text-shadow:
+        0 0 22px rgba(56, 189, 248, .3),
+        8px 8px 0 rgba(103, 232, 249, .06);
+      transform: skew(-8deg) rotate(-7deg);
+    }
 
-.card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  direction: ltr;
-}
+    .art-cross {
+      position: absolute;
+      top: 15px;
+      left: 8%;
+      color: var(--cyan);
+      font-size: 39px;
+      font-weight: bold;
+    }
 
-.platform-icon {
-  width: 53px;
-  height: 53px;
-  display: grid;
-  place-items: center;
-  background: var(--accent);
-  color: white;
-  clip-path: polygon(0 0, 100% 0, 100% 76%, 76% 100%, 0 100%);
-}
+    .art-label {
+      position: absolute;
+      bottom: 15px;
+      right: 4%;
+      color: #7298b2;
+      font-size: 10px;
+      letter-spacing: 3px;
+      direction: ltr;
+    }
 
-.platform-icon svg {
-  width: 27px;
-  height: 27px;
-}
+    .art-coordinate {
+      position: absolute;
+      top: 35px;
+      right: 1%;
+      color: #45657d;
+      font-size: 9px;
+      letter-spacing: 2px;
+      direction: ltr;
+    }
 
-.card-index {
-  font-family: Impact, sans-serif;
-  font-size: 35px;
-  color: #ffffff18;
-  direction: ltr;
-}
+    /* Section heading */
 
-.card-info {
-  margin-top: auto;
-  padding-top: 35px;
-}
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 22px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
 
-.card-info h3 {
-  font-size: 21px;
-  margin-bottom: 10px;
-}
+    .section-title {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
 
-.card-info p {
-  font-size: 11px;
-  line-height: 2;
-  color: #999;
-}
+    .section-title h2 {
+      font-size: 19px;
+      font-weight: 900;
+    }
 
-.card-bottom {
-  margin-top: 20px;
-  padding-top: 14px;
-  border-top: 1px solid #ffffff19;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+    .section-title h2 span {
+      color: var(--blue);
+    }
 
-.card-bottom span {
-  font-size: 11px;
-  font-weight: bold;
-}
+    .section-title p {
+      color: var(--muted);
+      font-size: 11px;
+    }
 
-.arrow {
-  width: 30px;
-  height: 30px;
-  display: grid;
-  place-items: center;
-  background: var(--accent);
-  color: white;
-  font-size: 18px;
-  direction: ltr;
-  transition: transform .25s;
-}
+    .section-label {
+      color: #64839a;
+      font-size: 10px;
+      letter-spacing: 2px;
+      direction: ltr;
+      white-space: nowrap;
+    }
 
-.social:hover .arrow {
-  transform: translateX(-4px);
-}
+    /* Social cards */
 
-footer {
-  margin-top: 35px;
-  padding-top: 18px;
-  border-top: 1px solid #ffffff20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  color: #777;
-  font-size: 10px;
-}
+    .socials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+      padding-top: 23px;
+    }
 
-footer strong {
-  color: var(--red);
-  letter-spacing: 2px;
-  direction: ltr;
-}
+    .social {
+      --accent: #38bdf8;
+      min-height: 300px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background:
+        linear-gradient(150deg, rgba(16, 43, 64, .9), rgba(9, 20, 34, .97));
+      box-shadow: 0 12px 35px rgba(0, 0, 0, .13);
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
 
-.footer-tag {
-  direction: ltr;
-  letter-spacing: 2px;
-}
+    .social::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -95px;
+      right: -85px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: .10;
+      filter: blur(20px);
+      transition: opacity .25s, transform .35s;
+    }
 
-@media (max-width: 700px) {
-  .page {
-    padding: 15px 18px 25px;
-  }
+    .social::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: .65;
+    }
 
-  .header-label {
-    font-size: 9px;
-  }
+    .social:hover {
+      transform: translateY(-7px);
+      border-color: var(--accent);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, .24), 0 0 25px var(--glow);
+    }
 
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 0;
-    padding: 45px 0 25px;
-  }
+    .social:hover::before {
+      opacity: .2;
+      transform: scale(1.25);
+    }
 
-  .hero-copy {
-    grid-row: 1;
-  }
+    .telegram {
+      --accent: #38bdf8;
+      --glow: rgba(56, 189, 248, .12);
+    }
 
-  h1 {
-    font-size: clamp(54px, 13vw, 83px);
-  }
+    .aparat {
+      --accent: #fb7185;
+      --glow: rgba(251, 113, 133, .12);
+    }
 
-  .hero-art {
-    grid-row: 2;
-    min-height: 240px;
-    margin-top: 10px;
-  }
+    .youtube {
+      --accent: #f87171;
+      --glow: rgba(248, 113, 113, .12);
+    }
 
-  .art-circle {
-    width: 225px;
-    height: 225px;
-  }
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      direction: ltr;
+    }
 
-  .art-symbol {
-    font-size: 160px;
-  }
+    .platform-icon {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      color: var(--accent);
+      box-shadow: 0 0 25px color-mix(in srgb, var(--accent) 10%, transparent);
+    }
 
-  .socials {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
+    .platform-icon svg {
+      width: 31px;
+      height: 31px;
+    }
 
-  .social {
-    min-height: 190px;
-    padding: 18px;
-  }
+    .card-index {
+      color: rgba(220, 240, 255, .12);
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 49px;
+      line-height: 1;
+    }
 
-  .card-info {
-    padding-top: 24px;
-  }
+    .card-info {
+      padding-top: 34px;
+    }
 
-  footer {
-    flex-wrap: wrap;
-  }
-}
+    .card-category {
+      display: inline-block;
+      margin-bottom: 11px;
+      color: var(--accent);
+      font-size: 9px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      direction: ltr;
+    }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    transition: none !important;
-  }
-}
-</style>
+    .card-info h3 {
+      margin-bottom: 12px;
+      font-size: 23px;
+      font-weight: 900;
+    }
+
+    .card-info p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 2.2;
+    }
+
+    .card-bottom {
+      margin-top: auto;
+      padding-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-action {
+      color: var(--white);
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      direction: ltr;
+    }
+
+    .arrow {
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 11px;
+      background: var(--accent);
+      color: #07111d;
+      font-size: 21px;
+      direction: ltr;
+      transition: transform .25s;
+    }
+
+    .social:hover .arrow {
+      transform: translateX(-4px);
+    }
+
+    /* Footer */
+
+    footer {
+      margin-top: 38px;
+      padding-top: 21px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      color: #6e899e;
+      font-size: 10px;
+    }
+
+    footer strong {
+      color: var(--blue-bright);
+      letter-spacing: 2px;
+      direction: ltr;
+    }
+
+    .footer-tag {
+      direction: ltr;
+      letter-spacing: 2px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 850px) {
+      .page {
+        padding-inline: 22px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr 0.8fr;
+        gap: 12px;
+      }
+
+      h1 {
+        font-size: clamp(46px, 8vw, 70px);
+      }
+
+      .socials {
+        gap: 12px;
+      }
+
+      .social {
+        min-height: 285px;
+        padding: 18px;
+      }
+
+      .card-info h3 {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        padding: 16px 16px 24px;
+      }
+
+      header {
+        min-height: 57px;
+        padding-bottom: 14px;
+      }
+
+      .brand {
+        gap: 9px;
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+
+      .brand-mark {
+        width: 37px;
+        height: 37px;
+        font-size: 21px;
+      }
+
+      .header-status {
+        gap: 6px;
+        font-size: 8px;
+        letter-spacing: .5px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 42px 0 28px;
+      }
+
+      .eyebrow {
+        margin-bottom: 22px;
+      }
+
+      h1 {
+        font-size: clamp(52px, 13vw, 78px);
+      }
+
+      .hero-description {
+        font-size: 12px;
+      }
+
+      .hero-art {
+        min-height: 235px;
+        margin-top: 12px;
+      }
+
+      .art-ring {
+        width: 225px;
+        height: 225px;
+      }
+
+      .art-symbol {
+        font-size: 165px;
+      }
+
+      .art-coordinate {
+        top: 12px;
+      }
+
+      .art-label {
+        bottom: 5px;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        padding: 19px 0;
+      }
+
+      .section-title h2 {
+        font-size: 17px;
+      }
+
+      .section-label {
+        padding-top: 4px;
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .socials {
+        grid-template-columns: 1fr;
+        gap: 13px;
+        padding-top: 17px;
+      }
+
+      .social {
+        min-height: 245px;
+        padding: 21px;
+        border-radius: 15px;
+      }
+
+      .card-info {
+        padding-top: 27px;
+      }
+
+      .card-info h3 {
+        font-size: 22px;
+      }
+
+      .card-bottom {
+        padding-top: 18px;
+      }
+
+      footer {
+        margin-top: 28px;
+        line-height: 1.8;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<main class="page">
+  <main class="page">
 
-  <header>
-    <div class="brand">
-      <div class="brand-mark">A</div>
-      <span>ARSINGANG</span>
-    </div>
-    <div class="header-label">OFFICIAL <span>///</span> COMMUNITY</div>
-  </header>
+    <header>
+      <a class="brand" href="#home" aria-label="ArsinGang">
+        <span class="brand-mark">A</span>
+        <span>ARSINGANG</span>
+      </a>
 
-  <section class="hero">
-    <div class="hero-copy">
-      <div class="eyebrow">WELCOME TO THE GANG</div>
-      <h1>
-        ENTER THE
-        <span>GAME.</span>
-      </h1>
-      <p class="hero-description">
-        اینجا تازه شروع ماجراست.
-        برای دنبال‌کردن ویدیوها، اخبار و اتفاقات جدید ArsinGang،
-        مسیرت رو انتخاب کن.
-      </p>
-    </div>
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span>OFFICIAL COMMUNITY</span>
+      </div>
+    </header>
 
-    <div class="hero-art" aria-hidden="true">
-      <div class="art-circle"></div>
-      <div class="art-cross">×</div>
-      <div class="art-symbol">A</div>
-      <div class="art-number">AG / 2026</div>
-    </div>
-  </section>
-
-  <div class="section-heading">
-    <h2>شبکه‌های <span>رسمی</span></h2>
-    <small>CHOOSE YOUR PLATFORM</small>
-  </div>
-
-  <section class="socials">
-
-    <a class="social telegram"
-       href="https://t.me/+UuJyOlBqdxcxOGI0"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="ورود به تلگرام ArsinGang">
-
-      <div class="card-top">
-        <div class="platform-icon">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M3 11.4 20.5 4.6c.8-.3 1.4.2 1.1 1.3l-3 14.1c-.2 1- .8 1.2-1.7.7l-4.5-3.3-2.2 2.2c-.3.3-.6.3-.6-.3l.3-4.5 9-8.1c.4-.4-.1-.5-.6-.2L6.9 13.4l-3.8-1.2c-.9-.3-.9-.6-.1-.8Z" fill="white"/>
-          </svg>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          WELCOME TO THE NEXT LEVEL
         </div>
-        <span class="card-index">01</span>
-      </div>
 
-      <div class="card-info">
-        <h3>تلگرام</h3>
-        <p>خبرها و ارتباط با جامعهٔ ArsinGang</p>
-      </div>
+        <h1>
+          ENTER THE
+          <span>GAME.</span>
+        </h1>
 
-      <div class="card-bottom">
-        <span>JOIN TELEGRAM</span>
-        <span class="arrow">↗</span>
-      </div>
-    </a>
+        <p class="hero-description">
+          به دنیای ArsinGang خوش اومدی!
+          اینجا می‌تونی ویدیوها، اخبار و اتفاقات جدیدمون رو دنبال کنی.
+          پلتفرمت رو انتخاب کن و به جمع ما بپیوند.
+        </p>
 
-    <a class="social aparat"
-       href="https://www.aparat.com/arsingang"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="تماشای کانال ArsinGang در آپارات">
+        <div class="hero-actions">
+          <a class="primary-button" href="#socials">
+            مشاهده شبکه‌ها
+            <span aria-hidden="true">↓</span>
+          </a>
 
-      <div class="card-top">
-        <div class="platform-icon">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M8 4.8c0-1 1.1-1.6 2-1l10 6.2c1.1.7 1.1 2.3 0 3l-10 6.2c-.9.6-2 0-2-1V4.8Z" fill="white"/>
-          </svg>
+          <a class="secondary-button"
+             href="https://t.me/+UuJyOlBqdxcxOGI0"
+             target="_blank"
+             rel="noopener noreferrer">
+            ارتباط با ما
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
-        <span class="card-index">02</span>
       </div>
 
-      <div class="card-info">
-        <h3>آپارات</h3>
-        <p>ویدیوها و ماجراهای گیمینگ</p>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-glow"></div>
+        <div class="art-ring"></div>
+        <div class="art-cross">+</div>
+        <div class="art-coordinate">SYSTEM / AG-026</div>
+        <div class="art-symbol">A</div>
+        <div class="art-label">NEXT LEVEL COMMUNITY</div>
       </div>
+    </section>
 
-      <div class="card-bottom">
-        <span>WATCH VIDEOS</span>
-        <span class="arrow">↗</span>
-      </div>
-    </a>
-
-    <a class="social youtube"
-       href="https://www.youtube.com/@arsingang"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="تماشای کانال ArsinGang در یوتیوب">
-
-      <div class="card-top">
-        <div class="platform-icon">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect x="1" y="4" width="22" height="16" rx="5" fill="white"/>
-            <path d="M10 8 16 12 10 16V8Z" fill="#ff3434"/>
-          </svg>
+    <section id="socials" aria-labelledby="social-heading">
+      <div class="section-heading">
+        <div class="section-title">
+          <h2 id="social-heading">شبکه‌های <span>رسمی</span></h2>
+          <p>ما رو در پلتفرم موردعلاقه‌ات دنبال کن.</p>
         </div>
-        <span class="card-index">03</span>
+
+        <span class="section-label">CHOOSE YOUR PLATFORM</span>
       </div>
 
-      <div class="card-info">
-        <h3>YouTube</h3>
-        <p>ویدیوهای جدید و محتوای اختصاصی</p>
+      <div class="socials">
+
+        <!-- Telegram -->
+        <a class="social telegram"
+           href="https://t.me/+UuJyOlBqdxcxOGI0"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="ورود به تلگرام ArsinGang">
+
+          <div class="card-top">
+            <div class="platform-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 11.4 20.5 4.6c.8-.3 1.4.2 1.1 1.3l-3 14.1c-.2 1-.8 1.2-1.7.7l-4.5-3.3-2.2 2.2c-.3.3-.6.3-.6-.3l.3-4.5 9-8.1c.4-.4-.1-.5-.6-.2L6.9 13.4l-3.8-1.2c-.9-.3-.9-.6-.1-.8Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <span class="card-index">01</span>
+          </div>
+
+          <div class="card-info">
+            <span class="card-category">COMMUNITY / CHAT</span>
+            <h3>تلگرام</h3>
+            <p>برای دنبال‌کردن خبرها و ارتباط با جامعه ArsinGang به کانال تلگرام ما بپیوند.</p>
+          </div>
+
+          <div class="card-bottom">
+            <span class="card-action">JOIN TELEGRAM</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </div>
+        </a>
+
+        <!-- Aparat -->
+        <a class="social aparat"
+           href="https://www.aparat.com/arsingang"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="تماشای کانال ArsinGang در آپارات">
+
+          <div class="card-top">
+            <div class="platform-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="18" rx="5" fill="currentColor"/>
+                <path d="M10 7.5 16 12l-6 4.5v-9Z" fill="#0b1d2d"/>
+              </svg>
+            </div>
+            <span class="card-index">02</span>
+          </div>
+
+          <div class="card-info">
+            <span class="card-category">VIDEOS / GAMING</span>
+            <h3>آپارات</h3>
+            <p>ویدیوها، لحظات جذاب گیمینگ و ماجراهای تازه ArsinGang رو تماشا کن.</p>
+          </div>
+
+          <div class="card-bottom">
+            <span class="card-action">WATCH ON APARAT</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </div>
+        </a>
+
+        <!-- YouTube -->
+        <a class="social youtube"
+           href="https://www.youtube.com/@arsingang"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="تماشای کانال ArsinGang در یوتیوب">
+
+          <div class="card-top">
+            <div class="platform-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="1" y="4" width="22" height="16" rx="5" fill="currentColor"/>
+                <path d="M10 8 16 12 10 16V8Z" fill="#0b1d2d"/>
+              </svg>
+            </div>
+            <span class="card-index">03</span>
+          </div>
+
+          <div class="card-info">
+            <span class="card-category">VIDEOS / SUBSCRIBE</span>
+            <h3>YouTube</h3>
+            <p>ویدیوهای جدید، محتوای اختصاصی و لحظات هیجان‌انگیز رو در یوتیوب ببین.</p>
+          </div>
+
+          <div class="card-bottom">
+            <span class="card-action">SUBSCRIBE NOW</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </div>
+        </a>
+
       </div>
+    </section>
 
-      <div class="card-bottom">
-        <span>SUBSCRIBE</span>
-        <span class="arrow">↗</span>
-      </div>
-    </a>
+    <footer>
+      <span>© ARSINGANG — ALL RIGHTS RESERVED</span>
+      <strong>NEXT LEVEL. JUST GAME.</strong>
+      <span class="footer-tag">EST. ARSINGANG</span>
+    </footer>
 
-  </section>
-
-  <footer>
-    <span>© ARSINGANG — ALL RIGHTS RESERVED</span>
-    <strong>NO LIMITS. JUST GAME.</strong>
-    <span class="footer-tag">EST. ARSINGANG</span>
-  </footer>
-
-</main>
+  </main>
 </body>
 </html>
