@@ -1,29 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>ArsinGang | خانه گیمرها</title>
-  <meta name="description" content="به ArsinGang خوش آمدید؛ در شبکه‌های اجتماعی ما عضو شوید و همراه ما باشید.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b09">
+  <meta name="description" content="شبکه‌های اجتماعی رسمی ArsinGang">
+  <title>ARSINGANG | OFFICIAL HUB</title>
 
   <style>
     :root {
-      --bg: #080a08;
-      --surface: #111511;
-      --surface-hover: #191f16;
+      --bg: #080b09;
+      --panel: #101510;
       --green: #b7ff3c;
-      --green-light: #d5ff8a;
-      --text: #f4f7f0;
-      --muted: #a0a79a;
-      --border: rgba(183, 255, 60, 0.17);
+      --green-light: #d4ff8a;
+      --text: #f3f5ef;
+      --muted: #969e92;
+      --line: rgba(183, 255, 60, .16);
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     html {
@@ -33,217 +31,340 @@
     body {
       min-height: 100vh;
       overflow-x: hidden;
-      background:
-        radial-gradient(
-          ellipse at 50% 0%,
-          rgba(183, 255, 60, 0.10),
-          transparent 45%
-        ),
-        var(--bg);
+      background: var(--bg);
       color: var(--text);
       font-family: Tahoma, Arial, sans-serif;
-      line-height: 1.8;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      z-index: -2;
+      width: 650px;
+      height: 650px;
+      top: -330px;
+      right: -180px;
+      border-radius: 50%;
+      background: rgba(136, 255, 30, .09);
+      filter: blur(120px);
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      z-index: -2;
+      width: 450px;
+      height: 450px;
+      bottom: -250px;
+      left: -180px;
+      border-radius: 50%;
+      background: rgba(80, 160, 35, .08);
+      filter: blur(110px);
+      pointer-events: none;
     }
 
     a {
       color: inherit;
       text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .container {
-      width: min(1100px, calc(100% - 36px));
-      margin-inline: auto;
+    a:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 5px;
     }
 
-    /* نوار بالای سایت */
+    .page {
+      width: min(1080px, 100%);
+      margin: auto;
+      padding: 25px 28px 28px;
+    }
 
-    .navbar {
+    /* Header */
+
+    header {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding: 22px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      gap: 15px;
+      padding-bottom: 21px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
-    .logo {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 21px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
+      gap: 12px;
+      direction: ltr;
     }
 
-    .logo-icon {
+    .brand-symbol {
+      width: 43px;
+      height: 43px;
       display: grid;
       place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 13px;
+      border-radius: 14px;
       background: var(--green);
-      color: #080a08;
-      font-size: 19px;
-      box-shadow: 0 0 25px rgba(183, 255, 60, 0.2);
+      color: #10150a;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 27px;
+      font-weight: 1000;
+      transform: rotate(-5deg);
+      box-shadow: 0 0 28px rgba(183,255,60,.18);
     }
 
-    .logo span:last-child {
-      color: var(--green);
+    .brand-name {
+      font-size: 16px;
+      font-weight: 1000;
+      letter-spacing: 2px;
     }
 
-    .nav-label {
+    .brand-caption {
+      display: block;
+      margin-top: 5px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 9px;
+      letter-spacing: 2px;
     }
 
-    /* بخش اصلی */
+    .live-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #b6c0b0;
+      font-size: 10px;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    /* Hero */
 
     .hero {
-      position: relative;
-      padding: 95px 0 75px;
-      text-align: center;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      top: 65px;
-      left: 50%;
-      width: 280px;
-      height: 280px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      background: rgba(183, 255, 60, 0.07);
-      filter: blur(85px);
-      pointer-events: none;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 20px;
+      padding: 66px 0 65px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding: 7px 15px;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      background: rgba(183, 255, 60, 0.05);
+      padding: 9px 12px;
+      margin-bottom: 25px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: rgba(183,255,60,.045);
       color: var(--green);
-      font-size: 12px;
+      font-size: 10px;
       font-weight: bold;
+      letter-spacing: 1.4px;
+      direction: ltr;
     }
 
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
+    .eyebrow-mark {
+      width: 7px;
+      height: 7px;
       background: var(--green);
-      box-shadow: 0 0 12px var(--green);
+      border-radius: 2px;
+      transform: rotate(45deg);
     }
 
     h1 {
-      margin-top: 25px;
-      font-size: clamp(38px, 7vw, 76px);
-      font-weight: 900;
-      line-height: 1.3;
+      direction: ltr;
+      text-align: right;
+      font-family: Impact, "Arial Black", Tahoma, sans-serif;
+      font-size: clamp(54px, 8vw, 91px);
+      font-weight: 1000;
+      line-height: .96;
       letter-spacing: -2px;
     }
 
     h1 span {
       display: block;
+      margin-top: 12px;
       color: var(--green);
-      text-shadow: 0 0 35px rgba(183, 255, 60, 0.16);
+      text-shadow: 0 0 38px rgba(183,255,60,.12);
     }
 
     .hero-description {
-      max-width: 620px;
-      margin: 22px auto 0;
+      max-width: 420px;
+      margin-top: 25px;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 2.2;
+      font-size: 13px;
+      line-height: 2.4;
     }
-
-    /* دکمه‌ها */
 
     .hero-actions {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 32px;
+      margin-top: 28px;
     }
 
     .button {
+      min-height: 46px;
       display: inline-flex;
-      justify-content: center;
       align-items: center;
-      gap: 10px;
-      min-height: 49px;
-      padding: 11px 22px;
-      border: 1px solid transparent;
-      border-radius: 13px;
-      font-family: inherit;
-      font-size: 14px;
+      justify-content: center;
+      gap: 12px;
+      padding: 0 19px;
+      border-radius: 8px;
+      font-size: 12px;
       font-weight: bold;
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-3px);
+      transition: transform .2s, background .2s, border-color .2s;
     }
 
     .button-primary {
       background: var(--green);
-      color: #090b07;
-      box-shadow: 0 7px 25px rgba(183, 255, 60, 0.12);
+      color: #10150a;
     }
 
     .button-primary:hover {
+      transform: translateY(-3px);
       background: var(--green-light);
-      box-shadow: 0 10px 30px rgba(183, 255, 60, 0.2);
     }
 
     .button-secondary {
-      border-color: rgba(255, 255, 255, 0.14);
-      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255,255,255,.13);
       color: var(--text);
+      background: rgba(255,255,255,.025);
     }
 
     .button-secondary:hover {
-      border-color: rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.07);
+      transform: translateY(-3px);
+      border-color: var(--green);
     }
 
+    /* دکمه تبلیغ شو؛ بدون تغییر استایل دکمه‌های قبلی */
+
     .button-ad {
-      border-color: rgba(183, 255, 60, 0.4);
-      background: rgba(183, 255, 60, 0.08);
+      border: 1px solid rgba(183,255,60,.4);
       color: var(--green);
+      background: rgba(183,255,60,.05);
     }
 
     .button-ad:hover {
-      background: rgba(183, 255, 60, 0.16);
+      transform: translateY(-3px);
       border-color: var(--green);
-      box-shadow: 0 7px 25px rgba(183, 255, 60, 0.1);
+      background: rgba(183,255,60,.12);
     }
 
-    /* کارت‌های شبکه اجتماعی */
+    /* Abstract logo artwork: no grid or cubes */
 
-    .social-section {
-      padding: 35px 0 90px;
-      scroll-margin-top: 25px;
+    .hero-art {
+      min-height: 320px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
     }
+
+    .orb-glow {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(183,255,60,.12);
+      filter: blur(65px);
+    }
+
+    .orb-ring {
+      position: absolute;
+      width: min(29vw, 300px);
+      height: min(29vw, 300px);
+      min-width: 225px;
+      min-height: 225px;
+      border: 1px solid rgba(183,255,60,.22);
+      border-radius: 50%;
+      animation: rotate-ring 32s linear infinite;
+    }
+
+    .orb-ring::before {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border: 1px dashed rgba(183,255,60,.36);
+      border-radius: 50%;
+    }
+
+    .orb-ring::after {
+      content: "";
+      position: absolute;
+      inset: 42px;
+      border: 1px solid rgba(183,255,60,.13);
+      border-radius: 50%;
+    }
+
+    .hero-logo {
+      position: relative;
+      z-index: 2;
+      color: var(--green);
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: clamp(170px, 25vw, 245px);
+      font-weight: 1000;
+      font-style: italic;
+      line-height: 1;
+      text-shadow: 0 0 55px rgba(183,255,60,.13);
+      transform: skew(-9deg) rotate(-7deg);
+    }
+
+    .art-plus {
+      position: absolute;
+      top: 22px;
+      left: 8%;
+      color: var(--green);
+      font-size: 32px;
+      opacity: .8;
+    }
+
+    .art-caption {
+      position: absolute;
+      bottom: 20px;
+      right: 3%;
+      color: #7c8975;
+      font-size: 10px;
+      letter-spacing: 3px;
+      direction: ltr;
+    }
+
+    .art-line {
+      position: absolute;
+      top: 48px;
+      right: 0;
+      width: 48px;
+      height: 2px;
+      background: var(--green);
+      opacity: .7;
+    }
+
+    @keyframes rotate-ring {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Social section */
 
     .section-heading {
-      margin-bottom: 28px;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 21px 0;
+      border-top: 1px solid rgba(255,255,255,.09);
+      border-bottom: 1px solid rgba(255,255,255,.09);
     }
 
     .section-heading h2 {
-      font-size: clamp(25px, 4vw, 34px);
+      font-size: 19px;
       font-weight: 900;
     }
 
@@ -252,355 +373,535 @@
     }
 
     .section-heading p {
-      margin-top: 9px;
+      margin-top: 7px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 11px;
+      line-height: 1.9;
     }
 
-    .social-grid {
+    .section-label {
+      color: #788172;
+      font-size: 10px;
+      letter-spacing: 2px;
+      direction: ltr;
+      white-space: nowrap;
+    }
+
+    .socials {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      gap: 17px;
+      padding-top: 22px;
     }
 
-    .social-card {
-      position: relative;
+    .social {
+      --accent: var(--green);
+      min-height: 295px;
       display: flex;
       flex-direction: column;
-      min-height: 230px;
-      padding: 24px;
+      position: relative;
+      isolation: isolate;
       overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.035),
-        rgba(255, 255, 255, 0.008)
-      );
-      transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,.085);
+      border-radius: 13px;
+      background: linear-gradient(145deg, #131813, #0d100d 75%);
+      transition: transform .25s, border-color .25s, background .25s;
     }
 
-    .social-card::after {
+    .social::before {
       content: "";
       position: absolute;
-      bottom: -70px;
-      left: -60px;
-      width: 150px;
-      height: 150px;
+      z-index: -1;
+      top: -90px;
+      right: -90px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      background: rgba(183, 255, 60, 0.06);
-      filter: blur(35px);
-      pointer-events: none;
+      background: var(--accent);
+      opacity: .07;
+      filter: blur(45px);
+      transition: opacity .25s, transform .3s;
     }
 
-    .social-card:hover {
+    .social::after {
+      content: "";
+      position: absolute;
+      right: 24px;
+      left: 24px;
+      bottom: 0;
+      height: 2px;
+      background: var(--accent);
+      opacity: .6;
+      transform: scaleX(.25);
+      transform-origin: right;
+      transition: transform .25s;
+    }
+
+    .social:hover {
       transform: translateY(-6px);
-      border-color: rgba(183, 255, 60, 0.5);
-      background: var(--surface-hover);
+      border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+      background: linear-gradient(145deg, #191f17, #10140f);
     }
 
-    .social-icon {
+    .social:hover::before {
+      opacity: .15;
+      transform: scale(1.25);
+    }
+
+    .social:hover::after {
+      transform: scaleX(1);
+    }
+
+    .telegram { --accent: #48baff; }
+    .aparat { --accent: #ff667e; }
+    .youtube { --accent: #ff4e4e; }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      direction: ltr;
+    }
+
+    .platform-icon {
+      width: 57px;
+      height: 57px;
       display: grid;
       place-items: center;
-      width: 52px;
-      height: 52px;
-      margin-bottom: 17px;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: rgba(183, 255, 60, 0.08);
-      color: var(--green);
-      font-size: 25px;
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--accent) 9%, transparent);
+      color: var(--accent);
+    }
+
+    .platform-icon svg {
+      width: 29px;
+      height: 29px;
+    }
+
+    .card-index {
+      color: rgba(255,255,255,.12);
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 47px;
+      line-height: 1;
+    }
+
+    .card-info {
+      padding-top: 29px;
+    }
+
+    .card-category {
+      display: inline-block;
+      margin-bottom: 11px;
+      color: var(--accent);
+      font-size: 9px;
+      font-weight: bold;
+      letter-spacing: 1.7px;
+      direction: ltr;
+    }
+
+    .card-info h3 {
+      margin-bottom: 11px;
+      font-size: 23px;
       font-weight: 900;
     }
 
-    .social-card h3 {
-      margin-bottom: 7px;
-      font-size: 19px;
-    }
-
-    .social-card p {
-      flex: 1;
+    .card-info p {
       color: var(--muted);
       font-size: 12px;
-      line-height: 2;
+      line-height: 2.2;
     }
 
-    .card-link {
+    .card-bottom {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      margin-top: 20px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.07);
-      color: var(--green);
-      font-size: 13px;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 20px;
+    }
+
+    .card-action {
+      color: #e8ede4;
+      font-size: 10px;
       font-weight: bold;
+      letter-spacing: 1px;
+      direction: ltr;
     }
 
-    .card-link span {
-      transition: transform 0.2s ease;
+    .arrow {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #10150a;
+      font-size: 20px;
+      direction: ltr;
+      transition: transform .25s;
     }
 
-    .social-card:hover .card-link span {
+    .social:hover .arrow {
       transform: translateX(-4px);
     }
 
-    /* پانوشت */
+    /* Footer */
 
-    .footer {
+    footer {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
       gap: 15px;
-      padding: 24px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.07);
-      color: var(--muted);
-      font-size: 12px;
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.09);
+      color: #81897b;
+      font-size: 10px;
     }
 
-    .footer strong {
+    footer strong {
       color: var(--green);
+      letter-spacing: 1.5px;
+      direction: ltr;
     }
 
-    /* نمایش در موبایل */
+    .footer-tag {
+      direction: ltr;
+      letter-spacing: 2px;
+    }
 
-    @media (max-width: 760px) {
+    @media (max-width: 800px) {
+      .page {
+        padding-inline: 21px;
+      }
+
       .hero {
-        padding: 70px 0 55px;
-      }
-
-      .social-grid {
-        grid-template-columns: 1fr;
-        gap: 13px;
-      }
-
-      .social-card {
-        min-height: 205px;
-      }
-
-      .social-section {
-        padding-bottom: 55px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        width: calc(100% - 26px);
-      }
-
-      .navbar {
-        padding: 16px 0;
-      }
-
-      .logo {
-        font-size: 18px;
-      }
-
-      .logo-icon {
-        width: 37px;
-        height: 37px;
-      }
-
-      .nav-label {
-        font-size: 11px;
-      }
-
-      h1 {
-        letter-spacing: -1px;
-      }
-
-      .hero-description {
-        font-size: 13px;
-      }
-
-      .hero-actions {
+        grid-template-columns: 1.1fr .9fr;
         gap: 10px;
       }
 
+      h1 {
+        font-size: clamp(48px, 8vw, 70px);
+      }
+
+      .socials {
+        gap: 12px;
+      }
+
+      .social {
+        min-height: 300px;
+        padding: 18px;
+      }
+
+      .card-info h3 {
+        font-size: 20px;
+      }
+
       .button {
-        min-height: 45px;
-        padding: 10px 14px;
+        padding-inline: 14px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        padding: 17px 16px 24px;
+      }
+
+      header {
+        padding-bottom: 16px;
+      }
+
+      .brand-name {
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+
+      .brand-symbol {
+        width: 38px;
+        height: 38px;
+        font-size: 23px;
+      }
+
+      .live-status {
+        font-size: 9px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 43px 0 28px;
+      }
+
+      h1 {
+        font-size: clamp(55px, 13vw, 78px);
+      }
+
+      .hero-description {
         font-size: 12px;
       }
 
-      .footer {
-        flex-direction: column;
-        text-align: center;
+      .hero-actions {
+        gap: 9px;
+      }
+
+      .button {
+        min-height: 44px;
+        padding-inline: 13px;
+        font-size: 11px;
+      }
+
+      .hero-art {
+        min-height: 240px;
+        margin-top: 10px;
+      }
+
+      .orb-ring {
+        width: 225px;
+        height: 225px;
+      }
+
+      .hero-logo {
+        font-size: 170px;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+      }
+
+      .section-heading h2 {
+        font-size: 17px;
+      }
+
+      .section-label {
+        font-size: 8px;
+        letter-spacing: 1px;
+        padding-top: 5px;
+      }
+
+      .socials {
+        grid-template-columns: 1fr;
+        gap: 13px;
+        padding-top: 16px;
+      }
+
+      .social {
+        min-height: 260px;
+        padding: 22px;
+      }
+
+      .card-info {
+        padding-top: 25px;
+      }
+
+      .card-info h3 {
+        font-size: 22px;
+      }
+
+      footer {
+        margin-top: 27px;
+        line-height: 1.9;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
       *,
       *::before,
       *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
+        animation: none !important;
+        transition: none !important;
       }
     }
   </style>
 </head>
 
 <body>
+  <main class="page">
 
-  <!-- نوار بالای سایت -->
-  <header class="container">
-    <nav class="navbar" aria-label="منوی اصلی">
-      <a class="logo" href="#" aria-label="صفحه اصلی ArsinGang">
-        <span class="logo-icon">A</span>
-        <span>Arsin<span>Gang</span></span>
+    <header>
+      <a class="brand" href="#home" aria-label="ArsinGang">
+        <span class="brand-symbol">A</span>
+        <span>
+          <span class="brand-name">ARSINGANG</span>
+          <span class="brand-caption">OFFICIAL GAMING HUB</span>
+        </span>
       </a>
 
-      <span class="nav-label">دنیای گیم، کنار هم</span>
-    </nav>
-  </header>
+      <div class="live-status">
+        <span class="live-dot"></span>
+        <span>ONLINE COMMUNITY</span>
+      </div>
+    </header>
 
-  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="eyebrow-mark"></span>
+          WELCOME TO ARSINGANG
+        </div>
 
-    <!-- بخش معرفی -->
-    <section class="hero container">
-      <div class="eyebrow">
-        <span class="status-dot"></span>
-        به دنیای ArsinGang خوش اومدی
+        <h1>
+          PLAY YOUR
+          <span>OWN GAME.</span>
+        </h1>
+
+        <p class="hero-description">
+          اینجا دنیای ArsinGangـه؛ جایی برای ویدیوهای گیمینگ،
+          خبرهای جدید و لحظه‌هایی که نباید از دست بدی.
+          شبکه‌ی موردعلاقه‌ات رو انتخاب کن و همراه ما باش.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#socials">
+            شبکه‌های اجتماعی
+            <span aria-hidden="true">↓</span>
+          </a>
+
+          <a class="button button-secondary"
+             href="https://t.me/+UuJyOlBqdxcxOGI0"
+             target="_blank"
+             rel="noopener noreferrer">
+            ارتباط با ما
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <!-- دکمه جدید تبلیغ شو -->
+          <a class="button button-ad"
+             href="https://web.rubika.ir/#c=u0ELRll046f9219492ea5a98f0e50196"
+             target="_blank"
+             rel="noopener noreferrer">
+            تبلیغ شو
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
 
-      <h1>
-        اینجا دنیای
-        <span>ArsinGang ـه!</span>
-      </h1>
-
-      <p class="hero-description">
-        همراه ما باش، شبکه‌های اجتماعی‌مون رو دنبال کن و از جدیدترین
-        محتواها و اتفاقات دنیای گیم باخبر شو.
-        اینجا قراره کنار هم کلی خوش بگذرونیم!
-      </p>
-
-      <div class="hero-actions">
-        <a class="button button-primary" href="#socials">
-          شبکه‌های اجتماعی
-          <span aria-hidden="true">↓</span>
-        </a>
-
-        <a
-          class="button button-secondary"
-          href="https://arsingang-site.arsingang.workers.dev/contact/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ارسال تیکت
-          <span aria-hidden="true">↗</span>
-        </a>
-
-        <a
-          class="button button-ad"
-          href="https://web.rubika.ir/#c=u0ELRll046f9219492ea5a98f0e50196"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          تبلیغ شو
-          <span aria-hidden="true">↗</span>
-        </a>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orb-glow"></div>
+        <div class="orb-ring"></div>
+        <div class="art-plus">+</div>
+        <div class="art-line"></div>
+        <div class="hero-logo">A</div>
+        <div class="art-caption">ARSINGANG / EST. 2026</div>
       </div>
     </section>
 
-    <!-- شبکه‌های اجتماعی -->
-    <section class="social-section container" id="socials">
+    <section id="socials" aria-labelledby="social-heading">
       <div class="section-heading">
-        <h2>ما رو در <span>شبکه‌ها</span> دنبال کن</h2>
-        <p>پلتفرم موردعلاقه‌ات رو انتخاب کن و به جمع ما بپیوند!</p>
+        <div>
+          <h2 id="social-heading">
+            دنیای <span style="color:var(--green)">ArsinGang</span>
+          </h2>
+          <p style="margin-top:8px;color:var(--muted);font-size:11px;line-height:2">
+            از اینجا ما رو در شبکه‌های رسمی دنبال کن.
+          </p>
+        </div>
+        <span class="section-label">FIND US ONLINE</span>
       </div>
 
-      <div class="social-grid">
+      <div class="socials">
 
         <!-- تلگرام -->
-        <a
-          class="social-card"
-          href="https://t.me/+UuJyOlBqdxcxOGI0"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="عضویت در تلگرام ArsinGang"
-        >
-          <div class="social-icon" aria-hidden="true">➤</div>
+        <a class="social telegram"
+           href="https://t.me/+UuJyOlBqdxcxOGI0"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="ورود به تلگرام ArsinGang">
 
-          <h3>تلگرام</h3>
+          <div class="card-top">
+            <div class="platform-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 11.4 20.5 4.6c.8-.3 1.4.2 1.1 1.3l-3 14.1c-.2 1-.8 1.2-1.7.7l-4.5-3.3-2.2 2.2c-.3.3-.6.3-.6-.3l.3-4.5 9-8.1c.4-.4-.1-.5-.6-.2L6.9 13.4l-3.8-1.2c-.9-.3-.9-.6-.1-.8Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <span class="card-index">01</span>
+          </div>
 
-          <p>
-            به جمع ما در تلگرام بپیوند و از اخبار،
-            اطلاعیه‌ها و اتفاقات جدید باخبر شو.
-          </p>
+          <div class="card-info">
+            <span class="card-category">COMMUNITY / CHAT</span>
+            <h3>تلگرام</h3>
+            <p>به جمع ArsinGang بپیوند؛ برای خبرها، اطلاعیه‌ها و ارتباط با جامعه‌ی ما.</p>
+          </div>
 
-          <div class="card-link">
-            <span>ورود به تلگرام</span>
-            <span aria-hidden="true">↗</span>
+          <div class="card-bottom">
+            <span class="card-action">JOIN THE COMMUNITY</span>
+            <span class="arrow" aria-hidden="true">↗</span>
           </div>
         </a>
 
         <!-- آپارات -->
-        <a
-          class="social-card"
-          href="https://www.aparat.com/arsingang"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="مشاهده کانال آپارات ArsinGang"
-        >
-          <div class="social-icon" aria-hidden="true">▶</div>
+        <a class="social aparat"
+           href="https://www.aparat.com/arsingang"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="تماشای کانال ArsinGang در آپارات">
 
-          <h3>آپارات</h3>
+          <div class="card-top">
+            <div class="platform-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="18" rx="5" fill="currentColor"/>
+                <path d="M10 7.5 16 12l-6 4.5v-9Z" fill="#10150a"/>
+              </svg>
+            </div>
+            <span class="card-index">02</span>
+          </div>
 
-          <p>
-            ویدیوهای ما رو ببین و برای تماشای محتوای
-            جدید و جذاب همراه‌مون باش.
-          </p>
+          <div class="card-info">
+            <span class="card-category">VIDEO / ENTERTAINMENT</span>
+            <h3>آپارات</h3>
+            <p>ویدیوها و لحظه‌های جذاب گیمینگ ArsinGang رو دنبال کن.</p>
+          </div>
 
-          <div class="card-link">
-            <span>تماشای ویدیوها</span>
-            <span aria-hidden="true">↗</span>
+          <div class="card-bottom">
+            <span class="card-action">WATCH ON APARAT</span>
+            <span class="arrow" aria-hidden="true">↗</span>
           </div>
         </a>
 
         <!-- یوتیوب -->
-        <a
-          class="social-card"
-          href="https://www.youtube.com/@arsingang"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="مشاهده کانال یوتیوب ArsinGang"
-        >
-          <div class="social-icon" aria-hidden="true">▷</div>
+        <a class="social youtube"
+           href="https://www.youtube.com/@arsingang"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="تماشای کانال ArsinGang در یوتیوب">
 
-          <h3>یوتیوب</h3>
+          <div class="card-top">
+            <div class="platform-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="1" y="4" width="22" height="16" rx="5" fill="currentColor"/>
+                <path d="M10 8 16 12 10 16V8Z" fill="#10150a"/>
+              </svg>
+            </div>
+            <span class="card-index">03</span>
+          </div>
 
-          <p>
-            کانال یوتیوب ما رو دنبال کن تا ویدیوها و
-            محتواهای جدید ArsinGang رو از دست ندی.
-          </p>
+          <div class="card-info">
+            <span class="card-category">VIDEOS / SUBSCRIBE</span>
+            <h3>YouTube</h3>
+            <p>برای تماشای ویدیوهای جدید و محتوای اختصاصی به کانال ما سر بزن.</p>
+          </div>
 
-          <div class="card-link">
-            <span>رفتن به یوتیوب</span>
-            <span aria-hidden="true">↗</span>
+          <div class="card-bottom">
+            <span class="card-action">SUBSCRIBE NOW</span>
+            <span class="arrow" aria-hidden="true">↗</span>
           </div>
         </a>
 
       </div>
     </section>
 
+    <footer>
+      <span>© ARSINGANG — ALL RIGHTS RESERVED</span>
+      <strong>PLAY YOUR OWN GAME.</strong>
+      <span class="footer-tag">OFFICIAL HUB</span>
+    </footer>
+
   </main>
-
-  <!-- پانوشت -->
-  <footer class="container">
-    <div class="footer">
-      <span>ساخته‌شده برای <strong>ArsinGang</strong></span>
-      <span>© <span id="year"></span> تمامی حقوق محفوظ است.</span>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
-
 </body>
 </html>
