@@ -4,23 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#071522">
-  <meta name="description" content="شبکه‌های اجتماعی رسمی ArsinGang؛ وارد سطح بعدی گیمینگ شو.">
-  <title>ARSINGANG — NEXT LEVEL</title>
+  <meta name="theme-color" content="#080b09">
+  <meta name="description" content="شبکه‌های اجتماعی رسمی ArsinGang">
+  <title>ARSINGANG | OFFICIAL HUB</title>
 
   <style>
     :root {
-      --bg: #07111d;
-      --bg-light: #0b1d2d;
-      --surface: #0d2032;
-      --surface-hover: #102b40;
-      --blue: #38bdf8;
-      --blue-bright: #7dd3fc;
-      --cyan: #67e8f9;
-      --white: #eff9ff;
-      --muted: #8fa9bd;
-      --border: rgba(56, 189, 248, .18);
-      --glow: rgba(56, 189, 248, .15);
+      --bg: #080b09;
+      --panel: #101510;
+      --green: #b7ff3c;
+      --green-light: #d4ff8a;
+      --text: #f3f5ef;
+      --muted: #969e92;
+      --line: rgba(183, 255, 60, .16);
     }
 
     * {
@@ -36,54 +32,65 @@
     body {
       min-height: 100vh;
       overflow-x: hidden;
-      background:
-        radial-gradient(ellipse at 80% 0%, rgba(14, 165, 233, .15), transparent 38%),
-        radial-gradient(ellipse at 10% 48%, rgba(8, 145, 178, .09), transparent 35%),
-        var(--bg);
-      color: var(--white);
+      background: var(--bg);
+      color: var(--text);
       font-family: Tahoma, Arial, sans-serif;
     }
 
     body::before {
       content: "";
       position: fixed;
-      inset: 0;
-      z-index: -1;
+      z-index: -2;
+      width: 650px;
+      height: 650px;
+      top: -330px;
+      right: -180px;
+      border-radius: 50%;
+      background: rgba(136, 255, 30, .09);
+      filter: blur(120px);
       pointer-events: none;
-      opacity: .2;
-      background-image:
-        linear-gradient(rgba(56, 189, 248, .08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, .08) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      z-index: -2;
+      width: 450px;
+      height: 450px;
+      bottom: -250px;
+      left: -180px;
+      border-radius: 50%;
+      background: rgba(80, 160, 35, .08);
+      filter: blur(110px);
+      pointer-events: none;
     }
 
     a {
       color: inherit;
       text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     a:focus-visible {
-      outline: 2px solid var(--cyan);
+      outline: 2px solid var(--green);
       outline-offset: 5px;
     }
 
     .page {
-      width: min(1160px, 100%);
-      margin-inline: auto;
-      padding: 24px 28px 30px;
+      width: min(1080px, 100%);
+      margin: auto;
+      padding: 25px 28px 28px;
     }
 
     /* Header */
 
     header {
-      min-height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--border);
+      gap: 15px;
+      padding-bottom: 21px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     .brand {
@@ -91,103 +98,106 @@
       align-items: center;
       gap: 12px;
       direction: ltr;
-      font-size: 17px;
+    }
+
+    .brand-symbol {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--green);
+      color: #10150a;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 27px;
+      font-weight: 1000;
+      transform: rotate(-5deg);
+      box-shadow: 0 0 28px rgba(183,255,60,.18);
+    }
+
+    .brand-name {
+      font-size: 16px;
       font-weight: 1000;
       letter-spacing: 2px;
     }
 
-    .brand-mark {
-      width: 43px;
-      height: 43px;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(125, 211, 252, .8);
-      border-radius: 12px;
-      background: linear-gradient(145deg, #0ea5e9, #075985);
-      color: white;
-      font-size: 24px;
-      box-shadow: 0 0 25px rgba(56, 189, 248, .24);
-      transform: skew(-5deg);
+    .brand-caption {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 2px;
     }
 
-    .header-status {
+    .live-status {
       display: flex;
       align-items: center;
-      gap: 9px;
-      color: var(--muted);
+      gap: 8px;
+      color: #b6c0b0;
       font-size: 10px;
-      letter-spacing: 1.5px;
-      direction: ltr;
     }
 
-    .status-dot {
+    .live-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #4ade80;
-      box-shadow: 0 0 12px #4ade80;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
     }
 
     /* Hero */
 
     .hero {
-      min-height: 405px;
       display: grid;
-      grid-template-columns: 1.05fr .95fr;
+      grid-template-columns: 1.1fr .9fr;
       align-items: center;
-      gap: 30px;
-      padding: 52px 0 48px;
-    }
-
-    .hero-copy {
-      position: relative;
-      z-index: 2;
+      gap: 20px;
+      padding: 66px 0 65px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding: 9px 13px;
+      padding: 9px 12px;
       margin-bottom: 25px;
-      border: 1px solid rgba(56, 189, 248, .27);
-      border-radius: 999px;
-      background: rgba(14, 165, 233, .08);
-      color: var(--blue-bright);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: rgba(183,255,60,.045);
+      color: var(--green);
       font-size: 10px;
       font-weight: bold;
-      letter-spacing: 1px;
+      letter-spacing: 1.4px;
+      direction: ltr;
     }
 
-    .eyebrow-dot {
+    .eyebrow-mark {
       width: 7px;
       height: 7px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 12px var(--cyan);
+      background: var(--green);
+      border-radius: 2px;
+      transform: rotate(45deg);
     }
 
     h1 {
       direction: ltr;
       text-align: right;
       font-family: Impact, "Arial Black", Tahoma, sans-serif;
-      font-size: clamp(48px, 7.5vw, 88px);
-      line-height: .98;
+      font-size: clamp(54px, 8vw, 91px);
       font-weight: 1000;
+      line-height: .96;
       letter-spacing: -2px;
     }
 
     h1 span {
       display: block;
-      margin-top: 9px;
-      color: var(--blue);
-      text-shadow: 0 0 35px rgba(56, 189, 248, .35);
+      margin-top: 12px;
+      color: var(--green);
+      text-shadow: 0 0 38px rgba(183,255,60,.12);
     }
 
     .hero-description {
-      max-width: 430px;
-      margin-top: 24px;
+      max-width: 420px;
+      margin-top: 25px;
       color: var(--muted);
       font-size: 13px;
       line-height: 2.4;
@@ -197,253 +207,241 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 27px;
+      margin-top: 28px;
     }
 
-    .primary-button,
-    .secondary-button {
+    .button {
       min-height: 46px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 0 20px;
-      border-radius: 11px;
+      gap: 12px;
+      padding: 0 19px;
+      border-radius: 8px;
       font-size: 12px;
       font-weight: bold;
-      transition: transform .2s, background .2s, box-shadow .2s;
+      transition: transform .2s, background .2s, border-color .2s;
     }
 
-    .primary-button {
-      background: linear-gradient(110deg, #0284c7, #0ea5e9);
-      color: white;
-      box-shadow: 0 5px 25px rgba(14, 165, 233, .2);
+    .button-primary {
+      background: var(--green);
+      color: #10150a;
     }
 
-    .primary-button:hover {
+    .button-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(14, 165, 233, .35);
+      background: var(--green-light);
     }
 
-    .secondary-button {
-      border: 1px solid var(--border);
-      background: rgba(13, 32, 50, .7);
-      color: var(--blue-bright);
+    .button-secondary {
+      border: 1px solid rgba(255,255,255,.13);
+      color: var(--text);
+      background: rgba(255,255,255,.025);
     }
 
-    .secondary-button:hover {
+    .button-secondary:hover {
       transform: translateY(-3px);
-      background: var(--surface-hover);
+      border-color: var(--green);
     }
 
-    /* Hero artwork */
+    /* Abstract logo artwork: no grid or cubes */
 
     .hero-art {
-      min-height: 310px;
+      min-height: 320px;
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: grid;
+      place-items: center;
       isolation: isolate;
     }
 
-    .art-glow {
+    .orb-glow {
       position: absolute;
-      width: 250px;
-      height: 250px;
+      width: 240px;
+      height: 240px;
       border-radius: 50%;
-      background: rgba(14, 165, 233, .12);
-      filter: blur(55px);
+      background: rgba(183,255,60,.12);
+      filter: blur(65px);
     }
 
-    .art-ring {
+    .orb-ring {
       position: absolute;
-      width: min(29vw, 310px);
-      height: min(29vw, 310px);
+      width: min(29vw, 300px);
+      height: min(29vw, 300px);
       min-width: 225px;
       min-height: 225px;
-      border: 1px solid rgba(125, 211, 252, .35);
+      border: 1px solid rgba(183,255,60,.22);
       border-radius: 50%;
-      box-shadow: 0 0 35px rgba(56, 189, 248, .05);
-      transform: rotate(-20deg);
+      animation: rotate-ring 32s linear infinite;
     }
 
-    .art-ring::before,
-    .art-ring::after {
+    .orb-ring::before {
       content: "";
       position: absolute;
-      inset: 17px;
-      border: 1px dashed rgba(56, 189, 248, .45);
+      inset: 15px;
+      border: 1px dashed rgba(183,255,60,.36);
       border-radius: 50%;
     }
 
-    .art-ring::after {
-      inset: 43px;
-      border: 1px solid rgba(103, 232, 249, .35);
+    .orb-ring::after {
+      content: "";
+      position: absolute;
+      inset: 42px;
+      border: 1px solid rgba(183,255,60,.13);
+      border-radius: 50%;
     }
 
-    .art-symbol {
+    .hero-logo {
       position: relative;
       z-index: 2;
-      direction: ltr;
+      color: var(--green);
       font-family: Impact, "Arial Black", sans-serif;
-      font-size: clamp(145px, 23vw, 240px);
-      line-height: 1;
+      font-size: clamp(170px, 25vw, 245px);
       font-weight: 1000;
       font-style: italic;
-      color: var(--blue);
-      text-shadow:
-        0 0 22px rgba(56, 189, 248, .3),
-        8px 8px 0 rgba(103, 232, 249, .06);
-      transform: skew(-8deg) rotate(-7deg);
+      line-height: 1;
+      text-shadow: 0 0 55px rgba(183,255,60,.13);
+      transform: skew(-9deg) rotate(-7deg);
     }
 
-    .art-cross {
+    .art-plus {
       position: absolute;
-      top: 15px;
+      top: 22px;
       left: 8%;
-      color: var(--cyan);
-      font-size: 39px;
-      font-weight: bold;
+      color: var(--green);
+      font-size: 32px;
+      opacity: .8;
     }
 
-    .art-label {
+    .art-caption {
       position: absolute;
-      bottom: 15px;
-      right: 4%;
-      color: #7298b2;
+      bottom: 20px;
+      right: 3%;
+      color: #7c8975;
       font-size: 10px;
       letter-spacing: 3px;
       direction: ltr;
     }
 
-    .art-coordinate {
+    .art-line {
       position: absolute;
-      top: 35px;
-      right: 1%;
-      color: #45657d;
-      font-size: 9px;
-      letter-spacing: 2px;
-      direction: ltr;
+      top: 48px;
+      right: 0;
+      width: 48px;
+      height: 2px;
+      background: var(--green);
+      opacity: .7;
     }
 
-    /* Section heading */
+    @keyframes rotate-ring {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Social section */
 
     .section-heading {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 15px;
-      padding: 22px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      padding: 21px 0;
+      border-top: 1px solid rgba(255,255,255,.09);
+      border-bottom: 1px solid rgba(255,255,255,.09);
     }
 
-    .section-title {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .section-title h2 {
+    .section-heading h2 {
       font-size: 19px;
       font-weight: 900;
     }
 
-    .section-title h2 span {
-      color: var(--blue);
+    .section-heading h2 span {
+      color: var(--green);
     }
 
-    .section-title p {
+    .section-heading p {
+      margin-top: 7px;
       color: var(--muted);
       font-size: 11px;
+      line-height: 1.9;
     }
 
     .section-label {
-      color: #64839a;
+      color: #788172;
       font-size: 10px;
       letter-spacing: 2px;
       direction: ltr;
       white-space: nowrap;
     }
 
-    /* Social cards */
-
     .socials {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 17px;
-      padding-top: 23px;
+      padding-top: 22px;
     }
 
     .social {
-      --accent: #38bdf8;
-      min-height: 300px;
-      padding: 24px;
+      --accent: var(--green);
+      min-height: 295px;
       display: flex;
       flex-direction: column;
       position: relative;
       isolation: isolate;
       overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      background:
-        linear-gradient(150deg, rgba(16, 43, 64, .9), rgba(9, 20, 34, .97));
-      box-shadow: 0 12px 35px rgba(0, 0, 0, .13);
-      transition: transform .25s, border-color .25s, box-shadow .25s;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,.085);
+      border-radius: 13px;
+      background: linear-gradient(145deg, #131813, #0d100d 75%);
+      transition: transform .25s, border-color .25s, background .25s;
     }
 
     .social::before {
       content: "";
       position: absolute;
       z-index: -1;
-      top: -95px;
-      right: -85px;
+      top: -90px;
+      right: -90px;
       width: 200px;
       height: 200px;
       border-radius: 50%;
       background: var(--accent);
-      opacity: .10;
-      filter: blur(20px);
-      transition: opacity .25s, transform .35s;
+      opacity: .07;
+      filter: blur(45px);
+      transition: opacity .25s, transform .3s;
     }
 
     .social::after {
       content: "";
       position: absolute;
+      right: 24px;
+      left: 24px;
       bottom: 0;
-      right: 0;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: .65;
+      height: 2px;
+      background: var(--accent);
+      opacity: .6;
+      transform: scaleX(.25);
+      transform-origin: right;
+      transition: transform .25s;
     }
 
     .social:hover {
-      transform: translateY(-7px);
-      border-color: var(--accent);
-      box-shadow: 0 18px 45px rgba(0, 0, 0, .24), 0 0 25px var(--glow);
+      transform: translateY(-6px);
+      border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+      background: linear-gradient(145deg, #191f17, #10140f);
     }
 
     .social:hover::before {
-      opacity: .2;
+      opacity: .15;
       transform: scale(1.25);
     }
 
-    .telegram {
-      --accent: #38bdf8;
-      --glow: rgba(56, 189, 248, .12);
+    .social:hover::after {
+      transform: scaleX(1);
     }
 
-    .aparat {
-      --accent: #fb7185;
-      --glow: rgba(251, 113, 133, .12);
-    }
-
-    .youtube {
-      --accent: #f87171;
-      --glow: rgba(248, 113, 113, .12);
-    }
+    .telegram { --accent: #48baff; }
+    .aparat { --accent: #ff667e; }
+    .youtube { --accent: #ff4e4e; }
 
     .card-top {
       display: flex;
@@ -453,31 +451,30 @@
     }
 
     .platform-icon {
-      width: 62px;
-      height: 62px;
+      width: 57px;
+      height: 57px;
       display: grid;
       place-items: center;
-      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-      border-radius: 16px;
-      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--accent) 9%, transparent);
       color: var(--accent);
-      box-shadow: 0 0 25px color-mix(in srgb, var(--accent) 10%, transparent);
     }
 
     .platform-icon svg {
-      width: 31px;
-      height: 31px;
+      width: 29px;
+      height: 29px;
     }
 
     .card-index {
-      color: rgba(220, 240, 255, .12);
+      color: rgba(255,255,255,.12);
       font-family: Impact, "Arial Black", sans-serif;
-      font-size: 49px;
+      font-size: 47px;
       line-height: 1;
     }
 
     .card-info {
-      padding-top: 34px;
+      padding-top: 29px;
     }
 
     .card-category {
@@ -486,12 +483,12 @@
       color: var(--accent);
       font-size: 9px;
       font-weight: bold;
-      letter-spacing: 2px;
+      letter-spacing: 1.7px;
       direction: ltr;
     }
 
     .card-info h3 {
-      margin-bottom: 12px;
+      margin-bottom: 11px;
       font-size: 23px;
       font-weight: 900;
     }
@@ -503,16 +500,16 @@
     }
 
     .card-bottom {
-      margin-top: auto;
-      padding-top: 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      margin-top: auto;
+      padding-top: 20px;
     }
 
     .card-action {
-      color: var(--white);
+      color: #e8ede4;
       font-size: 10px;
       font-weight: bold;
       letter-spacing: 1px;
@@ -520,15 +517,15 @@
     }
 
     .arrow {
-      width: 37px;
-      height: 37px;
+      width: 35px;
+      height: 35px;
       display: grid;
       place-items: center;
       flex-shrink: 0;
-      border-radius: 11px;
+      border-radius: 9px;
       background: var(--accent);
-      color: #07111d;
-      font-size: 21px;
+      color: #10150a;
+      font-size: 20px;
       direction: ltr;
       transition: transform .25s;
     }
@@ -540,21 +537,21 @@
     /* Footer */
 
     footer {
-      margin-top: 38px;
-      padding-top: 21px;
-      border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 15px;
-      color: #6e899e;
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.09);
+      color: #81897b;
       font-size: 10px;
     }
 
     footer strong {
-      color: var(--blue-bright);
-      letter-spacing: 2px;
+      color: var(--green);
+      letter-spacing: 1.5px;
       direction: ltr;
     }
 
@@ -563,20 +560,18 @@
       letter-spacing: 2px;
     }
 
-    /* Responsive */
-
-    @media (max-width: 850px) {
+    @media (max-width: 800px) {
       .page {
-        padding-inline: 22px;
+        padding-inline: 21px;
       }
 
       .hero {
-        grid-template-columns: 1fr 0.8fr;
-        gap: 12px;
+        grid-template-columns: 1fr .8fr;
+        gap: 10px;
       }
 
       h1 {
-        font-size: clamp(46px, 8vw, 70px);
+        font-size: clamp(48px, 8vw, 70px);
       }
 
       .socials {
@@ -584,7 +579,7 @@
       }
 
       .social {
-        min-height: 285px;
+        min-height: 300px;
         padding: 18px;
       }
 
@@ -595,44 +590,35 @@
 
     @media (max-width: 620px) {
       .page {
-        padding: 16px 16px 24px;
+        padding: 17px 16px 24px;
       }
 
       header {
-        min-height: 57px;
-        padding-bottom: 14px;
+        padding-bottom: 16px;
       }
 
-      .brand {
-        gap: 9px;
+      .brand-name {
         font-size: 14px;
         letter-spacing: 1px;
       }
 
-      .brand-mark {
-        width: 37px;
-        height: 37px;
-        font-size: 21px;
+      .brand-symbol {
+        width: 38px;
+        height: 38px;
+        font-size: 23px;
       }
 
-      .header-status {
-        gap: 6px;
-        font-size: 8px;
-        letter-spacing: .5px;
+      .live-status {
+        font-size: 9px;
       }
 
       .hero {
         grid-template-columns: 1fr;
-        gap: 0;
-        padding: 42px 0 28px;
-      }
-
-      .eyebrow {
-        margin-bottom: 22px;
+        padding: 43px 0 28px;
       }
 
       h1 {
-        font-size: clamp(52px, 13vw, 78px);
+        font-size: clamp(55px, 13vw, 78px);
       }
 
       .hero-description {
@@ -640,69 +626,55 @@
       }
 
       .hero-art {
-        min-height: 235px;
-        margin-top: 12px;
+        min-height: 240px;
+        margin-top: 10px;
       }
 
-      .art-ring {
+      .orb-ring {
         width: 225px;
         height: 225px;
       }
 
-      .art-symbol {
-        font-size: 165px;
-      }
-
-      .art-coordinate {
-        top: 12px;
-      }
-
-      .art-label {
-        bottom: 5px;
+      .hero-logo {
+        font-size: 170px;
       }
 
       .section-heading {
         align-items: flex-start;
-        padding: 19px 0;
       }
 
-      .section-title h2 {
+      .section-heading h2 {
         font-size: 17px;
       }
 
       .section-label {
-        padding-top: 4px;
         font-size: 8px;
         letter-spacing: 1px;
+        padding-top: 5px;
       }
 
       .socials {
         grid-template-columns: 1fr;
         gap: 13px;
-        padding-top: 17px;
+        padding-top: 16px;
       }
 
       .social {
-        min-height: 245px;
-        padding: 21px;
-        border-radius: 15px;
+        min-height: 260px;
+        padding: 22px;
       }
 
       .card-info {
-        padding-top: 27px;
+        padding-top: 25px;
       }
 
       .card-info h3 {
         font-size: 22px;
       }
 
-      .card-bottom {
-        padding-top: 18px;
-      }
-
       footer {
-        margin-top: 28px;
-        line-height: 1.8;
+        margin-top: 27px;
+        line-height: 1.9;
       }
     }
 
@@ -714,6 +686,7 @@
       *,
       *::before,
       *::after {
+        animation: none !important;
         transition: none !important;
       }
     }
@@ -725,41 +698,44 @@
 
     <header>
       <a class="brand" href="#home" aria-label="ArsinGang">
-        <span class="brand-mark">A</span>
-        <span>ARSINGANG</span>
+        <span class="brand-symbol">A</span>
+        <span>
+          <span class="brand-name">ARSINGANG</span>
+          <span class="brand-caption">OFFICIAL GAMING HUB</span>
+        </span>
       </a>
 
-      <div class="header-status">
-        <span class="status-dot"></span>
-        <span>OFFICIAL COMMUNITY</span>
+      <div class="live-status">
+        <span class="live-dot"></span>
+        <span>ONLINE COMMUNITY</span>
       </div>
     </header>
 
     <section class="hero" id="home">
       <div class="hero-copy">
         <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          WELCOME TO THE NEXT LEVEL
+          <span class="eyebrow-mark"></span>
+          WELCOME TO ARSINGANG
         </div>
 
         <h1>
-          ENTER THE
-          <span>GAME.</span>
+          PLAY YOUR
+          <span>OWN GAME.</span>
         </h1>
 
         <p class="hero-description">
-          به دنیای ArsinGang خوش اومدی!
-          اینجا می‌تونی ویدیوها، اخبار و اتفاقات جدیدمون رو دنبال کنی.
-          پلتفرمت رو انتخاب کن و به جمع ما بپیوند.
+          اینجا دنیای ArsinGangـه؛ جایی برای ویدیوهای گیمینگ،
+          خبرهای جدید و لحظه‌هایی که نباید از دست بدی.
+          شبکه‌ی موردعلاقه‌ات رو انتخاب کن و همراه ما باش.
         </p>
 
         <div class="hero-actions">
-          <a class="primary-button" href="#socials">
-            مشاهده شبکه‌ها
+          <a class="button button-primary" href="#socials">
+            شبکه‌های اجتماعی
             <span aria-hidden="true">↓</span>
           </a>
 
-          <a class="secondary-button"
+          <a class="button button-secondary"
              href="https://t.me/+UuJyOlBqdxcxOGI0"
              target="_blank"
              rel="noopener noreferrer">
@@ -770,28 +746,28 @@
       </div>
 
       <div class="hero-art" aria-hidden="true">
-        <div class="art-glow"></div>
-        <div class="art-ring"></div>
-        <div class="art-cross">+</div>
-        <div class="art-coordinate">SYSTEM / AG-026</div>
-        <div class="art-symbol">A</div>
-        <div class="art-label">NEXT LEVEL COMMUNITY</div>
+        <div class="orb-glow"></div>
+        <div class="orb-ring"></div>
+        <div class="art-plus">+</div>
+        <div class="art-line"></div>
+        <div class="hero-logo">A</div>
+        <div class="art-caption">ARSINGANG / EST. 2026</div>
       </div>
     </section>
 
     <section id="socials" aria-labelledby="social-heading">
       <div class="section-heading">
-        <div class="section-title">
-          <h2 id="social-heading">شبکه‌های <span>رسمی</span></h2>
-          <p>ما رو در پلتفرم موردعلاقه‌ات دنبال کن.</p>
+        <div>
+          <h2 id="social-heading">دنیای <span style="color:var(--green)">ArsinGang</span></h2>
+          <p style="margin-top:8px;color:var(--muted);font-size:11px;line-height:2">
+            از اینجا ما رو در شبکه‌های رسمی دنبال کن.
+          </p>
         </div>
-
-        <span class="section-label">CHOOSE YOUR PLATFORM</span>
+        <span class="section-label">FIND US ONLINE</span>
       </div>
 
       <div class="socials">
 
-        <!-- Telegram -->
         <a class="social telegram"
            href="https://t.me/+UuJyOlBqdxcxOGI0"
            target="_blank"
@@ -810,16 +786,15 @@
           <div class="card-info">
             <span class="card-category">COMMUNITY / CHAT</span>
             <h3>تلگرام</h3>
-            <p>برای دنبال‌کردن خبرها و ارتباط با جامعه ArsinGang به کانال تلگرام ما بپیوند.</p>
+            <p>به جمع ArsinGang بپیوند؛ برای خبرها، اطلاعیه‌ها و ارتباط با جامعه‌ی ما.</p>
           </div>
 
           <div class="card-bottom">
-            <span class="card-action">JOIN TELEGRAM</span>
+            <span class="card-action">JOIN THE COMMUNITY</span>
             <span class="arrow" aria-hidden="true">↗</span>
           </div>
         </a>
 
-        <!-- Aparat -->
         <a class="social aparat"
            href="https://www.aparat.com/arsingang"
            target="_blank"
@@ -830,16 +805,16 @@
             <div class="platform-icon">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <rect x="2" y="3" width="20" height="18" rx="5" fill="currentColor"/>
-                <path d="M10 7.5 16 12l-6 4.5v-9Z" fill="#0b1d2d"/>
+                <path d="M10 7.5 16 12l-6 4.5v-9Z" fill="#10150a"/>
               </svg>
             </div>
             <span class="card-index">02</span>
           </div>
 
           <div class="card-info">
-            <span class="card-category">VIDEOS / GAMING</span>
+            <span class="card-category">VIDEO / ENTERTAINMENT</span>
             <h3>آپارات</h3>
-            <p>ویدیوها، لحظات جذاب گیمینگ و ماجراهای تازه ArsinGang رو تماشا کن.</p>
+            <p>ویدیوها و لحظه‌های جذاب گیمینگ ArsinGang رو دنبال کن.</p>
           </div>
 
           <div class="card-bottom">
@@ -848,7 +823,6 @@
           </div>
         </a>
 
-        <!-- YouTube -->
         <a class="social youtube"
            href="https://www.youtube.com/@arsingang"
            target="_blank"
@@ -859,7 +833,7 @@
             <div class="platform-icon">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <rect x="1" y="4" width="22" height="16" rx="5" fill="currentColor"/>
-                <path d="M10 8 16 12 10 16V8Z" fill="#0b1d2d"/>
+                <path d="M10 8 16 12 10 16V8Z" fill="#10150a"/>
               </svg>
             </div>
             <span class="card-index">03</span>
@@ -868,7 +842,7 @@
           <div class="card-info">
             <span class="card-category">VIDEOS / SUBSCRIBE</span>
             <h3>YouTube</h3>
-            <p>ویدیوهای جدید، محتوای اختصاصی و لحظات هیجان‌انگیز رو در یوتیوب ببین.</p>
+            <p>برای تماشای ویدیوهای جدید و محتوای اختصاصی به کانال ما سر بزن.</p>
           </div>
 
           <div class="card-bottom">
@@ -882,8 +856,8 @@
 
     <footer>
       <span>© ARSINGANG — ALL RIGHTS RESERVED</span>
-      <strong>NEXT LEVEL. JUST GAME.</strong>
-      <span class="footer-tag">EST. ARSINGANG</span>
+      <strong>PLAY YOUR OWN GAME.</strong>
+      <span class="footer-tag">OFFICIAL HUB</span>
     </footer>
 
   </main>
