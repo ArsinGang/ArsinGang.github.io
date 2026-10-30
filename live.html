@@ -47,7 +47,7 @@ if (Hls.isSupported()) {
   hls.attachMedia(video);
 
   hls.on(Hls.Events.MANIFEST_PARSED, () => {
-    status.textContent = 'با حضور معین و سپهر';
+    status.textContent = 'کتگوری : Game Talk';
     video.play().catch(() => {});
   });
 
