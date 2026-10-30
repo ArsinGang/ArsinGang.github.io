@@ -47,7 +47,6 @@ body {
   font-size: 25px;
   font-weight: bold;
   margin: 25px 0 12px;
-  color: white;
 }
 
 .event-time {
@@ -95,16 +94,16 @@ body {
 
 <div class="container">
 
-  <!-- ویدیوی آپارات -->
+  <!-- ویدیوی اول: تلاش برای پخش خودکار با صدا -->
   <div class="video-box">
     <iframe
-      src="https://www.aparat.com/video/video/embed/videohash/oxqyf5j/vt/frame"
-      allowfullscreen
-      allow="autoplay; encrypted-media">
+      src="https://www.aparat.com/video/video/embed/videohash/oxqyf5j/vt/frame?autoplay=1"
+      allow="autoplay; encrypted-media; fullscreen"
+      allowfullscreen>
     </iframe>
   </div>
 
-  <!-- عنوان و زمان نمایشگاه -->
+  <!-- عنوان نمایشگاه -->
   <h2 class="event-title">
     مدیا اکسپو
   </h2>
@@ -114,9 +113,16 @@ body {
     هر روز از ساعت ۱۱ تا ۲۰
   </div>
 
-  <!-- پخش زنده -->
+  <!-- استریم دوم: پخش خودکار بدون صدا -->
   <div class="stream-box">
-    <video id="player" controls autoplay muted playsinline></video>
+    <video
+      id="player"
+      controls
+      autoplay
+      muted
+      playsinline>
+    </video>
+
     <p id="status">در حال اتصال به پخش زنده...</p>
   </div>
 
@@ -128,7 +134,13 @@ const status = document.getElementById('status');
 
 const stream = 'https://live.cdn.asset.aparat.com/04823993484cfb5b87cd4cd7288e3b1a/livehls/aparatgame.official_get7266_720p/index.m3u8?s=M11V87qqwQe1koN-Fhhbhw&e=1793377822&ip=151.232.177.213';
 
+// استریم دوم همیشه بی صدا
+video.muted = true;
+video.defaultMuted = true;
+video.autoplay = true;
+
 if (Hls.isSupported()) {
+
   const hls = new Hls();
 
   hls.loadSource(stream);
@@ -147,6 +159,7 @@ if (Hls.isSupported()) {
   });
 
 } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+
   video.src = stream;
 
   video.addEventListener('loadedmetadata', () => {
@@ -155,7 +168,10 @@ if (Hls.isSupported()) {
   });
 
 } else {
-  status.textContent = 'مرورگر شما از HLS پشتیبانی نمی‌کند.';
+
+  status.textContent =
+    'مرورگر شما از HLS پشتیبانی نمی‌کند.';
+
 }
 </script>
 
