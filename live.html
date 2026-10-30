@@ -47,9 +47,7 @@ if (Hls.isSupported()) {
   hls.attachMedia(video);
 
   hls.on(Hls.Events.MANIFEST_PARSED, () => {
-    status.textContent = 'Game Talk
-گیم
-شروع از 1 ساعت و 46 دقیقه پیش';
+    status.textContent = 'با حضور معین و سپهر';
     video.play().catch(() => {});
   });
 
