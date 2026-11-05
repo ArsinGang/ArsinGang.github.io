@@ -84,6 +84,12 @@ p{
  transform:translateY(-2px);
 }
 
+.button.disabled{
+ opacity:.35;
+ pointer-events:none;
+ cursor:not-allowed;
+}
+
 .footer{
  margin-top:28px;
  color:#777;
@@ -121,14 +127,16 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co";
 
-/* کلید anon یا publishable پروژه خودت را اینجا قرار بده */
-const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+/* کلید عمومی Supabase */
+const SUPABASE_ANON_KEY = "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
 const title = document.getElementById("title");
 const message = document.getElementById("message");
 const check = document.getElementById("check");
+const button = document.getElementById("siteButton");
 
 function showSuccess() {
+
   title.textContent = "ایمیل با موفقیت تأیید شد!";
 
   message.innerHTML = `
@@ -144,22 +152,29 @@ function showSuccess() {
   check.style.borderColor = "#22c55e";
   check.style.background = "rgba(34,197,94,.12)";
   check.style.boxShadow = "0 0 35px rgba(34,197,94,.2)";
+
+  button.classList.remove("disabled");
+  button.href = "https://arsingang-site.arsingang.workers.dev";
+  button.setAttribute("aria-disabled", "false");
+
 }
 
 function showError(text) {
+
   title.textContent = "تأیید ایمیل انجام نشد";
 
-  message.innerHTML = `
-    ${text}
-    <br>
-    لطفاً دوباره از لینک تأیید ایمیل استفاده کنید.
-  `;
+  message.textContent = text;
 
   check.textContent = "!";
   check.style.color = "#ef4444";
   check.style.borderColor = "#ef4444";
   check.style.background = "rgba(239,68,68,.12)";
   check.style.boxShadow = "0 0 35px rgba(239,68,68,.2)";
+
+  button.classList.add("disabled");
+  button.removeAttribute("href");
+  button.setAttribute("aria-disabled", "true");
+
 }
 
 async function verifyEmail() {
