@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -97,19 +96,16 @@ p{
 
 <div class="container">
 
- <div class="check">✓</div>
+ <div class="check" id="check">✓</div>
 
- <h1>ایمیل با موفقیت تأیید شد!</h1>
+ <h1 id="title">در حال بررسی تأیید ایمیل...</h1>
 
- <p>
- ایمیل شما با موفقیت تأیید شد.
- <br>
- حساب کاربری شما آماده استفاده است.
- <br>
- به خانواده ArsinGang خوش آمدید! 💜
+ <p id="message">
+ لطفاً چند لحظه صبر کنید.
  </p>
 
- <a class="button" href="https://arsingang-site.arsingang.workers.dev">
+ <a class="button" id="siteButton"
+ href="https://arsingang-site.arsingang.workers.dev">
  ورود به سایت
  </a>
 
@@ -118,6 +114,119 @@ p{
  </div>
 
 </div>
+
+<script type="module">
+
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co";
+
+/* کلید anon یا publishable پروژه خودت را اینجا قرار بده */
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+const title = document.getElementById("title");
+const message = document.getElementById("message");
+const check = document.getElementById("check");
+
+function showSuccess() {
+  title.textContent = "ایمیل با موفقیت تأیید شد!";
+
+  message.innerHTML = `
+    ایمیل شما با موفقیت تأیید شد.
+    <br>
+    حساب کاربری شما آماده استفاده است.
+    <br>
+    به خانواده ArsinGang خوش آمدید! 💜
+  `;
+
+  check.textContent = "✓";
+  check.style.color = "#22c55e";
+  check.style.borderColor = "#22c55e";
+  check.style.background = "rgba(34,197,94,.12)";
+  check.style.boxShadow = "0 0 35px rgba(34,197,94,.2)";
+}
+
+function showError(text) {
+  title.textContent = "تأیید ایمیل انجام نشد";
+
+  message.innerHTML = `
+    ${text}
+    <br>
+    لطفاً دوباره از لینک تأیید ایمیل استفاده کنید.
+  `;
+
+  check.textContent = "!";
+  check.style.color = "#ef4444";
+  check.style.borderColor = "#ef4444";
+  check.style.background = "rgba(239,68,68,.12)";
+  check.style.boxShadow = "0 0 35px rgba(239,68,68,.2)";
+}
+
+async function verifyEmail() {
+
+  try {
+
+    if (
+      !SUPABASE_ANON_KEY ||
+      SUPABASE_ANON_KEY === "YOUR_SUPABASE_ANON_KEY"
+    ) {
+      throw new Error("کلید عمومی Supabase تنظیم نشده است.");
+    }
+
+    const supabase = createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true,
+          flowType: "implicit"
+        }
+      }
+    );
+
+    const { data, error } = await supabase.auth.getSession();
+
+    if (error) {
+      throw error;
+    }
+
+    if (!data.session) {
+      throw new Error("نشست تأیید ایمیل پیدا نشد یا لینک معتبر نیست.");
+    }
+
+    const { data: userData, error: userError } =
+      await supabase.auth.getUser();
+
+    if (userError) {
+      throw userError;
+    }
+
+    if (
+      !userData.user ||
+      !userData.user.email_confirmed_at
+    ) {
+      throw new Error("ایمیل هنوز در Supabase تأیید نشده است.");
+    }
+
+    showSuccess();
+
+  } catch (error) {
+
+    console.error("EMAIL VERIFICATION ERROR:", error);
+
+    showError(
+      "تأیید ایمیل با مشکل مواجه شد. لطفاً لینک را دوباره بررسی کنید."
+    );
+
+  }
+
+}
+
+verifyEmail();
+
+</script>
 
 </body>
 </html>
