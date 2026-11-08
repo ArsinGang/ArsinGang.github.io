@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حمایت از آرسین‌گنگ</title>
+  <title>حمایت مالی | ArsinGang</title>
 
   <style>
     * {
@@ -15,29 +15,78 @@
 
     body {
       min-height: 100vh;
-      background: #000;
+      background: #080808;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
+      font-family: Tahoma, sans-serif;
     }
 
-    .donate-container {
+    .container {
       width: 100%;
-      max-width: 500px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      max-width: 520px;
+      text-align: center;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 25px;
+      padding: 12px 25px;
+      color: white;
+      background: #171717;
+      border: 1px solid #333;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.25s;
+    }
+
+    .back-button:hover {
+      background: #252525;
+      border-color: #8b5cf6;
+      transform: translateY(-3px);
+    }
+
+    .donate-card {
+      width: 100%;
+      padding: 25px 15px;
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .donate-card h2 {
+      color: white;
+      font-size: 21px;
+      margin-bottom: 22px;
+    }
+
+    .daramet-embed-donate {
+      width: 100%;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="donate-container">
-    <div class="daramet-embed-donate" id="49505">
-      <script src="https://daramet.com/embed/script.js"></script>
+  <div class="container">
+
+    <a class="back-button"
+       href="https://arsingang-site.arsingang.workers.dev/live/">
+      ← بازگشت به استریم
+    </a>
+
+    <div class="donate-card">
+      <h2>حمایت از ArsinGang</h2>
+
+      <div class="daramet-embed-donate" id="49505">
+        <script src="https://daramet.com/embed/script.js"></script>
+      </div>
+
     </div>
+
   </div>
 
 </body>
