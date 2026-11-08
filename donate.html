@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حمایت از ArsinGang</title>
+
+  <title>حمایت مالی | ArsinGang</title>
 
   <style>
     * {
@@ -40,6 +41,12 @@
       border-radius: 12px;
       text-decoration: none;
       font-size: 14px;
+      transition: .25s;
+    }
+
+    .back-button:hover {
+      border-color: #ff7900;
+      transform: translateY(-3px);
     }
 
     .main-card {
@@ -60,6 +67,7 @@
       margin-bottom: 30px;
       display: flex;
       justify-content: center;
+      width: 100%;
     }
 
     .pizza-section {
@@ -72,45 +80,55 @@
     .pizza-title {
       font-size: 19px;
       margin-bottom: 18px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     .pizza-button {
       border: none;
-      padding: 13px 25px;
+      padding: 14px 28px;
       border-radius: 12px;
-      background: #8b5cf6;
+      background: #ff7900;
       color: white;
       font-family: Tahoma, sans-serif;
       font-size: 15px;
       cursor: pointer;
-      transition: .2s;
+      transition: .25s;
     }
 
     .pizza-button:hover {
-      background: #7541df;
-      transform: translateY(-2px);
+      background: #ff941f;
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(255,121,0,.5);
     }
 
+    /* کادر QR مشکی با نور نارنجی */
     .qr-box {
       display: none;
-      margin-top: 25px;
-      padding: 22px 12px;
-      background: #fff;
-      color: #111;
-      border-radius: 15px;
+      margin-top: 28px;
+      padding: 25px 15px;
+      background: #030303;
+      color: white;
+      border: 2px solid #ff7900;
+      border-radius: 18px;
+
+      box-shadow:
+        0 0 8px #ff7900,
+        0 0 18px rgba(255,121,0,.8),
+        0 0 35px rgba(255,121,0,.35),
+        inset 0 0 18px rgba(255,121,0,.12);
     }
 
     .qr-box.show {
       display: block;
-      animation: appear .35s ease;
+      animation: appear .4s ease;
     }
 
     @keyframes appear {
       from {
         opacity: 0;
-        transform: translateY(15px);
+        transform: translateY(20px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -118,36 +136,59 @@
     }
 
     .qr-box h3 {
-      margin-bottom: 15px;
-      font-size: 18px;
+      margin-bottom: 20px;
+      font-size: 19px;
+      color: #ff942f;
+      text-shadow: 0 0 10px #ff7900;
     }
 
-    #qrcode {
+    .qr-image-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 220px;
+      padding: 15px;
     }
 
-    #qrcode img,
-    #qrcode canvas {
+    #qrImage {
+      display: block;
+      width: 240px;
+      height: 240px;
       max-width: 100%;
-      height: auto;
+      object-fit: contain;
+      background: white;
+      padding: 8px;
+      border-radius: 12px;
     }
 
     .qr-description {
       margin-top: 15px;
       font-size: 13px;
-      line-height: 2;
-      color: #444;
+      line-height: 2.2;
+      color: #ddd;
+    }
+
+    .amount {
+      color: #ff942f;
+      font-weight: bold;
     }
 
     .donate-link {
       display: inline-block;
-      margin-top: 15px;
-      color: #7541df;
+      margin-top: 17px;
+      color: #ff942f;
       font-weight: bold;
       text-decoration: none;
+    }
+
+    .donate-link:hover {
+      color: #ffc080;
+    }
+
+    .error-message {
+      display: none;
+      color: #ff942f;
+      font-size: 13px;
+      margin-top: 12px;
     }
   </style>
 </head>
@@ -172,7 +213,7 @@
         </div>
       </div>
 
-      <!-- بخش پیتزا -->
+      <!-- بخش حمایت با پیتزا -->
       <div class="pizza-section">
 
         <div class="pizza-title">
@@ -183,23 +224,39 @@
           🍕 نمایش QR کد
         </button>
 
+        <!-- کادر QR -->
         <div class="qr-box" id="qrBox">
 
           <h3>🍕 اسلایس پیتزای من!</h3>
 
-          <div id="qrcode"></div>
+          <div class="qr-image-container">
 
-          <div class="qr-description">
-            کد رو با دوربین گوشیت اسکن کن
-            تا وارد صفحه حمایت مالی بشی ❤️
-            <br>
-            مبلغ دونیت: ۱۰۰٬۰۰۰ تومان
+            <img
+              id="qrImage"
+              src="./pizza-qr.png"
+              alt="QR کد حمایت از ArsinGang"
+            >
+
           </div>
 
-          <a class="donate-link"
-             href="https://daramet.com/ArsinGang?webintent&donate=100000&message=%DB%8C%DA%A9+%D8%A7%D8%B3%D9%84%D8%A7%DB%8C%D8%B3+%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7+%D9%85%D9%87%D9%85%D9%88%D9%86%D8%AA+%DA%A9%D8%B1%D8%AF%D9%85+%F0%9F%98%82"
-             target="_blank"
-             rel="noopener noreferrer">
+          <div class="error-message" id="qrError">
+            تصویر QR پیدا نشد!
+            لطفاً فایل pizza-qr.png را کنار donate.html آپلود کن.
+          </div>
+
+          <div class="qr-description">
+            کد رو با دوربین گوشیت اسکن کن ❤️
+            <br>
+            مبلغ دونیت:
+            <span class="amount">۱۰۰٬۰۰۰ تومان</span>
+          </div>
+
+          <a
+            class="donate-link"
+            href="https://daramet.com/ArsinGang?webintent&donate=100000&message=%DB%8C%DA%A9+%D8%A7%D8%B3%D9%84%D8%A7%DB%8C%D8%B3+%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7+%D9%85%D9%87%D9%85%D9%88%D9%86%D8%AA+%DA%A9%D8%B1%D8%AF%D9%85+%F0%9F%98%82"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             ورود مستقیم به صفحه دونیت
           </a>
 
@@ -210,46 +267,31 @@
     </div>
   </div>
 
-  <!-- کتابخانه تولید QR -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
   <script>
-    const donateURL =
-      "https://daramet.com/ArsinGang?webintent&donate=100000&message=%DB%8C%DA%A9+%D8%A7%D8%B3%D9%84%D8%A7%DB%8C%D8%B3+%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7+%D9%85%D9%87%D9%85%D9%88%D9%86%D8%AA+%DA%A9%D8%B1%D8%AF%D9%85+%F0%9F%98%82";
-
     const button = document.getElementById("showQR");
     const qrBox = document.getElementById("qrBox");
-    const qrContainer = document.getElementById("qrcode");
-
-    let qrCreated = false;
+    const qrImage = document.getElementById("qrImage");
+    const qrError = document.getElementById("qrError");
 
     button.addEventListener("click", function() {
 
       qrBox.classList.add("show");
-
-      if (!qrCreated) {
-        if (typeof QRCode === "undefined") {
-          qrContainer.textContent =
-            "ساخت QR کد انجام نشد. صفحه را دوباره بارگذاری کن.";
-          return;
-        }
-
-        new QRCode(qrContainer, {
-          text: donateURL,
-          width: 220,
-          height: 220,
-          correctLevel: QRCode.CorrectLevel.H
-        });
-
-        qrCreated = true;
-      }
 
       setTimeout(function() {
         qrBox.scrollIntoView({
           behavior: "smooth",
           block: "center"
         });
-      }, 100);
+      }, 150);
+
+    });
+
+    qrImage.addEventListener("error", function() {
+      qrError.style.display = "block";
+    });
+
+    qrImage.addEventListener("load", function() {
+      qrError.style.display = "none";
     });
   </script>
 
