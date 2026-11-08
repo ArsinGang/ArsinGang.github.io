@@ -39,13 +39,6 @@
       border-radius: 12px;
       text-decoration: none;
       font-size: 14px;
-      transition: 0.25s;
-    }
-
-    .back-button:hover {
-      background: #252525;
-      border-color: #8b5cf6;
-      transform: translateY(-3px);
     }
 
     .donate-card {
@@ -63,14 +56,21 @@
       margin-bottom: 22px;
     }
 
+    .widgets {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
     .banner-container {
+      order: 1;
+      width: 100%;
       display: flex;
       justify-content: center;
-      width: 100%;
-      margin-bottom: 25px;
     }
 
     .donate-container {
+      order: 2;
       width: 100%;
       padding: 15px;
       background: #181818;
@@ -92,14 +92,24 @@
 
     <div class="donate-card">
 
-      
-
       <h2>حمایت از ArsinGang</h2>
 
-      <div class="donate-container">
-        <div class="daramet-embed-donate" id="49505">
-          <script src="https://daramet.com/embed/script.js"></script>
+      <div class="widgets">
+
+        <!-- فرم دونیت ابتدا اجرا می‌شود -->
+        <div class="donate-container" style="order: 2">
+          <div class="daramet-embed-donate" id="49505">
+            <script src="https://daramet.com/embed/script.js"></script>
+          </div>
         </div>
+
+        <!-- بنر بعد از فرم اجرا می‌شود -->
+        <div class="banner-container" style="order: 1">
+          <div class="daramet-embed-banner" id="49505">
+            <script src="https://daramet.com/embed/banner.js"></script>
+          </div>
+        </div>
+
       </div>
 
     </div>
