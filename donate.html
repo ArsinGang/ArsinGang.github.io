@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حمایت مالی | ArsinGang</title>
+  <title>حمایت از ArsinGang</title>
 
   <style>
     * {
@@ -21,6 +21,7 @@
       align-items: center;
       padding: 20px;
       font-family: Tahoma, sans-serif;
+      color: white;
     }
 
     .container {
@@ -41,7 +42,7 @@
       font-size: 14px;
     }
 
-    .donate-card {
+    .main-card {
       width: 100%;
       padding: 25px 15px;
       background: #111;
@@ -51,32 +52,102 @@
     }
 
     h2 {
-      color: white;
       font-size: 21px;
       margin-bottom: 22px;
     }
 
-    .widgets {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
     .banner-container {
-      order: 1;
-      width: 100%;
+      margin-bottom: 30px;
       display: flex;
       justify-content: center;
     }
 
-    .donate-container {
-      order: 2;
-      width: 100%;
-      padding: 15px;
+    .pizza-section {
+      padding: 22px 15px;
       background: #181818;
       border: 1px solid #333;
+      border-radius: 16px;
+    }
+
+    .pizza-title {
+      font-size: 19px;
+      margin-bottom: 18px;
+      line-height: 1.8;
+    }
+
+    .pizza-button {
+      border: none;
+      padding: 13px 25px;
+      border-radius: 12px;
+      background: #8b5cf6;
+      color: white;
+      font-family: Tahoma, sans-serif;
+      font-size: 15px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .pizza-button:hover {
+      background: #7541df;
+      transform: translateY(-2px);
+    }
+
+    .qr-box {
+      display: none;
+      margin-top: 25px;
+      padding: 22px 12px;
+      background: #fff;
+      color: #111;
       border-radius: 15px;
-      overflow: hidden;
+    }
+
+    .qr-box.show {
+      display: block;
+      animation: appear .35s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .qr-box h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    #qrcode {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 220px;
+    }
+
+    #qrcode img,
+    #qrcode canvas {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .qr-description {
+      margin-top: 15px;
+      font-size: 13px;
+      line-height: 2;
+      color: #444;
+    }
+
+    .donate-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: #7541df;
+      font-weight: bold;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -90,26 +161,97 @@
       ← بازگشت به استریم
     </a>
 
-    <div class="donate-card">
+    <div class="main-card">
 
       <h2>حمایت از ArsinGang</h2>
 
-      <div class="widgets">
+      <!-- بنر دارامت -->
+      <div class="banner-container">
+        <div class="daramet-embed-banner" id="49505">
+          <script src="https://daramet.com/embed/banner.js"></script>
+        </div>
+      </div>
 
-    
-      
+      <!-- بخش پیتزا -->
+      <div class="pizza-section">
 
-        <!-- بنر بعد از فرم اجرا می‌شود -->
-        <div class="banner-container" style="order: 1">
-          <div class="daramet-embed-banner" id="49505">
-            <script src="https://daramet.com/embed/banner.js"></script>
+        <div class="pizza-title">
+          می‌خوای یک اسلایس پیتزا مهمونم کنی؟ 🍕
+        </div>
+
+        <button class="pizza-button" id="showQR">
+          🍕 نمایش QR کد
+        </button>
+
+        <div class="qr-box" id="qrBox">
+
+          <h3>🍕 اسلایس پیتزای من!</h3>
+
+          <div id="qrcode"></div>
+
+          <div class="qr-description">
+            کد رو با دوربین گوشیت اسکن کن
+            تا وارد صفحه حمایت مالی بشی ❤️
+            <br>
+            مبلغ دونیت: ۱۰۰٬۰۰۰ تومان
           </div>
+
+          <a class="donate-link"
+             href="https://daramet.com/ArsinGang?webintent&donate=100000&message=%DB%8C%DA%A9+%D8%A7%D8%B3%D9%84%D8%A7%DB%8C%D8%B3+%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7+%D9%85%D9%87%D9%85%D9%88%D9%86%D8%AA+%DA%A9%D8%B1%D8%AF%D9%85+%F0%9F%98%82"
+             target="_blank"
+             rel="noopener noreferrer">
+            ورود مستقیم به صفحه دونیت
+          </a>
+
         </div>
 
       </div>
 
     </div>
   </div>
+
+  <!-- کتابخانه تولید QR -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    const donateURL =
+      "https://daramet.com/ArsinGang?webintent&donate=100000&message=%DB%8C%DA%A9+%D8%A7%D8%B3%D9%84%D8%A7%DB%8C%D8%B3+%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7+%D9%85%D9%87%D9%85%D9%88%D9%86%D8%AA+%DA%A9%D8%B1%D8%AF%D9%85+%F0%9F%98%82";
+
+    const button = document.getElementById("showQR");
+    const qrBox = document.getElementById("qrBox");
+    const qrContainer = document.getElementById("qrcode");
+
+    let qrCreated = false;
+
+    button.addEventListener("click", function() {
+
+      qrBox.classList.add("show");
+
+      if (!qrCreated) {
+        if (typeof QRCode === "undefined") {
+          qrContainer.textContent =
+            "ساخت QR کد انجام نشد. صفحه را دوباره بارگذاری کن.";
+          return;
+        }
+
+        new QRCode(qrContainer, {
+          text: donateURL,
+          width: 220,
+          height: 220,
+          correctLevel: QRCode.CorrectLevel.H
+        });
+
+        qrCreated = true;
+      }
+
+      setTimeout(function() {
+        qrBox.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }, 100);
+    });
+  </script>
 
 </body>
 </html>
