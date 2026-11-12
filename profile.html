@@ -2,441 +2,336 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پروفایل کاربری</title>
 
-    <title>پروفایل من | </title>
-    <meta name="description" content="پروفایل کاربری ">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at 50% 0%, #38205f 0%, transparent 45%),
+        linear-gradient(135deg, #090914, #151126, #090914);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px;
+    }
 
-        body {
-            min-height: 100vh;
-            font-family: Tahoma, Arial, sans-serif;
-            color: white;
-            background:
-                radial-gradient(circle at 15% 15%, rgba(123,44,255,.18), transparent 32%),
-                radial-gradient(circle at 85% 80%, rgba(0,217,255,.10), transparent 32%),
-                #080812;
-            overflow-x: hidden;
-        }
+    .container {
+      width: 100%;
+      max-width: 480px;
+    }
 
-        .container {
-            width: min(900px, 92%);
-            margin: auto;
-            padding: 55px 0;
-        }
+    .profile-card {
+      background: rgba(22, 19, 40, 0.94);
+      border: 1px solid rgba(165, 110, 255, 0.3);
+      border-radius: 25px;
+      padding: 30px 24px;
+      box-shadow: 0 15px 60px rgba(0, 0, 0, 0.4);
+      text-align: center;
+    }
 
-        .header {
-            text-align: center;
-            margin-bottom: 35px;
-        }
+    .avatar {
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a855f7, #5425c9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 45px;
+      border: 4px solid rgba(255,255,255,0.15);
+      box-shadow: 0 0 30px rgba(168,85,247,0.3);
+    }
 
-        .logo {
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 18px;
-            border-radius: 22px;
-            display: grid;
-            place-items: center;
-            background: linear-gradient(145deg, #914cff, #651de5);
-            box-shadow: 0 0 35px rgba(123,44,255,.4);
-            font-size: 30px;
-            font-weight: bold;
-        }
+    h1 {
+      font-size: 25px;
+      margin-bottom: 9px;
+      overflow-wrap: anywhere;
+    }
 
-        h1 {
-            font-size: 30px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(123,44,255,.5);
-        }
+    .subtitle {
+      color: #aaa2bd;
+      font-size: 13px;
+      margin-bottom: 28px;
+    }
 
-        .subtitle {
-            color: #999bb2;
-            font-size: 14px;
-        }
+    .info-box {
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 19px;
+      margin-top: 14px;
+      text-align: right;
+    }
 
-        .profile-card {
-            padding: 35px 25px;
-            border-radius: 25px;
-            border: 1px solid rgba(123,44,255,.35);
-            background: linear-gradient(
-                145deg,
-                rgba(28,22,53,.95),
-                rgba(10,10,23,.97)
-            );
-            box-shadow: 0 0 40px rgba(123,44,255,.10);
-            text-align: center;
-        }
+    .info-label {
+      color: #aaa2bd;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
 
-        .avatar {
-            width: 105px;
-            height: 105px;
-            margin: 0 auto 20px;
-            display: grid;
-            place-items: center;
-            border-radius: 50%;
-            border: 3px solid #914cff;
-            background: rgba(123,44,255,.15);
-            box-shadow: 0 0 30px rgba(123,44,255,.3);
-            font-size: 43px;
-        }
+    .info-value {
+      font-size: 23px;
+      font-weight: bold;
+      color: #fff;
+      overflow-wrap: anywhere;
+    }
 
-        .username {
-            font-size: 25px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            overflow-wrap: anywhere;
-        }
+    .coin {
+      color: #ffd45c;
+    }
 
-        .account-label {
-            color: #9699ad;
-            font-size: 13px;
-        }
+    .rank {
+      color: #c084fc;
+    }
 
-        .divider {
-            height: 1px;
-            background: rgba(255,255,255,.08);
-            margin: 28px 0;
-        }
+    .home-button {
+      display: block;
+      width: 100%;
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 13px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      background: linear-gradient(135deg, #9333ea, #6326c7);
+      transition: 0.2s;
+    }
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
+    .home-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(147,51,234,0.3);
+    }
 
-        .stat {
-            padding: 25px 15px;
-            border-radius: 17px;
-            background: rgba(255,255,255,.035);
-            border: 1px solid rgba(123,44,255,.22);
-            transition: .25s ease;
-        }
+    .status {
+      color: #b9a9d8;
+      font-size: 13px;
+      margin-top: 18px;
+      min-height: 20px;
+    }
 
-        .stat:hover {
-            transform: translateY(-4px);
-            border-color: rgba(123,44,255,.6);
-            background: rgba(123,44,255,.07);
-        }
+    .error {
+      color: #ff7777;
+    }
 
-        .stat-icon {
-            font-size: 27px;
-            margin-bottom: 12px;
-        }
-
-        .stat-title {
-            color: #9699ad;
-            font-size: 12px;
-            margin-bottom: 12px;
-        }
-
-        .stat-value {
-            font-size: 19px;
-            font-weight: bold;
-            overflow-wrap: anywhere;
-        }
-
-        .coin-value {
-            color: #00d9ff;
-        }
-
-        .rank-value {
-            color: #cdb7ff;
-        }
-
-        .soon {
-            color: #999bb2;
-            font-size: 12px;
-            margin-top: 9px;
-        }
-
-        .message {
-            margin-top: 22px;
-            color: #999bb2;
-            font-size: 13px;
-            min-height: 20px;
-        }
-
-        .back-button {
-            display: block;
-            width: fit-content;
-            margin: 28px auto 0;
-            padding: 14px 27px;
-            color: white;
-            text-decoration: none;
-            border-radius: 13px;
-            border: 1px solid rgba(123,44,255,.45);
-            background: rgba(123,44,255,.13);
-            transition: .25s ease;
-        }
-
-        .back-button:hover {
-            transform: translateY(-3px);
-            background: rgba(123,44,255,.25);
-            box-shadow: 0 0 22px rgba(123,44,255,.2);
-        }
-
-        .loading {
-            color: #aaa;
-            padding: 20px;
-        }
-
-        @media(max-width: 550px) {
-            .container {
-                padding-top: 30px;
-            }
-
-            h1 {
-                font-size: 25px;
-            }
-
-            .profile-card {
-                padding: 28px 17px;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    .loading {
+      opacity: 0.7;
+    }
+  </style>
 </head>
 
 <body>
+  <main class="container">
+    <section class="profile-card">
+      <div class="avatar">👤</div>
 
-<div class="container">
+      <h1 id="username">در حال بارگذاری...</h1>
+      <p class="subtitle">پروفایل کاربری</p>
 
-    <header class="header">
-        <div class="logo">AG</div>
-        <h1>👤 پروفایل من</h1>
-        <p class="subtitle">
-            به پنل کاربری خوش آمدی
-        </p>
-    </header>
+      <div class="info-box">
+        <div class="info-label">موجودی Gang Coin</div>
+        <div class="info-value coin" id="balance">...</div>
+      </div>
 
-    <main class="profile-card">
+      <div class="info-box">
+        <div class="info-label">رتبه کاربری</div>
+        <div class="info-value rank" id="rank">...</div>
+      </div>
 
-        <div class="avatar">👤</div>
+      <div class="info-box" id="expiryBox" hidden>
+        <div class="info-label">تاریخ پایان رتبه</div>
+        <div class="info-value" id="expiry" style="font-size:16px">-</div>
+      </div>
 
-        <div class="username" id="username">
-            در حال دریافت...
-        </div>
+      <a href="/" class="home-button">بازگشت به صفحه اصلی</a>
 
-        <div class="account-label">
-            حساب کاربری ArsinGang
-        </div>
-
-        <div class="divider"></div>
-
-        <section class="stats">
-
-            <div class="stat">
-                <div class="stat-icon">💎</div>
-                <div class="stat-title">موجودی Gang Coin</div>
-                <div class="stat-value coin-value" id="coins">
-                    ---
-                </div>
-                <div class="soon">
-                    اتصال موجودی به‌زودی
-                </div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-icon">🏆</div>
-                <div class="stat-title">رنک کاربری</div>
-                <div class="stat-value rank-value" id="rank">
-                    در حال دریافت...
-                </div>
-            </div>
-
-        </section>
-
-        <div class="message" id="message"></div>
-
-    </main>
-
-    <a href="/" class="back-button">
-        ← بازگشت به صفحه اصلی
-    </a>
-
-</div>
+      <div class="status" id="status">در حال دریافت اطلاعات حساب...</div>
+    </section>
+  </main>
 
 <script>
-const SUPABASE_URL =
-    "https://lhddjuomukejpvssyhuv.supabase.co";
+const SUPABASE_URL = "https://lhddjuomukejpvssyhuv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
 
-const SUPABASE_KEY =
-    "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
+let accessToken = localStorage.getItem("arsin_user_token");
+let refreshToken = localStorage.getItem("arsin_user_refresh");
 
-let accessToken =
-    localStorage.getItem("arsin_user_token");
-
-let refreshToken =
-    localStorage.getItem("arsin_user_refresh");
-
-
-function showMessage(message) {
-    document.getElementById("message").textContent =
-        message;
-}
-
+const statusElement = document.getElementById("status");
 
 async function refreshSession() {
-    if (!refreshToken) return false;
+  if (!refreshToken) {
+    throw new Error("لطفاً ابتدا وارد حساب خود شوید.");
+  }
 
-    try {
-        const response = await fetch(
-            SUPABASE_URL + "/auth/v1/token?grant_type=refresh_token",
-            {
-                method: "POST",
-                headers: {
-                    "apikey": SUPABASE_KEY,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    refresh_token: refreshToken
-                })
-            }
-        );
-
-        if (!response.ok) return false;
-
-        const data = await response.json();
-
-        accessToken = data.access_token;
-        refreshToken = data.refresh_token;
-
-        localStorage.setItem(
-            "arsin_user_token",
-            accessToken
-        );
-
-        localStorage.setItem(
-            "arsin_user_refresh",
-            refreshToken
-        );
-
-        return true;
-
-    } catch (error) {
-        return false;
+  const response = await fetch(
+    SUPABASE_URL + "/auth/v1/token?grant_type=refresh_token",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY
+      },
+      body: JSON.stringify({
+        refresh_token: refreshToken
+      })
     }
+  );
+
+  const data = await response.json();
+
+  if (!response.ok || !data.access_token) {
+    throw new Error("نشست شما منقضی شده است. دوباره وارد شوید.");
+  }
+
+  accessToken = data.access_token;
+  refreshToken = data.refresh_token;
+
+  localStorage.setItem("arsin_user_token", accessToken);
+  localStorage.setItem("arsin_user_refresh", refreshToken);
 }
 
-
-async function getUser() {
-    if (!accessToken) return null;
-
-    let response = await fetch(
-        SUPABASE_URL + "/auth/v1/user",
-        {
-            headers: {
-                "apikey": SUPABASE_KEY,
-                "Authorization": "Bearer " + accessToken
-            }
-        }
-    );
-
-    if (response.status === 401) {
-        const refreshed = await refreshSession();
-
-        if (!refreshed) return null;
-
-        response = await fetch(
-            SUPABASE_URL + "/auth/v1/user",
-            {
-                headers: {
-                    "apikey": SUPABASE_KEY,
-                    "Authorization": "Bearer " + accessToken
-                }
-            }
-        );
+async function supabaseRequest(path, options = {}) {
+  const response = await fetch(SUPABASE_URL + path, {
+    ...options,
+    headers: {
+      "apikey": SUPABASE_KEY,
+      "Authorization": "Bearer " + accessToken,
+      ...(options.headers || {})
     }
+  });
 
-    if (!response.ok) return null;
+  if (response.status === 401) {
+    await refreshSession();
 
-    return await response.json();
+    return fetch(SUPABASE_URL + path, {
+      ...options,
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": "Bearer " + accessToken,
+        ...(options.headers || {})
+      }
+    });
+  }
+
+  return response;
 }
-
-
-async function getRank(userId) {
-    const response = await fetch(
-        SUPABASE_URL +
-        "/rest/v1/gang_users?id=eq." +
-        encodeURIComponent(userId) +
-        "&select=rank",
-        {
-            headers: {
-                "apikey": SUPABASE_KEY,
-                "Authorization": "Bearer " + accessToken
-            }
-        }
-    );
-
-    if (!response.ok) {
-        throw new Error("Rank request failed");
-    }
-
-    const data = await response.json();
-
-    return data[0]?.rank || "بدون رنک";
-}
-
 
 async function loadProfile() {
-    const usernameElement =
-        document.getElementById("username");
-
-    const rankElement =
-        document.getElementById("rank");
-
-    const coinsElement =
-        document.getElementById("coins");
-
-    try {
-        const user = await getUser();
-
-        if (!user) {
-            location.replace("/login/");
-            return;
-        }
-
-        const username =
-            user.user_metadata?.username ||
-            user.email ||
-            "کاربر ArsinGang";
-
-        usernameElement.textContent = username;
-
-        rankElement.textContent = "در حال دریافت...";
-
-        try {
-            const rank = await getRank(user.id);
-            rankElement.textContent = rank;
-        } catch (error) {
-            rankElement.textContent = "نامشخص";
-            console.error(error);
-        }
-
-        coinsElement.textContent = "به‌زودی";
-
-        showMessage("اطلاعات حساب کاربری با موفقیت دریافت شد.");
-
-    } catch (error) {
-        console.error(error);
-        showMessage("دریافت اطلاعات با مشکل مواجه شد.");
-        usernameElement.textContent = "خطا";
-        rankElement.textContent = "نامشخص";
+  try {
+    if (!accessToken) {
+      await refreshSession();
     }
+
+    // دریافت اطلاعات کاربر
+    const userResponse = await supabaseRequest("/auth/v1/user");
+
+    if (!userResponse.ok) {
+      throw new Error("دریافت اطلاعات کاربر ناموفق بود.");
+    }
+
+    const user = await userResponse.json();
+
+    const username =
+      user.user_metadata?.username ||
+      user.user_metadata?.name ||
+      user.email?.split("@")[0] ||
+      "کاربر";
+
+    document.getElementById("username").textContent = username;
+
+    // دریافت موجودی و رتبه حساب فعلی
+    const accountResponse = await supabaseRequest(
+      "/rest/v1/rpc/get_my_gang_account",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: "{}"
+      }
+    );
+
+    if (!accountResponse.ok) {
+      throw new Error("دریافت اطلاعات حساب ناموفق بود.");
+    }
+
+    const result = await accountResponse.json();
+
+    const account = Array.isArray(result)
+      ? result[0]
+      : result;
+
+    if (!account) {
+      throw new Error("اطلاعات حساب پیدا نشد.");
+    }
+
+    const coins = Number(account.gang_coins);
+
+    if (!Number.isFinite(coins)) {
+      throw new Error("موجودی حساب معتبر نیست.");
+    }
+
+    document.getElementById("balance").textContent =
+      coins.toLocaleString("en-US");
+
+    const rankNames = {
+      none: "بدون رتبه",
+      member: "عضو",
+      vip: "VIP",
+      premium: "Premium",
+      moderator: "مدیر",
+      admin: "ادمین"
+    };
+
+    const rank = account.rank || "none";
+
+    document.getElementById("rank").textContent =
+      rankNames[rank.toLowerCase()] || rank;
+
+    if (account.rank_expires_at) {
+      const expiryDate = new Date(account.rank_expires_at);
+
+      if (!Number.isNaN(expiryDate.getTime())) {
+        document.getElementById("expiry").textContent =
+          expiryDate.toLocaleDateString("fa-IR");
+
+        document.getElementById("expiryBox").hidden = false;
+      }
+    }
+
+    statusElement.textContent = "اطلاعات حساب با موفقیت دریافت شد.";
+    statusElement.classList.remove("error");
+
+  } catch (error) {
+    console.error(error);
+
+    statusElement.textContent = error.message;
+    statusElement.classList.add("error");
+
+    if (
+      !accessToken ||
+      error.message.includes("دوباره وارد شوید") ||
+      error.message.includes("وارد حساب")
+    ) {
+      setTimeout(() => {
+        location.href = "/login/";
+      }, 1500);
+    }
+  }
 }
 
 loadProfile();
 </script>
-
 </body>
 </html>
