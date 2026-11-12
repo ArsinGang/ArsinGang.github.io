@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>پروفایل من | ArsinGang</title>
+    <meta name="description" content="پروفایل کاربری ArsinGang">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Tahoma, Arial, sans-serif;
+            color: white;
+            background:
+                radial-gradient(circle at 15% 15%, rgba(123,44,255,.18), transparent 32%),
+                radial-gradient(circle at 85% 80%, rgba(0,217,255,.10), transparent 32%),
+                #080812;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: min(900px, 92%);
+            margin: auto;
+            padding: 55px 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .logo {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 18px;
+            border-radius: 22px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(145deg, #914cff, #651de5);
+            box-shadow: 0 0 35px rgba(123,44,255,.4);
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(123,44,255,.5);
+        }
+
+        .subtitle {
+            color: #999bb2;
+            font-size: 14px;
+        }
+
+        .profile-card {
+            padding: 35px 25px;
+            border-radius: 25px;
+            border: 1px solid rgba(123,44,255,.35);
+            background: linear-gradient(
+                145deg,
+                rgba(28,22,53,.95),
+                rgba(10,10,23,.97)
+            );
+            box-shadow: 0 0 40px rgba(123,44,255,.10);
+            text-align: center;
+        }
+
+        .avatar {
+            width: 105px;
+            height: 105px;
+            margin: 0 auto 20px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            border: 3px solid #914cff;
+            background: rgba(123,44,255,.15);
+            box-shadow: 0 0 30px rgba(123,44,255,.3);
+            font-size: 43px;
+        }
+
+        .username {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .account-label {
+            color: #9699ad;
+            font-size: 13px;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255,255,255,.08);
+            margin: 28px 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat {
+            padding: 25px 15px;
+            border-radius: 17px;
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(123,44,255,.22);
+            transition: .25s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-4px);
+            border-color: rgba(123,44,255,.6);
+            background: rgba(123,44,255,.07);
+        }
+
+        .stat-icon {
+            font-size: 27px;
+            margin-bottom: 12px;
+        }
+
+        .stat-title {
+            color: #9699ad;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .stat-value {
+            font-size: 19px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .coin-value {
+            color: #00d9ff;
+        }
+
+        .rank-value {
+            color: #cdb7ff;
+        }
+
+        .soon {
+            color: #999bb2;
+            font-size: 12px;
+            margin-top: 9px;
+        }
+
+        .message {
+            margin-top: 22px;
+            color: #999bb2;
+            font-size: 13px;
+            min-height: 20px;
+        }
+
+        .back-button {
+            display: block;
+            width: fit-content;
+            margin: 28px auto 0;
+            padding: 14px 27px;
+            color: white;
+            text-decoration: none;
+            border-radius: 13px;
+            border: 1px solid rgba(123,44,255,.45);
+            background: rgba(123,44,255,.13);
+            transition: .25s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            background: rgba(123,44,255,.25);
+            box-shadow: 0 0 22px rgba(123,44,255,.2);
+        }
+
+        .loading {
+            color: #aaa;
+            padding: 20px;
+        }
+
+        @media(max-width: 550px) {
+            .container {
+                padding-top: 30px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .profile-card {
+                padding: 28px 17px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+        <div class="logo">AG</div>
+        <h1>👤 پروفایل من</h1>
+        <p class="subtitle">
+            به پنل کاربری ArsinGang خوش آمدی
+        </p>
+    </header>
+
+    <main class="profile-card">
+
+        <div class="avatar">👤</div>
+
+        <div class="username" id="username">
+            در حال دریافت...
+        </div>
+
+        <div class="account-label">
+            حساب کاربری ArsinGang
+        </div>
+
+        <div class="divider"></div>
+
+        <section class="stats">
+
+            <div class="stat">
+                <div class="stat-icon">💎</div>
+                <div class="stat-title">موجودی Gang Coin</div>
+                <div class="stat-value coin-value" id="coins">
+                    ---
+                </div>
+                <div class="soon">
+                    اتصال موجودی به‌زودی
+                </div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-title">رنک کاربری</div>
+                <div class="stat-value rank-value" id="rank">
+                    در حال دریافت...
+                </div>
+            </div>
+
+        </section>
+
+        <div class="message" id="message"></div>
+
+    </main>
+
+    <a href="/" class="back-button">
+        ← بازگشت به صفحه اصلی
+    </a>
+
+</div>
+
+<script>
+const SUPABASE_URL =
+    "https://lhddjuomukejpvssyhuv.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
+
+let accessToken =
+    localStorage.getItem("arsin_user_token");
+
+let refreshToken =
+    localStorage.getItem("arsin_user_refresh");
+
+
+function showMessage(message) {
+    document.getElementById("message").textContent =
+        message;
+}
+
+
+async function refreshSession() {
+    if (!refreshToken) return false;
+
+    try {
+        const response = await fetch(
+            SUPABASE_URL + "/auth/v1/token?grant_type=refresh_token",
+            {
+                method: "POST",
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    refresh_token: refreshToken
+                })
+            }
+        );
+
+        if (!response.ok) return false;
+
+        const data = await response.json();
+
+        accessToken = data.access_token;
+        refreshToken = data.refresh_token;
+
+        localStorage.setItem(
+            "arsin_user_token",
+            accessToken
+        );
+
+        localStorage.setItem(
+            "arsin_user_refresh",
+            refreshToken
+        );
+
+        return true;
+
+    } catch (error) {
+        return false;
+    }
+}
+
+
+async function getUser() {
+    if (!accessToken) return null;
+
+    let response = await fetch(
+        SUPABASE_URL + "/auth/v1/user",
+        {
+            headers: {
+                "apikey": SUPABASE_KEY,
+                "Authorization": "Bearer " + accessToken
+            }
+        }
+    );
+
+    if (response.status === 401) {
+        const refreshed = await refreshSession();
+
+        if (!refreshed) return null;
+
+        response = await fetch(
+            SUPABASE_URL + "/auth/v1/user",
+            {
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": "Bearer " + accessToken
+                }
+            }
+        );
+    }
+
+    if (!response.ok) return null;
+
+    return await response.json();
+}
+
+
+async function getRank(userId) {
+    const response = await fetch(
+        SUPABASE_URL +
+        "/rest/v1/gang_users?id=eq." +
+        encodeURIComponent(userId) +
+        "&select=rank",
+        {
+            headers: {
+                "apikey": SUPABASE_KEY,
+                "Authorization": "Bearer " + accessToken
+            }
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Rank request failed");
+    }
+
+    const data = await response.json();
+
+    return data[0]?.rank || "بدون رنک";
+}
+
+
+async function loadProfile() {
+    const usernameElement =
+        document.getElementById("username");
+
+    const rankElement =
+        document.getElementById("rank");
+
+    const coinsElement =
+        document.getElementById("coins");
+
+    try {
+        const user = await getUser();
+
+        if (!user) {
+            location.replace("/login/");
+            return;
+        }
+
+        const username =
+            user.user_metadata?.username ||
+            user.email ||
+            "کاربر ArsinGang";
+
+        usernameElement.textContent = username;
+
+        rankElement.textContent = "در حال دریافت...";
+
+        try {
+            const rank = await getRank(user.id);
+            rankElement.textContent = rank;
+        } catch (error) {
+            rankElement.textContent = "نامشخص";
+            console.error(error);
+        }
+
+        coinsElement.textContent = "به‌زودی";
+
+        showMessage("اطلاعات حساب کاربری با موفقیت دریافت شد.");
+
+    } catch (error) {
+        console.error(error);
+        showMessage("دریافت اطلاعات با مشکل مواجه شد.");
+        usernameElement.textContent = "خطا";
+        rankElement.textContent = "نامشخص";
+    }
+}
+
+loadProfile();
+</script>
+
+</body>
+</html>
