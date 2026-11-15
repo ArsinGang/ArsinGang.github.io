@@ -377,11 +377,9 @@ form.addEventListener("submit", async (event) => {
   submitBtn.textContent = "⏳ در حال ارسال...";
 
   const data = {
-    name: document.getElementById("name").value.trim(),
-    email: document.getElementById("email").value.trim(),
-    message: document.getElementById("message").value.trim()
-  };
-
+  name: document.getElementById("name").value.trim(),
+  message: document.getElementById("message").value.trim()
+};
   try {
     const response = await fetch("/api/tickets", {
       method: "POST",
