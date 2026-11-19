@@ -1,453 +1,1949 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ایونت پاییزه</title>
+
+<title> Official Website</title>
+
+<meta name="description" content="وب‌سایت رسمی ArsinGang؛ حمایت مالی و سرور Minecraft">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%237b2cff'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-size='38' font-family='Arial' font-weight='bold' fill='white'%3EAG%3C/text%3E%3C/svg%3E">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+    box-sizing:border-box;
 }
 
-:root {
-    --orange: #ff7918;
-    --red: #e52b19;
-    --dark: #100603;
-    --gold: #ffb347;
+html,
+body{
+    margin:0;
+    padding:0;
+    min-height:100%;
 }
 
-body {
-    font-family: Tahoma, Arial, sans-serif;
-    background: #100603;
-    color: white;
-    overflow-x: hidden;
-}
+body{
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
     background:
-        radial-gradient(circle at 15% 20%, #a52a1033, transparent 35%),
-        radial-gradient(circle at 85% 70%, #ff791822, transparent 35%),
-        linear-gradient(135deg, #100603, #200a04, #100603);
-    z-index: -2;
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(123,44,255,.28),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(0,217,255,.12),
+            transparent 35%
+        ),
+        #08040f;
+
+    color:white;
+    overflow-x:hidden;
 }
 
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: url("https://www.transparenttextures.com/patterns/stardust.png");
-    opacity: .2;
-    pointer-events: none;
-    z-index: -1;
+
+/* =========================
+   LOADING
+========================= */
+
+#loading{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#08040f;
+
+    z-index:9999;
 }
 
-header {
-    width: 100%;
-    padding: 22px 7%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border-bottom: 1px solid #ff791833;
-    background: #100603bb;
-    backdrop-filter: blur(15px);
-    position: relative;
-    z-index: 10;
+.loader{
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    border:
+        5px solid rgba(255,255,255,.1);
+
+    border-top-color:#7b2cff;
+    border-right-color:#00d9ff;
+
+    animation:
+        spin 1s linear infinite;
 }
 
-nav {
-    display: flex;
-    gap: 12px;
-}
+@keyframes spin{
 
-nav a {
-    text-decoration: none;
-    color: white;
-    padding: 12px 22px;
-    border: 1px solid #ff791855;
-    border-radius: 12px;
-    transition: .3s;
-    font-size: 14px;
-}
-
-nav a:hover {
-    background: var(--orange);
-    border-color: var(--orange);
-    box-shadow: 0 0 25px #ff791877;
-    transform: translateY(-3px);
-}
-
-.hero {
-    min-height: 650px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 80px 20px;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-content {
-    max-width: 850px;
-    animation: appear 1.2s ease both;
-    z-index: 2;
-}
-
-.event-label {
-    display: inline-block;
-    color: #ffb347;
-    border: 1px solid #ff791877;
-    background: #ff791811;
-    padding: 10px 25px;
-    border-radius: 30px;
-    margin-bottom: 25px;
-    letter-spacing: 2px;
-    font-size: 13px;
-}
-
-.hero h1 {
-    font-size: clamp(42px, 8vw, 85px);
-    font-weight: 1000;
-    background: linear-gradient(90deg, #ffb347, #ff641e, #e52b19);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    filter: drop-shadow(0 0 25px #ff641e55);
-    margin-bottom: 25px;
-}
-
-.hero p {
-    color: #e5c9bb;
-    font-size: 17px;
-    line-height: 2.2;
-    margin-bottom: 35px;
-}
-
-.main-button {
-    display: inline-block;
-    padding: 16px 38px;
-    background: linear-gradient(100deg, #ff8b26, #e52b19);
-    color: white;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: bold;
-    box-shadow: 0 0 30px #ff641e55;
-    transition: .3s;
-}
-
-.main-button:hover {
-    transform: scale(1.06);
-    box-shadow: 0 0 45px #ff641eaa;
-}
-
-.floating-image {
-    position: absolute;
-    width: 190px;
-    height: 240px;
-    object-fit: cover;
-    border-radius: 22px;
-    opacity: .6;
-    filter: saturate(1.3);
-    box-shadow: 0 0 40px #ff4d1d44;
-    animation: floatImage 6s ease-in-out infinite;
-}
-
-.image-one {
-    top: 12%;
-    left: 7%;
-}
-
-.image-two {
-    bottom: 8%;
-    right: 7%;
-    animation-delay: 1.5s;
-}
-
-@keyframes floatImage {
-    0%, 100% {
-        transform: translateY(0) rotate(-5deg) scale(1);
+    to{
+        transform:rotate(360deg);
     }
-    50% {
-        transform: translateY(-25px) rotate(5deg) scale(1.04);
-    }
+
 }
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(35px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+
+/* =========================
+   MAIN
+========================= */
+
+#mainContent{
+    display:none;
 }
 
-section {
-    padding: 75px 7%;
+.container{
+    width:min(900px,92%);
+    margin:0 auto;
+
+    padding:
+        70px 0 40px;
+
+    text-align:center;
 }
 
-.section-title {
-    text-align: center;
-    font-size: 35px;
-    color: #ff8b26;
-    margin-bottom: 15px;
-}
 
-.section-description {
-    text-align: center;
-    color: #bba49a;
-    margin-bottom: 45px;
-    line-height: 2;
-}
+/* =========================
+   LOGO
+========================= */
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
+.logo{
+    width:105px;
+    height:105px;
 
-.card {
-    background: linear-gradient(145deg, #321208, #190904);
-    border: 1px solid #ff791833;
-    border-radius: 20px;
-    overflow: hidden;
-    transition: .4s;
-}
+    margin:0 auto 24px;
 
-.card:hover {
-    transform: translateY(-12px);
-    border-color: #ff7918;
-    box-shadow: 0 15px 45px #ff4d1d33;
-}
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-.card img {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-    display: block;
-    animation: imageZoom 12s ease-in-out infinite alternate;
-}
+    border-radius:28px;
 
-@keyframes imageZoom {
-    from { transform: scale(1); }
-    to { transform: scale(1.12); }
-}
-
-.card-content {
-    padding: 25px;
-}
-
-.card h3 {
-    color: #ff9a38;
-    font-size: 21px;
-    margin-bottom: 14px;
-}
-
-.card p {
-    color: #c9b2a6;
-    line-height: 2;
-    font-size: 14px;
-}
-
-.banner {
-    margin: 30px 7% 80px;
-    padding: 65px 25px;
-    text-align: center;
-    border-radius: 25px;
-    border: 1px solid #ff791855;
     background:
-        linear-gradient(90deg, #3b1008dd, #8b260dcc),
-        url("https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_1_16x9.jpg?v=1733855399540") center/cover;
-    box-shadow: 0 0 50px #ff4d1d22;
+        linear-gradient(
+            135deg,
+            #7b2cff,
+            #5d20d7
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    box-shadow:
+        0 0 25px
+        rgba(123,44,255,.55),
+
+        0 0 55px
+        rgba(0,217,255,.15);
+
+    font-size:38px;
+    font-weight:bold;
 }
 
-.banner h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    color: #ffb347;
+
+/* =========================
+   TITLES
+========================= */
+
+h1{
+    margin:0;
+
+    font-size:42px;
+
+    text-shadow:
+        0 0 20px
+        rgba(123,44,255,.7);
 }
 
-.banner p {
-    color: #ffe0cc;
-    line-height: 2;
-    margin-bottom: 25px;
+.subtitle{
+    margin-top:10px;
+
+    color:#d7d0e2;
+
+    font-size:17px;
 }
 
-footer {
-    text-align: center;
-    padding: 30px;
-    border-top: 1px solid #ff791833;
-    color: #a88b7d;
-    font-size: 13px;
+.description{
+    margin-top:8px;
+    margin-bottom:35px;
+
+    color:#9990aa;
+
+    font-size:14px;
 }
 
-@media(max-width: 850px) {
-    .cards {
-        grid-template-columns: 1fr 1fr;
-    }
 
-    .floating-image {
-        width: 120px;
-        height: 160px;
-        opacity: .35;
-    }
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons{
+    width:min(600px,100%);
+    margin:0 auto;
+
+    display:grid;
+    gap:15px;
 }
 
-@media(max-width: 550px) {
-    header {
-        padding: 18px 5%;
-        justify-content: center;
-    }
+.main-btn{
+    display:block;
 
-    nav {
-        width: 100%;
-        justify-content: center;
-    }
+    width:100%;
 
-    nav a {
-        padding: 11px 17px;
-    }
+    text-decoration:none;
 
-    .hero {
-        min-height: 570px;
-    }
+    color:white;
 
-    .cards {
-        grid-template-columns: 1fr;
-    }
+    padding:
+        18px 20px;
 
-    .floating-image {
-        width: 90px;
-        height: 120px;
-        opacity: .22;
-    }
+    border-radius:16px;
 
-    .section-title {
-        font-size: 27px;
-    }
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    background:
+        rgba(255,255,255,.055);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.25);
+
+    font-size:16px;
+
+    transition:.25s;
 }
+
+.main-btn:hover{
+    transform:translateY(-3px);
+
+    border-color:#8b3dff;
+
+    box-shadow:
+        0 0 20px
+        rgba(123,44,255,.35),
+
+        0 10px 30px
+        rgba(0,0,0,.3);
+}
+
+
+/* =========================
+   EARLY VIDEO BUTTON
+========================= */
+
+.early-video-btn{
+    position:relative;
+
+    width:100%;
+
+    cursor:pointer;
+
+    overflow:hidden;
+}
+
+
+/* فقط حالت قفل */
+
+.early-video-btn.locked{
+    cursor:not-allowed;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border-color:
+        rgba(255,255,255,.09);
+}
+
+
+/* جلوگیری از hover در حالت قفل */
+
+.early-video-btn.locked:hover{
+    transform:none;
+
+    border-color:
+        rgba(255,255,255,.09);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.25);
+}
+
+
+/* =========================
+   LOCK
+========================= */
+
+.early-video-overlay{
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+        rgba(0,0,0,.28);
+
+    backdrop-filter:
+        blur(1px);
+
+    z-index:2;
+}
+
+.early-video-lock{
+    font-size:30px;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(255,255,255,.25)
+        );
+}
+
+
+/* =========================
+   VIDEO CONTENT
+========================= */
+
+.early-video-content{
+    position:relative;
+
+    z-index:1;
+}
+
+.early-video-title{
+    font-size:16px;
+
+    font-weight:700;
+
+    color:white;
+}
+
+.early-video-access{
+    margin-top:7px;
+
+    color:#aaa0b5;
+
+    font-size:10px;
+
+    line-height:1.7;
+}
+
+.early-video-btn:not(.locked)
+.early-video-access{
+    color:#00e5ff;
+}
+
+
+/* =========================
+   TOP SUPPORT
+========================= */
+
+.support{
+    position:fixed;
+
+    top:18px;
+    left:18px;
+
+    z-index:50;
+}
+
+
+/* =========================
+   TOP RANK
+========================= */
+
+.rank{
+    position:fixed;
+
+    top:18px;
+    right:18px;
+
+    z-index:50;
+}
+
+.top-btn{
+    display:block;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:
+        11px 17px;
+
+    border-radius:12px;
+
+    background:
+        rgba(25,15,45,.92);
+
+    border:
+        1px solid
+        rgba(139,61,255,.5);
+
+    box-shadow:
+        0 0 18px
+        rgba(123,44,255,.25);
+
+    font-size:14px;
+
+    transition:.25s;
+}
+
+.top-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 25px
+        rgba(123,44,255,.55);
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile{
+    position:fixed;
+
+    top:18px;
+    right:145px;
+
+    z-index:50;
+}
+
+.profile-box{
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    min-width:190px;
+
+    padding:
+        8px 12px 8px 10px;
+
+    border-radius:14px;
+
+    background:
+        rgba(25,15,45,.92);
+
+    border:
+        1px solid
+        rgba(139,61,255,.5);
+
+    box-shadow:
+        0 0 18px
+        rgba(123,44,255,.25);
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 0 12px
+        rgba(255,255,255,.18);
+}
+
+.avatar svg{
+    width:23px;
+    height:23px;
+}
+
+.profile-info{
+    min-width:0;
+
+    text-align:right;
+}
+
+.profile-name-wrap{
+    position:relative;
+
+    display:inline-block;
+}
+
+.profile-name{
+    display:block;
+
+    max-width:120px;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    color:white;
+}
+
+.profile-rank{
+    display:block;
+
+    margin-top:3px;
+
+    font-size:10px;
+
+    color:#aaa0b8;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================
+   VIP / MVP
+========================= */
+
+.profile.vip .profile-name,
+.profile.mvp .profile-name{
+
+    text-shadow:
+        0 0 7px
+        rgba(255,215,0,.8),
+
+        0 0 15px
+        rgba(255,190,0,.45);
+}
+
+
+/* =========================
+   MEDIA
+========================= */
+
+.profile.media .profile-name{
+
+    color:#00e5ff;
+
+    text-shadow:
+        0 0 7px
+        rgba(0,229,255,.95),
+
+        0 0 15px
+        rgba(0,229,255,.7),
+
+        0 0 28px
+        rgba(0,180,255,.45);
+}
+
+.profile.media .profile-rank{
+
+    color:#00e5ff;
+
+    text-shadow:
+        0 0 7px
+        rgba(0,229,255,.7);
+}
+
+
+/* =========================
+   OWNER
+========================= */
+
+.profile.owner .profile-name{
+
+    color:white;
+
+    text-shadow:
+        0 0 7px
+        rgba(255,215,70,1),
+
+        0 0 15px
+        rgba(255,170,0,.9),
+
+        0 0 28px
+        rgba(123,44,255,.75);
+}
+
+.profile.owner .profile-rank{
+
+    color:#ffd83d;
+
+    text-shadow:
+        0 0 7px
+        rgba(255,215,61,.8);
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+.rank-particles{
+
+    position:absolute;
+
+    inset:-10px -15px;
+
+    pointer-events:none;
+
+    overflow:visible;
+
+    display:none;
+}
+
+.profile.vip .rank-particles,
+.profile.mvp .rank-particles,
+.profile.media .rank-particles,
+.profile.owner .rank-particles{
+    display:block;
+}
+
+.rank-particles span{
+
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:#ffd83d;
+
+    box-shadow:
+        0 0 6px #ffd83d;
+
+    animation:
+        particleFloat
+        2s infinite
+        ease-in-out;
+}
+
+.profile.media .rank-particles span{
+
+    background:#00e5ff;
+
+    box-shadow:
+        0 0 6px #00e5ff,
+        0 0 12px
+        rgba(0,229,255,.8);
+}
+
+.profile.owner .rank-particles span{
+
+    background:#ffd83d;
+
+    box-shadow:
+        0 0 6px #ffd83d,
+        0 0 12px #ff9d00;
+}
+
+.rank-particles span:nth-child(1){
+    left:5%;
+    top:60%;
+    animation-delay:0s;
+}
+
+.rank-particles span:nth-child(2){
+    left:25%;
+    top:5%;
+    animation-delay:.4s;
+}
+
+.rank-particles span:nth-child(3){
+    left:65%;
+    top:0;
+    animation-delay:.8s;
+}
+
+.rank-particles span:nth-child(4){
+    left:90%;
+    top:55%;
+    animation-delay:1.2s;
+}
+
+.rank-particles span:nth-child(5){
+    left:45%;
+    top:90%;
+    animation-delay:1.6s;
+}
+
+@keyframes particleFloat{
+
+    0%,100%{
+        transform:
+            translateY(0)
+            scale(1);
+
+        opacity:.35;
+    }
+
+    50%{
+        transform:
+            translateY(-7px)
+            scale(1.4);
+
+        opacity:1;
+    }
+
+}
+
+
+/* =========================
+   BACKGROUND MUSIC SECTION
+========================= */
+
+.music-section{
+    width:min(600px,100%);
+    margin:0 auto 25px;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    text-align:right;
+    border-radius:16px;
+    border:1px solid rgba(139,61,255,.35);
+    background:linear-gradient(135deg,rgba(123,44,255,.13),rgba(0,217,255,.07));
+    box-shadow:0 8px 25px rgba(0,0,0,.22),0 0 20px rgba(123,44,255,.10);
+}
+
+.music-info{
+    min-width:0;
+}
+
+.music-title{
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.music-subtitle{
+    margin-top:6px;
+    color:#aaa0b8;
+    font-size:12px;
+}
+
+.music-status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+    color:#aaa0b8;
+    font-size:11px;
+}
+
+.music-indicator{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#777080;
+    box-shadow:0 0 8px rgba(119,112,128,.4);
+}
+
+.music-section.is-playing .music-indicator{
+    background:#00e5ff;
+    box-shadow:0 0 10px rgba(0,229,255,.9);
+    animation:musicPulse 1.4s infinite ease-in-out;
+}
+
+.music-section.is-playing .music-status{
+    color:#00e5ff;
+}
+
+@keyframes musicPulse{
+    0%,100%{transform:scale(1);opacity:.65;}
+    50%{transform:scale(1.35);opacity:1;}
+}
+
+@media(max-width:420px){
+    .music-section{
+        padding:15px;
+        gap:10px;
+    }
+    .music-title{font-size:13px;}
+    .music-subtitle{font-size:10px;}
+    .music-status{font-size:10px;}
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    margin-top:45px;
+
+    color:#777080;
+
+    font-size:13px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .container{
+        padding-top:85px;
+    }
+
+    h1{
+        font-size:32px;
+    }
+
+    .logo{
+        width:90px;
+        height:90px;
+
+        font-size:32px;
+    }
+
+    .top-btn{
+        font-size:12px;
+
+        padding:
+            9px 12px;
+    }
+
+    .support{
+        left:10px;
+    }
+
+    .rank{
+        right:10px;
+    }
+
+    .profile{
+        top:65px;
+        right:10px;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- موسیقی پس‌زمینه -->
+<!-- BACKGROUND MUSIC -->
 <audio id="bgMusic" autoplay loop preload="auto">
     <source src="/music/Pigstep.ogg" type="audio/ogg">
 </audio>
 
-<header>
-    <nav>
-        <a href="https://arsingang-site.arsingang.workers.dev/contact/">پشتیبانی</a>
-        <a href="https://arsingang-site.arsingang.workers.dev/live/">مشاهده استریم</a>
-    </nav>
-</header>
+<!-- =========================
+     LOADING
+========================= -->
 
-<main>
+<div id="loading">
+    <div class="loader"></div>
+</div>
 
-    <div class="hero">
 
-        <img class="floating-image image-one"
-        src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_1_16x9.jpg?v=1733855399540"
-        alt="ماجراجویی ماینکرفت">
+<!-- =========================
+     MAIN
+========================= -->
 
-        <img class="floating-image image-two"
-        src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_5_16x9.jpg?v=1733855400529"
-        alt="محیط معدن ماینکرفت">
+<div id="mainContent">
 
-        <div class="hero-content">
-            <div class="event-label">SPECIAL EVENT</div>
 
-            <h1>ایونت پاییزه</h1>
+    <!-- SUPPORT -->
 
-            <p>
-                پاییز از راه رسیده و وقت یک ماجراجویی تازه است!
-                <br>
-                به رویداد ویژه پاییزی خوش آمدید.
-            </p>
+    <div class="support">
 
-            <a class="main-button" href="#event">
-                کشف ایونت
-            </a>
-        </div>
-
-    </div>
-
-    <section id="event">
-        <h2 class="section-title">درباره ایونت</h2>
-        <p class="section-description">
-            یک رویداد ویژه با حال‌وهوای پاییز، رنگ‌های گرم و لحظات هیجان‌انگیز
-        </p>
-
-        <div class="cards">
-
-            <div class="card">
-                <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_1_16x9.jpg?v=1733855399540" alt="پورتال ماینکرفت">
-                <div class="card-content">
-                    <h3>پورتال اسرارآمیز</h3>
-                    <p>وارد دنیای تازه‌ای از ماجراجویی و اتفاقات هیجان‌انگیز شوید.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_5_16x9.jpg?v=1733855400529" alt="معدن ماینکرفت">
-                <div class="card-content">
-                    <h3>ماجراجویی در معدن</h3>
-                    <p>در محیط‌های تاریک و مرموز، تجربه‌ای متفاوت داشته باشید.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_6_16x9.jpg?v=1733855400702" alt="مبارزه با موجودات ماینکرفت">
-                <div class="card-content">
-                    <h3>چالش ویژه</h3>
-                    <p>منتظر اتفاقات و چالش‌های جذاب در این رویداد باشید.</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <div class="banner">
-        <h2>آماده‌ای برای ایونت پاییزه؟</h2>
-        <p>ماجراجویی پاییزی تازه‌ای در انتظار شماست.</p>
-        <a class="main-button" href="#event">
-            مشاهده رویداد
+        <a
+            class="top-btn"
+            href="/contact/"
+        >
+            📩 پشتیبانی
         </a>
+
     </div>
 
-</main>
 
-<footer>
-    تمامی حقوق محفوظ است.
-</footer>
+    <!-- RANK -->
+
+    <div class="rank">
+
+        <a
+            class="top-btn"
+            href="/rank/"
+        >
+            👑 خرید رنک
+        </a>
+
+    </div>
+
+
+    <!-- PROFILE -->
+
+    <a
+        class="profile"
+        id="profile"
+        href="https://arsingang-site.arsingang.workers.dev/profile/"
+        style="text-decoration:none;color:inherit;cursor:pointer;"
+    >
+
+        <div class="profile-box">
+
+
+            <div class="avatar">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+
+                    <circle
+                        cx="12"
+                        cy="8"
+                        r="4"
+                        stroke="#5b2bbf"
+                        stroke-width="2"
+                    />
+
+                    <path
+                        d="M4.5 20C5.3 16.6 8 14.5 12 14.5C16 14.5 18.7 16.6 19.5 20"
+                        stroke="#5b2bbf"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <div class="profile-name-wrap">
+
+                    <div
+                        class="profile-name"
+                        id="profileName"
+                    >
+                        در حال بارگذاری...
+                    </div>
+
+
+                    <div
+                        class="rank-particles"
+                        id="rankParticles"
+                    >
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="profile-rank"
+                    id="profileRank"
+                >
+                    USER
+                </div>
+
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <!-- CONTENT -->
+
+    <main class="container">
+
+
+        <div class="logo">
+            AG
+        </div>
+
+
+        <h1>
+            web site
+        </h1>
+
+
+        <div class="subtitle">
+           خوش اومدی 🎮💜
+        </div>
+
+
+        <div class="description">
+            دنیای گیم، Minecraft و کلی محتوای جذاب!
+        </div>
+
+
+        <!-- MUSIC SECTION -->
+        <section class="music-section" id="musicSection" aria-label="موسیقی پس‌زمینه">
+            <div class="music-info">
+                <div class="music-title">🎵 Minecraft - Pigstep</div>
+                <div class="music-subtitle">موسیقی پس‌زمینه ArsinGang</div>
+            </div>
+            <div class="music-status">
+                <span class="music-indicator"></span>
+                <span id="musicStatus">در انتظار پخش...</span>
+            </div>
+        </section>
+
+
+        <div class="buttons">
+
+
+            <a
+                class="main-btn"
+                href="/support/"
+            >
+                💜 حمایت مالی
+            </a>
+
+
+            <a
+                class="main-btn"
+                href="/server/"
+            >
+                ⛏️ سرور Minecraft
+            </a>
+
+
+            <a
+                class="main-btn"
+                href="/live/"
+            >
+                🔴 مشاهده استریم
+            </a>
+
+
+            <a
+                class="main-btn"
+                href="/box/"
+            >
+                🎁 باکس مرموز
+            </a>
+
+
+            <a
+                class="main-btn"
+                href="/music/"
+            >
+                🎵 FUNK MUSIC
+            </a>
+
+
+            <a
+                class="main-btn"
+                href="/leaderboard/"
+            >
+                🏆 Gang Coin Leaderboard
+            </a>
+
+
+            <!-- MINI GAMES -->
+
+            <a
+                class="main-btn"
+                href="/minigames/"
+            >
+                🎮 مینی‌گیم‌های آنلاین
+            </a>
+
+
+            <!-- EARLY VIDEO -->
+
+            <a
+                class="main-btn early-video-btn locked"
+                id="earlyVideoButton"
+                href="/videos/"
+                aria-disabled="true"
+            >
+
+
+                <div
+                    class="early-video-overlay"
+                    id="earlyVideoOverlay"
+                >
+
+                    <div class="early-video-lock">
+                        🔒
+                    </div>
+
+                </div>
+
+
+                <div class="early-video-content">
+
+                    <div class="early-video-title">
+                        🎬 دیدن 24 ساعت زودتر ویدیو ها
+                    </div>
+
+
+                    <div
+                        class="early-video-access"
+                        id="earlyVideoAccess"
+                    >
+                        فقط کسانی با دارای رنک VIP و MVP و MEDIA و OWNER به این گزینه دست رسی دارند
+                    </div>
+
+                </div>
+
+
+            </a>
+
+
+        </div>
+
+
+        <footer>
+            ArsinGang 🎮 © 2026 ArsinGang
+        </footer>
+
+
+    </main>
+
+</div>
+
 
 <script>
+
+
+/* =========================
+   BACKGROUND MUSIC
+========================= */
+
 const bgMusic = document.getElementById("bgMusic");
+const musicSection = document.getElementById("musicSection");
+const musicStatus = document.getElementById("musicStatus");
 
 bgMusic.volume = 0.35;
 
-function startMusic() {
-    bgMusic.play().then(() => {
-        document.removeEventListener("pointerdown", startMusic);
-        document.removeEventListener("keydown", startMusic);
-    }).catch(() => {});
+function updateMusicStatus(status, isPlaying = false){
+    musicStatus.textContent = status;
+    musicSection.classList.toggle("is-playing", isPlaying);
 }
 
-// تلاش برای شروع خودکار موسیقی
-startMusic();
+function startMusic(){
+    bgMusic.play().then(() => {
+        updateMusicStatus("در حال پخش", true);
+        document.removeEventListener("pointerdown", startMusic);
+        document.removeEventListener("keydown", startMusic);
+    }).catch(() => {
+        updateMusicStatus("برای شروع، صفحه را لمس کنید", false);
+    });
+}
 
-// اگر مرورگر پخش خودکار را مسدود کرد، با اولین تعامل صفحه شروع می‌شود
+bgMusic.addEventListener("play", () => {
+    updateMusicStatus("در حال پخش", true);
+});
+
+bgMusic.addEventListener("pause", () => {
+    updateMusicStatus("متوقف شده", false);
+});
+
+bgMusic.addEventListener("waiting", () => {
+    updateMusicStatus("در حال بارگذاری...", false);
+});
+
+bgMusic.addEventListener("error", () => {
+    updateMusicStatus("خطا در بارگذاری آهنگ", false);
+});
+
+startMusic();
 document.addEventListener("pointerdown", startMusic);
 document.addEventListener("keydown", startMusic);
+
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+    "https://lhddjuomukejpvssyhuv.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_BL17d9ub-AeaHb8upwVKag_aqjJSQt5";
+
+
+let accessToken =
+    localStorage.getItem(
+        "arsin_user_token"
+    );
+
+
+let refreshToken =
+    localStorage.getItem(
+        "arsin_user_refresh"
+    );
+
+
+/* =========================
+   REFRESH TOKEN
+========================= */
+
+async function refreshAccessToken(){
+
+    if(!refreshToken){
+        return false;
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/auth/v1/token?grant_type=refresh_token",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json",
+
+                        "apikey":
+                            SUPABASE_KEY
+                    },
+
+                    body:
+                        JSON.stringify({
+                            refresh_token:
+                                refreshToken
+                        })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !response.ok ||
+            !data.access_token
+        ){
+
+            localStorage.removeItem(
+                "arsin_user_token"
+            );
+
+            localStorage.removeItem(
+                "arsin_user_refresh"
+            );
+
+            accessToken = null;
+            refreshToken = null;
+
+            return false;
+        }
+
+
+        accessToken =
+            data.access_token;
+
+
+        refreshToken =
+            data.refresh_token ||
+            refreshToken;
+
+
+        localStorage.setItem(
+            "arsin_user_token",
+            accessToken
+        );
+
+
+        localStorage.setItem(
+            "arsin_user_refresh",
+            refreshToken
+        );
+
+
+        return true;
+
+    }catch(error){
+
+        console.error(
+            "Refresh error:",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================
+   GET USER
+========================= */
+
+async function getUser(){
+
+    if(!accessToken){
+        return null;
+    }
+
+
+    let response =
+        await fetch(
+            SUPABASE_URL +
+            "/auth/v1/user",
+            {
+                method:"GET",
+
+                headers:{
+                    "apikey":
+                        SUPABASE_KEY,
+
+                    "Authorization":
+                        "Bearer " +
+                        accessToken
+                }
+            }
+        );
+
+
+    if(response.status === 401){
+
+        const refreshed =
+            await refreshAccessToken();
+
+
+        if(!refreshed){
+            return null;
+        }
+
+
+        response =
+            await fetch(
+                SUPABASE_URL +
+                "/auth/v1/user",
+                {
+                    method:"GET",
+
+                    headers:{
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            accessToken
+                    }
+                }
+            );
+
+    }
+
+
+    if(!response.ok){
+
+        console.error(
+            "User request failed:",
+            response.status
+        );
+
+        return null;
+    }
+
+
+    const user =
+        await response.json();
+
+
+    if(
+        !user ||
+        !user.id
+    ){
+        return null;
+    }
+
+
+    return user;
+
+}
+
+
+/* =========================
+   GET RANK
+========================= */
+
+async function getRank(userId){
+
+    try{
+
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/rest/v1/gang_users?id=eq." +
+                encodeURIComponent(userId) +
+                "&select=rank",
+                {
+                    method:"GET",
+
+                    headers:{
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            accessToken
+                    }
+                }
+            );
+
+
+        if(!response.ok){
+
+            console.error(
+                "Rank request failed:",
+                response.status,
+
+                await response.text()
+            );
+
+            return "USER";
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            Array.isArray(data) &&
+            data.length > 0 &&
+            data[0].rank
+        ){
+
+            return String(
+                data[0].rank
+            )
+            .trim()
+            .toUpperCase();
+
+        }
+
+
+        return "USER";
+
+    }catch(error){
+
+        console.error(
+            "Rank error:",
+            error
+        );
+
+        return "USER";
+
+    }
+
+}
+
+
+/* =========================
+   PROTECTED VIDEO ACCESS
+========================= */
+
+async function openProtectedVideos(){
+
+    if(!accessToken){
+
+        window.location.href =
+            "/login/";
+
+        return;
+
+    }
+
+
+    try{
+
+        let response =
+            await fetch(
+                "/videos/session",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Authorization":
+                            "Bearer " +
+                            accessToken
+                    },
+
+                    credentials:"include"
+                }
+            );
+
+
+        /*
+         * اگر توکن منقضی شده بود،
+         * یک بار Refresh می‌کنیم.
+         */
+
+        if(response.status === 401){
+
+            const refreshed =
+                await refreshAccessToken();
+
+
+            if(!refreshed){
+
+                window.location.href =
+                    "/login/";
+
+                return;
+
+            }
+
+
+            response =
+                await fetch(
+                    "/videos/session",
+                    {
+                        method:"POST",
+
+                        headers:{
+                            "Authorization":
+                                "Bearer " +
+                                accessToken
+                        },
+
+                        credentials:"include"
+                    }
+                );
+
+        }
+
+
+        /*
+         * بدون رنک مجاز
+         */
+
+        if(response.status === 403){
+
+            alert(
+                "این بخش فقط برای رنک‌های VIP، MVP، MEDIA و OWNER قابل دسترسی است."
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * دسترسی تأیید شد
+         */
+
+        if(response.ok){
+
+            window.location.href =
+                "/videos/";
+
+            return;
+
+        }
+
+
+        alert(
+            "خطا در بررسی دسترسی."
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Video access error:",
+            error
+        );
+
+
+        alert(
+            "ارتباط با سرور برقرار نشد."
+        );
+
+    }
+
+}
+
+
+/* =========================
+   VIDEO BUTTON
+========================= */
+
+function setupEarlyVideoAccess(rank){
+
+    const button =
+        document.getElementById(
+            "earlyVideoButton"
+        );
+
+
+    const accessText =
+        document.getElementById(
+            "earlyVideoAccess"
+        );
+
+
+    const overlay =
+        document.getElementById(
+            "earlyVideoOverlay"
+        );
+
+
+    const allowedRanks = [
+
+        "VIP",
+        "MVP",
+        "MEDIA",
+        "OWNER"
+
+    ];
+
+
+    const cleanRank =
+        String(rank)
+        .trim()
+        .toUpperCase();
+
+
+    const hasAccess =
+        allowedRanks.includes(
+            cleanRank
+        );
+
+
+    /* =========================
+       HAS ACCESS
+    ========================= */
+
+    if(hasAccess){
+
+        button.classList.remove(
+            "locked"
+        );
+
+
+        button.setAttribute(
+            "aria-disabled",
+            "false"
+        );
+
+
+        /*
+         * به جای # از مسیر واقعی استفاده می‌کنیم
+         * تا URL هیچ وقت به شکل #/... نشود.
+         */
+
+        button.setAttribute(
+            "href",
+            "/videos/"
+        );
+
+
+        if(overlay){
+
+            overlay.remove();
+
+        }
+
+
+        accessText.textContent =
+            "دسترسی فعال است";
+
+
+        accessText.style.color =
+            "#00e5ff";
+
+
+        button.onclick =
+            function(event){
+
+                event.preventDefault();
+
+                openProtectedVideos();
+
+                return false;
+
+            };
+
+    }
+
+
+    /* =========================
+       NO ACCESS
+    ========================= */
+
+    else{
+
+        button.classList.add(
+            "locked"
+        );
+
+
+        button.setAttribute(
+            "aria-disabled",
+            "true"
+        );
+
+
+        /*
+         * حتی در حالت قفل هم # استفاده نمی‌کنیم.
+         */
+
+        button.setAttribute(
+            "href",
+            "/videos/"
+        );
+
+
+        accessText.textContent =
+            "فقط کسانی با دارای رنک VIP و MVP و MEDIA و OWNER به این گزینه دست رسی دارند";
+
+
+        button.onclick =
+            function(event){
+
+                event.preventDefault();
+
+                return false;
+
+            };
+
+    }
+
+}
+
+
+/* =========================
+   LOAD PROFILE
+========================= */
+
+async function loadProfile(user){
+
+    const nameElement =
+        document.getElementById(
+            "profileName"
+        );
+
+
+    const rankElement =
+        document.getElementById(
+            "profileRank"
+        );
+
+
+    const profileElement =
+        document.getElementById(
+            "profile"
+        );
+
+
+    const metadata =
+        user.user_metadata || {};
+
+
+    const username =
+        typeof metadata.username ===
+        "string"
+
+            ? metadata.username.trim()
+
+            : "";
+
+
+    if(username){
+
+        nameElement.textContent =
+            username;
+
+    }else{
+
+        nameElement.textContent =
+            "نام ثبت نشده";
+
+    }
+
+
+    const rank =
+        await getRank(
+            user.id
+        );
+
+
+    console.log(
+        "Current user:",
+        user.id
+    );
+
+
+    console.log(
+        "Current rank:",
+        rank
+    );
+
+
+    rankElement.textContent =
+        rank;
+
+
+    profileElement.classList.remove(
+        "vip",
+        "mvp",
+        "media",
+        "owner"
+    );
+
+
+    if(rank === "VIP"){
+
+        profileElement.classList.add(
+            "vip"
+        );
+
+    }
+
+
+    if(rank === "MVP"){
+
+        profileElement.classList.add(
+            "mvp"
+        );
+
+    }
+
+
+    if(rank === "MEDIA"){
+
+        profileElement.classList.add(
+            "media"
+        );
+
+    }
+
+
+    if(rank === "OWNER"){
+
+        profileElement.classList.add(
+            "owner"
+        );
+
+    }
+
+
+    setupEarlyVideoAccess(
+        rank
+    );
+
+}
+
+
+/* =========================
+   CHECK LOGIN
+========================= */
+
+async function checkUser(){
+
+    if(!accessToken){
+
+        window.location.replace(
+            "/login/"
+        );
+
+        return;
+    }
+
+
+    try{
+
+        const user =
+            await getUser();
+
+
+        if(!user){
+
+            localStorage.removeItem(
+                "arsin_user_token"
+            );
+
+            localStorage.removeItem(
+                "arsin_user_refresh"
+            );
+
+
+            window.location.replace(
+                "/login/"
+            );
+
+            return;
+        }
+
+
+        await loadProfile(
+            user
+        );
+
+
+        document.getElementById(
+            "loading"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "mainContent"
+        ).style.display =
+            "block";
+
+
+    }catch(error){
+
+        console.error(
+            "User system error:",
+            error
+        );
+
+
+        window.location.replace(
+            "/login/"
+
+        );
+
+    }
+
+}
+
+
+checkUser();
+
 </script>
 
 </body>
