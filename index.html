@@ -339,6 +339,11 @@ footer {
 
 <body>
 
+<!-- موسیقی پس‌زمینه -->
+<audio id="bgMusic" autoplay loop preload="auto">
+    <source src="Pigstep.ogg" type="audio/ogg">
+</audio>
+
 <header>
     <nav>
         <a href="https://arsingang-site.arsingang.workers.dev/contact/">پشتیبانی</a>
@@ -425,6 +430,25 @@ footer {
     تمامی حقوق محفوظ است.
 </footer>
 
+<script>
+const bgMusic = document.getElementById("bgMusic");
+
+bgMusic.volume = 0.35;
+
+function startMusic() {
+    bgMusic.play().then(() => {
+        document.removeEventListener("pointerdown", startMusic);
+        document.removeEventListener("keydown", startMusic);
+    }).catch(() => {});
+}
+
+// تلاش برای شروع خودکار موسیقی
+startMusic();
+
+// اگر مرورگر پخش خودکار را مسدود کرد، با اولین تعامل صفحه شروع می‌شود
+document.addEventListener("pointerdown", startMusic);
+document.addEventListener("keydown", startMusic);
+</script>
+
 </body>
 </html>
-
