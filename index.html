@@ -1,10 +1,10 @@
-
+```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> ایونت پاییزه</title>
+<title>ایونت پاییزه</title>
 
 <style>
 * {
@@ -27,7 +27,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Background */
 body::before {
     content: "";
     position: fixed;
@@ -49,25 +48,17 @@ body::after {
     z-index: -1;
 }
 
-/* Header */
 header {
     width: 100%;
     padding: 22px 7%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     border-bottom: 1px solid #ff791833;
     background: #100603bb;
     backdrop-filter: blur(15px);
     position: relative;
     z-index: 10;
-}
-
-.logo {
-    font-size: 25px;
-    font-weight: 900;
-    color: var(--orange);
-    text-shadow: 0 0 20px #ff791877;
 }
 
 nav {
@@ -92,7 +83,6 @@ nav a:hover {
     transform: translateY(-3px);
 }
 
-/* Hero */
 .hero {
     min-height: 650px;
     display: flex;
@@ -157,7 +147,6 @@ nav a:hover {
     box-shadow: 0 0 45px #ff641eaa;
 }
 
-/* Floating images */
 .floating-image {
     position: absolute;
     width: 190px;
@@ -173,7 +162,6 @@ nav a:hover {
 .image-one {
     top: 12%;
     left: 7%;
-    transform: rotate(-9deg);
 }
 
 .image-two {
@@ -202,7 +190,6 @@ nav a:hover {
     }
 }
 
-/* Section */
 section {
     padding: 75px 7%;
 }
@@ -221,7 +208,6 @@ section {
     line-height: 2;
 }
 
-/* Cards */
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -271,7 +257,6 @@ section {
     font-size: 14px;
 }
 
-/* Banner */
 .banner {
     margin: 30px 7% 80px;
     padding: 65px 25px;
@@ -280,7 +265,7 @@ section {
     border: 1px solid #ff791855;
     background:
         linear-gradient(90deg, #3b1008dd, #8b260dcc),
-        url("https://images.unsplash.com/photo-1507371341162-763b5e419408?auto=format&fit=crop&w=1600&q=85") center/cover;
+        url("https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_1_16x9.jpg?v=1733855399540") center/cover;
     box-shadow: 0 0 50px #ff4d1d22;
 }
 
@@ -296,7 +281,6 @@ section {
     margin-bottom: 25px;
 }
 
-/* Footer */
 footer {
     text-align: center;
     padding: 30px;
@@ -305,7 +289,6 @@ footer {
     font-size: 13px;
 }
 
-/* Responsive */
 @media(max-width: 850px) {
     .cards {
         grid-template-columns: 1fr 1fr;
@@ -321,8 +304,7 @@ footer {
 @media(max-width: 550px) {
     header {
         padding: 18px 5%;
-        flex-direction: column;
-        gap: 18px;
+        justify-content: center;
     }
 
     nav {
@@ -358,8 +340,6 @@ footer {
 <body>
 
 <header>
-    <div class="logo"ArsinGang</div>
-
     <nav>
         <a href="https://arsingang-site.arsingang.workers.dev/contact/">پشتیبانی</a>
         <a href="https://arsingang-site.arsingang.workers.dev/live/">مشاهده استریم</a>
@@ -371,32 +351,32 @@ footer {
     <div class="hero">
 
         <img class="floating-image image-one"
-        src="https://images.unsplash.com/photo-1507371341162-763b5e419408?auto=format&fit=crop&w=500&q=85"
-        alt="پاییز">
+        src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_1_16x9.jpg?v=1733855399540"
+        alt="ماجراجویی ماینکرفت">
 
         <img class="floating-image image-two"
-        src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=500&q=85"
-        alt="جنگل پاییزی">
+        src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_5_16x9.jpg?v=1733855400529"
+        alt="محیط معدن ماینکرفت">
 
         <div class="hero-content">
-            <div class="event-label">ARSINGANG SPECIAL EVENT</div>
+            <div class="event-label">SPECIAL EVENT</div>
 
             <h1>ایونت پاییزه</h1>
 
             <p>
                 پاییز از راه رسیده و وقت یک ماجراجویی تازه است!
                 <br>
-                به ایونت پاییزه  خوش آمدید.
+                به رویداد ویژه پاییزی خوش آمدید.
             </p>
 
-            <a class="main-button" href="https://arsingang-site.arsingang.workers.dev/live/">
-                ورود به استریم
+            <a class="main-button" href="#event">
+                کشف ایونت
             </a>
         </div>
 
     </div>
 
-    <section>
+    <section id="event">
         <h2 class="section-title">درباره ایونت</h2>
         <p class="section-description">
             یک رویداد ویژه با حال‌وهوای پاییز، رنگ‌های گرم و لحظات هیجان‌انگیز
@@ -405,26 +385,26 @@ footer {
         <div class="cards">
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=800&q=85" alt="جنگل پاییزی">
+                <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_1_16x9.jpg?v=1733855399540" alt="پورتال ماینکرفت">
                 <div class="card-content">
-                    <h3>فضای پاییزی</h3>
-                    <p>با منظره‌های جذاب و فضای متفاوت پاییز همراه ما باشید.</p>
+                    <h3>پورتال اسرارآمیز</h3>
+                    <p>وارد دنیای تازه‌ای از ماجراجویی و اتفاقات هیجان‌انگیز شوید.</p>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1507371341162-763b5e419408?auto=format&fit=crop&w=800&q=85" alt="برگ‌های پاییزی">
+                <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_5_16x9.jpg?v=1733855400529" alt="معدن ماینکرفت">
                 <div class="card-content">
-                    <h3>ماجراجویی ویژه</h3>
-                    <p>منتظر اتفاقات و لحظات جذاب در ایونت پاییزه باشید.</p>
+                    <h3>ماجراجویی در معدن</h3>
+                    <p>در محیط‌های تاریک و مرموز، تجربه‌ای متفاوت داشته باشید.</p>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=85" alt="طبیعت پاییزی">
+                <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/PDP-Gallery_OV_6_16x9.jpg?v=1733855400702" alt="مبارزه با موجودات ماینکرفت">
                 <div class="card-content">
-                    <h3>Event</h3>
-                    <p>این رویداد ویژه را از دست ندهید و همراه ما باشید.</p>
+                    <h3>چالش ویژه</h3>
+                    <p>منتظر اتفاقات و چالش‌های جذاب در این رویداد باشید.</p>
                 </div>
             </div>
 
@@ -433,18 +413,18 @@ footer {
 
     <div class="banner">
         <h2>آماده‌ای برای ایونت پاییزه؟</h2>
-        <p>برای دنبال کردن برنامه‌های ایونت، وارد صفحه استریم شو.</p>
-        <a class="main-button" href="https://arsingang-site.arsingang.workers.dev/live/">
-            مشاهده استریم
+        <p>ماجراجویی پاییزی تازه‌ای در انتظار شماست.</p>
+        <a class="main-button" href="#event">
+            مشاهده رویداد
         </a>
     </div>
 
 </main>
 
 <footer>
-    © تمامی حقوق محفوظ است.
+    تمامی حقوق محفوظ است.
 </footer>
 
 </body>
 </html>
-
+```
