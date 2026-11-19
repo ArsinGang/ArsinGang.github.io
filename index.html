@@ -708,84 +708,6 @@ h1{
 
 
 /* =========================
-   BACKGROUND MUSIC SECTION
-========================= */
-
-.music-section{
-    width:min(600px,100%);
-    margin:0 auto 25px;
-    padding:18px 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    text-align:right;
-    border-radius:16px;
-    border:1px solid rgba(139,61,255,.35);
-    background:linear-gradient(135deg,rgba(123,44,255,.13),rgba(0,217,255,.07));
-    box-shadow:0 8px 25px rgba(0,0,0,.22),0 0 20px rgba(123,44,255,.10);
-}
-
-.music-info{
-    min-width:0;
-}
-
-.music-title{
-    color:white;
-    font-size:15px;
-    font-weight:bold;
-}
-
-.music-subtitle{
-    margin-top:6px;
-    color:#aaa0b8;
-    font-size:12px;
-}
-
-.music-status{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    flex-shrink:0;
-    color:#aaa0b8;
-    font-size:11px;
-}
-
-.music-indicator{
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:#777080;
-    box-shadow:0 0 8px rgba(119,112,128,.4);
-}
-
-.music-section.is-playing .music-indicator{
-    background:#00e5ff;
-    box-shadow:0 0 10px rgba(0,229,255,.9);
-    animation:musicPulse 1.4s infinite ease-in-out;
-}
-
-.music-section.is-playing .music-status{
-    color:#00e5ff;
-}
-
-@keyframes musicPulse{
-    0%,100%{transform:scale(1);opacity:.65;}
-    50%{transform:scale(1.35);opacity:1;}
-}
-
-@media(max-width:420px){
-    .music-section{
-        padding:15px;
-        gap:10px;
-    }
-    .music-title{font-size:13px;}
-    .music-subtitle{font-size:10px;}
-    .music-status{font-size:10px;}
-}
-
-
-/* =========================
    FOOTER
 ========================= */
 
@@ -847,10 +769,11 @@ footer{
 
 <body>
 
-<!-- BACKGROUND MUSIC -->
+<!-- MUSIC -->
 <audio id="bgMusic" autoplay loop preload="auto">
     <source src="/music/Pigstep.ogg" type="audio/ogg">
 </audio>
+
 
 <!-- =========================
      LOADING
@@ -1003,19 +926,6 @@ footer{
         </div>
 
 
-        <!-- MUSIC SECTION -->
-        <section class="music-section" id="musicSection" aria-label="موسیقی پس‌زمینه">
-            <div class="music-info">
-                <div class="music-title">🎵 Minecraft - Pigstep</div>
-                <div class="music-subtitle">موسیقی پس‌زمینه ArsinGang</div>
-            </div>
-            <div class="music-status">
-                <span class="music-indicator"></span>
-                <span id="musicStatus">در انتظار پخش...</span>
-            </div>
-        </section>
-
-
         <div class="buttons">
 
 
@@ -1140,45 +1050,43 @@ footer{
 ========================= */
 
 const bgMusic = document.getElementById("bgMusic");
-const musicSection = document.getElementById("musicSection");
-const musicStatus = document.getElementById("musicStatus");
 
 bgMusic.volume = 0.35;
 
-function updateMusicStatus(status, isPlaying = false){
-    musicStatus.textContent = status;
-    musicSection.classList.toggle("is-playing", isPlaying);
-}
-
 function startMusic(){
+
     bgMusic.play().then(() => {
-        updateMusicStatus("در حال پخش", true);
-        document.removeEventListener("pointerdown", startMusic);
-        document.removeEventListener("keydown", startMusic);
+
+        document.removeEventListener(
+            "pointerdown",
+            startMusic
+        );
+
+        document.removeEventListener(
+            "keydown",
+            startMusic
+        );
+
     }).catch(() => {
-        updateMusicStatus("برای شروع، صفحه را لمس کنید", false);
+
+        // پخش خودکار ممکن است توسط مرورگر مسدود شود.
+        // با اولین لمس یا فشردن کلید دوباره تلاش می‌کنیم.
+
     });
+
 }
-
-bgMusic.addEventListener("play", () => {
-    updateMusicStatus("در حال پخش", true);
-});
-
-bgMusic.addEventListener("pause", () => {
-    updateMusicStatus("متوقف شده", false);
-});
-
-bgMusic.addEventListener("waiting", () => {
-    updateMusicStatus("در حال بارگذاری...", false);
-});
-
-bgMusic.addEventListener("error", () => {
-    updateMusicStatus("خطا در بارگذاری آهنگ", false);
-});
 
 startMusic();
-document.addEventListener("pointerdown", startMusic);
-document.addEventListener("keydown", startMusic);
+
+document.addEventListener(
+    "pointerdown",
+    startMusic
+);
+
+document.addEventListener(
+    "keydown",
+    startMusic
+);
 
 
 /* =========================
@@ -1535,7 +1443,7 @@ async function openProtectedVideos(){
                             "Authorization":
                                 "Bearer " +
                                 accessToken
-                        },
+                    },
 
                         credentials:"include"
                     }
