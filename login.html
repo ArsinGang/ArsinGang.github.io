@@ -555,6 +555,29 @@ document.getElementById("authForm").addEventListener("submit",async function(eve
     localStorage.setItem("arsin_user_refresh",result.data.refresh_token);
   }
 
+  /* بررسی انقضای رنک بعد از ورود موفق */
+
+  try {
+    const rankResponse = await fetch(
+      "https://arsingang-site.arsingang.workers.dev/api/rank-expiry-status",
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + result.data.access_token
+        },
+        cache: "no-store"
+      }
+    );
+
+    const rankStatus = await rankResponse.json().catch(() => null);
+
+    if (rankResponse.ok && rankStatus?.expired === true) {
+      alert("تاریخ رنک شما به پایان رسیده است. لطفا پوشه SPAM ایمیل خود را چک کنید.");
+    }
+  } catch (error) {
+    console.log("RANK EXPIRY CHECK ERROR:", error);
+  }
+
   showMessage("✅ ورود موفق بود! در حال ورود به سایت...","success");
 
   setTimeout(function(){
