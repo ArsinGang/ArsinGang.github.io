@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -317,10 +318,22 @@ function getErrorMessage(data,currentMode){
     data?.message ||
     data?.error_description ||
     data?.error ||
+    data?.code ||
     ""
   ).toString();
 
   const error = raw.toLowerCase();
+
+  /* تشخیص حساب بن‌شده توسط Supabase Auth */
+  if(
+    error.includes("user_banned") ||
+    error.includes("user is banned") ||
+    error.includes("user banned") ||
+    error.includes("banned_until") ||
+    error.includes("banned")
+  ){
+    return "🚫 اکانت شما بن شده است.";
+  }
 
   if(
     error.includes("username contains a prohibited word") ||
